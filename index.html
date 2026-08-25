@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5">
+  <meta name="theme-color" content="#009FDB">
+  <meta name="description" content="YAAVS Pospago — Planes AT&T Premium, promociones, renovaciones, seguros y cotización. Distribuidor autorizado.">
+  <title>YAAVS Pospago | Planes AT&T Premium</title>
+  <base href="/yaavs-pospago/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://unpkg.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=20260825ar">
+  <link rel="stylesheet" href="css/stores.css?v=20260825ar">
+  <link rel="icon" href="assets/images/favicon.svg?v=20260825ar" type="image/svg+xml">
+  <link rel="icon" href="assets/images/favicon-32.png?v=20260825ar" type="image/png" sizes="32x32">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header" id="site-header">
+    <div class="site-header__glow" aria-hidden="true"></div>
+    <div class="site-header__shine" aria-hidden="true"></div>
+    <div class="site-header__inner">
+      <a class="brand" href="#inicio" aria-label="YAAVS Pospago inicio">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__lockup">
+          <img class="brand__logo brand__logo--att" src="assets/images/att-logo.webp" alt="AT&amp;T Distribuidor Autorizado" width="600" height="213" decoding="async">
+          <span class="brand__divider" aria-hidden="true"></span>
+          <img class="brand__logo brand__logo--pospago" src="assets/images/logo-yaavs-pospago.svg" alt="YAAVS Pospago" width="200" height="82" decoding="async">
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Principal">
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu" data-nav-toggle>
+          <span class="sr-only">Menú</span>
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav__list" id="nav-menu">
+          <li>
+            <a href="#planes">
+              <span class="nav__label">Planes</span>
+              <span class="nav__hint">Premium · Simple · Lite</span>
+              <span class="nav__go" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="#promociones">
+              <span class="nav__label">Promociones</span>
+              <span class="nav__hint">Vigentes AT&amp;T</span>
+              <span class="nav__go" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="#tiendas">
+              <span class="nav__label">Tiendas</span>
+              <span class="nav__hint">Encuentra tu sucursal</span>
+              <span class="nav__go" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="#renovaciones">
+              <span class="nav__label">Renovaciones</span>
+              <span class="nav__hint">Estrena equipo</span>
+              <span class="nav__go" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="#seguros">
+              <span class="nav__label">Seguros</span>
+              <span class="nav__hint">Protege tu smartphone</span>
+              <span class="nav__go" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li class="nav__foot">
+            <a class="nav__wa" href="#cotizar">Cotizar ahora</a>
+            <p class="nav__tagline">Más que números, personas.</p>
+          </li>
+        </ul>
+      </nav>
+
+      <a class="btn-cta" href="#cotizar">
+        <span class="btn-cta__pulse" aria-hidden="true"></span>
+        <span class="btn-cta__label">Cotiza ahora</span>
+        <span class="btn-cta__arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+    <div class="site-header__line" aria-hidden="true"></div>
+  </header>
+
+  <main id="contenido">
+    <!-- HERO — video desktop / carrusel móvil -->
+    <section class="hero" id="inicio" aria-label="Promoción destacada">
+      <div class="hero__desktop">
+        <video
+          class="hero__video"
+          src="assets/banners/1.mp4"
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          autoplay
+          aria-label="Video promoción YAAVS Pospago AT&amp;T"
+        ></video>
+      </div>
+
+      <div class="hero__mobile" data-mobile-carousel>
+        <div class="hero__mobile-glow" aria-hidden="true"></div>
+        <div class="hero__mobile-frame">
+          <div class="hero__mobile-track" data-mobile-track>
+            <article class="hero__mobile-slide is-active" data-mobile-slide>
+              <img src="assets/banners/PROMOS-AGO-01-228f352c.jpg" alt="Plan BLACK — oferta AT&T" width="2000" height="2000" fetchpriority="high" decoding="async">
+            </article>
+            <article class="hero__mobile-slide" data-mobile-slide>
+              <img src="assets/banners/PROMOS-AGO-02-b51cb6b8.jpg" alt="Promoción AT&T Pospago" width="2000" height="2000" decoding="async">
+            </article>
+            <article class="hero__mobile-slide" data-mobile-slide>
+              <img src="assets/banners/PROMOS-AGO-03-08e0a3a1.jpg" alt="Redes sociales ilimitadas" width="2000" height="2000" decoding="async">
+            </article>
+            <article class="hero__mobile-slide" data-mobile-slide>
+              <img src="assets/banners/PROMOS-AGO-04-cedd907b.jpg" alt="Portabilidad AT&T" width="2000" height="2000" decoding="async">
+            </article>
+            <article class="hero__mobile-slide" data-mobile-slide>
+              <img src="assets/banners/PROMOS-AGO-05-0dedee92.jpg" alt="Oferta YAAVS Pospago" width="2000" height="2000" decoding="async">
+            </article>
+            <article class="hero__mobile-slide" data-mobile-slide>
+              <img src="assets/banners/PROMOS-AGO-06-4f8ca821.jpg" alt="Planes AT&T Premium" width="2000" height="2000" decoding="async">
+            </article>
+            <article class="hero__mobile-slide" data-mobile-slide>
+              <img src="assets/banners/PROMOS-AGO-07-c43a74bd.jpg" alt="Renovación AT&T" width="2000" height="2000" decoding="async">
+            </article>
+            <article class="hero__mobile-slide" data-mobile-slide>
+              <img src="assets/banners/PROMOS-AGO-08-93a45095.jpg" alt="Promoción del mes" width="2000" height="2000" decoding="async">
+            </article>
+          </div>
+        </div>
+
+        <button class="hero__mobile-arrow hero__mobile-arrow--prev" type="button" data-mobile-prev aria-label="Anterior">‹</button>
+        <button class="hero__mobile-arrow hero__mobile-arrow--next" type="button" data-mobile-next aria-label="Siguiente">›</button>
+
+        <div class="hero__mobile-bar" aria-hidden="true">
+          <span class="hero__mobile-bar-fill" data-mobile-progress></span>
+        </div>
+        <div class="hero__mobile-dots" data-mobile-dots role="tablist" aria-label="Promociones"></div>
+      </div>
+    </section>
+
+    <div class="site-marquee" aria-hidden="true">
+      <div class="site-marquee__track">
+        <span>AT&amp;T PREMIUM</span>
+        <span class="site-marquee__dot">●</span>
+        <span>AT&amp;T LITE</span>
+        <span class="site-marquee__dot">●</span>
+        <span>AT&amp;T SIMPLE PLUS</span>
+        <span class="site-marquee__dot">●</span>
+        <span>A CRÉDITO SIN INTERESES</span>
+        <span class="site-marquee__dot">●</span>
+        <span>LOS MEJORES SMARTPHONES</span>
+        <span class="site-marquee__dot">●</span>
+        <span>RENOVACIONES</span>
+        <span class="site-marquee__dot">●</span>
+        <span>PORTABILIDADES</span>
+        <span class="site-marquee__dot">●</span>
+        <span>SEGUROS</span>
+        <span class="site-marquee__dot">●</span>
+        <span>AT&amp;T PREMIUM</span>
+        <span class="site-marquee__dot">●</span>
+        <span>AT&amp;T LITE</span>
+        <span class="site-marquee__dot">●</span>
+        <span>AT&amp;T SIMPLE PLUS</span>
+        <span class="site-marquee__dot">●</span>
+        <span>A CRÉDITO SIN INTERESES</span>
+        <span class="site-marquee__dot">●</span>
+        <span>LOS MEJORES SMARTPHONES</span>
+        <span class="site-marquee__dot">●</span>
+        <span>RENOVACIONES</span>
+        <span class="site-marquee__dot">●</span>
+        <span>PORTABILIDADES</span>
+        <span class="site-marquee__dot">●</span>
+        <span>SEGUROS</span>
+        <span class="site-marquee__dot">●</span>
+      </div>
+    </div>
+
+    <!-- INTRO brand strip -->
+    <section class="intro" aria-label="AT&amp;T y YAAVS">
+      <div class="intro__glow" aria-hidden="true"></div>
+      <div class="intro__shine" aria-hidden="true"></div>
+      <div class="wrap intro__lockup">
+        <div class="intro__att">
+          <img
+            class="intro__att-logo"
+            src="assets/images/att-logo.webp"
+            alt="AT&amp;T Distribuidor Autorizado"
+            width="600"
+            height="213"
+            decoding="async"
+            loading="lazy"
+          >
+        </div>
+
+        <span class="intro__pipe" aria-hidden="true"></span>
+
+        <div class="intro__people">
+          <p class="intro__people-phrase">Más que números, personas.</p>
+        </div>
+      </div>
+      <h1 class="sr-only" id="intro-title">YAAVS Pospago · Planes AT&amp;T Premium</h1>
+    </section>
+
+    <!-- PLANES POSPAGO — Premium / Simple Plus / Lite -->
+    <section class="section section--plans" id="planes" aria-labelledby="planes-title" data-plans-catalog>
+      <div class="plans-bg" aria-hidden="true"></div>
+      <div class="wrap">
+        <header class="section__head section__head--plans">
+          <p class="eyebrow">Planes pospago AT&amp;T</p>
+          <h2 id="planes-title">Elige el plan a tu medida</h2>
+          <p>Premium, Simple Plus o Lite · Minutos y SMS ilimitados · Más gigas</p>
+        </header>
+
+        <div class="plan-tabs" role="tablist" aria-label="Familias de planes">
+          <button type="button" class="plan-tabs__btn is-active" role="tab" id="tab-premium" aria-selected="true" aria-controls="panel-premium" data-plan-tab="premium">Premium</button>
+          <button type="button" class="plan-tabs__btn" role="tab" id="tab-simple" aria-selected="false" aria-controls="panel-simple" data-plan-tab="simple">Simple Plus</button>
+          <button type="button" class="plan-tabs__btn" role="tab" id="tab-lite" aria-selected="false" aria-controls="panel-lite" data-plan-tab="lite">Lite</button>
+        </div>
+        <p class="plan-tabs__hint" data-plan-hint>AT&amp;T Premium · planes con equipo · toca un plan para ver smartphones en tienda</p>
+      </div>
+
+      <div class="plans-scroll is-active" id="panel-premium" role="tabpanel" aria-labelledby="tab-premium" data-plan-panel="premium">
+        <div class="plans" role="list" data-plans-grid="premium"></div>
+      </div>
+      <div class="plans-scroll" id="panel-simple" role="tabpanel" aria-labelledby="tab-simple" data-plan-panel="simple" hidden>
+        <div class="plans" role="list" data-plans-grid="simple"></div>
+      </div>
+      <div class="plans-scroll" id="panel-lite" role="tabpanel" aria-labelledby="tab-lite" data-plan-panel="lite" hidden>
+        <div class="plans" role="list" data-plans-grid="lite"></div>
+      </div>
+    </section>
+
+    <!-- PROMOCIONES -->
+    <section class="section section--promos" id="promociones" aria-labelledby="promos-title">
+      <div class="wrap">
+        <header class="section__head">
+          <p class="eyebrow">Vigentes</p>
+          <h2 id="promos-title">Promociones pospago</h2>
+          <p>Activa, porta o renueva y aprovecha beneficios AT&amp;T Premium.</p>
+        </header>
+
+        <div class="promo-rail" role="list">
+          <article class="promo" role="listitem">
+            <span class="promo__kicker">Portabilidad</span>
+            <h3>Porta tu línea a AT&amp;T Premium</h3>
+            <p>Condonación de cargo por activación en portabilidad hacia planes Premium. Vigencia al 30 de junio 2026.</p>
+          </article>
+          <article class="promo" role="listitem">
+            <span class="promo__kicker">Activación</span>
+            <h3>Activa o adiciona con equipo propio</h3>
+            <p>Hasta 50% de descuento en cargo por activación con smartphone propio en AT&amp;T Premium.</p>
+          </article>
+          <article class="promo" role="listitem">
+            <span class="promo__kicker">Redes</span>
+            <h3>TikTok como red social ilimitada</h3>
+            <p>Disponible a partir de AT&amp;T Premium Azul 3. Elige TikTok dentro de tus redes ilimitadas.</p>
+          </article>
+          <article class="promo" role="listitem">
+            <span class="promo__kicker">Control</span>
+            <h3>Addon Control 12 meses</h3>
+            <p>Pasa de prepago AT&amp;T a Premium e incluye Addon Control sin costo por 12 meses.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIENDAS / SUCURSALES AT&T -->
+    <section class="pospago-stores" id="tiendas" data-pospago-stores data-carrier="att" aria-label="Sucursales AT&amp;T">
+      <header class="pospago-stores__head">
+        <p class="eyebrow pospago-stores__eyebrow">Sucursales AT&amp;T · YAAVS</p>
+        <h2 class="pospago-stores__title">Encuentra tu tienda</h2>
+        <p class="pospago-stores__intro">Más de <strong data-store-total>docenas</strong> de puntos de venta. Busca por ciudad o descubre qué sucursal tienes cerca en el mapa.</p>
+        <a class="pospago-stores__cta" href="#tiendas-mapa">Ver mapa de tiendas</a>
+      </header>
+
+      <div class="pospago-stores__stage is-revealed" data-store-stage id="tiendas-mapa">
+        <div class="pospago-stores__toolbar">
+          <div class="pospago-stores__toolbar-top">
+            <h3 class="pospago-stores__heading" data-store-title>Sucursales AT&amp;T</h3>
+            <span class="pospago-stores__count" data-store-count></span>
+          </div>
+          <form class="pospago-stores__search" onsubmit="return false">
+            <input type="search" data-store-q placeholder="Escribe ciudad, colonia o nombre de tienda" autocomplete="off">
+            <button type="button" data-store-geo>Qué sucursal tengo cerca</button>
+          </form>
+          <p class="pospago-stores__status" data-store-status></p>
+        </div>
+        <div class="pospago-stores__layout">
+          <div class="pospago-stores__list" data-store-list></div>
+          <div class="pospago-stores__map" data-store-map></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RENOVACIONES -->
+    <section class="section section--renew" id="renovaciones" aria-labelledby="renew-title">
+      <div class="wrap renew">
+        <div class="renew__copy">
+          <p class="eyebrow">Renueva tu línea</p>
+          <h2 id="renew-title">Estrena equipo sin cambiar de número</h2>
+          <p>Renueva tu plan AT&amp;T Premium con YAAVS: más gigas, smartphone nuevo y continuidad de tu línea.</p>
+          <a class="btn btn--primary" href="#cotizar">Cotizar renovación</a>
+        </div>
+        <ul class="renew__steps" aria-label="Pasos de renovación">
+          <li><strong>01</strong><span>Elige tu plan Premium</span></li>
+          <li><strong>02</strong><span>Selecciona equipo nuevo o propio</span></li>
+          <li><strong>03</strong><span>Confirma en tienda o por WhatsApp</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SEGUROS -->
+    <section class="section section--insurance" id="seguros" aria-labelledby="seguros-title">
+      <div class="wrap insurance">
+        <div class="insurance__copy">
+          <p class="eyebrow">AT&amp;T asegura tu equipo</p>
+          <h2 id="seguros-title">Seguro de protección</h2>
+          <p>Protege tu smartphone ante robo, fallas o daños fuera de garantía. Evita asumir el costo completo de un equipo nuevo.</p>
+          <dl class="insurance__facts">
+            <div>
+              <dt>Cobertura</dt>
+              <dd>Robo, daño accidental y fallas fuera de garantía</dd>
+            </div>
+            <div>
+              <dt>Desde</dt>
+              <dd>Consulta en cotización el cargo mensual según tu equipo</dd>
+            </div>
+          </dl>
+          <a class="btn btn--primary" href="#cotizar">Incluir seguro en mi cotización</a>
+        </div>
+        <div class="insurance__panel" aria-hidden="true">
+          <p class="insurance__big">Protege</p>
+          <p>tu Smartphone</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COTIZADOR -->
+    <section class="section section--quote" id="cotizar" aria-labelledby="quote-title">
+      <div class="wrap quote">
+        <header class="section__head">
+          <p class="eyebrow">Precotización</p>
+          <h2 id="quote-title">Cotiza tu plan AT&amp;T</h2>
+          <p>Arma tu precotización y continúa por WhatsApp con un asesor YAAVS.</p>
+        </header>
+
+        <form class="quote-form" data-quote-form>
+          <div class="quote-form__grid">
+            <label>
+              <span>Nombre</span>
+              <input name="nombre" type="text" required autocomplete="name" placeholder="Tu nombre">
+            </label>
+            <label>
+              <span>WhatsApp</span>
+              <input name="whatsapp" type="tel" required autocomplete="tel" placeholder="55 0000 0000">
+            </label>
+            <label>
+              <span>Plan</span>
+              <select name="plan" data-quote-select required>
+                <option value="">Selecciona un plan</option>
+              </select>
+            </label>
+            <label>
+              <span>Interés</span>
+              <select name="interes" required>
+                <option value="activar">Activar línea nueva</option>
+                <option value="portabilidad">Portabilidad</option>
+                <option value="renovacion">Renovación</option>
+                <option value="equipo">Plan + smartphone</option>
+              </select>
+            </label>
+            <label class="quote-form__full">
+              <span>Equipo de interés (Premium)</span>
+              <select name="equipo" data-quote-device>
+                <option value="">Sin equipo / propio / por definir</option>
+                <option value="iphone16">Apple iPhone 16</option>
+                <option value="iphone15">Apple iPhone 15</option>
+                <option value="galaxy-a55">Samsung Galaxy A55</option>
+                <option value="galaxy-s24">Samsung Galaxy S24</option>
+                <option value="motorola-g">Motorola Moto G</option>
+                <option value="redmi-note">Xiaomi Redmi Note</option>
+                <option value="oppo-a">OPPO A</option>
+              </select>
+            </label>
+            <label class="quote-form__full">
+              <span>¿Incluir seguro de equipo?</span>
+              <select name="seguro">
+                <option value="si">Sí, quiero información de seguro</option>
+                <option value="no">No por ahora</option>
+              </select>
+            </label>
+            <label class="quote-form__full">
+              <span>Ciudad / tienda preferida</span>
+              <input name="ciudad" type="text" placeholder="Ej. Guadalajara">
+            </label>
+          </div>
+
+          <div class="quote-summary" data-quote-summary aria-live="polite">
+            <p>Selecciona un plan para ver tu precotización.</p>
+          </div>
+
+          <button class="btn btn--primary btn--wide" type="submit">Enviar por WhatsApp</button>
+          <p class="fineprint">Al enviar se abre WhatsApp con tu precotización para que un asesor YAAVS te dé seguimiento.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__grid">
+      <div>
+        <img src="assets/images/logo-yaavs-pospago-alt.png" alt="YAAVS Pospago" width="160" height="65">
+        <p>Distribución telecom · Planes AT&amp;T Premium</p>
+      </div>
+      <nav aria-label="Pie">
+        <a href="#planes">Planes</a>
+        <a href="#promociones">Promociones</a>
+        <a href="#tiendas">Tiendas</a>
+        <a href="#cotizar">Cotizar</a>
+      </nav>
+      <p class="site-footer__legal">AT&amp;T y el logotipo de AT&amp;T son marcas comerciales de AT&amp;T Intellectual Property. YAAVS opera como distribuidor autorizado. Condiciones sujetas a cambio sin previo aviso.</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+  <script src="js/plans-catalog.js?v=20260825ar" defer></script>
+  <script src="js/premium-devices.js?v=20260825ar" defer></script>
+  <script src="js/tiendas-att-stores.js?v=20260825ar" defer></script>
+  <script src="js/pospago-stores.js?v=20260825ar" defer></script>
+  <script src="js/main.js?v=20260825ar" defer></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+[09:18:24] Loading model base...
+[09:18:25] Loading full wav...
+[09:18:26] Audio duration: 61.5 min
+[09:18:26] Chunk 1/7: 0.0-10.0 min
+[09:19:28]   chars so far: 8253; elapsed 62s
+[09:19:28] Chunk 2/7: 10.0-20.0 min
+[09:20:30]   chars so far: 14972; elapsed 124s
+[09:20:30] Chunk 3/7: 20.0-30.0 min
+[09:21:25]   chars so far: 23053; elapsed 179s
+[09:21:25] Chunk 4/7: 30.0-40.0 min
+[09:22:06]   chars so far: 30212; elapsed 221s
+[09:22:06] Chunk 5/7: 40.0-50.0 min
+[09:22:54]   chars so far: 38339; elapsed 268s
+[09:22:54] Chunk 6/7: 50.0-60.0 min
+[09:23:37]   chars so far: 44780; elapsed 311s
+[09:23:37] Chunk 7/7: 60.0-61.5 min
+[09:23:42]   chars so far: 45002; elapsed 316s
+[09:23:42] DONE in 5.3 min

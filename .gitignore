@@ -1,0 +1,5 @@
+_tools/
+_refs/*.json
+_refs/sample_*.wav
+_refs/whisper_sample.log
+.DS_Store

@@ -393,7 +393,7 @@
     CAROUSEL_STATE[id] = clampPage((CAROUSEL_STATE[id] ?? 0) + delta, carouselPages(grid));
     applyCarouselPage(id, true);
   }
-function initCarouselInteractions() {
+  function initCarouselInteractions() {
     const root = document.querySelector("[data-plans-catalog]");
     if (!root) return;
 
@@ -643,9 +643,12 @@ function initCarouselInteractions() {
       scroller.addEventListener(
         "wheel",
         (e) => {
-          if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
-          e.preventDefault();
-          window.scrollBy(0, e.deltaY);
+          if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            // Scroll vertical dominante: navega la página
+            e.preventDefault();
+            window.scrollBy(0, e.deltaY);
+          }
+          // Scroll horizontal: scroll nativo con scroll-snap (cards se alinean de 3 en 3)
         },
         { passive: false }
       );

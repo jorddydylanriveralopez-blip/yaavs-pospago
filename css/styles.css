@@ -1786,7 +1786,8 @@ a {
   max-width: 100%;
   min-width: 0;
   display: block;
-  overflow-x: hidden;
+  /* overflow auto para scroll-snap nativo + carrusel con transform */
+  overflow-x: auto;
   overflow-y: visible;
   overscroll-behavior: auto;
   -webkit-overflow-scrolling: touch;
@@ -1794,11 +1795,14 @@ a {
   scrollbar-width: none;
   -ms-overflow-style: none;
   box-sizing: border-box;
+  /* Scroll-snap: alinea cards de 3 en 3 visualmente */
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 1.25rem;
 }
 
 @supports not (overflow: clip) {
   .plans-scroll {
-    overflow-x: hidden;
+    overflow-x: auto;
   }
 }
 
@@ -1835,6 +1839,7 @@ a {
   width: 188px;
   min-width: 188px;
   max-width: 188px;
+  scroll-snap-align: start;
   visibility: hidden;
   pointer-events: none;
   user-select: none;
@@ -1854,23 +1859,21 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   flex: 0 0 auto;
   border-radius: 50%;
-  border: 1px solid rgba(0, 120, 168, 0.24);
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.72));
-  color: #0077a8;
-  box-shadow: 0 10px 22px rgba(0, 80, 120, 0.16), inset 0 1px 0 #fff;
+  border: 1px solid rgba(0, 159, 219, 0.3);
+  background: linear-gradient(135deg, var(--att-blue) 0%, var(--att-cyan) 55%, var(--att-blue) 100%);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(0, 159, 219, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   cursor: pointer;
-  transition: transform 0.25s var(--ease), box-shadow 0.25s ease, color 0.25s ease, background 0.25s ease, opacity 0.25s ease;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s ease, color 0.25s ease, opacity 0.25s ease;
 }
 
 .plans-nav__btn:hover:not(:disabled) {
   transform: translateY(-2px) scale(1.07);
-  background: linear-gradient(160deg, #eaf9ff, #d7f1fd);
-  color: #005f8a;
-  box-shadow: 0 14px 30px rgba(0, 159, 219, 0.35), inset 0 1px 0 #fff;
+  box-shadow: 0 14px 30px rgba(0, 159, 219, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
 .plans-nav__btn:active:not(:disabled) {
@@ -1878,15 +1881,16 @@ a {
 }
 
 .plans-nav__btn:focus-visible {
-  outline: 3px solid rgba(0, 193, 212, 0.55);
+  outline: 3px solid rgba(0, 193, 212, 0.6);
   outline-offset: 2px;
 }
 
 .plans-nav__btn:disabled {
-  opacity: 0.32;
+  opacity: 0.3;
   cursor: default;
-  box-shadow: none;
+  box-shadow: 0 4px 12px rgba(0, 120, 168, 0.12);
   transform: none;
+  background: linear-gradient(135deg, var(--att-blue) 0%, var(--att-cyan) 55%, var(--att-blue) 100%);
 }
 
 .plans-nav__btn svg {
@@ -1926,12 +1930,16 @@ a {
 }
 
 .plans-nav__counter {
-  font-size: 0.78rem;
-  font-weight: 750;
+  font-size: 0.82rem;
+  font-weight: 800;
   letter-spacing: 0.06em;
-  color: var(--att-muted);
+  color: var(--att-blue-deep);
   font-variant-numeric: tabular-nums;
-  min-width: 2.6rem;
+  min-width: 2.8rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(0, 159, 219, 0.08);
+  border: 1px solid rgba(0, 159, 219, 0.18);
   text-align: center;
   user-select: none;
 }
@@ -1946,6 +1954,9 @@ a {
   width: 188px;
   min-width: 188px;
   max-width: 188px;
+  /* Scroll-snap: alinea al snap point del carrusel */
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
   opacity: 1;
   transform: none;
   transition: transform 0.35s var(--ease), filter 0.35s ease;
@@ -3805,7 +3816,9 @@ body.is-modal-open {
 
   .plan {
     gap: 0.35rem;
-    scroll-snap-align: center;
+    /* Mantener snap al inicio para cards alineadas (mobile) */
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
 
   .plan__head {

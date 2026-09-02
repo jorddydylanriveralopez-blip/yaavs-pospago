@@ -1782,11 +1782,11 @@ a {
 }
 
 .plans-scroll {
-  width: 100%;
+  width: 636px;
   max-width: 100%;
   min-width: 0;
   display: block;
-  overflow-x: clip;
+  overflow-x: hidden;
   overflow-y: visible;
   overscroll-behavior: auto;
   -webkit-overflow-scrolling: touch;
@@ -1821,7 +1821,7 @@ a {
   padding: 0.75rem 1.25rem 0.5rem;
   box-sizing: border-box;
   align-items: stretch;
-  transform: translate3d(calc(-1 * var(--pos, 0px)), 0, 0);
+  transform: translate3d(var(--pos, 0px), 0, 0);
   transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
@@ -3203,7 +3203,7 @@ body.is-modal-open {
   }
 
   .plans-scroll {
-    min-width: 0;
+    width: 432px;
     max-width: 100%;
   }
 
@@ -3773,6 +3773,8 @@ body.is-modal-open {
   }
 
   .plans-scroll {
+    width: 190px;
+    max-width: 100%;
     padding: 1.15rem 0 0.85rem;
     scroll-snap-type: x mandatory;
     scroll-padding-inline: 0.75rem;

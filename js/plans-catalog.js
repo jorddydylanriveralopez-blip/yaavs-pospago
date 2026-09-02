@@ -297,7 +297,7 @@
 
   function perPage() {
     const w = window.innerWidth;
-    if (w <= 700) return 1;
+    if (w <= 640) return 1;
     if (w <= 1100) return 2;
     return 3;
   }
@@ -364,7 +364,7 @@
     const pages = carouselPages(grid);
     const current = clampPage(CAROUSEL_STATE[id] ?? 0, pages);
     CAROUSEL_STATE[id] = current;
-    grid.style.setProperty("--pos", `${current * carouselUnit(grid)}px`);
+    grid.style.setProperty("--pos", `-${current * carouselUnit(grid)}px`);
 
     const prev = panel.querySelector("[data-carousel-prev]");
     const next = panel.querySelector("[data-carousel-next]");
@@ -448,7 +448,7 @@ function initCarouselInteractions() {
         const dx = e.clientX - drag.startX;
         if (Math.abs(dx) > 6) drag.moved = true;
         const maxScroll = carouselUnit(grid) * (carouselPages(grid) - 1);
-        grid.style.setProperty("--pos", `${Math.min(Math.max(0, drag.basePos - dx), maxScroll)}px`);
+        grid.style.setProperty("--pos", `-${Math.min(Math.max(0, drag.basePos - dx), maxScroll)}px`);
       };
       const onDragEnd = (e) => {
         if (!drag?.on) return;

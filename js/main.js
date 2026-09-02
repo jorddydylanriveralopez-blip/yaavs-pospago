@@ -141,12 +141,30 @@
     const dropdown = nav.querySelector(".nav__dropdown");
     if (dropdown) {
       const dropLink = dropdown.querySelector("a");
-      if (dropLink) {
+      const submenu = dropdown.querySelector(".nav__submenu");
+      if (dropLink && submenu) {
+        // Toggle on click (mobile y desktop)
         dropLink.addEventListener("click", (e) => {
-          if (window.matchMedia("(max-width: 1280px)").matches) {
-            e.preventDefault();
-            const expanded = dropLink.getAttribute("aria-expanded") === "true";
-            dropLink.setAttribute("aria-expanded", String(!expanded));
+          e.preventDefault();
+          e.stopPropagation();
+          const isOpen = submenu.classList.contains("is-open");
+          submenu.classList.toggle("is-open", !isOpen);
+          dropLink.setAttribute("aria-expanded", String(!isOpen));
+        });
+        // Mostrar en hover (desktop)
+        dropdown.addEventListener("mouseenter", () => {
+          submenu.classList.add("is-open");
+          dropLink.setAttribute("aria-expanded", "true");
+        });
+        dropdown.addEventListener("mouseleave", () => {
+          submenu.classList.remove("is-open");
+          dropLink.setAttribute("aria-expanded", "false");
+        });
+        // Cerrar al hacer click fuera
+        document.addEventListener("click", (e) => {
+          if (!dropdown.contains(e.target)) {
+            submenu.classList.remove("is-open");
+            dropLink.setAttribute("aria-expanded", "false");
           }
         });
       }

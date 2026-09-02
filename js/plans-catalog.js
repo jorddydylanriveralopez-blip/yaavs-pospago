@@ -280,6 +280,7 @@
     grid.style.setProperty("--cols", String(family.plans.length));
     grid.classList.toggle("plans--few", family.plans.length <= 4);
     grid.classList.toggle("plans--many", family.plans.length >= 8);
+    setupCarousel(id);
   }
 
   function renderAllFamilies() {
@@ -289,6 +290,196 @@
     });
     const active = document.querySelector("[data-plan-panel].is-active");
     if (active) revealPlans(active);
+  }
+
+  /* ---------- Carrusel paginado de 3 en 3 ---------- */
+  const CAROUSEL_STATE = { premium: 0, simple: 0, lite: 0 };
+
+  function perPage() {
+    const w = window.innerWidth;
+    if (w <= 700) return 1;
+    if (w <= 1100) return 2;
+    return 3;
+  }
+
+  function frameCards(grid) {
+    return [...grid.querySelectorAll(":scope > .plan")];
+  }
+
+  function clampPage(v, max) {
+    return Math.min(Math.max(0, v), Math.max(0, max - 1));
+  }
+
+  function carouselPages(grid) {
+    const cards = frameCards(grid);
+    return Math.max(1, Math.ceil(cards.length / perPage()));
+  }
+
+  function carouselUnit(grid) {
+    const cards = frameCards(grid);
+    if (!cards.length) return perPage() * 200;
+    const cardW = cards[0].getBoundingClientRect().width || 188;
+    const gap = parseFloat(getComputedStyle(grid).columnGap || getComputedStyle(grid).gap) || 16;
+    return (cardW + gap) * perPage();
+  }
+
+  function ensureGhostSlots(grid) {
+    const pp = perPage();
+    const cards = frameCards(grid);
+    if (!cards.length) return;
+    const need = cards.length % pp ? pp - (cards.length % pp) : 0;
+    const ghosts = [...grid.querySelectorAll(":scope > .plans__ghost")];
+    while (ghosts.length < need) {
+      const g = document.createElement("div");
+      g.className = "plans__ghost";
+      g.setAttribute("aria-hidden", "true");
+      grid.appendChild(g);
+      ghosts.push(g);
+    }
+    while (ghosts.length > need) ghosts.pop().remove();
+  }
+
+  function buildCarouselNav(id) {
+    const panel = document.querySelector(`[data-plan-panel="${id}"]`);
+    const grid = document.querySelector(`[data-plans-grid="${id}"]`);
+    if (!panel || !grid) return;
+    const dots = panel.querySelector("[data-carousel-dots]");
+    const counter = panel.querySelector("[data-carousel-counter]");
+    if (!dots) return;
+    const pages = carouselPages(grid);
+    const current = clampPage(CAROUSEL_STATE[id] ?? 0, pages);
+    CAROUSEL_STATE[id] = current;
+    dots.innerHTML = Array.from({ length: pages }, (_, i) =>
+      `<button type="button" class="plans-nav__dot${i === current ? " is-active" : ""}" data-carousel-dot="${i}" aria-label="Página ${i + 1} de ${pages}" aria-pressed="${i === current}"></button>`
+    ).join("");
+    if (counter) counter.textContent = `${current + 1} / ${pages}`;
+  }
+
+  function applyCarouselPage(id, animated = true) {
+    const panel = document.querySelector(`[data-plan-panel="${id}"]`);
+    const grid = document.querySelector(`[data-plans-grid="${id}"]`);
+    if (!panel || !grid) return;
+    const cards = frameCards(grid);
+    if (!cards.length) return;
+    const pages = carouselPages(grid);
+    const current = clampPage(CAROUSEL_STATE[id] ?? 0, pages);
+    CAROUSEL_STATE[id] = current;
+    grid.style.setProperty("--pos", `${current * carouselUnit(grid)}px`);
+
+    const prev = panel.querySelector("[data-carousel-prev]");
+    const next = panel.querySelector("[data-carousel-next]");
+    if (prev) prev.disabled = current <= 0;
+    if (next) next.disabled = current >= pages - 1;
+
+    panel.querySelectorAll("[data-carousel-dot]").forEach((dot, i) => {
+      dot.classList.toggle("is-active", i === current);
+      dot.setAttribute("aria-pressed", String(i === current));
+    });
+    const counter = panel.querySelector("[data-carousel-counter]");
+    if (counter) counter.textContent = `${current + 1} / ${pages}`;
+  }
+
+  function setupCarousel(id) {
+    const grid = document.querySelector(`[data-plans-grid="${id}"]`);
+    if (!grid) return;
+    ensureGhostSlots(grid);
+    buildCarouselNav(id);
+    applyCarouselPage(id, false);
+  }
+
+  function changeCarouselPage(id, delta) {
+    const grid = document.querySelector(`[data-plans-grid="${id}"]`);
+    if (!grid) return;
+    CAROUSEL_STATE[id] = clampPage((CAROUSEL_STATE[id] ?? 0) + delta, carouselPages(grid));
+    applyCarouselPage(id, true);
+  }
+function initCarouselInteractions() {
+    const root = document.querySelector("[data-plans-catalog]");
+    if (!root) return;
+
+    root.querySelectorAll(".plans-scroll").forEach((scroller) => {
+      const grid = scroller.querySelector(".plans");
+      const id = grid?.getAttribute("data-plans-grid");
+      if (!id) return;
+      const panel = scroller.parentElement;
+
+      panel.querySelector("[data-carousel-prev]")?.addEventListener("click", () => changeCarouselPage(id, -1));
+      panel.querySelector("[data-carousel-next]")?.addEventListener("click", () => changeCarouselPage(id, 1));
+      panel.querySelector("[data-carousel-dots]")?.addEventListener("click", (e) => {
+        const dot = e.target.closest("[data-carousel-dot]");
+        if (!dot) return;
+        CAROUSEL_STATE[id] = clampPage(Number(dot.dataset.carouselDot) || 0, carouselPages(grid));
+        applyCarouselPage(id, true);
+      });
+
+      let touchX = 0;
+      let touchY = 0;
+      scroller.addEventListener(
+        "touchstart",
+        (e) => {
+          const t = e.changedTouches[0];
+          touchX = t.clientX;
+          touchY = t.clientY;
+        },
+        { passive: true }
+      );
+      scroller.addEventListener(
+        "touchend",
+        (e) => {
+          const t = e.changedTouches[0];
+          const dx = t.clientX - touchX;
+          const dy = t.clientY - touchY;
+          if (Math.abs(dx) > 44 && Math.abs(dx) > Math.abs(dy)) changeCarouselPage(id, dx < 0 ? 1 : -1);
+        },
+        { passive: true }
+      );
+
+      let drag = null;
+      let cancelClick = false;
+      const onDragDown = (e) => {
+        if (e.pointerType !== "mouse") return;
+        drag = { on: true, startX: e.clientX, basePos: (CAROUSEL_STATE[id] ?? 0) * carouselUnit(grid), moved: false };
+        cancelClick = false;
+        grid.classList.add("is-dragging");
+        scroller.setPointerCapture(e.pointerId);
+      };
+      const onDragMove = (e) => {
+        if (!drag?.on) return;
+        const dx = e.clientX - drag.startX;
+        if (Math.abs(dx) > 6) drag.moved = true;
+        const maxScroll = carouselUnit(grid) * (carouselPages(grid) - 1);
+        grid.style.setProperty("--pos", `${Math.min(Math.max(0, drag.basePos - dx), maxScroll)}px`);
+      };
+      const onDragEnd = (e) => {
+        if (!drag?.on) return;
+        const dx = e.clientX - drag.startX;
+        drag.on = false;
+        grid.classList.remove("is-dragging");
+        if (drag.moved && Math.abs(dx) > 40) {
+          const target = clampPage(Math.round((drag.basePos - dx) / carouselUnit(grid)), carouselPages(grid));
+          CAROUSEL_STATE[id] = target;
+          cancelClick = true;
+        }
+        applyCarouselPage(id, true);
+        window.setTimeout(() => {
+          cancelClick = false;
+        }, 0);
+      };
+      scroller.addEventListener("pointerdown", onDragDown);
+      scroller.addEventListener("pointermove", onDragMove);
+      scroller.addEventListener("pointerup", onDragEnd);
+      scroller.addEventListener("pointercancel", onDragEnd);
+      scroller.addEventListener(
+        "click",
+        (e) => {
+          if (cancelClick) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        },
+        true
+      );
+    });
   }
 
   function revealPlans(panel) {
@@ -427,6 +618,18 @@
 
     fillQuoteOptions();
     setTab("premium");
+    initCarouselInteractions();
+
+    let resizeTimer = null;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        Object.keys(CAROUSEL_STATE).forEach((id) => {
+          const panel = document.querySelector(`[data-plan-panel="${id}"]`);
+          if (panel && !panel.hidden) setupCarousel(id);
+        });
+      }, 160);
+    });
 
     root.querySelectorAll("[data-plan-tab]").forEach((tab) => {
       tab.addEventListener("click", () => setTab(tab.getAttribute("data-plan-tab")));

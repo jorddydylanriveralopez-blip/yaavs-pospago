@@ -1772,22 +1772,40 @@ a {
   display: none;
 }
 
+.plans-slide {
+  width: 100%;
+  min-width: 0;
+}
+
+.plans-slide[hidden] {
+  display: none !important;
+}
+
 .plans-scroll {
   width: 100%;
   max-width: 100%;
   min-width: 0;
   display: block;
-  overflow-x: auto;
-  overflow-y: clip;
+  overflow-x: clip;
+  overflow-y: visible;
   overscroll-behavior: auto;
   -webkit-overflow-scrolling: touch;
-  padding: 1.25rem 0 1.75rem;
-  scrollbar-width: thin;
+  padding: 1.25rem 0 0.4rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   box-sizing: border-box;
 }
 
-.plans-scroll[hidden] {
-  display: none !important;
+@supports not (overflow: clip) {
+  .plans-scroll {
+    overflow-x: hidden;
+  }
+}
+
+.plans-scroll::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .plans,
@@ -1803,6 +1821,119 @@ a {
   padding: 0.75rem 1.25rem 0.5rem;
   box-sizing: border-box;
   align-items: stretch;
+  transform: translate3d(calc(-1 * var(--pos, 0px)), 0, 0);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.plans.is-dragging {
+  transition: none;
+}
+
+.plans__ghost {
+  flex: 0 0 188px;
+  width: 188px;
+  min-width: 188px;
+  max-width: 188px;
+  visibility: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.plans-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  margin-top: 0.4rem;
+  padding: 0.35rem 0 0.5rem;
+}
+
+.plans-nav__btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 120, 168, 0.24);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.72));
+  color: #0077a8;
+  box-shadow: 0 10px 22px rgba(0, 80, 120, 0.16), inset 0 1px 0 #fff;
+  cursor: pointer;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s ease, color 0.25s ease, background 0.25s ease, opacity 0.25s ease;
+}
+
+.plans-nav__btn:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.07);
+  background: linear-gradient(160deg, #eaf9ff, #d7f1fd);
+  color: #005f8a;
+  box-shadow: 0 14px 30px rgba(0, 159, 219, 0.35), inset 0 1px 0 #fff;
+}
+
+.plans-nav__btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.96);
+}
+
+.plans-nav__btn:focus-visible {
+  outline: 3px solid rgba(0, 193, 212, 0.55);
+  outline-offset: 2px;
+}
+
+.plans-nav__btn:disabled {
+  opacity: 0.32;
+  cursor: default;
+  box-shadow: none;
+  transform: none;
+}
+
+.plans-nav__btn svg {
+  width: 21px;
+  height: 21px;
+  pointer-events: none;
+}
+
+.plans-nav__dots {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.plans-nav__dot {
+  appearance: none;
+  border: none;
+  padding: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(0, 120, 168, 0.22);
+  cursor: pointer;
+  transition: width 0.3s var(--ease), background 0.3s ease, box-shadow 0.3s ease, transform 0.25s ease;
+}
+
+.plans-nav__dot:hover {
+  background: rgba(0, 159, 219, 0.45);
+  transform: scale(1.2);
+}
+
+.plans-nav__dot.is-active {
+  width: 30px;
+  background: linear-gradient(90deg, #00c1d4, #009fdb 60%, #0077a8);
+  box-shadow: 0 8px 18px rgba(0, 159, 219, 0.42);
+  transform: none;
+}
+
+.plans-nav__counter {
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  color: var(--att-muted);
+  font-variant-numeric: tabular-nums;
+  min-width: 2.6rem;
+  text-align: center;
+  user-select: none;
 }
 
 .plan {
@@ -2638,7 +2769,8 @@ body.is-modal-open {
   .plan__tag,
   .plan__head::after,
   .plan__foot::after,
-  .plan__app-btn {
+  .plan__app-btn,
+  .plans {
     animation: none !important;
     transition: none !important;
   }
@@ -3660,6 +3792,13 @@ body.is-modal-open {
     min-width: 150px;
     max-width: 150px;
     scroll-snap-align: start;
+  }
+
+  .plans__ghost {
+    flex-basis: 150px;
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
   }
 
   .plan {

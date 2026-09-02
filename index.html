@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://unpkg.com">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260901c">
+  <link rel="stylesheet" href="css/styles.css?v=20260902a">
   <link rel="stylesheet" href="css/stores.css?v=20260828d">
   <link rel="icon" href="assets/images/favicon.svg?v=20260828d" type="image/svg+xml">
   <link rel="icon" href="assets/images/favicon-32.png?v=20260828d" type="image/png" sizes="32x32">
@@ -262,14 +262,50 @@
         </div>
       </div>
 
-      <div class="plans-scroll is-active" id="panel-premium" role="tabpanel" aria-labelledby="tab-premium" data-plan-panel="premium">
-        <div class="plans" role="list" data-plans-grid="premium"></div>
+      <div class="plans-slide is-active" id="panel-premium" role="tabpanel" aria-labelledby="tab-premium" data-plan-panel="premium">
+        <div class="plans-scroll" data-plans-scroller>
+          <div class="plans" role="list" data-plans-grid="premium"></div>
+        </div>
+        <div class="plans-nav" data-plans-nav>
+          <button type="button" class="plans-nav__btn plans-nav__btn--prev" data-carousel-prev aria-label="Planes anteriores">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <div class="plans-nav__dots" data-carousel-dots></div>
+          <span class="plans-nav__counter" data-carousel-counter aria-live="polite">1 / 1</span>
+          <button type="button" class="plans-nav__btn plans-nav__btn--next" data-carousel-next aria-label="Siguientes planes">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
       </div>
-      <div class="plans-scroll" id="panel-simple" role="tabpanel" aria-labelledby="tab-simple" data-plan-panel="simple" hidden>
-        <div class="plans" role="list" data-plans-grid="simple"></div>
+      <div class="plans-slide" id="panel-simple" role="tabpanel" aria-labelledby="tab-simple" data-plan-panel="simple" hidden>
+        <div class="plans-scroll" data-plans-scroller>
+          <div class="plans" role="list" data-plans-grid="simple"></div>
+        </div>
+        <div class="plans-nav" data-plans-nav>
+          <button type="button" class="plans-nav__btn plans-nav__btn--prev" data-carousel-prev aria-label="Planes anteriores">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <div class="plans-nav__dots" data-carousel-dots></div>
+          <span class="plans-nav__counter" data-carousel-counter aria-live="polite">1 / 1</span>
+          <button type="button" class="plans-nav__btn plans-nav__btn--next" data-carousel-next aria-label="Siguientes planes">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
       </div>
-      <div class="plans-scroll" id="panel-lite" role="tabpanel" aria-labelledby="tab-lite" data-plan-panel="lite" hidden>
-        <div class="plans" role="list" data-plans-grid="lite"></div>
+      <div class="plans-slide" id="panel-lite" role="tabpanel" aria-labelledby="tab-lite" data-plan-panel="lite" hidden>
+        <div class="plans-scroll" data-plans-scroller>
+          <div class="plans" role="list" data-plans-grid="lite"></div>
+        </div>
+        <div class="plans-nav" data-plans-nav>
+          <button type="button" class="plans-nav__btn plans-nav__btn--prev" data-carousel-prev aria-label="Planes anteriores">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <div class="plans-nav__dots" data-carousel-dots></div>
+          <span class="plans-nav__counter" data-carousel-counter aria-live="polite">1 / 1</span>
+          <button type="button" class="plans-nav__btn plans-nav__btn--next" data-carousel-next aria-label="Siguientes planes">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
       </div>
     </section>
 
@@ -466,7 +502,7 @@
   </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
-  <script src="js/plans-catalog.js?v=20260901c" defer></script>
+  <script src="js/plans-catalog.js?v=20260902a" defer></script>
   <script src="js/device-deals.js?v=20260901a" defer></script>
   <script src="js/premium-devices.js?v=20260828d" defer></script>
   <script src="js/tiendas-att-stores.js?v=20260828d" defer></script>

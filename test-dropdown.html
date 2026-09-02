@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Dropdown</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body { padding: 2rem; font-family: sans-serif; background: #f3fafd; }
+    .test-info { background: #fff; padding: 1rem; border-radius: 8px; margin-top: 2rem; border-left: 4px solid #009fdb; }
+    code { background: #e8f7fc; padding: 0.2rem 0.4rem; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+  <h2>Test: Dropdown Planes Header</h2>
+  <p>Pasa el mouse sobre "Planes" para ver el dropdown:</p>
+
+  <nav class="nav" aria-label="Principal">
+    <ul class="nav__list" id="nav-menu">
+      <li class="nav__dropdown">
+        <a href="#planes" aria-haspopup="true" aria-expanded="false">
+          <span class="nav__label">Planes</span>
+          <span class="nav__hint">Premium · Simple · Lite</span>
+          <span class="nav__go" aria-hidden="true">▾</span>
+        </a>
+        <ul class="nav__submenu" role="menu">
+          <li role="none"><a href="#planes" role="menuitem"><span class="nav__sublabel">Premium</span> <small>Azul → Titanio</small></a></li>
+          <li role="none"><a href="#planes" role="menuitem"><span class="nav__sublabel">Simple Plus</span> <small>Básico</small></a></li>
+          <li role="none"><a href="#planes" role="menuitem"><span class="nav__sublabel">Lite</span> <small>Económico</small></a></li>
+        </ul>
+      </li>
+      <li><a href="#promociones"><span class="nav__label">Promociones</span></a></li>
+      <li><a href="#tiendas"><span class="nav__label">Tiendas</span></a></li>
+    </ul>
+  </nav>
+
+  <div class="test-info">
+    <h3>✅ El dropdown debería:</h3>
+    <ul>
+      <li><strong>Ocultarse</strong> por defecto (no visible)</li>
+      <li><strong>Mostrarse</strong> al pasar el mouse sobre "Planes"</li>
+      <li><strong>Cerrarse</strong> al quitar el mouse</li>
+      <li><strong>Mostrar 3 opciones:</strong> Premium, Simple Plus, Lite</li>
+    </ul>
+    <p>Si ves el dropdown al pasar el mouse, <strong>funciona correctamente</strong>.</p>
+    <p>El problema con el sitio live es el <strong>caché CDN</strong> de Hostinger.</p>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Solo inicializar el dropdown para este test
+    document.addEventListener("DOMContentLoaded", () => {
+      const nav = document.querySelector(".nav");
+      const dropdown = nav.querySelector(".nav__dropdown");
+      if (dropdown) {
+        const dropLink = dropdown.querySelector("a");
+        const submenu = dropdown.querySelector(".nav__submenu");
+        if (dropLink && submenu) {
+          dropLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const isOpen = submenu.classList.contains("is-open");
+            submenu.classList.toggle("is-open", !isOpen);
+            dropLink.setAttribute("aria-expanded", String(!isOpen));
+          });
+          dropdown.addEventListener("mouseenter", () => {
+            submenu.classList.add("is-open");
+            dropLink.setAttribute("aria-expanded", "true");
+          });
+          dropdown.addEventListener("mouseleave", () => {
+            submenu.classList.remove("is-open");
+            dropLink.setAttribute("aria-expanded", "false");
+          });
+          document.addEventListener("click", (e) => {
+            if (!dropdown.contains(e.target)) {
+              submenu.classList.remove("is-open");
+              dropLink.setAttribute("aria-expanded", "false");
+            }
+          });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

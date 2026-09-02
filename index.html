@@ -6,15 +6,15 @@
   <meta name="theme-color" content="#009FDB">
   <meta name="description" content="YAAVS Pospago — Planes AT&T Premium, promociones, renovaciones, seguros y cotización. Distribuidor autorizado.">
   <title>YAAVS Pospago | Planes AT&T Premium</title>
-  <base href="/yaavs-pospago/">
+  <base href="/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://unpkg.com">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260825ar">
-  <link rel="stylesheet" href="css/stores.css?v=20260825ar">
-  <link rel="icon" href="assets/images/favicon.svg?v=20260825ar" type="image/svg+xml">
-  <link rel="icon" href="assets/images/favicon-32.png?v=20260825ar" type="image/png" sizes="32x32">
+  <link rel="stylesheet" href="css/styles.css?v=20260901c">
+  <link rel="stylesheet" href="css/stores.css?v=20260828d">
+  <link rel="icon" href="assets/images/favicon.svg?v=20260828d" type="image/svg+xml">
+  <link rel="icon" href="assets/images/favicon-32.png?v=20260828d" type="image/png" sizes="32x32">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 </head>
 <body>
@@ -39,6 +39,13 @@
           <span></span><span></span><span></span>
         </button>
         <ul class="nav__list" id="nav-menu">
+          <li>
+            <a href="#equipos">
+              <span class="nav__label">Equipos</span>
+              <span class="nav__hint">Promoción con 50% de enganche</span>
+              <span class="nav__go" aria-hidden="true">→</span>
+            </a>
+          </li>
           <li>
             <a href="#planes">
               <span class="nav__label">Planes</span>
@@ -210,6 +217,22 @@
       <h1 class="sr-only" id="intro-title">YAAVS Pospago · Planes AT&amp;T Premium</h1>
     </section>
 
+    <!-- EQUIPOS EN PROMOCIÓN -->
+    <section class="section section--deals" id="equipos" aria-labelledby="deals-title">
+      <div class="deals-bg" aria-hidden="true"></div>
+      <div class="wrap">
+        <header class="section__head section__head--deals">
+          <p class="eyebrow">Promoción vigente · 1 de septiembre</p>
+          <h2 id="deals-title">Equipos en promoción con 50% de enganche</h2>
+          <p>Estrena smartphone hoy y ahorra hasta 20% en tu mensualidad si portas tu número a AT&amp;T Premium.</p>
+        </header>
+
+        <div class="deals-grid" role="list" data-deals-grid></div>
+
+        <p class="fineprint">*El pago inicial varía según la capacidad de pago de cada cliente. *20% de descuento por portabilidad al activar línea nueva o adicional conservando tu número. Precios y disponibilidad sujetos a cambio sin previo aviso.</p>
+      </div>
+    </section>
+
     <!-- PLANES POSPAGO — Premium / Simple Plus / Lite -->
     <section class="section section--plans" id="planes" aria-labelledby="planes-title" data-plans-catalog>
       <div class="plans-bg" aria-hidden="true"></div>
@@ -217,15 +240,26 @@
         <header class="section__head section__head--plans">
           <p class="eyebrow">Planes pospago AT&amp;T</p>
           <h2 id="planes-title">Elige el plan a tu medida</h2>
-          <p>Premium, Simple Plus o Lite · Minutos y SMS ilimitados · Más gigas</p>
+          <p>Premium, Simple Plus y Lite · Parrilla oficial AT&amp;T · Min/SMS ilimitados</p>
         </header>
 
-        <div class="plan-tabs" role="tablist" aria-label="Familias de planes">
-          <button type="button" class="plan-tabs__btn is-active" role="tab" id="tab-premium" aria-selected="true" aria-controls="panel-premium" data-plan-tab="premium">Premium</button>
-          <button type="button" class="plan-tabs__btn" role="tab" id="tab-simple" aria-selected="false" aria-controls="panel-simple" data-plan-tab="simple">Simple Plus</button>
-          <button type="button" class="plan-tabs__btn" role="tab" id="tab-lite" aria-selected="false" aria-controls="panel-lite" data-plan-tab="lite">Lite</button>
+        <div class="plan-tabs-block">
+          <div class="plan-tabs" role="tablist" aria-label="Familias de planes">
+            <button type="button" class="plan-tabs__btn is-active" role="tab" id="tab-premium" aria-selected="true" aria-controls="panel-premium" data-plan-tab="premium">Premium</button>
+            <button type="button" class="plan-tabs__btn" role="tab" id="tab-simple" aria-selected="false" aria-controls="panel-simple" data-plan-tab="simple">Simple Plus</button>
+            <button type="button" class="plan-tabs__btn" role="tab" id="tab-lite" aria-selected="false" aria-controls="panel-lite" data-plan-tab="lite">Lite</button>
+          </div>
+
+          <div class="plan-pricing-slot" data-pricing-slot hidden>
+            <p class="plan-pricing__lead">¿Cómo contratas tu plan?</p>
+            <div class="plan-pricing" role="group" aria-label="Tipo de renta" data-pricing-toggle>
+              <button type="button" class="plan-pricing__btn is-active" data-pricing-mode="standard" aria-pressed="true">
+                <span data-pricing-label="standard">Renovar línea</span>
+              </button>
+              <button type="button" class="plan-pricing__btn" data-pricing-mode="portabilidad" aria-pressed="false">Portabilidad</button>
+            </div>
+          </div>
         </div>
-        <p class="plan-tabs__hint" data-plan-hint>AT&amp;T Premium · planes con equipo · toca un plan para ver smartphones en tienda</p>
       </div>
 
       <div class="plans-scroll is-active" id="panel-premium" role="tabpanel" aria-labelledby="tab-premium" data-plan-panel="premium">
@@ -432,10 +466,11 @@
   </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
-  <script src="js/plans-catalog.js?v=20260825ar" defer></script>
-  <script src="js/premium-devices.js?v=20260825ar" defer></script>
-  <script src="js/tiendas-att-stores.js?v=20260825ar" defer></script>
-  <script src="js/pospago-stores.js?v=20260825ar" defer></script>
-  <script src="js/main.js?v=20260825ar" defer></script>
+  <script src="js/plans-catalog.js?v=20260901c" defer></script>
+  <script src="js/device-deals.js?v=20260901a" defer></script>
+  <script src="js/premium-devices.js?v=20260828d" defer></script>
+  <script src="js/tiendas-att-stores.js?v=20260828d" defer></script>
+  <script src="js/pospago-stores.js?v=20260828d" defer></script>
+  <script src="js/main.js?v=20260828d" defer></script>
 </body>
 </html>

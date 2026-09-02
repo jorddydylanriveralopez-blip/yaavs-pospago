@@ -154,6 +154,24 @@
     return (window.YAAVS_DEVICE_LABELS && window.YAAVS_DEVICE_LABELS[id]) || id;
   }
 
+  function getSelectedAppsForPlan(planId) {
+    return window.YAAVS_getSelectedApps?.(planId) || [];
+  }
+
+  function planNeedsApps(planId) {
+    return (window.YAAVS_getPlanAppsMax?.(planId) || 0) > 0;
+  }
+
+  function validatePlanApps(planId) {
+    const max = window.YAAVS_getPlanAppsMax?.(planId) || 0;
+    if (!max) return true;
+    const apps = getSelectedAppsForPlan(planId);
+    if (apps.length >= max) return true;
+    window.alert(`Selecciona ${max} apps en la tarjeta del plan antes de cotizar.`);
+    document.querySelector(`[data-plan-apps="${planId}"]`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+    return false;
+  }
+
   function initQuote() {
     const form = document.querySelector("[data-quote-form]");
     const select = document.querySelector("[data-quote-select]");
@@ -169,10 +187,12 @@
       }
       const label = getPlanLabel(plan);
       const device = deviceSelect?.value ? getDeviceLabel(deviceSelect.value) : "";
+      const apps = plan ? getSelectedAppsForPlan(plan) : [];
+      const appsLine = apps.length ? ` Apps elegidas: <strong>${apps.join(", ")}</strong>.` : "";
       const deviceLine = device
         ? ` Equipo de interés: <strong>${device}</strong> (beneficio YAAVS · stock en tienda).`
         : "";
-      summary.innerHTML = `<p>Precotización: <strong>${label}</strong>.${deviceLine} Un asesor YAAVS te confirma vigencia, equipo y seguro.</p>`;
+      summary.innerHTML = `<p>Precotización: <strong>${label}</strong>.${appsLine}${deviceLine} Un asesor YAAVS te confirma vigencia, equipo y seguro.</p>`;
     };
 
     select.addEventListener("change", updateSummary);
@@ -182,6 +202,7 @@
       const btn = e.target.closest("[data-quote-plan]");
       if (!btn) return;
       const plan = btn.getAttribute("data-quote-plan");
+      if (!validatePlanApps(plan)) return;
       select.value = plan;
       if (deviceSelect) deviceSelect.value = "";
       updateSummary();
@@ -193,16 +214,23 @@
       const data = new FormData(form);
       const plan = data.get("plan");
       const equipo = data.get("equipo");
+      if (!validatePlanApps(plan)) return;
+      const apps = getSelectedAppsForPlan(plan);
       const lines = [
         "Hola YAAVS Pospago, quiero una cotización AT&T:",
         `• Nombre: ${data.get("nombre")}`,
         `• WhatsApp: ${data.get("whatsapp")}`,
         `• Plan: ${getPlanLabel(plan)}`,
         `• Equipo: ${equipo ? getDeviceLabel(equipo) : "Sin equipo / propio / por definir"}`,
+      ];
+      if (apps.length) {
+        lines.push(`• Apps elegidas: ${apps.join(", ")}`);
+      }
+      lines.push(
         `• Interés: ${data.get("interes")}`,
         `• Seguro: ${data.get("seguro")}`,
-        `• Ciudad/tienda: ${data.get("ciudad") || "Por definir"}`,
-      ];
+        `• Ciudad/tienda: ${data.get("ciudad") || "Por definir"}`
+      );
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;
       window.open(url, "_blank", "noopener");
     });

@@ -2,6 +2,12 @@
 
 Landing independiente de **YAAVS Pospago** con identidad AT&T: carrusel tipo [attvip.mx](https://attvip.mx/), planes Premium, promociones, ofertas, tiendas, renovaciones, seguros y cotizador → WhatsApp.
 
+## En vivo (sitio separado)
+
+https://yaavs-pospago.hostingersite.com/
+
+Este sitio es **independiente** del Site Builder de YAAVS Web, para que publicar cambios en YAAVS no borre pospago.
+
 ## Abrir local
 
 ```bash

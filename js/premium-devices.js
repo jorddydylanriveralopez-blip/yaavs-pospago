@@ -248,11 +248,21 @@
       if (openBtn) {
         e.preventDefault();
         e.stopPropagation();
-        openModal(openBtn.getAttribute("data-open-devices"));
+        const planId = openBtn.getAttribute("data-open-devices");
+        if (window.YAAVS_getPlanAppsMax?.(planId) > 0) {
+          const max = window.YAAVS_getPlanAppsMax(planId);
+          const apps = window.YAAVS_getSelectedApps?.(planId) || [];
+          if (apps.length < max) {
+            window.alert(`Selecciona ${max} apps en tu plan antes de ver equipos.`);
+            document.querySelector(`[data-plan-apps="${planId}"]`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+            return;
+          }
+        }
+        openModal(planId);
         return;
       }
       const planCard = e.target.closest('[data-plans-grid="premium"] .plan');
-      if (planCard && !e.target.closest("button")) {
+      if (planCard && !e.target.closest("button") && !e.target.closest("[data-plan-apps]")) {
         const id = planCard.getAttribute("data-plan");
         if (id) openModal(id);
       }

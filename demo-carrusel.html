@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo - Carrusel de Planes YAAVS Pospago</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, #f7fcff 0%, #ffffff 35%, #f3fafd 100%); min-height: 100vh; padding: 2rem; }
+    .container { max-width: 800px; margin: 0 auto; }
+    h1 { text-align: center; color: #0b1c28; margin-bottom: 0.5rem; font-size: 1.8rem; }
+    .subtitle { text-align: center; color: #4a6270; margin-bottom: 2rem; }
+    .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+    @media (max-width: 768px) { .comparison { grid-template-columns: 1fr; } }
+    .panel { background: #fff; border-radius: 16px; padding: 1.5rem; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .panel h3 { margin-bottom: 1rem; font-size: 1.1rem; }
+    .panel.before h3 { color: #c0392b; }
+    .panel.after h3 { color: #27ae60; }
+    .badge { display: inline-block; padding: 0.25rem 0.6rem; border-radius: 999px; font-size: 0.7rem; font-weight: 700; }
+    .badge-new { background: #27ae60; color: #fff; }
+    .badge-old { background: #c0392b; color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎠 Carrusel de Planes YAAVS Pospago</h1>
+    <p class="subtitle">Demo visual del antes y después</p>
+    <div class="comparison">
+      <div class="panel before">
+        <h3><span class="badge badge-old">ANTES</span> Todos los planes visibles</h3>
+        <p style="color:#666;font-size:0.85rem;">10 planes abruman al usuario con demasiada información</p>
+      </div>
+      <div class="panel after">
+        <h3><span class="badge badge-new">DESPUÉS</span> Carrusel 3 en 3</h3>
+        <p style="color:#666;font-size:0.85rem;">Solo 3 planes visibles, navega con flechas o swipe</p>
+      </div>
+    </div>
+    <div style="background:#fff;border-radius:16px;padding:1.5rem;box-shadow:0 8px 24px rgba(0,0,0,0.08);">
+      <h3 style="color:#0b1c28;margin-bottom:1rem;">✨ Lo que se implementó</h3>
+      <ul style="list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+        <li style="padding:0.6rem 0.8rem;background:#e8f7fc;border-radius:8px;font-size:0.85rem;border-left:3px solid #009fdb;">📱 3 planes desktop / 2 tablet / 1 móvil</li>
+        <li style="padding:0.6rem 0.8rem;background:#e8f7fc;border-radius:8px;font-size:0.85rem;border-left:3px solid #009fdb;">🎯 Scroll-snap alineación perfecta</li>
+        <li style="padding:0.6rem 0.8rem;background:#e8f7fc;border-radius:8px;font-size:0.85rem;border-left:3px solid #009fdb;">🔵 Flechas AT&T azul/cian</li>
+        <li style="padding:0.6rem 0.8rem;background:#e8f7fc;border-radius:8px;font-size:0.85rem;border-left:3px solid #009fdb;">👆 Swipe & drag táctil</li>
+        <li style="padding:0.6rem 0.8rem;background:#e8f7fc;border-radius:8px;font-size:0.85rem;border-left:3px solid #009fdb;">🔘 Dots de navegación</li>
+        <li style="padding:0.6rem 0.8rem;background:#e8f7fc;border-radius:8px;font-size:0.85rem;border-left:3px solid #009fdb;">📊 Counter "1 / 4"</li>
+      </ul>
+    </div>
+    <p style="text-align:center;margin-top:2rem;color:#4a6270;font-size:0.85rem;">Archivos modificados: <code>css/styles.css</code> y <code>js/plans-catalog.js</code></p>
+  </div>
+</body>
+</html>

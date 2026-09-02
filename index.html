@@ -39,12 +39,17 @@
           <span></span><span></span><span></span>
         </button>
         <ul class="nav__list" id="nav-menu">
-          <li>
-            <a href="#planes">
+          <li class="nav__dropdown">
+            <a href="#planes" aria-haspopup="true" aria-expanded="false">
               <span class="nav__label">Planes</span>
               <span class="nav__hint">Premium · Simple · Lite</span>
-              <span class="nav__go" aria-hidden="true">→</span>
+              <span class="nav__go" aria-hidden="true">▾</span>
             </a>
+            <ul class="nav__submenu" role="menu">
+              <li role="none"><a href="#planes" role="menuitem"><span class="nav__sublabel">Premium</span> <small>Azul → Titanio</small></a></li>
+              <li role="none"><a href="#planes" role="menuitem"><span class="nav__sublabel">Simple Plus</span> <small>Básico</small></a></li>
+              <li role="none"><a href="#planes" role="menuitem"><span class="nav__sublabel">Lite</span> <small>Económico</small></a></li>
+            </ul>
           </li>
           <li>
             <a href="#promociones">
@@ -211,21 +216,6 @@
     </section>
 
     <!-- EQUIPOS EN PROMOCIÓN -->
-    <section class="section section--deals" id="equipos" aria-labelledby="deals-title">
-      <div class="deals-bg" aria-hidden="true"></div>
-      <div class="wrap">
-        <header class="section__head section__head--deals">
-          <p class="eyebrow">Promoción vigente · 1 de septiembre</p>
-          <h2 id="deals-title">Equipos en promoción con 50% de enganche</h2>
-          <p>Estrena smartphone hoy y ahorra hasta 20% en tu mensualidad si portas tu número a AT&amp;T Premium.</p>
-        </header>
-
-        <div class="deals-grid" role="list" data-deals-grid></div>
-
-        <p class="fineprint">*El pago inicial varía según la capacidad de pago de cada cliente. *20% de descuento por portabilidad al activar línea nueva o adicional conservando tu número. Precios y disponibilidad sujetos a cambio sin previo aviso.</p>
-      </div>
-    </section>
-
     <!-- PLANES POSPAGO — Premium / Simple Plus / Lite -->
     <section class="section section--plans" id="planes" aria-labelledby="planes-title" data-plans-catalog>
       <div class="plans-bg" aria-hidden="true"></div>

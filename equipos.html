@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5">
+  <meta name="theme-color" content="#009FDB">
+  <meta name="description" content="YAAVS Pospago — Equipos en promoción con 50% de enganche. iPhone, Samsung, Motorola y más.">
+  <title>Equipos en Promoción | YAAVS Pospago</title>
+  <base href="/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=20260902a">
+  <link rel="stylesheet" href="css/stores.css?v=20260828d">
+  <link rel="icon" href="assets/images/favicon.svg?v=20260828d" type="image/svg+xml">
+  <link rel="icon" href="assets/images/favicon-32.png?v=20260828d" type="image/png" sizes="32x32">
+</head>
+<body>
+  <a class="skip-link" href="#equipos">Saltar al contenido</a>
+
+  <header class="site-header" id="site-header">
+    <div class="site-header__glow" aria-hidden="true"></div>
+    <div class="site-header__shine" aria-hidden="true"></div>
+    <div class="site-header__inner">
+      <a class="brand" href="/" aria-label="YAAVS Pospago inicio">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__lockup">
+          <img class="brand__logo brand__logo--att" src="assets/images/att-logo.webp" alt="AT&amp;T Distribuidor Autorizado" width="600" height="213" decoding="async">
+          <span class="brand__divider" aria-hidden="true"></span>
+          <img class="brand__logo brand__logo--pospago" src="assets/images/logo-yaavs-pospago.svg" alt="YAAVS Pospago" width="200" height="82" decoding="async">
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Principal">
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu" data-nav-toggle>
+          <span class="sr-only">Menú</span>
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav__list" id="nav-menu">
+          <li><a href="/"><span class="nav__label">Inicio</span><span class="nav__hint">Planes y promociones</span><span class="nav__go" aria-hidden="true">→</span></a></li>
+          <li class="nav__dropdown">
+            <a href="/#planes" aria-haspopup="true" aria-expanded="false"><span class="nav__label">Planes</span><span class="nav__hint">Premium · Simple · Lite</span><span class="nav__go" aria-hidden="true">▾</span></a>
+            <ul class="nav__submenu" role="menu">
+              <li role="none"><a href="/#planes" role="menuitem"><span class="nav__sublabel">Premium</span> <small>Azul → Titanio</small></a></li>
+              <li role="none"><a href="/#planes" role="menuitem"><span class="nav__sublabel">Simple Plus</span> <small>Básico</small></a></li>
+              <li role="none"><a href="/#planes" role="menuitem"><span class="nav__sublabel">Lite</span> <small>Económico</small></a></li>
+            </ul>
+          </li>
+          <li><a href="/equipos.html" class="is-active"><span class="nav__label">Equipos</span><span class="nav__hint">50% de enganche</span><span class="nav__go" aria-hidden="true">→</span></a></li>
+          <li><a href="/#promociones"><span class="nav__label">Promociones</span><span class="nav__hint">Vigentes AT&amp;T</span><span class="nav__go" aria-hidden="true">→</span></a></li>
+          <li><a href="/#tiendas"><span class="nav__label">Tiendas</span><span class="nav__hint">Encuentra tu sucursal</span><span class="nav__go" aria-hidden="true">→</span></a></li>
+          <li><a href="/#cotizar"><span class="nav__label">Cotizar</span><span class="nav__hint">WhatsApp directo</span><span class="nav__go" aria-hidden="true">→</span></a></li>
+        </ul>
+      </nav>
+
+      <a class="btn-cta" href="/#cotizar">Cotizar <span class="btn-cta__arrow">→</span></a>
+    </div>
+    <div class="site-header__line" aria-hidden="true"></div>
+  </header>
+
+  <main id="equipos">
+    <section class="section section--deals-hero">
+      <div class="deals-bg" aria-hidden="true"></div>
+      <div class="wrap">
+        <header class="section__head section__head--deals">
+          <p class="eyebrow">Promoción vigente · 1 de septiembre</p>
+          <h1>Equipos en promoción con <strong>50% de enganche</strong></h1>
+          <p>Estrena smartphone hoy y ahorra hasta 20% en tu mensualidad si portas tu número a AT&amp;T Premium.</p>
+        </header>
+      </div>
+    </section>
+
+    <section class="section section--deals">
+      <div class="wrap">
+        <div class="deals-grid" role="list" data-deals-grid></div>
+        <p class="fineprint">*El pago inicial varía según la capacidad de pago de cada cliente. *20% de descuento por portabilidad al activar línea nueva o adicional conservando tu número. Precios y disponibilidad sujetos a cambio sin previo aviso.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__grid">
+      <div>
+        <img src="assets/images/logo-yaavs-pospago-alt.png" alt="YAAVS Pospago" width="160" height="65">
+        <p>Distribución telecom · Planes AT&amp;T Premium</p>
+      </div>
+      <nav aria-label="Pie">
+        <a href="/">Inicio</a>
+        <a href="/equipos.html">Equipos</a>
+        <a href="/#promociones">Promociones</a>
+        <a href="/#tiendas">Tiendas</a>
+        <a href="/#cotizar">Cotizar</a>
+      </nav>
+      <p class="site-footer__legal">AT&amp;T y el logotipo de AT&amp;T son marcas comerciales de AT&amp;T Intellectual Property. YAAVS opera como distribuidor autorizado. Condiciones sujetas a cambio sin previo aviso.</p>
+    </div>
+  </footer>
+
+  <script src="js/device-deals.js?v=20260901a" defer></script>
+  <script src="js/main.js?v=20260828d" defer></script>
+</body>
+</html>

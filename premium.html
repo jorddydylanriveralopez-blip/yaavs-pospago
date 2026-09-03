@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260903a">
+  <link rel="stylesheet" href="css/styles.css?v=20260903b">
   <link rel="icon" href="assets/images/favicon.svg?v=20260828d" type="image/svg+xml">
   <link rel="icon" href="assets/images/favicon-32.png?v=20260828d" type="image/png" sizes="32x32">
 </head>
@@ -45,9 +45,46 @@
               <span class="nav__go" aria-hidden="true">▾</span>
             </a>
             <ul class="nav__submenu" role="menu">
-              <li role="none"><a href="premium.html" role="menuitem" aria-current="page"><span class="nav__sublabel">Premium</span> <small>Azul → Titanio</small></a></li>
-              <li role="none"><a href="simple.html" role="menuitem"><span class="nav__sublabel">Simple Plus</span> <small>Básico</small></a></li>
-              <li role="none"><a href="lite.html" role="menuitem"><span class="nav__sublabel">Lite</span> <small>Económico</small></a></li>
+              <li class="nav__submenu-header" role="none">
+                <span>Nuestros planes</span>
+                <span class="nav__submenu-tag">AT&amp;T</span>
+              </li>
+              <li role="none">
+                <a href="premium.html" role="menuitem" aria-current="page">
+                  <span class="nav__subicon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="currentColor"/></svg>
+                  </span>
+                  <span class="nav__subinfo">
+                    <span class="nav__sublabel">Premium</span>
+                    <small>Azul → Titanio</small>
+                  </span>
+                  <span class="nav__subgo" aria-hidden="true">→</span>
+                </a>
+              </li>
+              <li role="none">
+                <a href="simple.html" role="menuitem">
+                  <span class="nav__subicon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12.5a10 10 0 0114 0M8 15.5a6 6 0 018 0M12 18.5h.01"/></svg>
+                  </span>
+                  <span class="nav__subinfo">
+                    <span class="nav__sublabel">Simple Plus</span>
+                    <small>Redes ilimitadas · Doble GB</small>
+                  </span>
+                  <span class="nav__subgo" aria-hidden="true">→</span>
+                </a>
+              </li>
+              <li role="none">
+                <a href="lite.html" role="menuitem">
+                  <span class="nav__subicon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4C12 4 6 9 6 15c0 3 1 4 1 4s-4-4 3-12c2-3 6-4 10-3z"/></svg>
+                  </span>
+                  <span class="nav__subinfo">
+                    <span class="nav__sublabel">Lite</span>
+                    <small>Con equipo propio</small>
+                  </span>
+                  <span class="nav__subgo" aria-hidden="true">→</span>
+                </a>
+              </li>
             </ul>
           </li>
           <li><a href="index.html#promociones"><span class="nav__label">Promociones</span><span class="nav__hint">Vigentes AT&amp;T</span><span class="nav__go" aria-hidden="true">→</span></a></li>

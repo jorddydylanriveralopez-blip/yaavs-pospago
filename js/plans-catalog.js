@@ -70,10 +70,10 @@
     premium: {
       label: "Premium",
       hintStandard:
-        "Renovar línea · activar, adicionar, renovar, cambio de oferta o migración · Min/SMS ilimitados MX, EUA y Canadá",
+        "Línea nueva · activar, adicionar, renovar, cambio de oferta o migración · Min/SMS ilimitados MX, EUA y Canadá",
       hintPortabilidad:
         "Portabilidad · al traer tu número de otra compañía · Min/SMS ilimitados MX, EUA y Canadá",
-      pricingLabels: { standard: "Renovar línea", portabilidad: "Portabilidad" },
+      pricingLabels: { standard: "Línea nueva", portabilidad: "Portabilidad" },
       plans: [
         { id: "azul", name: "Azul*", gb: 4, price: 279, pricePort: null, color: "#00A0E3", rrssCount: 3, addon: "incluido" },
         { id: "azul1", name: "Azul 1", gb: 5, price: 330, pricePort: 270, color: "#1AA8E8", rrssCount: 6, addon: 50 },

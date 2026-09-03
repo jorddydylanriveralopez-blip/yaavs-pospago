@@ -3024,8 +3024,8 @@ body.is-modal-open {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url('../assets/banners/PROMOS-AGO-06-4f8ca821.jpg') center/cover no-repeat;
-  opacity: 0.15;
+  background: url('../assets/banners/PROMOS-AGO-04-cedd907b.jpg') center/cover no-repeat;
+  opacity: 0.4;
   animation: plansBgDrift 14s ease-in-out infinite alternate;
 }
 
@@ -3033,12 +3033,35 @@ body.is-modal-open {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0.92) 100%);
+  background: linear-gradient(180deg, rgba(11,28,40,0.92) 0%, rgba(11,28,40,0.85) 50%, rgba(11,28,40,0.92) 100%);
 }
 
 .section--quienes > *:not(.quienes-bg) {
   position: relative;
   z-index: 1;
+}
+
+.section--quienes .eyebrow {
+  color: var(--att-cyan);
+}
+
+.section--quienes h2 {
+  color: #fff;
+}
+
+.section--quienes p,
+.section--quienes strong,
+.section--quienes .lede,
+.section--quienes .quienes-stamp {
+  color: rgba(255,255,255,0.9);
+}
+
+.section--quienes .quienes-list__dot {
+  background: linear-gradient(115deg, var(--att-cyan), var(--att-blue)) !important;
+}
+
+.section--quienes .quienes-stamp {
+  color: var(--att-cyan) !important;
 }
 
 /* Promos */

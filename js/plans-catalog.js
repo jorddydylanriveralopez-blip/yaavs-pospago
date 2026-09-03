@@ -90,22 +90,24 @@
     simple: {
       label: "Simple Plus",
       hintStandard:
-        "AT&T Simple Plus / Simple · Doble de GB por promoción · Min/SMS ilimitados MX, EUA y Canadá",
-      pricingLabels: null,
+        "Línea nueva · Doble de GB por promoción · Min/SMS ilimitados MX, EUA y Canadá",
+      hintPortabilidad:
+        "Portabilidad · al traer tu número de otra compañía · Min/SMS ilimitados MX, EUA y Canadá",
+      pricingLabels: { standard: "Línea nueva", portabilidad: "Portabilidad" },
       plans: [
-        { id: "simple299", name: "Simple 299", gb: 3, packGb: 1.5, promoGb: 1.5, price: 299, color: "#00A9A6", rrssCount: null, unlimitedRrss: true },
-        { id: "simple399", name: "Simple 399", gb: 5, packGb: 2.5, promoGb: 2.5, price: 399, color: "#00B8A9", rrssCount: null, unlimitedRrss: true },
-        { id: "simple599", name: "Simple 599", gb: 8, packGb: 4, promoGb: 4, price: 599, color: "#00C1D4", rrssCount: null, unlimitedRrss: true, featured: true },
-        { id: "simple649", name: "Simple 649", gb: 12, packGb: 6, promoGb: 6, price: 649, color: "#009FDB", rrssCount: null, unlimitedRrss: true },
+        { id: "simple299", name: "Simple 299", gb: 3, packGb: 1.5, promoGb: 1.5, price: 299, pricePort: 259, color: "#00A9A6", rrssCount: null, unlimitedRrss: true },
+        { id: "simple399", name: "Simple 399", gb: 5, packGb: 2.5, promoGb: 2.5, price: 399, pricePort: 339, color: "#00B8A9", rrssCount: null, unlimitedRrss: true },
+        { id: "simple599", name: "Simple 599", gb: 8, packGb: 4, promoGb: 4, price: 599, pricePort: 499, color: "#00C1D4", rrssCount: null, unlimitedRrss: true, featured: true },
+        { id: "simple649", name: "Simple 649", gb: 12, packGb: 6, promoGb: 6, price: 649, pricePort: 549, color: "#009FDB", rrssCount: null, unlimitedRrss: true },
       ],
     },
     lite: {
       label: "Lite",
       hintStandard:
-        "Activación · nuevas activaciones, adiciones y cambio de plan · Addon Control incluido en Lite 1–5",
+        "Línea nueva · nuevas activaciones, adiciones y cambio de plan · Addon Control incluido en Lite 1–5",
       hintPortabilidad:
         "Portabilidad · renta mensual al traer tu número · descuento vs activación",
-      pricingLabels: { standard: "Activación", portabilidad: "Portabilidad" },
+      pricingLabels: { standard: "Línea nueva", portabilidad: "Portabilidad" },
       plans: [
         { id: "lite", name: "Lite", gb: 4, price: 299, pricePort: 270, color: "#5B9BD5", rrssCount: 3, promo: "100 GB x 6 meses" },
         { id: "lite1", name: "Lite 1", gb: 12, price: 349, pricePort: 315, color: "#4A90D9", rrssCount: 6, addon: "incluido", promo: "25% dto. renta" },

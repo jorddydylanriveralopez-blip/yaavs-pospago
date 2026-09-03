@@ -1973,10 +1973,11 @@ a {
 }
 
 .plans-scroll {
-  width: 636px;
+  width: 700px;
   max-width: 100%;
   min-width: 0;
   display: block;
+  margin-inline: auto;
   /* overflow auto para scroll-snap nativo + carrusel con transform */
   overflow-x: auto;
   overflow-y: visible;
@@ -2008,7 +2009,7 @@ a {
 .plans--few {
   display: flex;
   flex-wrap: nowrap;
-  gap: 1rem;
+  gap: 1.25rem;
   width: max-content;
   max-width: none;
   min-width: 0;
@@ -2026,10 +2027,10 @@ a {
 }
 
 .plans__ghost {
-  flex: 0 0 188px;
-  width: 188px;
-  min-width: 188px;
-  max-width: 188px;
+  flex: 0 0 200px;
+  width: 200px;
+  min-width: 200px;
+  max-width: 200px;
   scroll-snap-align: start;
   visibility: hidden;
   pointer-events: none;
@@ -2141,10 +2142,10 @@ a {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  flex: 0 0 188px;
-  width: 188px;
-  min-width: 188px;
-  max-width: 188px;
+  flex: 0 0 200px;
+  width: 200px;
+  min-width: 200px;
+  max-width: 200px;
   /* Scroll-snap: alinea al snap point del carrusel */
   scroll-snap-align: start;
   scroll-snap-stop: always;

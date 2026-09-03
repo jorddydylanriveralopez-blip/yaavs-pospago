@@ -1723,8 +1723,8 @@ a {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url('../assets/banners/PROMOS-AGO-05-0dedee92.jpg') center/cover no-repeat;
-  opacity: 0.25;
+  background: url('../assets/banners/PROMOS-AGO-08-93a45095.jpg') center/cover no-repeat;
+  opacity: 0.2;
   animation: plansBgDrift 14s ease-in-out infinite alternate;
 }
 
@@ -3012,6 +3012,34 @@ body.is-modal-open {
   }
 }
 
+
+/* Quiénes Somos */
+.section--quienes {
+  position: relative;
+  overflow: hidden;
+}
+
+.quienes-bg {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url('../assets/banners/PROMOS-AGO-06-4f8ca821.jpg') center/cover no-repeat;
+  opacity: 0.15;
+  animation: plansBgDrift 14s ease-in-out infinite alternate;
+}
+
+.quienes-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0.92) 100%);
+}
+
+.section--quienes > *:not(.quienes-bg) {
+  position: relative;
+  z-index: 1;
+}
 
 /* Promos */
 .section--promos {

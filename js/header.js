@@ -137,49 +137,26 @@
       toggle.setAttribute("aria-expanded", String(open));
     });
 
-    // Dropdown planes header — dinámico (hover intent + click + teclado)
+    // Dropdown planes header — activo SOLO por click (desktop + móvil)
     const dropdown = nav.querySelector(".nav__dropdown");
     if (dropdown) {
       const dropLink = dropdown.querySelector("a");
       const submenu = dropdown.querySelector(".nav__submenu");
       if (dropLink && submenu) {
-        let openTimer = null;
-        let closeTimer = null;
-
         const open = () => {
-          clearTimeout(closeTimer);
-          clearTimeout(openTimer);
           submenu.classList.add("is-open");
           dropLink.setAttribute("aria-expanded", "true");
         };
         const close = () => {
-          clearTimeout(closeTimer);
-          clearTimeout(openTimer);
           submenu.classList.remove("is-open");
           dropLink.setAttribute("aria-expanded", "false");
         };
-        const openWithIntent = () => {
-          clearTimeout(closeTimer);
-          clearTimeout(openTimer);
-          openTimer = window.setTimeout(open, 40);
-        };
-        const closeWithIntent = () => {
-          clearTimeout(openTimer);
-          closeTimer = window.setTimeout(close, 90);
-        };
 
-        // Hover (desktop)
-        dropdown.addEventListener("mouseenter", openWithIntent);
-        dropdown.addEventListener("mouseleave", closeWithIntent);
-
-        // Click toggle (móvil y desktop)
+        // Click toggle (desktop y móvil)
         dropLink.addEventListener("click", (e) => {
           e.preventDefault();
           e.stopPropagation();
-          clearTimeout(openTimer);
-          clearTimeout(closeTimer);
-          const isOpen = submenu.classList.contains("is-open");
-          if (isOpen) close();
+          if (submenu.classList.contains("is-open")) close();
           else open();
         });
 

@@ -3426,6 +3426,19 @@ body.is-modal-open {
   box-shadow: 0 18px 50px rgba(0, 80, 120, 0.08);
 }
 
+
+/* Brands Hero */
+.section--brands-hero { padding: 4.5rem 0 3rem; position: relative; overflow: hidden; }
+.brands-hero__bg { position: absolute; inset: 0; background: linear-gradient(165deg, rgba(0,159,219,0.12), rgba(255,255,255,0.96)); z-index: 0; }
+.brands-hero__content { position: relative; z-index: 2; text-align: center; max-width: 720px; margin: 0 auto 2.5rem; }
+.brands-hero__title { font-family: var(--font-display); font-size: clamp(1.6rem, 4vw + 0.5rem, 2.4rem); font-weight: 800; letter-spacing: -0.03em; margin: 0 0 0.75rem; color: var(--att-ink); }
+.brands-hero__title .text-cyan { color: var(--att-cyan); }
+.brands-hero__sub { font-size: clamp(0.85rem, 1.8vw + 0.1rem, 1.05rem); font-weight: 500; max-width: 600px; margin: 0 auto; color: var(--att-muted); }
+.brands-hero__cta { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.25rem; padding: 0.7rem 1.6rem; font-family: var(--font-display); font-weight: 700; font-size: 0.9rem; color: #fff; background: linear-gradient(115deg, var(--att-cyan), var(--att-blue-deep)); border-radius: 999px; text-decoration: none; box-shadow: 0 8px 22px rgba(0,159,219,0.35); transition: transform 0.2s var(--ease), box-shadow 0.2s ease; }
+.brands-hero__cta:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,159,219,0.45); }
+.brands-hero__logos { position: relative; z-index: 1; }
+.brands-hero__logos img { width: min(1100px, 95%); max-width: 100%; height: auto; border-radius: 26px; display: block; margin: 0 auto; box-shadow: 0 26px 58px rgba(0,40,70,0.16); border: 1px solid rgba(0,159,219,0.12); }
+
 /* Blog — masonry estilo Pinterest */
 .section--blog {
   padding: 4.25rem 0;

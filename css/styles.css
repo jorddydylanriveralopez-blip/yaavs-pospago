@@ -3078,7 +3078,7 @@ body.is-modal-open {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   padding: 0.75rem 2rem;
   font-family: var(--font-display);
   font-weight: 700;

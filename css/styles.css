@@ -2030,53 +2030,29 @@ a {
 }
 
 .plans-scroll {
-  width: 700px;
+  width: 100%;
   max-width: 100%;
   min-width: 0;
   display: block;
   margin-inline: auto;
-  /* overflow auto para scroll-snap nativo + carrusel con transform */
-  overflow-x: auto;
-  overflow-y: visible;
-  overscroll-behavior: auto;
-  -webkit-overflow-scrolling: touch;
+  overflow: visible;
   padding: 1.25rem 0 0.4rem;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
   box-sizing: border-box;
-  /* Scroll-snap: alinea cards de 3 en 3 visualmente */
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: 1.25rem;
-}
-
-@supports not (overflow: clip) {
-  .plans-scroll {
-    overflow-x: auto;
-  }
-}
-
-.plans-scroll::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  height: 0;
 }
 
 .plans,
 .plans--many,
 .plans--few {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 1.25rem;
-  width: max-content;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+  width: 100%;
   max-width: none;
   min-width: 0;
   margin-inline: auto;
-  padding: 0.75rem 1.25rem 0.5rem;
+  padding: 0.75rem 0 0.5rem;
   box-sizing: border-box;
   align-items: stretch;
-  transform: translate3d(var(--pos, 0px), 0, 0);
-  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
 }
 
 .plans.is-dragging {
@@ -2084,14 +2060,7 @@ a {
 }
 
 .plans__ghost {
-  flex: 0 0 200px;
-  width: 200px;
-  min-width: 200px;
-  max-width: 200px;
-  scroll-snap-align: start;
-  visibility: hidden;
-  pointer-events: none;
-  user-select: none;
+  display: none;
 }
 
 .plans-nav {
@@ -2199,11 +2168,8 @@ a {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  flex: 0 0 200px;
-  width: 200px;
-  min-width: 200px;
-  max-width: 200px;
-  /* Scroll-snap: alinea al snap point del carrusel */
+  width: 100%;
+  min-width: 0;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   opacity: 1;
@@ -5097,34 +5063,28 @@ body.is-modal-open {
   }
 
   .plans-scroll {
-    width: 190px;
+    width: 100%;
     max-width: 100%;
     padding: 1.15rem 0 0.85rem;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: 0.75rem;
   }
 
   .plans,
   .plans--few,
   .plans--many {
-    display: flex;
-    gap: 0.65rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.75rem;
     padding-inline: 0.75rem;
   }
 
   .plan {
-    flex: 0 0 150px;
-    width: 150px;
-    min-width: 150px;
-    max-width: 150px;
-    scroll-snap-align: start;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
   }
 
   .plans__ghost {
-    flex-basis: 150px;
-    width: 150px;
-    min-width: 150px;
-    max-width: 150px;
+    display: none;
   }
 
   .plan {

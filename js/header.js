@@ -137,34 +137,63 @@
       toggle.setAttribute("aria-expanded", String(open));
     });
 
-    // Dropdown planes header
+    // Dropdown planes header — dinámico (hover intent + click + teclado)
     const dropdown = nav.querySelector(".nav__dropdown");
     if (dropdown) {
       const dropLink = dropdown.querySelector("a");
       const submenu = dropdown.querySelector(".nav__submenu");
       if (dropLink && submenu) {
-        // Toggle on click (mobile y desktop)
+        let openTimer = null;
+        let closeTimer = null;
+
+        const open = () => {
+          clearTimeout(closeTimer);
+          clearTimeout(openTimer);
+          submenu.classList.add("is-open");
+          dropLink.setAttribute("aria-expanded", "true");
+        };
+        const close = () => {
+          clearTimeout(closeTimer);
+          clearTimeout(openTimer);
+          submenu.classList.remove("is-open");
+          dropLink.setAttribute("aria-expanded", "false");
+        };
+        const openWithIntent = () => {
+          clearTimeout(closeTimer);
+          clearTimeout(openTimer);
+          openTimer = window.setTimeout(open, 40);
+        };
+        const closeWithIntent = () => {
+          clearTimeout(openTimer);
+          closeTimer = window.setTimeout(close, 90);
+        };
+
+        // Hover (desktop)
+        dropdown.addEventListener("mouseenter", openWithIntent);
+        dropdown.addEventListener("mouseleave", closeWithIntent);
+
+        // Click toggle (móvil y desktop)
         dropLink.addEventListener("click", (e) => {
           e.preventDefault();
           e.stopPropagation();
+          clearTimeout(openTimer);
+          clearTimeout(closeTimer);
           const isOpen = submenu.classList.contains("is-open");
-          submenu.classList.toggle("is-open", !isOpen);
-          dropLink.setAttribute("aria-expanded", String(!isOpen));
+          if (isOpen) close();
+          else open();
         });
-        // Mostrar en hover (desktop)
-        dropdown.addEventListener("mouseenter", () => {
-          submenu.classList.add("is-open");
-          dropLink.setAttribute("aria-expanded", "true");
-        });
-        dropdown.addEventListener("mouseleave", () => {
-          submenu.classList.remove("is-open");
-          dropLink.setAttribute("aria-expanded", "false");
-        });
+
         // Cerrar al hacer click fuera
         document.addEventListener("click", (e) => {
-          if (!dropdown.contains(e.target)) {
-            submenu.classList.remove("is-open");
-            dropLink.setAttribute("aria-expanded", "false");
+          if (!dropdown.contains(e.target)) close();
+        });
+
+        // Cerrar con tecla Escape
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            close();
+            nav.classList.remove("is-open");
+            toggle.setAttribute("aria-expanded", "false");
           }
         });
       }

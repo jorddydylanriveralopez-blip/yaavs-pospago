@@ -3033,7 +3033,7 @@ body.is-modal-open {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(11,28,40,0.92) 0%, rgba(11,28,40,0.85) 50%, rgba(11,28,40,0.92) 100%);
+  background: linear-gradient(180deg, rgba(11,28,40,0.95) 0%, rgba(11,28,40,0.9) 50%, rgba(11,28,40,0.95) 100%);
 }
 
 .section--quienes > *:not(.quienes-bg) {

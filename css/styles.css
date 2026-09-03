@@ -1723,8 +1723,8 @@ a {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url('../assets/banners/PROMOS-AGO-08-93a45095.jpg') center/cover no-repeat;
-  opacity: 0.2;
+  background: url('../assets/banners/PROMOS-AGO-07-c43a74bd.jpg') center/cover no-repeat;
+  opacity: 0.3;
   animation: plansBgDrift 14s ease-in-out infinite alternate;
 }
 
@@ -1732,7 +1732,7 @@ a {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(232,247,252,0.95) 0%, rgba(232,247,252,0.85) 50%, rgba(232,247,252,0.95) 100%);
+  background: linear-gradient(180deg, rgba(232,247,252,0.92) 0%, rgba(232,247,252,0.8) 50%, rgba(232,247,252,0.92) 100%);
 }
 
 @keyframes plansBgDrift {

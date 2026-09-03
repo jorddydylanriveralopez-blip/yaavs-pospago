@@ -1723,12 +1723,16 @@ a {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background:
-    radial-gradient(circle at 10% 100%, rgba(255, 255, 255, 0.75) 0 18%, transparent 19%),
-    radial-gradient(circle at 10% 100%, rgba(255, 255, 255, 0.45) 0 28%, transparent 29%),
-    radial-gradient(circle at 10% 100%, rgba(255, 255, 255, 0.28) 0 40%, transparent 41%);
-  opacity: 0.95;
+  background: url('../assets/banners/PROMOS-AGO-05-0dedee92.jpg') center/cover no-repeat;
+  opacity: 0.25;
   animation: plansBgDrift 14s ease-in-out infinite alternate;
+}
+
+.plans-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(232,247,252,0.95) 0%, rgba(232,247,252,0.85) 50%, rgba(232,247,252,0.95) 100%);
 }
 
 @keyframes plansBgDrift {
@@ -1776,6 +1780,28 @@ a {
   border-radius: 999px;
   background: linear-gradient(90deg, var(--att-blue), var(--att-cyan));
   animation: plansLineGrow 1s var(--ease) 0.2s both;
+}
+
+.plans-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  padding: 0.7rem 1.8rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #fff;
+  background: linear-gradient(115deg, var(--att-cyan), var(--att-blue-deep));
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 8px 22px rgba(0,159,219,0.35);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s ease;
+}
+
+.plans-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,159,219,0.45);
 }
 
 @keyframes plansEyebrowIn {

@@ -1869,39 +1869,67 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.55rem;
+  gap: 0.75rem;
   margin: 0;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 100px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .plan-tabs__btn {
   appearance: none;
-  border: 1px solid rgba(0, 120, 168, 0.22);
-  background: rgba(255, 255, 255, 0.72);
+  border: 2px solid transparent;
+  background: rgba(255, 255, 255, 0.9);
   color: #0b1c28;
-  font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  font-synthesis: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  padding: 0.72rem 1.3rem;
-  border-radius: 999px;
+  letter-spacing: 0.02em;
+  padding: 0.85rem 1.75rem;
+  border-radius: 100px;
   cursor: pointer;
-  transition: transform 0.25s var(--ease), background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.plan-tabs__btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, #00c1d4, #009fdb 55%, #0077a8);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
+.plan-tabs__btn span {
+  position: relative;
+  z-index: 1;
 }
 
 .plan-tabs__btn:hover {
-  transform: translateY(-2px);
-  border-color: rgba(0, 159, 219, 0.45);
-  box-shadow: 0 10px 22px rgba(0, 120, 168, 0.12);
+  transform: translateY(-3px) scale(1.02);
+  border-color: rgba(0, 159, 219, 0.5);
+  box-shadow: 0 12px 28px rgba(0, 159, 219, 0.25);
 }
 
 .plan-tabs__btn.is-active {
-  background: linear-gradient(115deg, #00c1d4, #009fdb 55%, #0077a8);
   color: #fff;
   border-color: transparent;
-  box-shadow: 0 12px 26px rgba(0, 159, 219, 0.35);
+  box-shadow: 0 14px 32px rgba(0, 159, 219, 0.4);
+  animation: tabPulse 2s ease-in-out infinite;
+}
+
+.plan-tabs__btn.is-active::before {
+  opacity: 1;
+}
+
+@keyframes tabPulse {
+  0%, 100% { box-shadow: 0 14px 32px rgba(0, 159, 219, 0.4); }
+  50% { box-shadow: 0 18px 40px rgba(0, 159, 219, 0.55); }
 }
 
 .plan-tabs__hint {
@@ -1915,60 +1943,61 @@ a {
 .plan-pricing {
   display: flex;
   justify-content: center;
-  gap: 0.45rem;
+  gap: 0.5rem;
   margin: 0;
-  padding: 0.28rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(0, 120, 168, 0.16);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  padding: 0.35rem;
+  border-radius: 100px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(240,248,255,0.95));
+  border: 1px solid rgba(0, 120, 168, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   width: fit-content;
   max-width: 100%;
 }
 
 .plan-pricing__btn {
   appearance: none;
-  border: 1.5px solid transparent;
+  border: 2px solid transparent;
   background: transparent;
   color: #0b1c28;
-  font-family: var(--font-body);
-  font-size: 0.82rem;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 0.03em;
-  padding: 0.62rem 1.15rem;
-  border-radius: 999px;
+  letter-spacing: 0.02em;
+  padding: 0.7rem 1.4rem;
+  border-radius: 100px;
   cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
 }
 
 .plan-pricing__btn[data-pricing-mode="standard"] {
-  color: #0077a8;
-  border-color: rgba(0, 159, 219, 0.35);
+  color: var(--att-blue);
+  border-color: rgba(0, 159, 219, 0.3);
   background: rgba(0, 159, 219, 0.08);
 }
 
 .plan-pricing__btn[data-pricing-mode="standard"]::before {
-  content: "\21BB\00a0";
+  content: "↻ ";
 }
 
 .plan-pricing__btn[data-pricing-mode="standard"]:hover {
-  color: #005f8a;
-  border-color: rgba(0, 159, 219, 0.55);
+  background: rgba(0, 159, 219, 0.15);
+  transform: translateY(-2px);
 }
 
 .plan-pricing__btn[data-pricing-mode="portabilidad"] {
   color: #c8105f;
-  border-color: rgba(224, 17, 111, 0.3);
-  background: rgba(224, 17, 111, 0.07);
+  border-color: rgba(224, 17, 111, 0.25);
+  background: rgba(224, 17, 111, 0.06);
 }
 
 .plan-pricing__btn[data-pricing-mode="portabilidad"]::before {
-  content: "\21c4\00a0";
+  content: "⇄ ";
 }
 
 .plan-pricing__btn[data-pricing-mode="portabilidad"]:hover {
-  color: #a30d4d;
-  border-color: rgba(224, 17, 111, 0.5);
+  background: rgba(224, 17, 111, 0.12);
+  transform: translateY(-2px);
 }
 
 .plan-pricing__btn[data-pricing-mode="standard"].is-active {

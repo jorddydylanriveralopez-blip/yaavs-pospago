@@ -39,6 +39,20 @@
           <span></span><span></span><span></span>
         </button>
         <ul class="nav__list" id="nav-menu">
+          <li>
+            <a href="#quienes-somos">
+              <span class="nav__label">¿Quiénes somos</span>
+              <span class="nav__hint">Conectamos tu mundo</span>
+              <span class="nav__go" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="#tiendas">
+              <span class="nav__label">Tiendas</span>
+              <span class="nav__hint">Encuentra tu sucursal</span>
+              <span class="nav__go" aria-hidden="true">→</span>
+            </a>
+          </li>
           <li class="nav__dropdown">
             <a href="#planes" aria-haspopup="true" aria-expanded="false">
               <span class="nav__label">Planes</span>
@@ -52,23 +66,9 @@
             </ul>
           </li>
           <li>
-            <a href="#quienes-somos">
-              <span class="nav__label">¿Quiénes somos</span>
-              <span class="nav__hint">Conectamos tu mundo</span>
-              <span class="nav__go" aria-hidden="true">→</span>
-            </a>
-          </li>
-          <li>
             <a href="#promociones">
               <span class="nav__label">Promociones</span>
               <span class="nav__hint">Vigentes AT&amp;T</span>
-              <span class="nav__go" aria-hidden="true">→</span>
-            </a>
-          </li>
-          <li>
-            <a href="#tiendas">
-              <span class="nav__label">Tiendas</span>
-              <span class="nav__hint">Encuentra tu sucursal</span>
               <span class="nav__go" aria-hidden="true">→</span>
             </a>
           </li>
@@ -219,21 +219,40 @@
     <section class="section" id="quienes-somos" aria-labelledby="quienes-somos-title">
       <div class="wrap">
         <header class="section__head">
-          <p class="eyebrow">¿QUIÉNES SOMOS</p>
+          <p class="eyebrow">AT&amp;T YAAVS POSPAGO</p>
           <h2 id="quienes-somos-title">Conectamos tu mundo. Impulsamos tu futuro.</h2>
           <p>
+            En AT&amp;T YAAVS POSPAGO llevamos la conectividad a otro nivel. Somos parte de una red
+            que acerca soluciones móviles, tecnología y grandes beneficios a quienes quieren estar
+            siempre un paso adelante.
+          </p>
+          <p style="margin: 0.85rem 0 0; color: var(--att-muted);">
             Porque hoy estar conectado no es solo tener señal: es compartir más, trabajar mejor,
             disfrutar sin pausas y estrenar lo que te inspira.
           </p>
         </header>
 
-        <p class="lede" style="max-width: 52ch;">
-          Todo para conectar contigo.
-        </p>
+        <p class="lede" style="max-width: 52ch;">Todo para conectar contigo</p>
 
-        <p style="margin: 0; color: var(--att-muted); max-width: 72ch;">
-          Planes AT&amp;T Pospago: más datos, redes sociales, llamadas y beneficios para que disfrutes tu
-          línea como tú quieras.
+        <ul class="quienes-list" style="margin: 1.5rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.9rem; max-width: 72ch;">
+          <li style="display: grid; grid-template-columns: auto 1fr; gap: 0.85rem; align-items: start;">
+            <span class="quienes-list__dot" aria-hidden="true" style="width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(115deg, #00c1d4, #009fdb); margin-top: 0.55rem;"></span>
+            <div>
+              <strong style="font-family: var(--font-display); font-weight: 800; letter-spacing: -0.01em;">Planes AT&amp;T Pospago</strong>
+              <p style="margin: 0.15rem 0 0; color: var(--att-muted);">Más datos, redes sociales, llamadas y beneficios para que disfrutes tu línea como tú quieras.</p>
+            </div>
+          </li>
+          <li style="display: grid; grid-template-columns: auto 1fr; gap: 0.85rem; align-items: start;">
+            <span class="quienes-list__dot" aria-hidden="true" style="width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(115deg, #00c1d4, #009fdb); margin-top: 0.55rem;"></span>
+            <div>
+              <strong style="font-family: var(--font-display); font-weight: 800; letter-spacing: -0.01em;">Smartphones que quieres estrenar</strong>
+              <p style="margin: 0.15rem 0 0; color: var(--att-muted);">Encuentra equipos de las marcas más reconocidas y llévatelos con opciones de pago accesibles.</p>
+            </div>
+          </li>
+        </ul>
+
+        <p class="quienes-stamp" style="margin: 1.9rem 0 0; font-family: var(--font-display); font-weight: 850; letter-spacing: 0.02em; color: var(--att-blue);">
+          AT&amp;T YAAVS Pospago · MÁS TECNOLOGÍA. MEJOR CONEXIÓN PARA TI.
         </p>
       </div>
     </section>
@@ -341,9 +360,9 @@
     <section class="section section--promos" id="promociones" aria-labelledby="promos-title">
       <div class="wrap">
         <header class="section__head">
-          <p class="eyebrow">Vigentes</p>
-          <h2 id="promos-title">Promociones pospago</h2>
-          <p>Activa, porta o renueva y aprovecha beneficios AT&amp;T Premium.</p>
+          <p class="eyebrow">Promoción vigente · 1° al 30 de septiembre</p>
+          <h2 id="promos-title">Los mejores celulares con un excelente plan</h2>
+          <p>Estrena smartphone hoy y ahorra hasta 20% en tu mensualidad si portas tu número a AT&amp;T Premium.</p>
         </header>
 
         <div class="promo-rail" role="list">
@@ -403,9 +422,10 @@
     <section class="section section--insurance" id="seguros" aria-labelledby="seguros-title">
       <div class="wrap insurance">
         <div class="insurance__copy">
-          <p class="eyebrow">AT&amp;T asegura tu equipo</p>
-          <h2 id="seguros-title">Seguro de protección</h2>
-          <p>Protege tu smartphone ante robo, fallas o daños fuera de garantía. Evita asumir el costo completo de un equipo nuevo.</p>
+          <p class="eyebrow">SEGURO DE PROTECCIÓN AT&amp;T</p>
+          <h2 id="seguros-title">Tu smartphone protegido. Tu vida conectada.</h2>
+          <p>Con tu SEGURO DE PROTECCIÓN AT&amp;T disfruta tu equipo con la tranquilidad de saber que estás respaldado ante los imprevistos.</p>
+          <p style="margin: 0.85rem 0 0; color: var(--att-muted);">Una caída, una pantalla rota o una batería que ya no rinde como antes no tienen por qué detenerte. Protege tu smartphone y mantente conectado con soluciones pensadas para cuidar tu inversión.</p>
           <dl class="insurance__facts">
             <div>
               <dt>
@@ -437,6 +457,46 @@
               <dd>Consulta en cotización el cargo mensual según tu equipo</dd>
             </div>
           </dl>
+
+          <p class="insurance__section-label">Más protección para seguir conectado</p>
+          <ul class="insurance__benefits">
+            <li>
+              <span class="insurance__icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z" fill="currentColor" opacity="0.15"/><path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9.2 12.2l1.8 1.8 3.9-4.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <div>
+                <strong>Sin límites ante imprevistos</strong>
+                <p>Cuenta con siniestros ilimitados para que un incidente no te deje fuera de conexión.</p>
+              </div>
+            </li>
+            <li>
+              <span class="insurance__icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none"><rect x="3" y="4" width="18" height="12" rx="2" fill="currentColor" opacity="0.15"/><rect x="3" y="4" width="18" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M9 20h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </span>
+              <div>
+                <strong>Pantalla reparada por $99 MXN</strong>
+                <p>Recupera la mejor vista de tu equipo con reparación de pantalla a un precio preferencial.*</p>
+              </div>
+            </li>
+            <li>
+              <span class="insurance__icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none"><rect x="7" y="2" width="10" height="20" rx="3" fill="currentColor" opacity="0.15"/><rect x="7" y="2" width="10" height="20" rx="3" stroke="currentColor" stroke-width="2"/><path d="M11 18h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </span>
+              <div>
+                <strong>Batería nueva por $99 MXN</strong>
+                <p>Dale nueva energía a tu smartphone y mantén el ritmo de tu día.*</p>
+              </div>
+            </li>
+            <li>
+              <span class="insurance__icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4L15 12l-3-3 2.7-2.7z" fill="currentColor" opacity="0.15"/><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4L15 12l-3-3 2.7-2.7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+              </span>
+              <div>
+                <strong>Reparación de back glass y más</strong>
+                <p>Cuida cada detalle de tu equipo con opciones de reparación para daños accidentales.</p>
+              </div>
+            </li>
+          </ul>
           <a class="btn btn--primary" href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20informaci%C3%B3n%20del%20seguro%20de%20equipo" target="_blank" rel="noopener">Incluir seguro en mi cotización</a>
         </div>
         <div class="insurance__panel" aria-hidden="true">
@@ -445,6 +505,24 @@
             <br>TU VIDA CONECTADA.
           </p>
           <p>MÁS PROTECCIÓN PARA SEGUIR CONECTADO</p>
+        </div>
+
+        <div class="insurance__prices">
+          <h3>¿Cuánto debo pagar de prima mensual por SEGURO DE PROTECCIÓN AT&amp;T?</h3>
+          <div class="insurance__prices-grid" role="table" aria-label="Primas mensuales SEGURO DE PROTECCIÓN AT&amp;T">
+            <div class="insurance__prices-row insurance__prices-row--head" role="row">
+              <span role="columnheader">Precio del equipo</span>
+              <span role="columnheader">Prima mensual</span>
+            </div>
+            <div class="insurance__prices-row" role="row"><span role="cell">$500 – $4,000 MXN</span><span role="cell">$99 MXN</span></div>
+            <div class="insurance__prices-row" role="row"><span role="cell">$4,001 – $6,000 MXN</span><span role="cell">$159 MXN</span></div>
+            <div class="insurance__prices-row" role="row"><span role="cell">$6,001 – $13,000 MXN</span><span role="cell">$219 MXN</span></div>
+            <div class="insurance__prices-row" role="row"><span role="cell">$13,001 – $38,000 MXN</span><span role="cell">$254 MXN</span></div>
+            <div class="insurance__prices-row" role="row"><span role="cell">$38,001 – $60,000 MXN</span><span role="cell">$279 MXN</span></div>
+          </div>
+          <p class="insurance__prices-note">El valor de la prima se calculará sobre el precio de venta del bien asegurado sin aplicar subsidios, descuentos, promociones y rebajas. Las cifras incluyen el IVA.</p>
+          <p class="insurance__prices-cta">Contrata tu SEGURO DE PROTECCIÓN AT&amp;T en YAAVS POSPAGO.</p>
+          <p class="fineprint">*Aplican términos, condiciones, cobertura y deducibles conforme al modelo de equipo y servicio contratado.</p>
         </div>
       </div>
     </section>
@@ -519,7 +597,7 @@
         <a href="#tiendas">Tiendas</a>
         <a href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20cotizar%20un%20plan%20AT%26T" target="_blank" rel="noopener">Cotizar</a>
       </nav>
-      <p class="site-footer__legal">AT&amp;T y el logotipo de AT&amp;T son marcas comerciales de AT&amp;T Intellectual Property. YAAVS opera como distribuidor autorizado. Condiciones sujetas a cambio sin previo aviso.</p>
+      <p class="site-footer__legal">Consulta coberturas, tarifas, términos y condiciones en att.com.mx. © 2026 AT&amp;T Intellectual Property II, L.P. AT&amp;T y el logotipo de AT&amp;T son marcas registradas a nombre de AT&amp;T Intellectual Property II, L.P. y/o sus compañías afiliadas. Todas las demás marcas son propiedad de sus respectivos dueños. YAAVS opera como distribuidor autorizado.</p>
     </div>
   </footer>
 

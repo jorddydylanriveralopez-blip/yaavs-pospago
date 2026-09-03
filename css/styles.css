@@ -3180,6 +3180,110 @@ body.is-modal-open {
   50% { filter: saturate(1.08); transform: scale(1.015); }
 }
 
+/* Insurance — benefits + premiums table */
+.insurance__section-label {
+  margin: 1.75rem 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--att-blue);
+}
+
+.insurance__benefits {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.insurance__benefits li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.85rem;
+  align-items: start;
+}
+
+.insurance__benefits strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.insurance__benefits p {
+  margin: 0.2rem 0 0;
+  color: var(--att-muted);
+  font-size: 0.95rem;
+}
+
+.insurance__prices {
+  margin-top: 2.5rem;
+  padding: 1.6rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 120, 168, 0.14);
+  box-shadow: 0 16px 40px rgba(0, 80, 120, 0.08);
+}
+
+.insurance__prices h3 {
+  margin: 0 0 1.1rem;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.insurance__prices-grid {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 120, 168, 0.16);
+}
+
+.insurance__prices-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 0.8rem 1.1rem;
+  background: #fff;
+  border-top: 1px solid rgba(0, 120, 168, 0.12);
+  font-weight: 650;
+}
+
+.insurance__prices-row:first-child {
+  border-top: 0;
+}
+
+.insurance__prices-row--head {
+  background: linear-gradient(115deg, #00c1d4, #009fdb 60%, #0077a8);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.85rem;
+}
+
+.insurance__prices-row span:last-child {
+  text-align: right;
+  font-weight: 800;
+}
+
+.insurance__prices-note {
+  margin: 0.95rem 0 0;
+  color: var(--att-muted);
+  font-size: 0.92rem;
+}
+
+.insurance__prices-cta {
+  margin: 0.95rem 0 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--att-blue);
+}
+
 /* Brands */
 .section--brands {
   padding: 4.25rem 0;
@@ -3312,6 +3416,99 @@ body.is-modal-open {
   .blog-masonry {
     column-count: 1;
   }
+}
+
+/* Blog — artículo individual */
+.section--post {
+  padding: 3.5rem 0 4.5rem;
+}
+
+.post {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.post__kicker {
+  margin: 0 0 0.7rem;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--att-blue);
+}
+
+.post__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  font-weight: 850;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.post__excerpt {
+  margin: 1rem 0 0;
+  color: var(--att-muted);
+  font-size: 1.1rem;
+}
+
+.post__hero {
+  overflow: hidden;
+  border-radius: 24px;
+  margin-top: 1.6rem;
+  box-shadow: 0 22px 54px rgba(0, 80, 120, 0.12);
+}
+
+.post__hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.post__body {
+  margin-top: 2rem;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.post__body p {
+  margin: 0 0 1.1rem;
+}
+
+.post__body h2 {
+  margin: 2rem 0 0.85rem;
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.post__body ul {
+  margin: 0 0 1.1rem;
+  padding-left: 1.2rem;
+}
+
+.post__body ul > li {
+  margin-bottom: 0.5rem;
+}
+
+.post__cta {
+  margin-top: 2.2rem;
+  padding: 1.8rem;
+  border-radius: 24px;
+  background: linear-gradient(120deg, rgba(0, 193, 212, 0.12), rgba(0, 159, 219, 0.08));
+  border: 1px solid rgba(0, 120, 168, 0.16);
+  text-align: center;
+}
+
+.post__cta p {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
 }
 
 /* Quote */

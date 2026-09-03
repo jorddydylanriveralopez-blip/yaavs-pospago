@@ -366,7 +366,7 @@ a {
   gap: 0.15rem;
   margin: 0;
   padding: 0;
-  overflow-x: auto;
+  overflow: visible;
   scrollbar-width: none;
 }
 
@@ -3968,6 +3968,30 @@ body.is-modal-open {
     font-weight: 600;
     letter-spacing: 0.04em;
     color: rgba(122, 239, 255, 0.85);
+  }
+
+  /* Submenu móvil de Planes: despliegue en línea dentro del panel, sin recorte */
+  .nav__dropdown .nav__submenu {
+    position: static;
+    left: auto;
+    transform: none;
+    min-width: 0;
+    width: 100%;
+    margin: 0.4rem 0 0;
+    padding: 0.4rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    box-shadow: none;
+  }
+
+  .nav__dropdown .nav__submenu a {
+    color: #fff;
+  }
+
+  .nav__dropdown .nav__submenu a:hover {
+    background: linear-gradient(115deg, rgba(0, 193, 212, 0.28), rgba(0, 159, 219, 0.18));
+    color: #fff;
   }
 
   @keyframes navPanelIn {

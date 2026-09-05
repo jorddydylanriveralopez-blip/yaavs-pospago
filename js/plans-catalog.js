@@ -366,7 +366,13 @@
     const pages = carouselPages(grid);
     const current = clampPage(CAROUSEL_STATE[id] ?? 0, pages);
     CAROUSEL_STATE[id] = current;
-    grid.style.setProperty("--pos", `-${current * carouselUnit(grid)}px`);
+
+    const scroller = panel.querySelector("[data-plans-scroller]");
+    const target = cards[current * perPage()];
+    if (scroller && target) {
+      const left = target.offsetLeft - 16;
+      scroller.scrollTo({ left: Math.max(0, left), behavior: animated ? "smooth" : "auto" });
+    }
 
     const prev = panel.querySelector("[data-carousel-prev]");
     const next = panel.querySelector("[data-carousel-next]");

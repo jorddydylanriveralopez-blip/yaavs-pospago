@@ -2259,32 +2259,55 @@ a {
 }
 
 .plans-scroll {
-  width: min(1280px, calc(100% - 1.5rem));
+  width: 100%;
   max-width: 100%;
   min-width: 0;
   display: block;
   margin-inline: auto;
-  overflow: visible;
-  padding: 1.1rem 0 1.5rem;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 1.15rem 0 0.85rem;
   box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--att-cyan) transparent;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 1rem;
+}
+
+.plans-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.plans-scroll::-webkit-scrollbar-track {
+  background: rgba(0, 159, 219, 0.1);
+  border-radius: 3px;
+}
+
+.plans-scroll::-webkit-scrollbar-thumb {
+  background: var(--att-cyan);
+  border-radius: 3px;
 }
 
 .plans,
 .plans--many,
 .plans--few {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 1rem;
-  width: 100%;
-  max-width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  width: max-content;
+  max-width: none;
+  min-width: 0;
   margin: 0;
-  padding: 0.35rem 0.25rem 0.75rem;
+  padding: 0.35rem 1.15rem 0.85rem;
   box-sizing: border-box;
   align-items: stretch;
 }
 
 .plans.is-dragging {
   transition: none;
+  cursor: grabbing;
 }
 
 .plans__ghost {
@@ -2292,7 +2315,12 @@ a {
 }
 
 .plans-nav {
-  display: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  margin-top: 0.15rem;
+  padding: 0.35rem 0 0.75rem;
 }
 
 .plans-nav__btn {
@@ -2391,9 +2419,12 @@ a {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  width: 100%;
-  min-width: 0;
-  max-width: none;
+  flex: 0 0 188px;
+  width: 188px;
+  min-width: 188px;
+  max-width: 188px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
   opacity: 1;
   transform: none;
   overflow: visible;
@@ -4737,18 +4768,12 @@ body.is-modal-open {
 }
 
 /* Responsive */
-@media (max-width: 1200px) {
-  .plans,
-  .plans--few,
-  .plans--many {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0.9rem;
-  }
-}
-
 @media (max-width: 1100px) {
-  .plans-scroll {
-    width: min(1100px, calc(100% - 1.25rem));
+  .plan {
+    flex-basis: 170px;
+    width: 170px;
+    min-width: 170px;
+    max-width: 170px;
   }
 
   .plan--featured {
@@ -4770,36 +4795,19 @@ body.is-modal-open {
   }
 }
 
-@media (max-width: 980px) {
+@media (max-width: 640px) {
+  .plan {
+    flex-basis: 156px;
+    width: 156px;
+    min-width: 156px;
+    max-width: 156px;
+  }
+
   .plans,
   .plans--few,
   .plans--many {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.85rem;
-  }
-}
-
-@media (max-width: 720px) {
-  .plans,
-  .plans--few,
-  .plans--many {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .plans,
-  .plans--few,
-  .plans--many {
-    grid-template-columns: 1fr;
-    max-width: 360px;
-    margin-inline: auto;
-    gap: 0.9rem;
-  }
-
-  .plan:hover {
-    transform: translateY(-4px);
+    gap: 0.65rem;
+    padding-inline: 0.85rem;
   }
 }
 
@@ -5436,28 +5444,31 @@ body.is-modal-open {
   }
 
   .plans-scroll {
-    width: min(100%, calc(100% - 0.5rem));
+    width: 100%;
     max-width: 100%;
-    padding: 0.85rem 0 1.25rem;
-    overflow: visible;
+    padding: 0.85rem 0 0.65rem;
+    overflow-x: auto;
   }
 
   .plans,
   .plans--few,
   .plans--many {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
-    width: 100%;
-    max-width: 100%;
-    padding-inline: 0.15rem;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.65rem;
+    width: max-content;
+    max-width: none;
+    padding-inline: 0.85rem;
   }
 
   .plan {
-    width: 100%;
-    min-width: 0;
-    max-width: none;
+    flex: 0 0 156px;
+    width: 156px;
+    min-width: 156px;
+    max-width: 156px;
     gap: 0.35rem;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
 
   .plans__ghost {

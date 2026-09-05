@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260905k">
+  <link rel="stylesheet" href="css/styles.css?v=20260905m">
   <link rel="icon" href="assets/images/favicon.svg?v=20260828d" type="image/svg+xml">
   <link rel="icon" href="assets/images/favicon-32.png?v=20260828d" type="image/png" sizes="32x32">
 </head>
@@ -86,35 +86,42 @@
     </div>
     <div class="site-header__line" aria-hidden="true"></div>
   </header>
-  <main id="contenido">
+    <main id="contenido">
     <section class="plan-family-hero plan-family-hero--premium">
       <div class="wrap plan-family-hero__inner">
-        <p class="eyebrow">AT&T Premium</p>
-        <h1>AT&T Premium</h1>
+        <p class="plan-family-hero__crumb"><a href="index.html">Inicio</a> <span aria-hidden="true">/</span> <a href="index.html#planes">Planes</a> <span aria-hidden="true">/</span> <span>AT&amp;T Premium</span></p>
+        <p class="eyebrow">Planes pospago</p>
+        <h1>AT&amp;T Premium</h1>
         <p class="plan-family-hero__from">Desde $330 al mes</p>
-        <p class="plan-family-hero__tag">Los mejores planes, con los mejores equipos</p>
-        <a class="btn-cta" href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20cotizar%20un%20plan%20AT%26T%20Premium" target="_blank" rel="noopener">Cotiza tu plan AT&amp;T Premium</a>
+        <p class="plan-family-hero__tag">Los mejores planes, con los mejores equipos. GB, redes sociales a elegir y eSIM.</p>
+        <div class="plan-family-hero__actions">
+          <a class="btn-cta" href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20cotizar%20un%20plan%20AT%26T%20Premium" target="_blank" rel="noopener">
+            <span class="btn-cta__label">Cotiza tu plan AT&amp;T Premium</span>
+            <span class="btn-cta__arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="plan-family-hero__ghost" href="#planes">Ver planes disponibles</a>
+        </div>
       </div>
     </section>
 
-    <section class="section plan-family-info">
+    <section class="section plan-family-info" aria-labelledby="beneficios-title">
       <div class="wrap plan-family-info__grid">
-        <div>
-          <h2>¿Qué beneficios incluye?</h2>
+        <div class="plan-family-panel">
+          <h2 id="beneficios-title">¿Qué beneficios incluye?</h2>
           <ul class="plan-family-benefits">
             <li>GB incluidos para que los disfrutes en lo que prefieras</li>
-            <li>Elige 6 redes sociales ilimitadas y cámbialas cuando quieras*</li>
+            <li>Elige hasta 6 redes sociales ilimitadas y cámbialas cuando quieras*</li>
             <li>Disponible con eSIM</li>
-            <li>Minutos y SMS ilimitados México, EUA y Canadá</li>
+            <li>Minutos y SMS ilimitados en México, EUA y Canadá</li>
           </ul>
         </div>
-        <div>
+        <div class="plan-family-panel">
           <h2>¿Cómo lo compro?</h2>
           <ol class="plan-family-steps">
             <li><span>1</span><p>Elige tu celular nuevo y por cuántos meses quieres el servicio</p></li>
-            <li><span>2</span><p>Selecciona un plan de datos. Todos incluyen redes sociales ilimitadas según el plan</p></li>
+            <li><span>2</span><p>Selecciona un plan de datos. Incluyen redes sociales según el plan</p></li>
             <li><span>3</span><p>Selecciona el porcentaje del pago inicial de tu celular nuevo</p></li>
-            <li><span>4</span><p>Localiza tu tienda YAAVS Pospago AT&T y disfruta los beneficios Premium</p></li>
+            <li><span>4</span><p>Localiza tu tienda YAAVS Pospago AT&amp;T y disfruta Premium</p></li>
           </ol>
           <a class="plan-family-link" href="index.html#tiendas">Localiza tu tienda más cercana →</a>
         </div>
@@ -125,9 +132,9 @@
       <div class="plans-bg" aria-hidden="true"></div>
       <div class="wrap">
         <header class="section__head section__head--plans">
-          <p class="eyebrow">Parrilla comercial</p>
+          <p class="eyebrow">10 planes disponibles</p>
           <h2 id="planes-title">Elige tu plan Premium</h2>
-          <p>Los mejores planes diseñados para ti, con la libertad que buscas en cada conexión.</p>
+          <p>Parrilla comercial YAAVS · solo AT&amp;T Premium. Cambia entre línea nueva y portabilidad.</p>
         </header>
 
         <div class="plan-tabs-block">
@@ -140,6 +147,7 @@
           </div>
         </div>
       </div>
+
       <div class="plans-slide is-active" id="panel-premium" data-plan-panel="premium">
         <div class="plans-scroll" data-plans-scroller>
           <div class="plans" role="list" data-plans-grid="premium"></div>
@@ -151,7 +159,10 @@
           <button type="button" class="plans-nav__btn plans-nav__btn--next" data-carousel-next aria-label="Siguientes planes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
         </div>
       </div>
-      <div class="wrap plan-family-cta">
+
+      <div class="plan-family-cta-band">
+        <h3>¿Listo para AT&amp;T Premium?</h3>
+        <p>Te ayudamos a cotizar en WhatsApp con un asesor YAAVS Pospago.</p>
         <a class="btn-cta" href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20cotizar%20un%20plan%20AT%26T%20Premium" target="_blank" rel="noopener">Cotiza tu plan AT&amp;T Premium</a>
       </div>
     </section>
@@ -160,7 +171,7 @@
       <div class="wrap">
         <details>
           <summary>Legales AT&amp;T Premium</summary>
-          <p>Es una familia de planes Pospago con mensualidades anticipadas e incluyen beneficios de GB, minutos, SMS y redes sociales/aplicaciones a elegir. La contratación puede ser con equipo propio o adquiriendo un equipo a plazos de 24, 30 o 36 meses. El plan AT&T Titanio solo está disponible con equipo a plazo de 24 meses. Minutos y SMS ilimitados a números fijos y móviles nacionales e internacionales (México, EUA y Canadá). Aplica Política de Uso. Redes sociales/aplicaciones disponibles: Facebook, Facebook Messenger, WhatsApp, X, Uber, Uber Eats, Instagram, Snapchat, Didi, Google Maps, LinkedIn, Pinterest, Rappi, Waze y Telegram. Accesos a enlaces externos, llamadas VoIP, videollamadas, descargas o transmisiones en vivo pueden generar cargos adicionales. Cambio de apps: $30 IVA incluido, una vez al mes vía Call Center, MiATT o tienda AT&T. Cargo por contratación $300 IVA incluido. Equipo diferido: cargo anual de $225 IVA incluido hasta liquidar. Condiciones sujetas a cambio. Consulta att.com.mx.</p>
+          <p>Es una familia de planes Pospago con mensualidades anticipadas e incluyen beneficios de GB, minutos, SMS y redes sociales/aplicaciones a elegir. La contratación puede ser con equipo propio o adquiriendo un equipo a plazos de 24, 30 o 36 meses. El plan AT&amp;T Titanio solo está disponible con equipo a plazo de 24 meses. Minutos y SMS ilimitados a números fijos y móviles nacionales e internacionales (México, EUA y Canadá). Aplica Política de Uso. Redes sociales/aplicaciones disponibles: Facebook, Facebook Messenger, WhatsApp, X, Uber, Uber Eats, Instagram, Snapchat, Didi, Google Maps, LinkedIn, Pinterest, Rappi, Waze y Telegram. Accesos a enlaces externos, llamadas VoIP, videollamadas, descargas o transmisiones en vivo pueden generar cargos adicionales. Cambio de apps: $30 IVA incluido, una vez al mes vía Call Center, MiATT o tienda AT&amp;T. Cargo por contratación $300 IVA incluido. Equipo diferido: cargo anual de $225 IVA incluido hasta liquidar. Condiciones sujetas a cambio. Consulta att.com.mx.</p>
         </details>
       </div>
     </section>
@@ -181,7 +192,7 @@
       <p class="site-footer__legal">Consulta coberturas, tarifas, términos y condiciones en <a href="https://att.com.mx" target="_blank" rel="noopener">att.com.mx</a>. © 2026 AT&amp;T Intellectual Property II, L.P. YAAVS opera como distribuidor autorizado.</p>
     </div>
   </footer>
-  <script src="js/plans-catalog.js?v=20260905e" defer></script>
-  <script src="js/header.js?v=20260905k" defer></script>
+  <script src="js/plans-catalog.js?v=20260905m" defer></script>
+  <script src="js/header.js?v=20260905m" defer></script>
 </body>
 </html>

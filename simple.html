@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260905k">
+  <link rel="stylesheet" href="css/styles.css?v=20260905m">
   <link rel="icon" href="assets/images/favicon.svg?v=20260828d" type="image/svg+xml">
   <link rel="icon" href="assets/images/favicon-32.png?v=20260828d" type="image/png" sizes="32x32">
 </head>
@@ -86,21 +86,28 @@
     </div>
     <div class="site-header__line" aria-hidden="true"></div>
   </header>
-  <main id="contenido">
+    <main id="contenido">
     <section class="plan-family-hero plan-family-hero--simple">
       <div class="wrap plan-family-hero__inner">
-        <p class="eyebrow">AT&T Simple Plus</p>
-        <h1>AT&T Simple Plus</h1>
+        <p class="plan-family-hero__crumb"><a href="index.html">Inicio</a> <span aria-hidden="true">/</span> <a href="index.html#planes">Planes</a> <span aria-hidden="true">/</span> <span>AT&amp;T Simple Plus</span></p>
+        <p class="eyebrow">Planes pospago</p>
+        <h1>AT&amp;T Simple Plus</h1>
         <p class="plan-family-hero__from">Desde $2,392 por 12 meses</p>
-        <p class="plan-family-hero__tag">Un solo pago y disfruta de servicio todo el año</p>
-        <a class="btn-cta" href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20cotizar%20un%20plan%20AT%26T%20Simple%20Plus" target="_blank" rel="noopener">Cotiza tu plan AT&amp;T Simple Plus</a>
+        <p class="plan-family-hero__tag">Un solo pago y disfruta de servicio todo el año. Redes ilimitadas y doble de GB por promoción.</p>
+        <div class="plan-family-hero__actions">
+          <a class="btn-cta" href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20cotizar%20un%20plan%20AT%26T%20Simple%20Plus" target="_blank" rel="noopener">
+            <span class="btn-cta__label">Cotiza tu plan AT&amp;T Simple Plus</span>
+            <span class="btn-cta__arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="plan-family-hero__ghost" href="#planes">Ver planes disponibles</a>
+        </div>
       </div>
     </section>
 
-    <section class="section plan-family-info">
+    <section class="section plan-family-info" aria-labelledby="beneficios-title">
       <div class="wrap plan-family-info__grid">
-        <div>
-          <h2>¿Qué beneficios incluye?</h2>
+        <div class="plan-family-panel">
+          <h2 id="beneficios-title">¿Qué beneficios incluye?</h2>
           <ul class="plan-family-benefits">
             <li>Elige tu plazo desde 12 meses</li>
             <li>Redes sociales ilimitadas*</li>
@@ -110,13 +117,13 @@
             <li>Paga sólo una vez y recibe hasta 9 meses de servicio sin costo*</li>
           </ul>
         </div>
-        <div>
+        <div class="plan-family-panel">
           <h2>¿Cómo lo compro?</h2>
           <ol class="plan-family-steps">
             <li><span>1</span><p>Selecciona por cuántos meses quieres tener el servicio</p></li>
             <li><span>2</span><p>Elige un beneficio mensual</p></li>
             <li><span>3</span><p>Selecciona SIM física o digital (eSIM)</p></li>
-            <li><span>4</span><p>Localiza tu tienda YAAVS Pospago AT&T, contrata y empieza a disfrutar</p></li>
+            <li><span>4</span><p>Localiza tu tienda YAAVS Pospago AT&amp;T, contrata y empieza a disfrutar</p></li>
           </ol>
           <a class="plan-family-link" href="index.html#tiendas">Localiza tu tienda más cercana →</a>
         </div>
@@ -127,12 +134,22 @@
       <div class="plans-bg" aria-hidden="true"></div>
       <div class="wrap">
         <header class="section__head section__head--plans">
-          <p class="eyebrow">Parrilla comercial</p>
+          <p class="eyebrow">4 planes disponibles</p>
           <h2 id="planes-title">Elige tu plan Simple Plus</h2>
-          <p>Los mejores planes diseñados para ti, con la libertad que buscas en cada conexión.</p>
+          <p>Parrilla comercial YAAVS · solo AT&amp;T Simple Plus. Cambia entre línea nueva y portabilidad.</p>
         </header>
 
+        <div class="plan-tabs-block">
+          <div class="plan-pricing-slot" data-pricing-slot>
+            <p class="plan-pricing__lead">¿Cómo deseas tu plan?</p>
+            <div class="plan-pricing" role="group" aria-label="Tipo de renta" data-pricing-toggle>
+              <button type="button" class="plan-pricing__btn is-active" data-pricing-mode="standard" aria-pressed="true"><span data-pricing-label="standard">Línea nueva</span></button>
+              <button type="button" class="plan-pricing__btn" data-pricing-mode="portabilidad" aria-pressed="false">Portabilidad</button>
+            </div>
+          </div>
+        </div>
       </div>
+
       <div class="plans-slide is-active" id="panel-simple" data-plan-panel="simple">
         <div class="plans-scroll" data-plans-scroller>
           <div class="plans" role="list" data-plans-grid="simple"></div>
@@ -144,7 +161,10 @@
           <button type="button" class="plans-nav__btn plans-nav__btn--next" data-carousel-next aria-label="Siguientes planes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
         </div>
       </div>
-      <div class="wrap plan-family-cta">
+
+      <div class="plan-family-cta-band">
+        <h3>¿Listo para AT&amp;T Simple Plus?</h3>
+        <p>Te ayudamos a cotizar en WhatsApp con un asesor YAAVS Pospago.</p>
         <a class="btn-cta" href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20cotizar%20un%20plan%20AT%26T%20Simple%20Plus" target="_blank" rel="noopener">Cotiza tu plan AT&amp;T Simple Plus</a>
       </div>
     </section>
@@ -153,7 +173,7 @@
       <div class="wrap">
         <details>
           <summary>Legales AT&amp;T Simple Plus</summary>
-          <p>Consulta vigencias de cada smartphone. Equipos sujetos a disponibilidad. Precios mostrados aplican en AT&T Simple Plus Paquete 2 de $399. Smartphones participantes también en el paquete y meses que el cliente elija. Aplica 12, 18 o 24 meses de servicio incluido. Por promoción aplica condonación del cargo por activación ($300) en tiendas propias y distribuidores exclusivos, válido al 30 de septiembre de 2026. *Por política de uso, las redes sociales ilimitadas no incluyen accesos a enlaces externos. Consulta att.com.mx.</p>
+          <p>Consulta vigencias de cada smartphone. Equipos sujetos a disponibilidad. Precios mostrados aplican en AT&amp;T Simple Plus. Smartphones participantes también en el paquete y meses que el cliente elija. Aplica 12, 18 o 24 meses de servicio incluido. Por promoción aplica condonación del cargo por activación ($300) en tiendas propias y distribuidores exclusivos, válido al 30 de septiembre de 2026. *Por política de uso, las redes sociales ilimitadas no incluyen accesos a enlaces externos. Consulta att.com.mx.</p>
         </details>
       </div>
     </section>
@@ -174,7 +194,7 @@
       <p class="site-footer__legal">Consulta coberturas, tarifas, términos y condiciones en <a href="https://att.com.mx" target="_blank" rel="noopener">att.com.mx</a>. © 2026 AT&amp;T Intellectual Property II, L.P. YAAVS opera como distribuidor autorizado.</p>
     </div>
   </footer>
-  <script src="js/plans-catalog.js?v=20260905e" defer></script>
-  <script src="js/header.js?v=20260905k" defer></script>
+  <script src="js/plans-catalog.js?v=20260905m" defer></script>
+  <script src="js/header.js?v=20260905m" defer></script>
 </body>
 </html>

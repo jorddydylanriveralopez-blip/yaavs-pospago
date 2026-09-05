@@ -388,6 +388,8 @@
   }
 
   function setupCarousel(id) {
+    const root = document.querySelector("[data-plans-catalog]");
+    if (root?.hasAttribute("data-single-family")) return;
     const grid = document.querySelector(`[data-plans-grid="${id}"]`);
     if (!grid) return;
     ensureGhostSlots(grid);
@@ -396,6 +398,8 @@
   }
 
   function changeCarouselPage(id, delta) {
+    const root = document.querySelector("[data-plans-catalog]");
+    if (root?.hasAttribute("data-single-family")) return;
     const grid = document.querySelector(`[data-plans-grid="${id}"]`);
     if (!grid) return;
     CAROUSEL_STATE[id] = clampPage((CAROUSEL_STATE[id] ?? 0) + delta, carouselPages(grid));
@@ -403,7 +407,7 @@
   }
   function initCarouselInteractions() {
     const root = document.querySelector("[data-plans-catalog]");
-    if (!root) return;
+    if (!root || root.hasAttribute("data-single-family")) return;
 
     root.querySelectorAll(".plans-scroll").forEach((scroller) => {
       const grid = scroller.querySelector(".plans");

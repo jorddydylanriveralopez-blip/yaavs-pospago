@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://unpkg.com">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260905e">
+  <link rel="stylesheet" href="css/styles.css?v=20260905g">
   <link rel="stylesheet" href="css/stores.css?v=20260828d">
   <link rel="icon" href="assets/images/favicon.svg?v=20260828d" type="image/svg+xml">
   <link rel="icon" href="assets/images/favicon-32.png?v=20260828d" type="image/png" sizes="32x32">
@@ -223,42 +223,87 @@
   </div>
 </section>
 
-<!-- HERO DISPOSITIVOS (centrado, sin fondo) -->
-<section class="section section--devices-hero" aria-hidden="false">
-  <div class="devices-hero__wrap">
-    <div class="devices-carousel" data-devices-carousel>
-      <div class="devices-track" data-devices-track aria-hidden="false">
-        <article class="device-card" data-device-card>
-          <span class="device-card__media">
-            <img src="assets/images/smartphones/Apple%20iPhone%2017%20256GB.png" alt="iPhone 17" width="600" height="600">
-          </span>
-          <div class="device-card__info">
-            <div class="device-card__title">iPhone 17</div>
-            <div class="device-card__price">Plan AT&amp;T Premium</div>
-          </div>
-        </article>
-
-        <article class="device-card is-active" data-device-card>
-          <span class="device-card__media">
-            <img src="assets/images/smartphones/Samsung%20Galaxy%20S26%20Ultra%20512GB.png" alt="Galaxy S26 Ultra" width="600" height="600">
-          </span>
-          <div class="device-card__info">
-            <div class="device-card__title">Samsung Galaxy S26 Ultra</div>
-            <div class="device-card__price">Plan AT&amp;T Premium</div>
-          </div>
-        </article>
-
-        <article class="device-card" data-device-card>
-          <span class="device-card__media">
-            <img src="assets/images/smartphones/Xiaomi%2017T%20Pro%20Bundle%20Redmi%20Pad%202.png" alt="Xiaomi 17T Pro" width="600" height="600">
-          </span>
-          <div class="device-card__info">
-            <div class="device-card__title">Xiaomi 17T Pro</div>
-            <div class="device-card__price">Plan AT&amp;T Lite</div>
-          </div>
-        </article>
-      </div>
+<!-- SHOWCASE CELULARES (estilo AT&T Market: flechas + animación) -->
+<section class="section section--devices-hero" id="celulares" aria-label="Celulares destacados">
+  <div class="devices-market" data-devices-carousel>
+    <div class="devices-market__nav" aria-label="Navegación de celulares">
+      <button type="button" class="devices-market__arrow" data-devices-prev aria-label="Anterior">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+      <span class="devices-market__counter" data-devices-counter>1 / 5</span>
+      <button type="button" class="devices-market__arrow" data-devices-next aria-label="Siguiente">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
     </div>
+
+    <div class="devices-market__stage" data-devices-stage>
+      <article class="devices-market__slide is-active" data-device-card data-name="Apple iPhone 17 256GB" data-tagline="Diseño nuevo. Cámara pro.">
+        <div class="devices-market__visual">
+          <img src="assets/images/smartphones/Apple%20iPhone%2017%20256GB.png" alt="iPhone 17" width="640" height="640" decoding="async">
+        </div>
+        <div class="devices-market__card">
+          <span class="devices-market__badge">AT&amp;T Market</span>
+          <h3 class="devices-market__title">iPhone 17</h3>
+          <p class="devices-market__tagline">Diseño nuevo. Cámara pro.</p>
+          <p class="devices-market__price" data-device-price>—</p>
+          <a href="#contacto" class="devices-market__cta">Cotizar ahora</a>
+        </div>
+      </article>
+
+      <article class="devices-market__slide" data-device-card data-name="Samsung Galaxy S26 Ultra 512GB" data-tagline="Experiencia Galaxy al máximo">
+        <div class="devices-market__visual">
+          <img src="assets/images/smartphones/Samsung%20Galaxy%20S26%20Ultra%20512GB.png" alt="Galaxy S26 Ultra" width="640" height="640" loading="lazy" decoding="async">
+        </div>
+        <div class="devices-market__card">
+          <span class="devices-market__badge">AT&amp;T Market</span>
+          <h3 class="devices-market__title">Samsung Galaxy S26 Ultra</h3>
+          <p class="devices-market__tagline">Experiencia Galaxy al máximo</p>
+          <p class="devices-market__price" data-device-price>—</p>
+          <a href="#contacto" class="devices-market__cta">Cotizar ahora</a>
+        </div>
+      </article>
+
+      <article class="devices-market__slide" data-device-card data-name="Xiaomi 17T Pro Bundle Redmi Pad 2" data-tagline="Potencia y pantallas en un bundle">
+        <div class="devices-market__visual">
+          <img src="assets/images/smartphones/Xiaomi%2017T%20Pro%20Bundle%20Redmi%20Pad%202.png" alt="Xiaomi 17T Pro" width="640" height="640" loading="lazy" decoding="async">
+        </div>
+        <div class="devices-market__card">
+          <span class="devices-market__badge">AT&amp;T Market</span>
+          <h3 class="devices-market__title">Xiaomi 17T Pro</h3>
+          <p class="devices-market__tagline">Potencia y pantallas en un bundle</p>
+          <p class="devices-market__price" data-device-price>—</p>
+          <a href="#contacto" class="devices-market__cta">Cotizar ahora</a>
+        </div>
+      </article>
+
+      <article class="devices-market__slide" data-device-card data-name="Motorola Moto Edge 70 Pro + Watch + Chamarra" data-tagline="Edge 70 Pro con extras">
+        <div class="devices-market__visual">
+          <img src="assets/images/smartphones/Motorola%20Moto%20Edge%2070%20Pro%20%2B%20Watch%20%2B%20Chamarra.png" alt="Motorola Edge 70 Pro" width="640" height="640" loading="lazy" decoding="async">
+        </div>
+        <div class="devices-market__card">
+          <span class="devices-market__badge">AT&amp;T Market</span>
+          <h3 class="devices-market__title">Motorola Edge 70 Pro</h3>
+          <p class="devices-market__tagline">Edge 70 Pro con extras</p>
+          <p class="devices-market__price" data-device-price>—</p>
+          <a href="#contacto" class="devices-market__cta">Cotizar ahora</a>
+        </div>
+      </article>
+
+      <article class="devices-market__slide" data-device-card data-name="Honor Magic 8 Lite 512GB 5G Bundle Headphones" data-tagline="5G y sonido incluidos">
+        <div class="devices-market__visual">
+          <img src="assets/images/smartphones/Honor%20Magic%208%20Lite%20512GB%205G%20Bundle%20Headphones.png" alt="Honor Magic 8 Lite" width="640" height="640" loading="lazy" decoding="async">
+        </div>
+        <div class="devices-market__card">
+          <span class="devices-market__badge">AT&amp;T Market</span>
+          <h3 class="devices-market__title">Honor Magic 8 Lite</h3>
+          <p class="devices-market__tagline">5G y sonido incluidos</p>
+          <p class="devices-market__price" data-device-price>—</p>
+          <a href="#contacto" class="devices-market__cta">Cotizar ahora</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="devices-market__dots" data-devices-dots role="tablist" aria-label="Seleccionar celular"></div>
   </div>
 </section>
 
@@ -564,6 +609,6 @@
   <script src="js/premium-devices.js?v=20260828d" defer></script>
   <script src="js/tiendas-att-stores.js?v=20260828d" defer></script>
   <script src="js/pospago-stores.js?v=20260828d" defer></script>
-  <script src="js/header.js?v=20260905a" defer></script>
+  <script src="js/header.js?v=20260905g" defer></script>
 </body>
 </html>

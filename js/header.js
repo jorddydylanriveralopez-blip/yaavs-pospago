@@ -334,235 +334,44 @@
   initReveal();
 })();
 
-/* Carrusel de smartphones destacados (efecto reloj) */
+/* Carrusel de smartphones destacados (estilo AT&T Market) */
 function initDevicesCarousel() {
   const root = document.querySelector("[data-devices-carousel]");
   if (!root) return;
 
-  const track = root.querySelector("[data-devices-track]");
-  let cards = [...root.querySelectorAll("[data-device-card]")];
+  const slides = [...root.querySelectorAll("[data-device-card]")];
+  const prev = root.querySelector("[data-devices-prev]");
+  const next = root.querySelector("[data-devices-next]");
+  const counter = root.querySelector("[data-devices-counter]");
   const dotsWrap = root.querySelector("[data-devices-dots]");
-  let prev = root.querySelector("[data-devices-prev]");
-  let next = root.querySelector("[data-devices-next]");
-  if (!track) return;
+  if (!slides.length) return;
 
-  // Ensure prev/next arrows exist so users can navigate even without banner mode
-  if (!prev) {
-    prev = document.createElement('button');
-    prev.type = 'button';
-    prev.setAttribute('aria-label', 'Anterior');
-    prev.className = 'devices-arrow devices-arrow--prev';
-    prev.innerHTML = '‹';
-    root.appendChild(prev);
-  }
-  if (!next) {
-    next = document.createElement('button');
-    next.type = 'button';
-    next.setAttribute('aria-label', 'Siguiente');
-    next.className = 'devices-arrow devices-arrow--next';
-    next.innerHTML = '›';
-    root.appendChild(next);
-  }
-
-  const INTERVAL = 5000;
-  let index = 0;
+  const INTERVAL = 5500;
+  const TRANSITION_MS = 650;
+  let index = Math.max(0, slides.findIndex((s) => s.classList.contains("is-active")));
   let timer = null;
   let transitioning = false;
 
-  function initCardsState() {
-    cards.forEach((c, i) => {
-      c.classList.remove('is-entering', 'is-active', 'is-exiting');
-      c.style.opacity = i === index ? '1' : '0';
-      const img = c.querySelector('img');
-      if (img) img.style.transform = i === index ? 'scale(1)' : 'scale(0.92)';
-    });
-    if (cards[index]) cards[index].classList.add('is-active');
-    // reset track to show the active slide
-    try {
-      const containerWidth = root.clientWidth || root.offsetWidth || track.clientWidth;
-      track.style.transform = `translate3d(-${containerWidth * index}px, 0, 0)`;
-    } catch (e) {
-      /* ignore */
-    }
+  const money = (value) =>
+    new Intl.NumberFormat("es-MX", {
+      style: "currency",
+      currency: "MXN",
+      maximumFractionDigits: 0,
+    }).format(value);
+
+  function updateCounter() {
+    if (counter) counter.textContent = `${index + 1} / ${slides.length}`;
   }
-  // initial state (may be replaced if we populate dynamically)
-  initCardsState();
-
-  // Load prices from generated JSON and apply to cards (name + price only)
-  async function fetchAndApplyPrices() {
-    try {
-      const res = await fetch('/assets/data/devices.json', { cache: 'no-store' });
-      if (!res.ok) return;
-      const items = await res.json();
-      const normalize = (s) => (s || '').toString().toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
-
-      cards.forEach((card) => {
-        const titleEl = card.querySelector('.device-card__title');
-        const priceEl = card.querySelector('.device-card__price');
-        const shownName = titleEl ? titleEl.textContent.trim() : '';
-        const nShown = normalize(shownName);
-
-        // find best match
-        const match = items.find((it) => {
-          const n = normalize(it.name);
-          return n && (n === nShown || n.includes(nShown) || nShown.includes(n));
-        });
-
-        if (match) {
-          if (titleEl) titleEl.textContent = match.name;
-          if (priceEl) {
-            const price = match.price;
-            const formatted = (typeof price === 'number')
-              ? new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 }).format(price)
-              : String(price);
-            priceEl.textContent = formatted;
-          }
-        }
-
-        // keep markup minimal: only name and price
-        if (card.querySelectorAll('.device-card__info > *').length > 2) {
-          [...card.querySelectorAll('.device-card__info > *')].forEach((el, i) => {
-            if (i > 1) el.remove();
-          });
-        }
-      });
-    } catch (err) {
-      // silent fail
-      console.warn('devices prices load failed', err);
-    }
-  }
-
-  // run price loader (best-effort)
-  fetchAndApplyPrices();
-
-  // If there's only one card in the DOM, populate the track with up to 11 slides from devices.json
-  async function populateSlidesFromJSONIfNeeded() {
-    if (cards.length > 1) return;
-    try {
-      const res = await fetch('/assets/data/devices.json', { cache: 'no-store' });
-      if (!res.ok) return;
-      const all = await res.json();
-      const items = all.filter(it => it && it.name).slice(0, 11);
-      if (!items.length) return;
-      // Build a banner-style carousel (multiple visible slides)
-      const visible = Math.min(5, items.length);
-      track.classList.add('is-banner');
-      const buildSlide = (it) => {
-        const imgPath = `/assets/images/smartphones/${encodeURIComponent(it.name)}.png`;
-        const title = it.name.replace(/"/g, '');
-        const price = (typeof it.price === 'number') ? new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 }).format(it.price) : String(it.price);
-        return `
-          <article class="device-card banner-slide" data-device-card>
-            <span class="device-card__media">
-              <img src="${imgPath}" alt="${title}" loading="lazy" onerror="this.onerror=null;this.style.opacity=1;" />
-            </span>
-            <div class="device-card__info">
-              <div class="device-card__title">${title}</div>
-              <div class="device-card__price">${price}</div>
-            </div>
-          </article>`;
-      };
-
-      // create slides + clones at both ends (for seamless bidirectional looping)
-      const htmlMain = items.map(buildSlide).join('\n');
-      const clonesStart = items.slice(-visible).map(buildSlide).join('\n');
-      const clonesEnd = items.slice(0, visible).map(buildSlide).join('\n');
-      track.innerHTML = clonesStart + htmlMain + clonesEnd;
-
-      // re-query cards and set up banner autoplay
-      cards = [...root.querySelectorAll('[data-device-card]')];
-      const originalCount = items.length;
-      const percent = 100 / visible;
-      // set each slide flex-basis so visible slides fit in container (CSS handles most cases)
-      cards.forEach((c) => { c.style.flex = `0 0 ${percent}%`; });
-
-      // start at the first real slide (offset by clones at start)
-      let bannerIndex = visible;
-      track.style.transition = 'none';
-      track.style.transform = `translate3d(-${percent * bannerIndex}%, 0, 0)`;
-
-      const INTERVAL_BANNER = 2800;
-      let bannerTimer = null;
-
-      function startBanner() {
-        bannerTimer = setInterval(() => moveBanner(1), INTERVAL_BANNER);
-      }
-      function stopBanner() { clearInterval(bannerTimer); bannerTimer = null; }
-
-      function moveBanner(delta) {
-        bannerIndex += delta;
-        track.style.transition = 'transform 0.6s ease';
-        track.style.transform = `translate3d(-${percent * bannerIndex}%, 0, 0)`;
-        // forward wrap
-        if (bannerIndex >= visible + originalCount) {
-          const handler = () => {
-            track.style.transition = 'none';
-            bannerIndex = visible;
-            track.style.transform = `translate3d(-${percent * bannerIndex}%, 0, 0)`;
-            track.removeEventListener('transitionend', handler);
-          };
-          track.addEventListener('transitionend', handler);
-        }
-        // backward wrap
-        if (bannerIndex < visible) {
-          const handler = () => {
-            track.style.transition = 'none';
-            bannerIndex = visible + originalCount - 1;
-            track.style.transform = `translate3d(-${percent * bannerIndex}%, 0, 0)`;
-            track.removeEventListener('transitionend', handler);
-          };
-          track.addEventListener('transitionend', handler);
-        }
-      }
-
-      // Add arrow controls if not present
-      let prevBtn = prev;
-      let nextBtn = next;
-      if (!prevBtn) {
-        prevBtn = document.createElement('button');
-        prevBtn.className = 'devices-arrow devices-arrow--prev';
-        prevBtn.type = 'button';
-        prevBtn.innerHTML = '‹';
-        root.appendChild(prevBtn);
-      }
-      if (!nextBtn) {
-        nextBtn = document.createElement('button');
-        nextBtn.className = 'devices-arrow devices-arrow--next';
-        nextBtn.type = 'button';
-        nextBtn.innerHTML = '›';
-        root.appendChild(nextBtn);
-      }
-
-      prevBtn.addEventListener('click', () => { stopBanner(); moveBanner(-1); startBanner(); });
-      nextBtn.addEventListener('click', () => { stopBanner(); moveBanner(1); startBanner(); });
-
-      // pause/resume on hover
-      root.addEventListener('mouseenter', stopBanner);
-      root.addEventListener('mouseleave', () => { if (!bannerTimer) startBanner(); });
-
-      // start autoplay
-      startBanner();
-
-      return true;
-    } catch (err) {
-      // silent fail
-      console.warn('populate slides failed', err);
-    }
-    return false;
-  }
-
-  // attempt to populate dynamic slides if needed; if it returns true we used banner mode and can stop
-  const usedBanner = await populateSlidesFromJSONIfNeeded();
-  if (usedBanner) return;
 
   function buildDots() {
     if (!dotsWrap) return;
     dotsWrap.innerHTML = "";
-    cards.forEach((_, i) => {
+    slides.forEach((_, i) => {
       const dot = document.createElement("button");
       dot.type = "button";
-      dot.setAttribute("data-dot", "");
-      dot.setAttribute("aria-label", `Dispositivo ${i + 1}`);
+      dot.setAttribute("aria-label", `Celular ${i + 1}`);
+      dot.setAttribute("aria-selected", i === index ? "true" : "false");
+      if (i === index) dot.classList.add("is-active");
       dot.addEventListener("click", () => goTo(i));
       dotsWrap.appendChild(dot);
     });
@@ -570,83 +379,163 @@ function initDevicesCarousel() {
 
   function updateDots() {
     if (!dotsWrap) return;
-    [...dotsWrap.children].forEach((d, i) => {
-      d.classList.toggle("is-active", i === index);
-      d.setAttribute("aria-selected", i === index ? "true" : "false");
+    [...dotsWrap.children].forEach((dot, i) => {
+      const active = i === index;
+      dot.classList.toggle("is-active", active);
+      dot.setAttribute("aria-selected", active ? "true" : "false");
     });
   }
 
-  function showCard(newIndex, direction = "next") {
-    if (transitioning || newIndex === index) return;
+  async function applyPrices() {
+    try {
+      const res = await fetch("assets/data/devices.json", { cache: "no-store" });
+      if (!res.ok) return;
+      const items = await res.json();
+      const normalize = (s) =>
+        (s || "")
+          .toString()
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, " ")
+          .trim();
+
+      slides.forEach((slide) => {
+        const key = normalize(slide.getAttribute("data-name") || "");
+        const priceEl = slide.querySelector("[data-device-price]");
+        if (!priceEl || !key) return;
+        const match = items.find((it) => {
+          const n = normalize(it.name);
+          return n && (n === key || n.includes(key) || key.includes(n));
+        });
+        if (!match) return;
+        if (typeof match.price === "number" && match.price > 0) {
+          priceEl.textContent = money(match.price);
+        } else {
+          priceEl.textContent = "Desde tu plan";
+        }
+      });
+    } catch (err) {
+      console.warn("devices prices load failed", err);
+    }
+  }
+
+  function clearMotionClasses(el) {
+    el.classList.remove(
+      "is-active",
+      "is-exit-left",
+      "is-exit-right",
+      "is-enter-from-left",
+      "is-enter-from-right"
+    );
+  }
+
+  function goTo(newIndex, direction) {
+    if (transitioning) return;
+    const nextIndex = (newIndex + slides.length) % slides.length;
+    if (nextIndex === index) return;
+
+    let goingNext = true;
+    if (direction === "prev") goingNext = false;
+    else if (direction === "next") goingNext = true;
+    else {
+      const stepsForward = (nextIndex - index + slides.length) % slides.length;
+      goingNext = stepsForward <= slides.length / 2;
+    }
+
     transitioning = true;
+    const current = slides[index];
+    const incoming = slides[nextIndex];
 
-    // compute slide width (container width) and move track
-    const containerWidth = root.clientWidth || root.offsetWidth || track.clientWidth;
-    const offset = containerWidth * newIndex;
-    track.style.transform = `translate3d(-${offset}px, 0, 0)`;
+    clearMotionClasses(current);
+    clearMotionClasses(incoming);
 
-    // update active classes and image scales
-    cards.forEach((c, i) => {
-      c.classList.toggle('is-active', i === newIndex);
-      const img = c.querySelector('img');
-      if (img) img.style.transform = i === newIndex ? 'scale(1)' : 'scale(0.92)';
-      c.style.opacity = i === newIndex ? '1' : '0.0';
-    });
+    current.classList.add(goingNext ? "is-exit-left" : "is-exit-right");
+    incoming.classList.add(goingNext ? "is-enter-from-right" : "is-enter-from-left");
 
-    setTimeout(() => {
-      index = newIndex;
-      updateDots();
+    // Force reflow so enter transform applies before active
+    void incoming.offsetWidth;
+
+    incoming.classList.remove("is-enter-from-left", "is-enter-from-right");
+    incoming.classList.add("is-active");
+
+    index = nextIndex;
+    updateCounter();
+    updateDots();
+
+    window.setTimeout(() => {
+      slides.forEach((slide, i) => {
+        if (i === index) return;
+        clearMotionClasses(slide);
+      });
       transitioning = false;
-    }, 520);
-  }
-
-  function goTo(newIndex, dir = "next") {
-    const normalized = (newIndex + cards.length) % cards.length;
-    showCard(normalized, dir);
+    }, TRANSITION_MS);
   }
 
   function prevCard() {
-    const prevIndex = (index - 1 + cards.length) % cards.length;
-    showCard(prevIndex, "prev");
+    goTo(index - 1, "prev");
   }
 
   function nextCard() {
-    const nextIndex = (index + 1) % cards.length;
-    showCard(nextIndex, "next");
+    goTo(index + 1, "next");
   }
 
-  prev?.addEventListener("click", prevCard);
-  next?.addEventListener("click", nextCard);
+  function startTimer() {
+    stopTimer();
+    timer = window.setInterval(nextCard, INTERVAL);
+  }
+
+  function stopTimer() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  prev?.addEventListener("click", () => {
+    prevCard();
+    startTimer();
+  });
+  next?.addEventListener("click", () => {
+    nextCard();
+    startTimer();
+  });
+
+  root.addEventListener("mouseenter", stopTimer);
+  root.addEventListener("mouseleave", startTimer);
+  root.addEventListener("focusin", stopTimer);
+  root.addEventListener("focusout", (e) => {
+    if (!root.contains(e.relatedTarget)) startTimer();
+  });
+
+  let startX = 0;
+  root.addEventListener(
+    "touchstart",
+    (e) => {
+      startX = e.touches[0].clientX;
+      stopTimer();
+    },
+    { passive: true }
+  );
+  root.addEventListener(
+    "touchend",
+    (e) => {
+      const delta = e.changedTouches[0].clientX - startX;
+      if (Math.abs(delta) > 40) {
+        if (delta > 0) prevCard();
+        else nextCard();
+      }
+      startTimer();
+    },
+    { passive: true }
+  );
+
+  // Ensure only one active on boot
+  slides.forEach((slide, i) => {
+    clearMotionClasses(slide);
+    if (i === index) slide.classList.add("is-active");
+  });
 
   buildDots();
-  updateDots();
-
-  // Auto-play
-  timer = window.setInterval(() => nextCard(), INTERVAL);
-
-  // Pause on hover
-  root.addEventListener("mouseenter", () => clearInterval(timer));
-  root.addEventListener("mouseleave", () => {
-    timer = window.setInterval(() => nextCard(), INTERVAL);
-  });
-
-  // Swipe support
-  let startX = 0;
-  root.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; }, { passive: true });
-  root.addEventListener("touchend", (e) => {
-    const delta = e.changedTouches[0].clientX - startX;
-    if (Math.abs(delta) > 40) {
-      if (delta > 0) prevCard();
-      else nextCard();
-    }
-  }, { passive: true });
-
-  // Keep transform correct on resize
-  window.addEventListener('resize', () => {
-    const containerWidth = root.clientWidth || root.offsetWidth || track.clientWidth;
-    track.style.transform = `translate3d(-${containerWidth * index}px, 0, 0)`;
-  });
+  updateCounter();
+  applyPrices();
+  startTimer();
 }
-
-/* ===== IIFE existente ===== */
-(() => {  "use strict";

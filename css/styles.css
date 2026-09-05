@@ -4976,14 +4976,14 @@ body.is-modal-open {
   display: block;
   width: 100%;
   height: auto;
-  max-height: min(220px, 28vw);
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
 }
 
 @media (max-width: 720px) {
   .att-banner__img {
-    max-height: 140px;
+    width: 100%;
+    height: auto;
   }
 }
 

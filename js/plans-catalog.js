@@ -294,14 +294,33 @@
     if (active) revealPlans(active);
   }
 
-  /* ---------- Carrusel paginado de 3 en 3 ---------- */
+  /* ---------- Carrusel: una hilera continua; flechas avanzan por lo que cabe ---------- */
   const CAROUSEL_STATE = { premium: 0, simple: 0, lite: 0 };
 
-  function perPage() {
-    const w = window.innerWidth;
-    if (w <= 640) return 1;
-    if (w <= 1100) return 2;
-    return 3;
+  function activeScroller(id) {
+    const panel = document.querySelector(`[data-plan-panel="${id}"]`);
+    return panel?.querySelector("[data-plans-scroller]") || null;
+  }
+
+  function perPage(id) {
+    const scroller = id ? activeScroller(id) : document.querySelector(".plans-slide.is-active [data-plans-scroller], [data-plans-scroller]");
+    const grid = id
+      ? document.querySelector(`[data-plans-grid="${id}"]`)
+      : scroller?.querySelector(".plans");
+    if (!scroller || !grid) {
+      const w = window.innerWidth;
+      if (w <= 640) return 1;
+      if (w <= 900) return 3;
+      if (w <= 1200) return 5;
+      return 7;
+    }
+    const cards = frameCards(grid);
+    if (!cards.length) return 1;
+    const cardW = cards[0].getBoundingClientRect().width || 156;
+    const gap = parseFloat(getComputedStyle(grid).columnGap || getComputedStyle(grid).gap) || 16;
+    const pad = 24;
+    const fit = Math.floor((scroller.clientWidth - pad + gap) / (cardW + gap));
+    return Math.max(1, fit);
   }
 
   function frameCards(grid) {
@@ -312,21 +331,21 @@
     return Math.min(Math.max(0, v), Math.max(0, max - 1));
   }
 
-  function carouselPages(grid) {
+  function carouselPages(grid, id) {
     const cards = frameCards(grid);
-    return Math.max(1, Math.ceil(cards.length / perPage()));
+    return Math.max(1, Math.ceil(cards.length / perPage(id)));
   }
 
-  function carouselUnit(grid) {
+  function carouselUnit(grid, id) {
     const cards = frameCards(grid);
-    if (!cards.length) return perPage() * 200;
-    const cardW = cards[0].getBoundingClientRect().width || 158;
+    if (!cards.length) return perPage(id) * 170;
+    const cardW = cards[0].getBoundingClientRect().width || 156;
     const gap = parseFloat(getComputedStyle(grid).columnGap || getComputedStyle(grid).gap) || 16;
-    return (cardW + gap) * perPage();
+    return (cardW + gap) * perPage(id);
   }
 
-  function ensureGhostSlots(grid) {
-    const pp = perPage();
+  function ensureGhostSlots(grid, id) {
+    const pp = perPage(id);
     const cards = frameCards(grid);
     if (!cards.length) return;
     const need = cards.length % pp ? pp - (cards.length % pp) : 0;
@@ -348,13 +367,16 @@
     const dots = panel.querySelector("[data-carousel-dots]");
     const counter = panel.querySelector("[data-carousel-counter]");
     if (!dots) return;
-    const pages = carouselPages(grid);
+    const pages = carouselPages(grid, id);
     const current = clampPage(CAROUSEL_STATE[id] ?? 0, pages);
     CAROUSEL_STATE[id] = current;
     dots.innerHTML = Array.from({ length: pages }, (_, i) =>
       `<button type="button" class="plans-nav__dot${i === current ? " is-active" : ""}" data-carousel-dot="${i}" aria-label="Página ${i + 1} de ${pages}" aria-pressed="${i === current}"></button>`
     ).join("");
     if (counter) counter.textContent = `${current + 1} / ${pages}`;
+    // Hide nav when all plans fit in one row
+    const nav = panel.querySelector(".plans-nav");
+    if (nav) nav.hidden = pages <= 1;
   }
 
   function applyCarouselPage(id, animated = true) {
@@ -363,14 +385,14 @@
     if (!panel || !grid) return;
     const cards = frameCards(grid);
     if (!cards.length) return;
-    const pages = carouselPages(grid);
+    const pages = carouselPages(grid, id);
     const current = clampPage(CAROUSEL_STATE[id] ?? 0, pages);
     CAROUSEL_STATE[id] = current;
 
     const scroller = panel.querySelector("[data-plans-scroller]");
-    const target = cards[current * perPage()];
+    const target = cards[current * perPage(id)];
     if (scroller && target) {
-      const left = target.offsetLeft - 16;
+      const left = target.offsetLeft - 20;
       scroller.scrollTo({ left: Math.max(0, left), behavior: animated ? "smooth" : "auto" });
     }
 
@@ -385,6 +407,8 @@
     });
     const counter = panel.querySelector("[data-carousel-counter]");
     if (counter) counter.textContent = `${current + 1} / ${pages}`;
+    const nav = panel.querySelector(".plans-nav");
+    if (nav) nav.hidden = pages <= 1;
   }
 
   function setupCarousel(id) {
@@ -392,7 +416,7 @@
     if (root?.hasAttribute("data-single-family")) return;
     const grid = document.querySelector(`[data-plans-grid="${id}"]`);
     if (!grid) return;
-    ensureGhostSlots(grid);
+    ensureGhostSlots(grid, id);
     buildCarouselNav(id);
     applyCarouselPage(id, false);
   }
@@ -402,7 +426,7 @@
     if (root?.hasAttribute("data-single-family")) return;
     const grid = document.querySelector(`[data-plans-grid="${id}"]`);
     if (!grid) return;
-    CAROUSEL_STATE[id] = clampPage((CAROUSEL_STATE[id] ?? 0) + delta, carouselPages(grid));
+    CAROUSEL_STATE[id] = clampPage((CAROUSEL_STATE[id] ?? 0) + delta, carouselPages(grid, id));
     applyCarouselPage(id, true);
   }
   function initCarouselInteractions() {
@@ -420,7 +444,7 @@
       panel.querySelector("[data-carousel-dots]")?.addEventListener("click", (e) => {
         const dot = e.target.closest("[data-carousel-dot]");
         if (!dot) return;
-        CAROUSEL_STATE[id] = clampPage(Number(dot.dataset.carouselDot) || 0, carouselPages(grid));
+        CAROUSEL_STATE[id] = clampPage(Number(dot.dataset.carouselDot) || 0, carouselPages(grid, id));
         applyCarouselPage(id, true);
       });
 
@@ -450,7 +474,7 @@
       let cancelClick = false;
       const onDragDown = (e) => {
         if (e.pointerType !== "mouse") return;
-        drag = { on: true, startX: e.clientX, basePos: (CAROUSEL_STATE[id] ?? 0) * carouselUnit(grid), moved: false };
+        drag = { on: true, startX: e.clientX, basePos: (CAROUSEL_STATE[id] ?? 0) * carouselUnit(grid, id), moved: false };
         cancelClick = false;
         grid.classList.add("is-dragging");
         scroller.setPointerCapture(e.pointerId);
@@ -459,7 +483,7 @@
         if (!drag?.on) return;
         const dx = e.clientX - drag.startX;
         if (Math.abs(dx) > 6) drag.moved = true;
-        const maxScroll = carouselUnit(grid) * (carouselPages(grid) - 1);
+        const maxScroll = carouselUnit(grid, id) * (carouselPages(grid, id) - 1);
         grid.style.setProperty("--pos", `-${Math.min(Math.max(0, drag.basePos - dx), maxScroll)}px`);
       };
       const onDragEnd = (e) => {
@@ -468,7 +492,7 @@
         drag.on = false;
         grid.classList.remove("is-dragging");
         if (drag.moved && Math.abs(dx) > 40) {
-          const target = clampPage(Math.round((drag.basePos - dx) / carouselUnit(grid)), carouselPages(grid));
+          const target = clampPage(Math.round((drag.basePos - dx) / carouselUnit(grid, id)), carouselPages(grid, id));
           CAROUSEL_STATE[id] = target;
           cancelClick = true;
         }

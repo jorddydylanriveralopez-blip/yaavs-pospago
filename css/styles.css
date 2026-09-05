@@ -2559,22 +2559,29 @@ a {
 }
 
 .plans-scroll {
-  /* Viewport for ~3 compact cards — keeps the row centered, not wall-to-wall */
-  --plan-card-w: 158px;
-  --plan-gap: 0.85rem;
-  width: min(100%, calc((var(--plan-card-w) * 3) + (var(--plan-gap) * 2) + 2.4rem));
+  --plan-card-w: 156px;
+  --plan-gap: 0.95rem;
+  position: relative;
+  width: min(1280px, calc(100% - 1.25rem));
   max-width: 100%;
   min-width: 0;
   display: block;
   margin-inline: auto;
   overflow-x: auto;
   overflow-y: visible;
-  padding: 1rem 0 0.75rem;
+  padding: 1.15rem 0 1rem;
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: 1rem;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: 1.25rem;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 1.5%,
+    #000 98.5%,
+    transparent 100%
+  );
 }
 
 .plans-scroll::-webkit-scrollbar {
@@ -2588,20 +2595,18 @@ a {
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  gap: var(--plan-gap, 0.85rem);
+  gap: var(--plan-gap, 0.95rem);
   width: max-content;
   max-width: none;
-  min-width: 0;
+  min-width: 100%;
   margin: 0 auto;
-  padding: 0.55rem 1rem 0.95rem;
+  padding: 0.65rem 1.25rem 1.05rem;
   box-sizing: border-box;
   align-items: stretch;
 }
 
 .plans--few {
   justify-content: center;
-  width: 100%;
-  max-width: 100%;
 }
 
 .plans.is-dragging {
@@ -2718,12 +2723,12 @@ a {
   display: flex;
   flex-direction: column;
   gap: 0.28rem;
-  flex: 0 0 var(--plan-card-w, 158px);
-  width: var(--plan-card-w, 158px);
-  min-width: var(--plan-card-w, 158px);
-  max-width: var(--plan-card-w, 158px);
+  flex: 0 0 var(--plan-card-w, 156px);
+  width: var(--plan-card-w, 156px);
+  min-width: var(--plan-card-w, 156px);
+  max-width: var(--plan-card-w, 156px);
   scroll-snap-align: start;
-  scroll-snap-stop: always;
+  scroll-snap-stop: normal;
   opacity: 1;
   transform: none;
   overflow: visible;
@@ -2731,9 +2736,9 @@ a {
 }
 
 .plan:hover {
-  transform: translateY(-4px) scale(1.015);
+  transform: translateY(-5px);
   z-index: 4;
-  filter: drop-shadow(0 10px 14px color-mix(in srgb, var(--plan) 22%, transparent));
+  filter: drop-shadow(0 14px 18px color-mix(in srgb, var(--plan) 28%, transparent));
 }
 
 .plan__head,
@@ -3176,18 +3181,18 @@ a {
 
 .plan--featured.is-in,
 .plan--featured.reveal.is-in {
-  transform: translateY(-4px) scale(1.02);
+  transform: translateY(-3px);
 }
 
 .plan--featured:hover {
-  transform: translateY(-8px) scale(1.03);
+  transform: translateY(-6px);
   filter: drop-shadow(0 16px 22px rgba(0, 193, 212, 0.28));
   animation: none;
 }
 
 @keyframes featuredFloat {
-  0%, 100% { transform: translateY(-4px) scale(1.02); }
-  50% { transform: translateY(-7px) scale(1.02); }
+  0%, 100% { transform: translateY(-3px); }
+  50% { transform: translateY(-5px); }
 }
 
 .plan--featured .plan__head,
@@ -5872,7 +5877,7 @@ body.is-modal-open {
 @media (max-width: 1100px) {
   .plans-scroll {
     --plan-card-w: 148px;
-    width: min(100%, calc((var(--plan-card-w) * 2) + var(--plan-gap) + 2.2rem));
+    width: min(1100px, calc(100% - 1rem));
   }
 
   .plan {
@@ -5903,8 +5908,9 @@ body.is-modal-open {
 
 @media (max-width: 640px) {
   .plans-scroll {
-    --plan-card-w: 148px;
-    width: min(100%, calc(var(--plan-card-w) + 2rem));
+    --plan-card-w: 152px;
+    width: calc(100% - 0.5rem);
+    mask-image: none;
   }
 
   .plan {
@@ -6560,11 +6566,12 @@ body.is-modal-open {
   }
 
   .plans-scroll {
-    --plan-card-w: 148px;
-    width: min(100%, calc(var(--plan-card-w) + 2rem));
+    --plan-card-w: 152px;
+    width: calc(100% - 0.35rem);
     max-width: 100%;
     padding: 0.85rem 0 0.65rem;
     overflow-x: auto;
+    mask-image: none;
   }
 
   .plans,
@@ -6575,6 +6582,7 @@ body.is-modal-open {
     gap: var(--plan-gap, 0.75rem);
     width: max-content;
     max-width: none;
+    min-width: 100%;
     padding-inline: 0.85rem;
   }
 
@@ -6585,7 +6593,7 @@ body.is-modal-open {
     max-width: var(--plan-card-w);
     gap: 0.28rem;
     scroll-snap-align: start;
-    scroll-snap-stop: always;
+    scroll-snap-stop: normal;
   }
 
   .plans__ghost {

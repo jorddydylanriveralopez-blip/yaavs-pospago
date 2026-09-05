@@ -1375,18 +1375,20 @@ a {
   animation-delay: 0.08s;
 }
 
-/* Devices Market showcase (AT&T-style: arrows + animated phone swap) */
+/* Devices Market showcase — light bg + clock-hand phone swap */
 .section--devices-hero {
   --dm-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dm-clock: cubic-bezier(0.34, 1.15, 0.42, 1);
   position: relative;
   display: block;
   padding: 0;
   overflow: hidden;
-  color: #fff;
+  color: var(--att-ink);
   background:
-    radial-gradient(ellipse 70% 55% at 78% 42%, rgba(0, 193, 212, 0.28), transparent 58%),
-    radial-gradient(ellipse 55% 50% at 18% 70%, rgba(0, 119, 168, 0.35), transparent 55%),
-    linear-gradient(135deg, #0a1f33 0%, #0d3d5c 42%, #009fdb 78%, #00c1d4 100%);
+    radial-gradient(ellipse 70% 55% at 82% 30%, rgba(0, 193, 212, 0.12), transparent 58%),
+    radial-gradient(ellipse 55% 50% at 12% 80%, rgba(0, 159, 219, 0.08), transparent 55%),
+    linear-gradient(180deg, #f7fcff 0%, #ffffff 48%, #f3fafd 100%);
+  border-bottom: 1px solid rgba(0, 159, 219, 0.1);
 }
 
 .devices-market {
@@ -1411,20 +1413,21 @@ a {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: none;
+  border: 1px solid rgba(0, 159, 219, 0.18);
   background: #fff;
-  color: #1a1a1a;
+  color: #0b1c28;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 22px rgba(11, 28, 40, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .devices-market__arrow:hover {
   transform: scale(1.06);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.22);
+  border-color: rgba(0, 193, 212, 0.45);
+  box-shadow: 0 10px 26px rgba(0, 159, 219, 0.18);
 }
 
 .devices-market__arrow:active {
@@ -1435,10 +1438,9 @@ a {
   min-width: 4.2rem;
   text-align: center;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.95);
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  color: var(--att-ink);
 }
 
 .devices-market__stage {
@@ -1457,42 +1459,29 @@ a {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translateX(56px) scale(0.96);
-  transition:
-    opacity 0.55s var(--dm-ease),
-    transform 0.65s var(--dm-ease),
-    visibility 0.65s;
-  will-change: transform, opacity;
+  z-index: 0;
 }
 
 .devices-market__slide.is-active {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  transform: translateX(0) scale(1);
   z-index: 2;
 }
 
-.devices-market__slide.is-exit-left {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateX(-56px) scale(0.96);
+.devices-market__slide.is-exiting,
+.devices-market__slide.is-entering {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: none;
+}
+
+.devices-market__slide.is-exiting {
   z-index: 1;
 }
 
-.devices-market__slide.is-exit-right {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateX(56px) scale(0.96);
-  z-index: 1;
-}
-
-.devices-market__slide.is-enter-from-left {
-  transform: translateX(-56px) scale(0.96);
-}
-
-.devices-market__slide.is-enter-from-right {
-  transform: translateX(56px) scale(0.96);
+.devices-market__slide.is-entering {
+  z-index: 3;
 }
 
 .devices-market__visual {
@@ -1500,6 +1489,8 @@ a {
   align-items: center;
   justify-content: center;
   min-height: 360px;
+  transform-origin: 50% 85%;
+  will-change: transform, opacity, filter;
 }
 
 .devices-market__visual img {
@@ -1507,26 +1498,72 @@ a {
   height: auto;
   max-height: 400px;
   object-fit: contain;
-  filter: drop-shadow(0 28px 48px rgba(0, 0, 0, 0.35));
-  transition: transform 0.7s var(--dm-ease);
+  filter: drop-shadow(0 22px 36px rgba(11, 28, 40, 0.18));
+  transform-origin: 50% 90%;
 }
 
-.devices-market__slide.is-active .devices-market__visual img {
-  transform: scale(1);
+/* Clock motion on the phone visual */
+.devices-market__slide .devices-market__visual {
+  opacity: 0;
+  transform: translate(-8%, 48%) rotate(-34deg) scale(0.86);
+  filter: blur(2px);
+  transition:
+    transform 0.78s var(--dm-clock),
+    opacity 0.55s ease,
+    filter 0.55s ease;
+}
+
+.devices-market__slide.is-active .devices-market__visual {
+  opacity: 1;
+  transform: translate(0, 0) rotate(0deg) scale(1);
+  filter: blur(0);
+}
+
+/* Exit clockwise to the right (clock hand sweeping forward) */
+.devices-market__slide.is-exit-clock .devices-market__visual,
+.devices-market__slide.is-exit-clock.is-exiting .devices-market__visual {
+  opacity: 0;
+  transform: translate(62%, -28%) rotate(42deg) scale(0.82);
+  filter: blur(3px);
+  transition:
+    transform 0.78s var(--dm-clock),
+    opacity 0.55s ease,
+    filter 0.55s ease;
+}
+
+/* Enter rising from bottom-left like a clock hand coming up */
+.devices-market__slide.is-enter-clock .devices-market__visual {
+  opacity: 0;
+  transform: translate(-14%, 58%) rotate(-36deg) scale(0.86);
+  filter: blur(2px);
+  transition: none;
+}
+
+/* Reverse clock for previous */
+.devices-market__slide.is-exit-clock-rev .devices-market__visual {
+  opacity: 0;
+  transform: translate(-52%, -18%) rotate(-36deg) scale(0.84);
+  filter: blur(3px);
+}
+
+.devices-market__slide.is-enter-clock-rev .devices-market__visual {
+  opacity: 0;
+  transform: translate(16%, 56%) rotate(32deg) scale(0.86);
+  filter: blur(2px);
+  transition: none;
 }
 
 .devices-market__card {
   justify-self: start;
   max-width: 320px;
   padding: 1.15rem 1.25rem 1.25rem;
-  border-radius: 18px;
-  background: rgba(12, 28, 42, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(14px) saturate(130%);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
-  transform: translateY(12px);
+  border-radius: 16px;
+  background: linear-gradient(165deg, #132536 0%, #0b1c28 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 18px 40px rgba(11, 28, 40, 0.2);
+  transform: translateY(18px);
   opacity: 0;
-  transition: transform 0.55s var(--dm-ease) 0.08s, opacity 0.45s ease 0.08s;
+  transition: transform 0.55s var(--dm-ease) 0.1s, opacity 0.45s ease 0.1s;
 }
 
 .devices-market__slide.is-active .devices-market__card {
@@ -1538,11 +1575,11 @@ a {
   display: inline-block;
   margin-bottom: 0.55rem;
   padding: 0.22rem 0.7rem;
-  border-radius: 999px;
+  border-radius: 4px;
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.02em;
-  background: rgba(255, 255, 255, 0.92);
+  letter-spacing: 0.04em;
+  background: #fff;
   color: #0b1c28;
 }
 
@@ -1559,7 +1596,7 @@ a {
   margin: 0 0 0.75rem;
   font-size: 0.95rem;
   line-height: 1.35;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .devices-market__price {
@@ -1567,7 +1604,7 @@ a {
   font-size: clamp(1.45rem, 2.6vw, 1.85rem);
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: #fff;
+  color: #7aefff;
 }
 
 .devices-market__cta {
@@ -1575,19 +1612,19 @@ a {
   align-items: center;
   justify-content: center;
   padding: 0.65rem 1.15rem;
-  border-radius: 999px;
-  background: #fff;
-  color: #0b1c28;
+  border-radius: 4px;
+  background: linear-gradient(135deg, var(--att-blue), var(--att-cyan));
+  color: #fff;
   font-weight: 700;
   font-size: 0.92rem;
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 8px 20px rgba(0, 159, 219, 0.28);
 }
 
 .devices-market__cta:hover {
   transform: translateY(-1px);
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 12px 26px rgba(0, 159, 219, 0.35);
 }
 
 .devices-market__dots {
@@ -1605,15 +1642,15 @@ a {
   padding: 0;
   border: none;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.38);
+  background: rgba(11, 28, 40, 0.22);
   cursor: pointer;
   transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .devices-market__dots button.is-active {
-  background: #fff;
+  background: var(--att-cyan);
   transform: scale(1.15);
-  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.16);
+  box-shadow: 0 0 0 5px rgba(0, 193, 212, 0.16);
 }
 
 .hero__mobile-arrow,
@@ -1655,6 +1692,7 @@ a {
     justify-self: center;
     max-width: 92%;
     width: 100%;
+    text-align: left;
   }
 }
 

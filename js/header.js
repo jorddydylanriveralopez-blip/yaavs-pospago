@@ -347,7 +347,7 @@ function initDevicesCarousel() {
   if (!slides.length) return;
 
   const INTERVAL = 5500;
-  const TRANSITION_MS = 650;
+  const TRANSITION_MS = 820;
   let index = Math.max(0, slides.findIndex((s) => s.classList.contains("is-active")));
   let timer = null;
   let transitioning = false;
@@ -421,6 +421,12 @@ function initDevicesCarousel() {
   function clearMotionClasses(el) {
     el.classList.remove(
       "is-active",
+      "is-exiting",
+      "is-entering",
+      "is-exit-clock",
+      "is-enter-clock",
+      "is-exit-clock-rev",
+      "is-enter-clock-rev",
       "is-exit-left",
       "is-exit-right",
       "is-enter-from-left",
@@ -445,16 +451,21 @@ function initDevicesCarousel() {
     const current = slides[index];
     const incoming = slides[nextIndex];
 
-    clearMotionClasses(current);
+    // Prepare incoming at clock-enter pose (no transition yet)
     clearMotionClasses(incoming);
+    if (goingNext) {
+      incoming.classList.add("is-entering", "is-enter-clock");
+      current.classList.add("is-exiting", "is-exit-clock");
+    } else {
+      incoming.classList.add("is-entering", "is-enter-clock-rev");
+      current.classList.add("is-exiting", "is-exit-clock-rev");
+    }
+    current.classList.remove("is-active");
 
-    current.classList.add(goingNext ? "is-exit-left" : "is-exit-right");
-    incoming.classList.add(goingNext ? "is-enter-from-right" : "is-enter-from-left");
-
-    // Force reflow so enter transform applies before active
+    // Force reflow so the enter pose is painted before activating
     void incoming.offsetWidth;
 
-    incoming.classList.remove("is-enter-from-left", "is-enter-from-right");
+    incoming.classList.remove("is-enter-clock", "is-enter-clock-rev", "is-entering");
     incoming.classList.add("is-active");
 
     index = nextIndex;

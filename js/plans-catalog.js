@@ -320,7 +320,7 @@
   function carouselUnit(grid) {
     const cards = frameCards(grid);
     if (!cards.length) return perPage() * 200;
-    const cardW = cards[0].getBoundingClientRect().width || 188;
+    const cardW = cards[0].getBoundingClientRect().width || 158;
     const gap = parseFloat(getComputedStyle(grid).columnGap || getComputedStyle(grid).gap) || 16;
     return (cardW + gap) * perPage();
   }

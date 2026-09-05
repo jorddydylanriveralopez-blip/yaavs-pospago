@@ -4310,6 +4310,199 @@ body.is-modal-open {
   }
 }
 
+
+/* Plan family pages (premium / lite / simple) */
+.plan-family-hero {
+  position: relative;
+  padding: clamp(3.5rem, 7vw, 5.5rem) 0 3rem;
+  color: #fff;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 70% 60% at 85% 10%, rgba(0, 193, 212, 0.35), transparent 55%),
+    linear-gradient(145deg, #071018 0%, #0c1c2c 55%, #08304a 100%);
+}
+.plan-family-hero--lite {
+  background:
+    radial-gradient(ellipse 70% 60% at 85% 10%, rgba(91, 155, 213, 0.35), transparent 55%),
+    linear-gradient(145deg, #071018 0%, #0d2035 55%, #1a4a75 100%);
+}
+.plan-family-hero--simple {
+  background:
+    radial-gradient(ellipse 70% 60% at 85% 10%, rgba(0, 185, 169, 0.35), transparent 55%),
+    linear-gradient(145deg, #071018 0%, #0c2428 55%, #0a5a58 100%);
+}
+.plan-family-hero__inner {
+  text-align: center;
+  max-width: 780px;
+  margin-inline: auto;
+}
+.plan-family-hero h1 {
+  margin: 0.35rem 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+.plan-family-hero__from {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 800;
+  color: #7aefff;
+}
+.plan-family-hero__tag {
+  margin: 0.65rem auto 1.35rem;
+  max-width: 36rem;
+  color: rgba(255,255,255,0.78);
+  font-size: 1.05rem;
+}
+.plan-family-info {
+  padding: 3.5rem 0;
+  background: #f3fafd;
+}
+.plan-family-info__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.plan-family-info h2 {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--att-blue-deep);
+}
+.plan-family-benefits {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.7rem;
+}
+.plan-family-benefits li {
+  position: relative;
+  padding: 0.85rem 1rem 0.85rem 2.4rem;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid rgba(0,159,219,0.12);
+  box-shadow: 0 8px 22px rgba(0,80,120,0.05);
+  color: var(--att-ink);
+  font-weight: 600;
+}
+.plan-family-benefits li::before {
+  content: "✓";
+  position: absolute;
+  left: 0.85rem;
+  top: 0.85rem;
+  color: var(--att-cyan);
+  font-weight: 800;
+}
+.plan-family-steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.7rem;
+  counter-reset: step;
+}
+.plan-family-steps li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.85rem;
+  align-items: start;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid rgba(0,159,219,0.12);
+}
+.plan-family-steps li span {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--att-cyan), var(--att-blue));
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+.plan-family-steps li p { margin: 0.15rem 0 0; color: var(--att-ink); font-weight: 600; }
+.plan-family-link {
+  display: inline-flex;
+  margin-top: 1rem;
+  font-weight: 800;
+  color: var(--att-blue);
+  text-decoration: none;
+}
+.plan-family-link:hover { color: var(--att-cyan); }
+.plan-family-cta {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0 2rem;
+}
+.plan-family-legal {
+  padding: 1.5rem 0 3rem;
+  background: #fff;
+}
+.plan-family-legal details {
+  border-radius: 16px;
+  border: 1px solid rgba(0,159,219,0.14);
+  background: #f7fcff;
+  padding: 1rem 1.15rem;
+}
+.plan-family-legal summary {
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--att-blue-deep);
+}
+.plan-family-legal p {
+  margin: 0.85rem 0 0;
+  color: var(--att-muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+@media (max-width: 800px) {
+  .plan-family-info__grid { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+/* Home teaser seguros */
+.section--seguros-teaser {
+  padding: 4rem 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 100% 0%, rgba(0,193,212,0.12), transparent 55%),
+    #0b1c28;
+  color: #fff;
+}
+.seguros-teaser {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  align-items: center;
+}
+.seguros-teaser h2 {
+  margin: 0.35rem 0 0.75rem;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  color: #fff;
+}
+.seguros-teaser p { color: rgba(255,255,255,0.78); max-width: 38rem; }
+.seguros-teaser__facts {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.seguros-teaser__facts li {
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(122,239,255,0.18);
+  font-weight: 600;
+}
+@media (max-width: 800px) {
+  .seguros-teaser { grid-template-columns: 1fr; }
+}
+
 /* Blog — artículo individual */
 .section--post {
   padding: 3.5rem 0 4.5rem;

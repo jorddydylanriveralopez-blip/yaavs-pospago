@@ -5144,52 +5144,28 @@ body.is-modal-open {
 }
 
 /* ¿Quiénes somos page */
-.about-hero {
-  position: relative;
-  padding: clamp(4rem, 8vw, 6.5rem) 0 clamp(3rem, 5vw, 4rem);
-  color: #fff;
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse 80% 70% at 90% -10%, rgba(0, 193, 212, 0.4), transparent 55%),
-    radial-gradient(ellipse 55% 50% at 5% 100%, rgba(255, 49, 148, 0.12), transparent 50%),
-    linear-gradient(135deg, #061018 0%, #0a2438 45%, #0b4a6e 100%);
+.about-hero--media .plan-family-hero__actions-bar {
+  gap: 0.85rem 1.1rem;
 }
 
-.about-hero__inner {
-  max-width: 820px;
-  margin-inline: auto;
+.about-hero__crumb--bar {
+  margin: 0;
+  width: 100%;
   text-align: center;
-}
-
-.about-hero__crumb {
-  margin: 0 0 1rem;
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.65);
+  color: var(--att-muted);
 }
 
-.about-hero__crumb a {
-  color: #7aefff;
+.about-hero__crumb--bar a {
+  color: var(--att-blue);
   text-decoration: none;
 }
 
-.about-hero h1 {
-  margin: 0.35rem 0 1rem;
-  font-family: var(--font-display);
-  font-size: clamp(2.2rem, 6vw, 3.6rem);
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-}
-
-.about-hero__lead {
-  margin: 0 auto;
-  max-width: 40rem;
-  color: rgba(255,255,255,0.82);
-  font-size: clamp(1.02rem, 2vw, 1.2rem);
-  line-height: 1.55;
+.about-hero__crumb--bar a:hover {
+  text-decoration: underline;
 }
 
 .about-story {
@@ -5197,11 +5173,10 @@ body.is-modal-open {
   background: linear-gradient(180deg, #f7fcff 0%, #fff 100%);
 }
 
-.about-story__grid {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: clamp(1.5rem, 4vw, 2.75rem);
-  align-items: center;
+.about-story__copy--solo {
+  max-width: 42rem;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .about-story__copy h2 {
@@ -5218,6 +5193,10 @@ body.is-modal-open {
   color: var(--att-muted);
   font-size: 1.05rem;
   line-height: 1.55;
+}
+
+.about-story__lead {
+  color: var(--att-ink) !important;
 }
 
 .about-story__tag {

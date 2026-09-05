@@ -29,10 +29,15 @@ AUTH=$(python3 -c 'import json;print(json.load(open("/tmp/creds_pospago.json"))[
 REST=$(python3 -c 'import json;print(json.load(open("/tmp/creds_pospago.json"))["rest_auth_key"])')
 echo "creds_ok domain=$DOMAIN"
 
+encode_path() {
+  python3 -c 'import sys,urllib.parse; print("/".join(urllib.parse.quote(p, safe="") for p in sys.argv[1].split("/")))' "$1"
+}
+
 upload_one() {
-  local local_file="$1" dest="$2" size code attempt
+  local local_file="$1" dest="$2" size code attempt enc
   size=$(wc -c < "$local_file" | tr -d ' ')
-  local upload_url="${URL}/${dest}?override=true"
+  enc="$(encode_path "$dest")"
+  local upload_url="${URL}/${enc}?override=true"
   for attempt in 1 2 3 4 5; do
     code=$(curl -sS --noproxy '*' -k -o /tmp/tus_c_body -w "%{http_code}" -X POST \
       -H "X-Auth: $AUTH" -H "X-Auth-Rest: $REST" -H "Tus-Resumable: 1.0.0" \

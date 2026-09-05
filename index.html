@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://unpkg.com">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260905a">
+  <link rel="stylesheet" href="css/styles.css?v=20260905b">
   <link rel="stylesheet" href="css/stores.css?v=20260828d">
   <link rel="icon" href="assets/images/favicon.svg?v=20260828d" type="image/svg+xml">
   <link rel="icon" href="assets/images/favicon-32.png?v=20260828d" type="image/png" sizes="32x32">
@@ -405,55 +405,65 @@
 
 
     <section class="section section--blog" id="blog" aria-labelledby="blog-title">
+      <div class="blog-aura" aria-hidden="true"></div>
       <div class="wrap">
-
-        <header class="section__head blog-hero">
-          <h2 id="blog-title" class="blog-hero__title eyebrow">CONEXIÓN INTELIGENTE</h2>
-          <p class="blog-hero__subtitle">Todo sobre smartphones, planes AT&amp;T Pospago, tecnología, innovación y vida digital.</p>
-          <p class="blog-hero__note">3 artículos iniciales para que estés al día y encuentres tu próximo equipo.</p>
-          <a class="btn btn--primary" href="/blog/honor-x5d-caracteristicas-precio-planes-att">Explora el blog</a>
+        <header class="blog-masthead">
+          <p class="blog-masthead__eyebrow"><span>Blog</span> YAAVS · AT&amp;T Pospago</p>
+          <h2 id="blog-title" class="blog-masthead__title">
+            CONEXIÓN<br><span>INTELIGENTE</span>
+          </h2>
+          <p class="blog-masthead__lead">
+            Smartphones, planes AT&amp;T, innovación y vida digital — guía clara para elegir tu próximo equipo.
+          </p>
+          <div class="blog-masthead__row">
+            <p class="blog-masthead__count"><strong>03</strong> artículos para estar al día</p>
+            <a class="blog-masthead__cta" href="blog/honor-x5d-caracteristicas-precio-planes-att.html">
+              Explora el blog
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
         </header>
 
         <div class="blog-masonry" role="list" aria-label="Artículos iniciales del blog">
-          <article class="blog-card" role="listitem">
-            <a class="blog-card__link" href="/blog/honor-x5d-caracteristicas-precio-planes-att">
+          <article class="blog-card blog-card--featured" role="listitem">
+            <a class="blog-card__link" href="blog/honor-x5d-caracteristicas-precio-planes-att.html">
               <div class="blog-card__media">
                 <img src="assets/banners/Planes-Premium-2026.jpg" alt="Smartphone HONOR y planes AT&amp;T" width="800" height="600" loading="lazy" decoding="async">
+                <span class="blog-card__badge">Destacado</span>
               </div>
               <div class="blog-card__body">
-                <p class="blog-card__kicker">ARTÍCULO 1</p>
-                <h3 class="blog-card__title">HONOR X5D: UNA FORMA INTELIGENTE DE MANTENERTE CONECTADO</h3>
+                <p class="blog-card__kicker">Artículo 01</p>
+                <h3 class="blog-card__title">HONOR X5D: una forma inteligente de mantenerte conectado</h3>
                 <p class="blog-card__excerpt">Hay equipos que simplemente te acompañan y otros que están listos para seguirte el ritmo.</p>
-                <span class="blog-card__btn">Quiero mi HONOR X5d</span>
+                <span class="blog-card__btn">Quiero mi HONOR X5d <span aria-hidden="true">→</span></span>
               </div>
             </a>
           </article>
-          
 
           <article class="blog-card" role="listitem">
-            <a class="blog-card__link" href="/blog/samsung-galaxy-a37-5g-128gb">
+            <a class="blog-card__link" href="blog/samsung-galaxy-a37-5g-128gb.html">
               <div class="blog-card__media">
                 <img src="assets/banners/PROMOS-AGO-03-08e0a3a1.jpg" alt="Samsung Galaxy A37 y sus beneficios" width="800" height="600" loading="lazy" decoding="async">
               </div>
               <div class="blog-card__body">
-                <p class="blog-card__kicker">ARTÍCULO 2</p>
-                <h3 class="blog-card__title">SAMSUNG GALAXY A37 5G: DALE OTRA MIRADA A TU DÍA</h3>
+                <p class="blog-card__kicker">Artículo 02</p>
+                <h3 class="blog-card__title">Samsung Galaxy A37 5G: dale otra mirada a tu día</h3>
                 <p class="blog-card__excerpt">Una foto que quieres compartir, una idea que necesitas buscar o una videollamada que no puede esperar.</p>
-                <span class="blog-card__btn">Cotizar mi Galaxy A37</span>
+                <span class="blog-card__btn">Cotizar Galaxy A37 <span aria-hidden="true">→</span></span>
               </div>
             </a>
           </article>
 
           <article class="blog-card" role="listitem">
-            <a class="blog-card__link" href="/blog/xiaomi-redmi-note-17-sound-pocket">
+            <a class="blog-card__link" href="blog/xiaomi-redmi-note-17-sound-pocket.html">
               <div class="blog-card__media">
                 <img src="assets/banners/PROMOS-AGO-07-c43a74bd.jpg" alt="Redmi Note 17 con Sound Pocket" width="800" height="600" loading="lazy" decoding="async">
               </div>
               <div class="blog-card__body">
-                <p class="blog-card__kicker">ARTÍCULO 3</p>
-                <h3 class="blog-card__title">XIAOMI REDMI NOTE 17 + SOUND POCKET: TU DÍA TIENE MUCHO QUE VER Y ESCUCHAR</h3>
+                <p class="blog-card__kicker">Artículo 03</p>
+                <h3 class="blog-card__title">Xiaomi Redmi Note 17 + Sound Pocket: ver y escuchar más</h3>
                 <p class="blog-card__excerpt">Hay playlists que merecen compartirse y videos que se disfrutan mejor en una pantalla amplia.</p>
-                <span class="blog-card__btn">Cotizar Redmi Note 17 + Sound Pocket</span>
+                <span class="blog-card__btn">Cotizar Redmi Note 17 <span aria-hidden="true">→</span></span>
               </div>
             </a>
           </article>

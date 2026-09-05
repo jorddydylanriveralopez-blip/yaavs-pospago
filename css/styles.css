@@ -4699,6 +4699,50 @@ body.is-modal-open {
   border-color: rgba(255,255,255,0.55);
 }
 
+/* Hero with full designed banner image (no crop) */
+.plan-family-hero--media {
+  padding: 0;
+  background: #fff;
+  color: var(--att-ink);
+}
+
+.plan-family-hero--media::before {
+  display: none;
+}
+
+.plan-family-hero__media {
+  line-height: 0;
+  background: #e8f7fc;
+}
+
+.plan-family-hero__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.plan-family-hero__actions-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  padding: 1.15rem 1rem 1.5rem;
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 159, 219, 0.1);
+}
+
+.plan-family-hero__ghost--dark {
+  border-color: rgba(11, 28, 40, 0.22);
+  color: var(--att-ink);
+}
+
+.plan-family-hero__ghost--dark:hover {
+  background: rgba(0, 159, 219, 0.08);
+  border-color: rgba(0, 159, 219, 0.35);
+}
+
 .plan-family-info {
   position: relative;
   padding: clamp(3rem, 6vw, 4.5rem) 0;

@@ -250,8 +250,8 @@
         : "";
 
     return `<article class="plan${featured} reveal" role="listitem" style="--plan:${plan.color};--i:${index}" data-plan="${plan.id}" data-gb="${plan.gb}" data-price="${price}">
-      ${badgeHTML(plan)}
       <header class="plan__head">
+        ${badgeHTML(plan)}
         <span class="plan__brand">AT&amp;T</span>
         <h3>${plan.name}</h3>
       </header>
@@ -481,6 +481,19 @@
         },
         true
       );
+
+      // Allow vertical wheel scroll to propagate to the page; convert primarily-horizontal wheel to horizontal scroll
+      scroller.addEventListener(
+        "wheel",
+        (e) => {
+          // if vertical intent, let the browser handle page scroll
+          if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) return;
+          // horizontal intent -> scroll the scroller
+          e.preventDefault();
+          scroller.scrollLeft += e.deltaY || e.deltaX;
+        },
+        { passive: false }
+      );
     });
   }
 
@@ -619,7 +632,13 @@
     if (!root) return;
 
     fillQuoteOptions();
-    setTab("premium");
+
+    const single = root.getAttribute("data-single-family");
+    if (single && CATALOG[single]) {
+      setTab(single);
+    } else {
+      setTab("premium");
+    }
     initCarouselInteractions();
 
     let resizeTimer = null;

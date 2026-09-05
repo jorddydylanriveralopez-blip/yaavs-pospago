@@ -137,10 +137,10 @@
       toggle.setAttribute("aria-expanded", String(open));
     });
 
-    // Dropdown planes header — activo SOLO por click (desktop + móvil)
+    // Dropdown Planes — hover (desktop) + click (desktop/móvil)
     const dropdown = nav.querySelector(".nav__dropdown");
     if (dropdown) {
-      const dropLink = dropdown.querySelector("a");
+      const dropLink = dropdown.querySelector(":scope > a");
       const submenu = dropdown.querySelector(".nav__submenu");
       if (dropLink && submenu) {
         const open = () => {
@@ -152,7 +152,6 @@
           dropLink.setAttribute("aria-expanded", "false");
         };
 
-        // Click toggle (desktop y móvil)
         dropLink.addEventListener("click", (e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -160,12 +159,13 @@
           else open();
         });
 
-        // Cerrar al hacer click fuera
+        dropdown.addEventListener("mouseenter", open);
+        dropdown.addEventListener("mouseleave", close);
+
         document.addEventListener("click", (e) => {
           if (!dropdown.contains(e.target)) close();
         });
 
-        // Cerrar con tecla Escape
         document.addEventListener("keydown", (e) => {
           if (e.key === "Escape") {
             close();
@@ -324,6 +324,8 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
+    initDevicesCarousel();
+
   initHeroVideo();
   initMobileCarousel();
   initNav();
@@ -331,3 +333,320 @@
   initQuote();
   initReveal();
 })();
+
+/* Carrusel de smartphones destacados (efecto reloj) */
+function initDevicesCarousel() {
+  const root = document.querySelector("[data-devices-carousel]");
+  if (!root) return;
+
+  const track = root.querySelector("[data-devices-track]");
+  let cards = [...root.querySelectorAll("[data-device-card]")];
+  const dotsWrap = root.querySelector("[data-devices-dots]");
+  let prev = root.querySelector("[data-devices-prev]");
+  let next = root.querySelector("[data-devices-next]");
+  if (!track) return;
+
+  // Ensure prev/next arrows exist so users can navigate even without banner mode
+  if (!prev) {
+    prev = document.createElement('button');
+    prev.type = 'button';
+    prev.setAttribute('aria-label', 'Anterior');
+    prev.className = 'devices-arrow devices-arrow--prev';
+    prev.innerHTML = '‹';
+    root.appendChild(prev);
+  }
+  if (!next) {
+    next = document.createElement('button');
+    next.type = 'button';
+    next.setAttribute('aria-label', 'Siguiente');
+    next.className = 'devices-arrow devices-arrow--next';
+    next.innerHTML = '›';
+    root.appendChild(next);
+  }
+
+  const INTERVAL = 5000;
+  let index = 0;
+  let timer = null;
+  let transitioning = false;
+
+  function initCardsState() {
+    cards.forEach((c, i) => {
+      c.classList.remove('is-entering', 'is-active', 'is-exiting');
+      c.style.opacity = i === index ? '1' : '0';
+      const img = c.querySelector('img');
+      if (img) img.style.transform = i === index ? 'scale(1)' : 'scale(0.92)';
+    });
+    if (cards[index]) cards[index].classList.add('is-active');
+    // reset track to show the active slide
+    try {
+      const containerWidth = root.clientWidth || root.offsetWidth || track.clientWidth;
+      track.style.transform = `translate3d(-${containerWidth * index}px, 0, 0)`;
+    } catch (e) {
+      /* ignore */
+    }
+  }
+  // initial state (may be replaced if we populate dynamically)
+  initCardsState();
+
+  // Load prices from generated JSON and apply to cards (name + price only)
+  async function fetchAndApplyPrices() {
+    try {
+      const res = await fetch('/assets/data/devices.json', { cache: 'no-store' });
+      if (!res.ok) return;
+      const items = await res.json();
+      const normalize = (s) => (s || '').toString().toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+
+      cards.forEach((card) => {
+        const titleEl = card.querySelector('.device-card__title');
+        const priceEl = card.querySelector('.device-card__price');
+        const shownName = titleEl ? titleEl.textContent.trim() : '';
+        const nShown = normalize(shownName);
+
+        // find best match
+        const match = items.find((it) => {
+          const n = normalize(it.name);
+          return n && (n === nShown || n.includes(nShown) || nShown.includes(n));
+        });
+
+        if (match) {
+          if (titleEl) titleEl.textContent = match.name;
+          if (priceEl) {
+            const price = match.price;
+            const formatted = (typeof price === 'number')
+              ? new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 }).format(price)
+              : String(price);
+            priceEl.textContent = formatted;
+          }
+        }
+
+        // keep markup minimal: only name and price
+        if (card.querySelectorAll('.device-card__info > *').length > 2) {
+          [...card.querySelectorAll('.device-card__info > *')].forEach((el, i) => {
+            if (i > 1) el.remove();
+          });
+        }
+      });
+    } catch (err) {
+      // silent fail
+      console.warn('devices prices load failed', err);
+    }
+  }
+
+  // run price loader (best-effort)
+  fetchAndApplyPrices();
+
+  // If there's only one card in the DOM, populate the track with up to 11 slides from devices.json
+  async function populateSlidesFromJSONIfNeeded() {
+    if (cards.length > 1) return;
+    try {
+      const res = await fetch('/assets/data/devices.json', { cache: 'no-store' });
+      if (!res.ok) return;
+      const all = await res.json();
+      const items = all.filter(it => it && it.name).slice(0, 11);
+      if (!items.length) return;
+      // Build a banner-style carousel (multiple visible slides)
+      const visible = Math.min(5, items.length);
+      track.classList.add('is-banner');
+      const buildSlide = (it) => {
+        const imgPath = `/assets/images/smartphones/${encodeURIComponent(it.name)}.png`;
+        const title = it.name.replace(/"/g, '');
+        const price = (typeof it.price === 'number') ? new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 }).format(it.price) : String(it.price);
+        return `
+          <article class="device-card banner-slide" data-device-card>
+            <span class="device-card__media">
+              <img src="${imgPath}" alt="${title}" loading="lazy" onerror="this.onerror=null;this.style.opacity=1;" />
+            </span>
+            <div class="device-card__info">
+              <div class="device-card__title">${title}</div>
+              <div class="device-card__price">${price}</div>
+            </div>
+          </article>`;
+      };
+
+      // create slides + clones at both ends (for seamless bidirectional looping)
+      const htmlMain = items.map(buildSlide).join('\n');
+      const clonesStart = items.slice(-visible).map(buildSlide).join('\n');
+      const clonesEnd = items.slice(0, visible).map(buildSlide).join('\n');
+      track.innerHTML = clonesStart + htmlMain + clonesEnd;
+
+      // re-query cards and set up banner autoplay
+      cards = [...root.querySelectorAll('[data-device-card]')];
+      const originalCount = items.length;
+      const percent = 100 / visible;
+      // set each slide flex-basis so visible slides fit in container (CSS handles most cases)
+      cards.forEach((c) => { c.style.flex = `0 0 ${percent}%`; });
+
+      // start at the first real slide (offset by clones at start)
+      let bannerIndex = visible;
+      track.style.transition = 'none';
+      track.style.transform = `translate3d(-${percent * bannerIndex}%, 0, 0)`;
+
+      const INTERVAL_BANNER = 2800;
+      let bannerTimer = null;
+
+      function startBanner() {
+        bannerTimer = setInterval(() => moveBanner(1), INTERVAL_BANNER);
+      }
+      function stopBanner() { clearInterval(bannerTimer); bannerTimer = null; }
+
+      function moveBanner(delta) {
+        bannerIndex += delta;
+        track.style.transition = 'transform 0.6s ease';
+        track.style.transform = `translate3d(-${percent * bannerIndex}%, 0, 0)`;
+        // forward wrap
+        if (bannerIndex >= visible + originalCount) {
+          const handler = () => {
+            track.style.transition = 'none';
+            bannerIndex = visible;
+            track.style.transform = `translate3d(-${percent * bannerIndex}%, 0, 0)`;
+            track.removeEventListener('transitionend', handler);
+          };
+          track.addEventListener('transitionend', handler);
+        }
+        // backward wrap
+        if (bannerIndex < visible) {
+          const handler = () => {
+            track.style.transition = 'none';
+            bannerIndex = visible + originalCount - 1;
+            track.style.transform = `translate3d(-${percent * bannerIndex}%, 0, 0)`;
+            track.removeEventListener('transitionend', handler);
+          };
+          track.addEventListener('transitionend', handler);
+        }
+      }
+
+      // Add arrow controls if not present
+      let prevBtn = prev;
+      let nextBtn = next;
+      if (!prevBtn) {
+        prevBtn = document.createElement('button');
+        prevBtn.className = 'devices-arrow devices-arrow--prev';
+        prevBtn.type = 'button';
+        prevBtn.innerHTML = '‹';
+        root.appendChild(prevBtn);
+      }
+      if (!nextBtn) {
+        nextBtn = document.createElement('button');
+        nextBtn.className = 'devices-arrow devices-arrow--next';
+        nextBtn.type = 'button';
+        nextBtn.innerHTML = '›';
+        root.appendChild(nextBtn);
+      }
+
+      prevBtn.addEventListener('click', () => { stopBanner(); moveBanner(-1); startBanner(); });
+      nextBtn.addEventListener('click', () => { stopBanner(); moveBanner(1); startBanner(); });
+
+      // pause/resume on hover
+      root.addEventListener('mouseenter', stopBanner);
+      root.addEventListener('mouseleave', () => { if (!bannerTimer) startBanner(); });
+
+      // start autoplay
+      startBanner();
+
+      return true;
+    } catch (err) {
+      // silent fail
+      console.warn('populate slides failed', err);
+    }
+    return false;
+  }
+
+  // attempt to populate dynamic slides if needed; if it returns true we used banner mode and can stop
+  const usedBanner = await populateSlidesFromJSONIfNeeded();
+  if (usedBanner) return;
+
+  function buildDots() {
+    if (!dotsWrap) return;
+    dotsWrap.innerHTML = "";
+    cards.forEach((_, i) => {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.setAttribute("data-dot", "");
+      dot.setAttribute("aria-label", `Dispositivo ${i + 1}`);
+      dot.addEventListener("click", () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+  }
+
+  function updateDots() {
+    if (!dotsWrap) return;
+    [...dotsWrap.children].forEach((d, i) => {
+      d.classList.toggle("is-active", i === index);
+      d.setAttribute("aria-selected", i === index ? "true" : "false");
+    });
+  }
+
+  function showCard(newIndex, direction = "next") {
+    if (transitioning || newIndex === index) return;
+    transitioning = true;
+
+    // compute slide width (container width) and move track
+    const containerWidth = root.clientWidth || root.offsetWidth || track.clientWidth;
+    const offset = containerWidth * newIndex;
+    track.style.transform = `translate3d(-${offset}px, 0, 0)`;
+
+    // update active classes and image scales
+    cards.forEach((c, i) => {
+      c.classList.toggle('is-active', i === newIndex);
+      const img = c.querySelector('img');
+      if (img) img.style.transform = i === newIndex ? 'scale(1)' : 'scale(0.92)';
+      c.style.opacity = i === newIndex ? '1' : '0.0';
+    });
+
+    setTimeout(() => {
+      index = newIndex;
+      updateDots();
+      transitioning = false;
+    }, 520);
+  }
+
+  function goTo(newIndex, dir = "next") {
+    const normalized = (newIndex + cards.length) % cards.length;
+    showCard(normalized, dir);
+  }
+
+  function prevCard() {
+    const prevIndex = (index - 1 + cards.length) % cards.length;
+    showCard(prevIndex, "prev");
+  }
+
+  function nextCard() {
+    const nextIndex = (index + 1) % cards.length;
+    showCard(nextIndex, "next");
+  }
+
+  prev?.addEventListener("click", prevCard);
+  next?.addEventListener("click", nextCard);
+
+  buildDots();
+  updateDots();
+
+  // Auto-play
+  timer = window.setInterval(() => nextCard(), INTERVAL);
+
+  // Pause on hover
+  root.addEventListener("mouseenter", () => clearInterval(timer));
+  root.addEventListener("mouseleave", () => {
+    timer = window.setInterval(() => nextCard(), INTERVAL);
+  });
+
+  // Swipe support
+  let startX = 0;
+  root.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; }, { passive: true });
+  root.addEventListener("touchend", (e) => {
+    const delta = e.changedTouches[0].clientX - startX;
+    if (Math.abs(delta) > 40) {
+      if (delta > 0) prevCard();
+      else nextCard();
+    }
+  }, { passive: true });
+
+  // Keep transform correct on resize
+  window.addEventListener('resize', () => {
+    const containerWidth = root.clientWidth || root.offsetWidth || track.clientWidth;
+    track.style.transform = `translate3d(-${containerWidth * index}px, 0, 0)`;
+  });
+}
+
+/* ===== IIFE existente ===== */
+(() => {  "use strict";

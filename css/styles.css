@@ -1083,8 +1083,8 @@ a {
   object-position: center center;
   background: #041018;
   vertical-align: top;
-  transform: scale(1.04);
-  animation: heroVideoDrift 18s ease-in-out infinite alternate;
+  transform: none;
+  image-rendering: auto;
 }
 
 .hero__shine {
@@ -1113,11 +1113,6 @@ a {
   50% { opacity: 1; transform: scale(1.04); }
 }
 
-@keyframes heroVideoDrift {
-  from { transform: scale(1.03) translate3d(0, 0, 0); }
-  to { transform: scale(1.07) translate3d(-1.2%, 0.6%, 0); }
-}
-
 @media (max-width: 768px) {
   .hero__stage {
     padding: 0;
@@ -1127,20 +1122,11 @@ a {
     width: 100%;
     border-radius: 0;
   }
-
-  .hero__video {
-    animation-duration: 22s;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero__aura,
-  .hero__video {
+  .hero__aura {
     animation: none !important;
-  }
-
-  .hero__video {
-    transform: none;
   }
 }
 

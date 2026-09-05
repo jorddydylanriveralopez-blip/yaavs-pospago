@@ -5015,6 +5015,8 @@ body.is-modal-open {
 
 .section--plans-single .plans > * {
   min-width: 0 !important;
+  width: auto !important;
+  max-width: none !important;
   flex: unset !important;
   scroll-snap-align: unset;
 }

@@ -5119,13 +5119,21 @@ body.is-modal-open {
 }
 
 .att-banner__link {
+  position: relative;
   display: block;
   line-height: 0;
-  transition: opacity 0.25s ease, transform 0.35s ease;
+  transition: opacity 0.25s ease;
 }
 
 .att-banner__link:hover {
-  opacity: 0.96;
+  opacity: 1;
+}
+
+.att-banner__link:hover .att-banner__cta {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow:
+    0 16px 36px rgba(255, 90, 20, 0.42),
+    0 0 0 1px rgba(255, 255, 255, 0.35) inset;
 }
 
 .att-banner__img {
@@ -5136,10 +5144,114 @@ body.is-modal-open {
   object-position: center;
 }
 
+.att-banner__cta {
+  position: absolute;
+  right: clamp(4%, 8vw, 11%);
+  bottom: clamp(10%, 16%, 22%);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.78rem 1.35rem;
+  border-radius: 999px;
+  background: linear-gradient(115deg, #ff7a18 0%, #ff4d6d 48%, #c44dff 100%);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(0.82rem, 1.5vw, 1.05rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow:
+    0 12px 28px rgba(255, 77, 109, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.28) inset;
+  animation: attBannerHeartbeat 2.4s ease-in-out infinite;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s ease;
+}
+
+.att-banner__cta-label {
+  position: relative;
+  z-index: 1;
+}
+
+.att-banner__cta-arrow {
+  position: relative;
+  z-index: 1;
+  font-size: 1.1em;
+  transition: transform 0.3s var(--ease);
+}
+
+.att-banner__link:hover .att-banner__cta-arrow {
+  transform: translateX(3px);
+}
+
+.att-banner__cta-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2px solid rgba(255, 122, 24, 0.55);
+  animation: attBannerRipple 2.4s ease-out infinite;
+  pointer-events: none;
+}
+
+.att-banner__cta-ring--delay {
+  animation-delay: 1.2s;
+  border-color: rgba(196, 77, 255, 0.45);
+}
+
+@keyframes attBannerHeartbeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.045); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.03); }
+  56% { transform: scale(1); }
+}
+
+@keyframes attBannerRipple {
+  0% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
 @media (max-width: 720px) {
   .att-banner__img {
     width: 100%;
     height: auto;
+  }
+
+  .att-banner__cta {
+    left: 50%;
+    right: auto;
+    bottom: 5.5%;
+    transform: translateX(-50%);
+    padding: 0.62rem 1rem;
+    font-size: 0.78rem;
+    animation-name: attBannerHeartbeatMobile;
+  }
+
+  .att-banner__link:hover .att-banner__cta {
+    transform: translateX(-50%) translateY(-2px) scale(1.03);
+  }
+
+  @keyframes attBannerHeartbeatMobile {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    14% { transform: translateX(-50%) scale(1.05); }
+    28% { transform: translateX(-50%) scale(1); }
+    42% { transform: translateX(-50%) scale(1.03); }
+    56% { transform: translateX(-50%) scale(1); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .att-banner__cta,
+  .att-banner__cta-ring,
+  .att-banner__cta-ring--delay {
+    animation: none !important;
   }
 }
 

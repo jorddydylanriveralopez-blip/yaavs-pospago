@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://unpkg.com">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260905m">
+  <link rel="stylesheet" href="css/styles.css?v=20260905n">
   <link rel="stylesheet" href="css/stores.css?v=20260828d">
   <link rel="icon" href="assets/images/favicon.svg?v=20260828d" type="image/svg+xml">
   <link rel="icon" href="assets/images/favicon-32.png?v=20260828d" type="image/png" sizes="32x32">
@@ -45,7 +45,7 @@
         </button>
         <ul class="nav__list" id="nav-menu">
           <li>
-            <a href="#quienes-somos">
+            <a href="quienes-somos.html">
               <span class="nav__label">¿Quiénes somos</span>
               <span class="nav__hint">Conectamos tu mundo</span>
               <span class="nav__go" aria-hidden="true">→</span>
@@ -212,16 +212,20 @@
       <h1 class="sr-only" id="intro-title">YAAVS Pospago · Planes AT&amp;T Premium</h1>
     </section>
 
-    <!-- ¿QUIÉNES SOMOS -->
-    <section class="section section--quienes" id="quienes-somos" aria-labelledby="quienes-somos-title">
-  <div class="quienes-bg" aria-hidden="true"></div>
-  <div class="wrap">
-    <header class="section__head section__head--quienes">
-      <h2 id="quienes-somos-title">Conectamos tu mundo. Impulsamos tu futuro.</h2>
-      <!-- Contenido pendiente -->
-    </header>
-  </div>
-</section>
+    <!-- Banner clickable → ¿Quiénes somos -->
+    <section class="att-banner" aria-label="Más que números, personas">
+      <a class="att-banner__link" href="quienes-somos.html">
+        <img
+          class="att-banner__img"
+          src="assets/images/banner-att-mas-que-numeros.jpg"
+          alt="AT&amp;T Distribuidor Autorizado — Más que números, personas. Conoce quiénes somos"
+          width="2400"
+          height="595"
+          loading="lazy"
+          decoding="async"
+        >
+      </a>
+    </section>
 
 <!-- SHOWCASE CELULARES (estilo AT&T Market: flechas + animación) -->
 <section class="section section--devices-hero" id="celulares" aria-label="Celulares destacados">
@@ -576,7 +580,7 @@
         </div>
         <nav class="site-footer__nav" aria-label="Pie">
           <a href="#planes">Planes</a>
-          <a href="#quienes-somos">¿Quiénes somos</a>
+          <a href="quienes-somos.html">¿Quiénes somos</a>
           <a href="#promociones">Promociones</a>
           <a href="#tiendas">Tiendas</a>
           <a href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20cotizar%20un%20plan%20AT%26T" target="_blank" rel="noopener">Cotizar</a>
@@ -609,6 +613,6 @@
   <script src="js/premium-devices.js?v=20260828d" defer></script>
   <script src="js/tiendas-att-stores.js?v=20260828d" defer></script>
   <script src="js/pospago-stores.js?v=20260828d" defer></script>
-  <script src="js/header.js?v=20260905k" defer></script>
+  <script src="js/header.js?v=20260905n" defer></script>
 </body>
 </html>

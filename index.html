@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://unpkg.com">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260905x">
+  <link rel="stylesheet" href="css/styles.css?v=20260905aa">
   <link rel="stylesheet" href="css/stores.css?v=20260828d">
   <link rel="icon" href="assets/images/favicon.svg?v=20260828d" type="image/svg+xml">
   <link rel="icon" href="assets/images/favicon-32.png?v=20260828d" type="image/png" sizes="32x32">
@@ -138,53 +138,27 @@
   </header>
 
   <main id="contenido">
-    <!-- HERO — video desktop / carrusel móvil -->
-    <section class="hero" id="inicio" aria-label="Promoción destacada">
-      <div class="hero__desktop">
-        <video
-          class="hero__video"
-          src="assets/banners/1.mp4"
-          muted
-          loop
-          playsinline
-          preload="metadata"
-          autoplay
-          aria-label="Video promoción YAAVS Pospago AT&amp;T"
-        ></video>
-      </div>
-
-      <div class="hero__mobile" data-mobile-carousel>
-        <div class="hero__mobile-glow" aria-hidden="true"></div>
-        <div class="hero__mobile-frame">
-          <div class="hero__mobile-track" data-mobile-track>
-            <article class="hero__mobile-slide is-active" data-mobile-slide>
-              <img src="assets/banners/PROMOS-AGO-01-228f352c.jpg" alt="Plan BLACK — oferta AT&T" width="2000" height="2000" fetchpriority="high" decoding="async">
-            </article>
-            <article class="hero__mobile-slide" data-mobile-slide>
-              <img src="assets/banners/PROMOS-AGO-02-b51cb6b8.jpg" alt="Promoción AT&T Pospago" width="2000" height="2000" decoding="async">
-            </article>
-            <article class="hero__mobile-slide" data-mobile-slide>
-              <img src="assets/banners/PROMOS-AGO-03-08e0a3a1.jpg" alt="Redes sociales ilimitadas" width="2000" height="2000" decoding="async">
-            </article>
-            <article class="hero__mobile-slide" data-mobile-slide>
-              <img src="assets/banners/PROMOS-AGO-04-cedd907b.jpg" alt="Portabilidad AT&T" width="2000" height="2000" decoding="async">
-            </article>
-            <article class="hero__mobile-slide" data-mobile-slide>
-              <img src="assets/banners/PROMOS-AGO-05-0dedee92.jpg" alt="Oferta YAAVS Pospago" width="2000" height="2000" decoding="async">
-            </article>
-            <article class="hero__mobile-slide" data-mobile-slide>
-              <img src="assets/banners/PROMOS-AGO-06-4f8ca821.jpg" alt="Planes AT&T Premium" width="2000" height="2000" decoding="async">
-            </article>
-            <article class="hero__mobile-slide" data-mobile-slide>
-              <img src="assets/banners/PROMOS-AGO-07-c43a74bd.jpg" alt="Renovación AT&T" width="2000" height="2000" decoding="async">
-            </article>
-            <article class="hero__mobile-slide" data-mobile-slide>
-              <img src="assets/banners/PROMOS-AGO-08-93a45095.jpg" alt="Promoción del mes" width="2000" height="2000" decoding="async">
-            </article>
-          </div>
+    <!-- HERO — attblur video -->
+    <section class="hero hero--attblur" id="inicio" aria-label="Promoción destacada">
+      <div class="hero__stage">
+        <div class="hero__aura" aria-hidden="true"></div>
+        <div class="hero__frame">
+          <video
+            class="hero__video"
+            src="assets/banners/attblur.mp4"
+            poster="assets/banners/attblur-poster.jpg"
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            autoplay
+            aria-label="Video promoción YAAVS Pospago AT&amp;T"
+          ></video>
+          <div class="hero__shine" aria-hidden="true"></div>
+          <div class="hero__edge" aria-hidden="true"></div>
         </div>
       </div>
-        </section>
+    </section>
 
     <!-- INTRO brand strip -->
     <section class="intro" aria-label="AT&amp;T y YAAVS">

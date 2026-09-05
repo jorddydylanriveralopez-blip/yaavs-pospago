@@ -1018,27 +1018,59 @@ a {
   margin-top: 1rem;
 }
 
-/* Hero — video / carrusel a tamaño real, sin recortar */
+/* Hero — attblur video stage */
 .hero {
   position: relative;
   width: 100%;
   max-width: 100%;
   overflow: hidden;
-  background: #e8f7fc;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 20%, rgba(0, 193, 212, 0.22), transparent 55%),
+    linear-gradient(180deg, #07131c 0%, #0b2436 55%, #0e3148 100%);
   border-bottom: 0;
   margin-top: calc(var(--header-h) * -1);
   padding-top: var(--header-h);
 }
 
-.hero__desktop {
-  display: block;
+.hero--attblur {
+  padding-bottom: 0;
+}
+
+.hero__stage {
   position: relative;
   width: 100%;
   max-width: 100%;
+  padding: 0;
+  isolation: isolate;
+}
+
+.hero__aura {
+  pointer-events: none;
+  position: absolute;
+  inset: -8% -4% auto;
+  height: 75%;
+  border-radius: 0;
+  background:
+    radial-gradient(circle at 28% 40%, rgba(0, 193, 212, 0.32), transparent 55%),
+    radial-gradient(circle at 78% 45%, rgba(255, 77, 109, 0.14), transparent 50%);
+  filter: blur(34px);
+  opacity: 0.85;
+  z-index: 0;
+  animation: heroAuraPulse 6s ease-in-out infinite;
+}
+
+.hero__frame {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin: 0;
   overflow: hidden;
+  border-radius: 0;
   line-height: 0;
-  height: auto;
-  background: #e8f7fc;
+  background: #041018;
+  box-shadow:
+    0 18px 40px rgba(0, 20, 40, 0.35),
+    0 0 0 1px rgba(122, 239, 255, 0.1) inset;
 }
 
 .hero__video {
@@ -1049,168 +1081,73 @@ a {
   max-width: 100%;
   object-fit: contain;
   object-position: center center;
-  background: #e8f7fc;
+  background: #041018;
   vertical-align: top;
+  transform: scale(1.04);
+  animation: heroVideoDrift 18s ease-in-out infinite alternate;
 }
 
-.hero__mobile {
-  display: none;
+.hero__shine {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(115deg, rgba(255,255,255,0.12) 0%, transparent 28%, transparent 72%, rgba(0, 193, 212, 0.1) 100%);
+  mix-blend-mode: soft-light;
+  opacity: 0.85;
+}
+
+.hero__edge {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+    inset 0 -40px 60px rgba(4, 16, 24, 0.35),
+    inset 0 30px 50px rgba(0, 193, 212, 0.08);
+}
+
+@keyframes heroAuraPulse {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+
+@keyframes heroVideoDrift {
+  from { transform: scale(1.03) translate3d(0, 0, 0); }
+  to { transform: scale(1.07) translate3d(-1.2%, 0.6%, 0); }
 }
 
 @media (max-width: 768px) {
-  .hero {
-    background: #e8f7fc;
+  .hero__stage {
+    padding: 0;
   }
 
-  .hero__desktop {
-    display: none;
-  }
-
-  .hero__mobile {
-    display: block;
-    position: relative;
-    padding: 0 0 0.55rem;
-    overflow: hidden;
-    background:
-      radial-gradient(ellipse 90% 55% at 50% 0%, rgba(0, 193, 212, 0.18), transparent 60%),
-      radial-gradient(ellipse 70% 50% at 80% 100%, rgba(0, 159, 219, 0.12), transparent 55%),
-      #e8f7fc;
-    touch-action: pan-y;
-  }
-
-  .hero__mobile-glow {
-    pointer-events: none;
-    position: absolute;
-    inset: 6% 8% auto;
-    height: 55%;
-    border-radius: 22px;
-    background: radial-gradient(circle, rgba(0, 193, 212, 0.28), transparent 70%);
-    filter: blur(22px);
-    animation: mobileGlow 4.5s ease-in-out infinite;
-    z-index: 0;
-  }
-
-  .hero__mobile-frame {
-    position: relative;
-    z-index: 1;
+  .hero__frame {
     width: 100%;
-    max-width: none;
-    margin: 0;
     border-radius: 0;
-    padding: 0;
-    overflow: hidden;
-    aspect-ratio: 1 / 1;
-    background: #e8f7fc;
   }
 
-  .hero__mobile-track {
-    display: flex;
-    flex-wrap: nowrap;
-    width: 100%;
-    height: 100%;
-    transform: translate3d(0, 0, 0);
-    transition: transform 0.45s var(--ease);
-    will-change: transform;
+  .hero__video {
+    animation-duration: 22s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__aura,
+  .hero__video {
+    animation: none !important;
   }
 
-  .hero__mobile-slide {
-    flex: 0 0 100%;
-    width: 100%;
-    height: 100%;
-    min-width: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 1;
-    pointer-events: auto;
+  .hero__video {
+    transform: none;
   }
+}
 
-  .hero__mobile-slide.is-active {
-    opacity: 1;
-  }
-
-  .hero__mobile-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    object-position: center center;
-    background: #e8f7fc;
-  }
-
-  .hero__mobile-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 3;
-    width: 36px;
-    height: 36px;
-    border: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.95);
-    color: #0b1c28;
-    font-size: 1.25rem;
-    line-height: 1;
-    cursor: pointer;
-    box-shadow: 0 6px 16px rgba(0, 159, 219, 0.3);
-    transition: transform 0.25s var(--ease), background 0.2s ease;
-  }
-
-  .hero__mobile-arrow:active {
-    transform: translateY(-50%) scale(0.94);
-  }
-
-  .hero__mobile-arrow--prev { left: 0.55rem; }
-  .hero__mobile-arrow--next { right: 0.55rem; }
-
-  .hero__mobile-bar {
-    position: relative;
-    z-index: 2;
-    width: calc(100% - 1.5rem);
-    margin: 0.65rem auto 0.4rem;
-    height: 2px;
-    border-radius: 999px;
-    background: rgba(0, 159, 219, 0.18);
-    overflow: hidden;
-  }
-
-  .hero__mobile-bar-fill {
-    display: block;
-    height: 100%;
-    width: 0%;
-    border-radius: inherit;
-    background: linear-gradient(90deg, #009fdb, #7aefff);
-    transition: width 0.15s linear;
-  }
-
-  .hero__mobile-dots {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    gap: 0.3rem;
-    margin-bottom: 0.45rem;
-  }
-
-  .hero__mobile-dots button {
-    width: 6px;
-    height: 6px;
-    border: 0;
-    border-radius: 999px;
-    padding: 0;
-    background: rgba(0, 159, 219, 0.28);
-    cursor: pointer;
-    transition: width 0.3s var(--ease), background 0.25s ease;
-  }
-
-  .hero__mobile-dots button.is-active {
-    width: 18px;
-    background: #009fdb;
-    box-shadow: 0 0 10px rgba(0, 159, 219, 0.35);
-  }
-
+/* Legacy mobile carousel hooks (unused after attblur hero) */
+.hero__desktop,
+.hero__mobile {
+  display: none;
 }
 
 

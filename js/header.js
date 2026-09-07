@@ -453,7 +453,7 @@ function initDevicesCarousel() {
 
   async function applyPrices() {
     try {
-      const res = await fetch("assets/data/devices.json?v=20260907s", { cache: "no-store" });
+      const res = await fetch("assets/data/devices.json?v=20260907t", { cache: "no-store" });
       if (!res.ok) return;
       const items = await res.json();
       const normalize = (s) =>

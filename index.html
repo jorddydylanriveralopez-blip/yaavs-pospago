@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://unpkg.com">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260907h">
+  <link rel="stylesheet" href="css/styles.css?v=20260907i">
   <link rel="stylesheet" href="css/stores.css?v=20260828d">
   <link rel="icon" href="assets/images/favicon.svg?v=20260828d" type="image/svg+xml">
   <link rel="icon" href="assets/images/favicon-32.png?v=20260828d" type="image/png" sizes="32x32">
@@ -210,84 +210,258 @@
 <!-- SHOWCASE CELULARES (estilo AT&T Market: flechas + animación) -->
 <section class="section section--devices-hero" id="celulares" aria-label="Celulares destacados">
   <div class="devices-market" data-devices-carousel>
+    <header class="devices-market__head">
+      <p class="devices-market__eyebrow">Equipos en promoción</p>
+      <h2 class="devices-market__heading">Estrena smartphone con portabilidad</h2>
+      <p class="devices-market__lead">Hasta 20% menos en tu mensualidad al portar tu número. Enganche del 50%.</p>
+      <a class="devices-market__all" href="equipos.html">Ver todos los equipos <span aria-hidden="true">→</span></a>
+    </header>
+
     <div class="devices-market__nav" aria-label="Navegación de celulares">
       <button type="button" class="devices-market__arrow" data-devices-prev aria-label="Anterior">
         <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
       </button>
-      <span class="devices-market__counter" data-devices-counter>1 / 5</span>
+      <span class="devices-market__counter" data-devices-counter>1 / 12</span>
       <button type="button" class="devices-market__arrow" data-devices-next aria-label="Siguiente">
         <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
       </button>
     </div>
 
     <div class="devices-market__stage" data-devices-stage>
-      <article class="devices-market__slide is-active" data-device-card data-name="Apple iPhone 17 256GB" data-tagline="Diseño nuevo. Cámara pro.">
+      <article class="devices-market__slide is-active" data-device-card data-name="Apple iPhone 17 Pro Max 256GB" data-plan="BLACK" data-plazo="24" data-monthly="1200">
         <div class="devices-market__visual">
-          <img src="assets/images/smartphones/Apple%20iPhone%2017%20256GB.png" alt="iPhone 17" width="640" height="640" decoding="async">
+          <span class="devices-market__orb" aria-hidden="true"></span>
+          <img src="assets/images/smartphones/Apple%20iPhone%2017%20Pro%20Max%20256GB.png" alt="iPhone 17 Pro Max" width="640" height="640" decoding="async">
         </div>
         <div class="devices-market__card">
-          <span class="devices-market__badge">AT&amp;T Market</span>
+          <span class="devices-market__badge">AT&amp;T Market · Plan BLACK</span>
+          <h3 class="devices-market__title">iPhone 17 Pro Max</h3>
+          <p class="devices-market__tagline">iPhone 17 Pro Max llevatelo por portabilidad en un plan black a 24 meses con una mensualidad de 1200</p>
+          <p class="devices-market__price" data-device-price>
+            <span class="devices-market__price-amount">$1,200</span>
+            <span class="devices-market__price-meta">al mes · portabilidad</span>
+          </p>
+          <div class="devices-market__actions">
+            <a href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20cotizar%20Apple%20iPhone%2017%20Pro%20Max%20256GB%20con%20portabilidad" class="devices-market__cta" target="_blank" rel="noopener">Cotizar ahora</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="devices-market__slide" data-device-card data-name="Apple iPhone 17 256GB" data-plan="BLACK" data-plazo="24" data-monthly="1012">
+        <div class="devices-market__visual">
+          <span class="devices-market__orb" aria-hidden="true"></span>
+          <img src="assets/images/smartphones/Apple%20iPhone%2017%20256GB.png" alt="iPhone 17" width="640" height="640" loading="lazy" decoding="async">
+        </div>
+        <div class="devices-market__card">
+          <span class="devices-market__badge">AT&amp;T Market · Plan BLACK</span>
           <h3 class="devices-market__title">iPhone 17</h3>
-          <p class="devices-market__tagline">Diseño nuevo. Cámara pro.</p>
-          <p class="devices-market__price" data-device-price>—</p>
-          <a href="#contacto" class="devices-market__cta">Cotizar ahora</a>
+          <p class="devices-market__tagline">iPhone 17 llevatelo por portabilidad en un plan black a 24 meses con una mensualidad de 1012</p>
+          <p class="devices-market__price" data-device-price>
+            <span class="devices-market__price-amount">$1,012</span>
+            <span class="devices-market__price-meta">al mes · portabilidad</span>
+          </p>
+          <div class="devices-market__actions">
+            <a href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20cotizar%20Apple%20iPhone%2017%20256GB%20con%20portabilidad" class="devices-market__cta" target="_blank" rel="noopener">Cotizar ahora</a>
+          </div>
         </div>
       </article>
 
-      <article class="devices-market__slide" data-device-card data-name="Samsung Galaxy S26 Ultra 512GB" data-tagline="Experiencia Galaxy al máximo">
+      <article class="devices-market__slide" data-device-card data-name="Honor Magic 8 Lite 512GB 5G Bundle Headphones" data-plan="BLACK" data-plazo="24" data-monthly="770">
         <div class="devices-market__visual">
-          <img src="assets/images/smartphones/Samsung%20Galaxy%20S26%20Ultra%20512GB.png" alt="Galaxy S26 Ultra" width="640" height="640" loading="lazy" decoding="async">
-        </div>
-        <div class="devices-market__card">
-          <span class="devices-market__badge">AT&amp;T Market</span>
-          <h3 class="devices-market__title">Samsung Galaxy S26 Ultra</h3>
-          <p class="devices-market__tagline">Experiencia Galaxy al máximo</p>
-          <p class="devices-market__price" data-device-price>—</p>
-          <a href="#contacto" class="devices-market__cta">Cotizar ahora</a>
-        </div>
-      </article>
-
-      <article class="devices-market__slide" data-device-card data-name="Xiaomi 17T Pro Bundle Redmi Pad 2" data-tagline="Potencia y pantallas en un bundle">
-        <div class="devices-market__visual">
-          <img src="assets/images/smartphones/Xiaomi%2017T%20Pro%20Bundle%20Redmi%20Pad%202.png" alt="Xiaomi 17T Pro" width="640" height="640" loading="lazy" decoding="async">
-        </div>
-        <div class="devices-market__card">
-          <span class="devices-market__badge">AT&amp;T Market</span>
-          <h3 class="devices-market__title">Xiaomi 17T Pro</h3>
-          <p class="devices-market__tagline">Potencia y pantallas en un bundle</p>
-          <p class="devices-market__price" data-device-price>—</p>
-          <a href="#contacto" class="devices-market__cta">Cotizar ahora</a>
-        </div>
-      </article>
-
-      <article class="devices-market__slide" data-device-card data-name="Motorola Moto Edge 70 Pro + Watch + Chamarra" data-tagline="Edge 70 Pro con extras">
-        <div class="devices-market__visual">
-          <img src="assets/images/smartphones/Motorola%20Moto%20Edge%2070%20Pro%20%2B%20Watch%20%2B%20Chamarra.png" alt="Motorola Edge 70 Pro" width="640" height="640" loading="lazy" decoding="async">
-        </div>
-        <div class="devices-market__card">
-          <span class="devices-market__badge">AT&amp;T Market</span>
-          <h3 class="devices-market__title">Motorola Edge 70 Pro</h3>
-          <p class="devices-market__tagline">Edge 70 Pro con extras</p>
-          <p class="devices-market__price" data-device-price>—</p>
-          <a href="#contacto" class="devices-market__cta">Cotizar ahora</a>
-        </div>
-      </article>
-
-      <article class="devices-market__slide" data-device-card data-name="Honor Magic 8 Lite 512GB 5G Bundle Headphones" data-tagline="5G y sonido incluidos">
-        <div class="devices-market__visual">
+          <span class="devices-market__orb" aria-hidden="true"></span>
           <img src="assets/images/smartphones/Honor%20Magic%208%20Lite%20512GB%205G%20Bundle%20Headphones.png" alt="Honor Magic 8 Lite" width="640" height="640" loading="lazy" decoding="async">
         </div>
         <div class="devices-market__card">
-          <span class="devices-market__badge">AT&amp;T Market</span>
+          <span class="devices-market__badge">AT&amp;T Market · Plan BLACK</span>
           <h3 class="devices-market__title">Honor Magic 8 Lite</h3>
-          <p class="devices-market__tagline">5G y sonido incluidos</p>
-          <p class="devices-market__price" data-device-price>—</p>
-          <a href="#contacto" class="devices-market__cta">Cotizar ahora</a>
+          <p class="devices-market__tagline">Honor Magic llevatelo por portabilidad en un plan black a 24 meses con una mensualidad de 770</p>
+          <p class="devices-market__price" data-device-price>
+            <span class="devices-market__price-amount">$770</span>
+            <span class="devices-market__price-meta">al mes · portabilidad</span>
+          </p>
+          <div class="devices-market__actions">
+            <a href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20cotizar%20Honor%20Magic%208%20Lite%20512GB%205G%20Bundle%20Headphones%20con%20portabilidad" class="devices-market__cta" target="_blank" rel="noopener">Cotizar ahora</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="devices-market__slide" data-device-card data-name="Honor X8D" data-plan="PLATA" data-plazo="24" data-monthly="607">
+        <div class="devices-market__visual">
+          <span class="devices-market__orb" aria-hidden="true"></span>
+          <img src="assets/images/smartphones/Honor%20X8D.png" alt="Honor X8D" width="640" height="640" loading="lazy" decoding="async">
+        </div>
+        <div class="devices-market__card">
+          <span class="devices-market__badge">AT&amp;T Market · Plan PLATA</span>
+          <h3 class="devices-market__title">Honor X8D</h3>
+          <p class="devices-market__tagline">Honor X8D llevatelo por portabilidad en un plan plata a 24 meses con una mensualidad de 607</p>
+          <p class="devices-market__price" data-device-price>
+            <span class="devices-market__price-amount">$607</span>
+            <span class="devices-market__price-meta">al mes · portabilidad</span>
+          </p>
+          <div class="devices-market__actions">
+            <a href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20cotizar%20Honor%20X8D%20con%20portabilidad" class="devices-market__cta" target="_blank" rel="noopener">Cotizar ahora</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="devices-market__slide" data-device-card data-name="Motorola Moto Edge 70 Pro + Watch + Chamarra" data-plan="BLACK" data-plazo="24" data-monthly="927">
+        <div class="devices-market__visual">
+          <span class="devices-market__orb" aria-hidden="true"></span>
+          <img src="assets/images/smartphones/Motorola%20Moto%20Edge%2070%20Pro%20%2B%20Watch%20%2B%20Chamarra.png" alt="Motorola Edge 70 Pro" width="640" height="640" loading="lazy" decoding="async">
+        </div>
+        <div class="devices-market__card">
+          <span class="devices-market__badge">AT&amp;T Market · Plan BLACK</span>
+          <h3 class="devices-market__title">Motorola Edge 70 Pro</h3>
+          <p class="devices-market__tagline">Motorola Edge 70 Pro llevatelo por portabilidad en un plan black a 24 meses con una mensualidad de 927</p>
+          <p class="devices-market__price" data-device-price>
+            <span class="devices-market__price-amount">$927</span>
+            <span class="devices-market__price-meta">al mes · portabilidad</span>
+          </p>
+          <div class="devices-market__actions">
+            <a href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20cotizar%20Motorola%20Moto%20Edge%2070%20Pro%20%2B%20Watch%20%2B%20Chamarra%20con%20portabilidad" class="devices-market__cta" target="_blank" rel="noopener">Cotizar ahora</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="devices-market__slide" data-device-card data-name="Motorola Moto G77" data-plan="BLACK" data-plazo="24" data-monthly="741">
+        <div class="devices-market__visual">
+          <span class="devices-market__orb" aria-hidden="true"></span>
+          <img src="assets/images/smartphones/Motorola%20Moto%20G77.png" alt="Moto G77" width="640" height="640" loading="lazy" decoding="async">
+        </div>
+        <div class="devices-market__card">
+          <span class="devices-market__badge">AT&amp;T Market · Plan BLACK</span>
+          <h3 class="devices-market__title">Moto G77</h3>
+          <p class="devices-market__tagline">Motorola Moto G77 llevatelo por portabilidad en un plan black a 24 meses con una mensualidad de 741</p>
+          <p class="devices-market__price" data-device-price>
+            <span class="devices-market__price-amount">$741</span>
+            <span class="devices-market__price-meta">al mes · portabilidad</span>
+          </p>
+          <div class="devices-market__actions">
+            <a href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20cotizar%20Motorola%20Moto%20G77%20con%20portabilidad" class="devices-market__cta" target="_blank" rel="noopener">Cotizar ahora</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="devices-market__slide" data-device-card data-name="Oppo A6x" data-plan="AZUL 3" data-plazo="36" data-monthly="480">
+        <div class="devices-market__visual">
+          <span class="devices-market__orb" aria-hidden="true"></span>
+          <img src="assets/images/smartphones/Oppo%20A6x.png" alt="Oppo A6x" width="640" height="640" loading="lazy" decoding="async">
+        </div>
+        <div class="devices-market__card">
+          <span class="devices-market__badge">AT&amp;T Market · Plan AZUL 3</span>
+          <h3 class="devices-market__title">Oppo A6x</h3>
+          <p class="devices-market__tagline">Oppo A6x llevatelo por portabilidad en un plan azul 3 a 36 meses con una mensualidad de 480</p>
+          <p class="devices-market__price" data-device-price>
+            <span class="devices-market__price-amount">$480</span>
+            <span class="devices-market__price-meta">al mes · portabilidad</span>
+          </p>
+          <div class="devices-market__actions">
+            <a href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20cotizar%20Oppo%20A6x%20con%20portabilidad" class="devices-market__cta" target="_blank" rel="noopener">Cotizar ahora</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="devices-market__slide" data-device-card data-name="Samsung Galaxy A57 256GB" data-plan="BLACK" data-plazo="24" data-monthly="791">
+        <div class="devices-market__visual">
+          <span class="devices-market__orb" aria-hidden="true"></span>
+          <img src="assets/images/smartphones/Samsung%20Galaxy%20A57%20256GB.png" alt="Galaxy A57" width="640" height="640" loading="lazy" decoding="async">
+        </div>
+        <div class="devices-market__card">
+          <span class="devices-market__badge">AT&amp;T Market · Plan BLACK</span>
+          <h3 class="devices-market__title">Galaxy A57</h3>
+          <p class="devices-market__tagline">Samsung Galaxy A57 llevatelo por portabilidad en un plan black a 24 meses con una mensualidad de 791</p>
+          <p class="devices-market__price" data-device-price>
+            <span class="devices-market__price-amount">$791</span>
+            <span class="devices-market__price-meta">al mes · portabilidad</span>
+          </p>
+          <div class="devices-market__actions">
+            <a href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20cotizar%20Samsung%20Galaxy%20A57%20256GB%20con%20portabilidad" class="devices-market__cta" target="_blank" rel="noopener">Cotizar ahora</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="devices-market__slide" data-device-card data-name="Samsung Galaxy S26 Ultra 512GB" data-plan="BLACK" data-plazo="24" data-monthly="1024">
+        <div class="devices-market__visual">
+          <span class="devices-market__orb" aria-hidden="true"></span>
+          <img src="assets/images/smartphones/Samsung%20Galaxy%20S26%20Ultra%20512GB.png" alt="Galaxy S26 Ultra" width="640" height="640" loading="lazy" decoding="async">
+        </div>
+        <div class="devices-market__card">
+          <span class="devices-market__badge">AT&amp;T Market · Plan BLACK</span>
+          <h3 class="devices-market__title">Galaxy S26 Ultra</h3>
+          <p class="devices-market__tagline">Samsung Galaxy S26 Ultra llevatelo por portabilidad en un plan black a 24 meses con una mensualidad de 1024</p>
+          <p class="devices-market__price" data-device-price>
+            <span class="devices-market__price-amount">$1,024</span>
+            <span class="devices-market__price-meta">al mes · portabilidad</span>
+          </p>
+          <div class="devices-market__actions">
+            <a href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20cotizar%20Samsung%20Galaxy%20S26%20Ultra%20512GB%20con%20portabilidad" class="devices-market__cta" target="_blank" rel="noopener">Cotizar ahora</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="devices-market__slide" data-device-card data-name="Xiaomi Redmi Note 17 Bundle Sound Pocket" data-plan="BLACK" data-plazo="24" data-monthly="596">
+        <div class="devices-market__visual">
+          <span class="devices-market__orb" aria-hidden="true"></span>
+          <img src="assets/images/smartphones/Xiaomi%20Redmi%20Note%2017%20Bundle%20Sound%20Pocket.png" alt="Redmi Note 17" width="640" height="640" loading="lazy" decoding="async">
+        </div>
+        <div class="devices-market__card">
+          <span class="devices-market__badge">AT&amp;T Market · Plan BLACK</span>
+          <h3 class="devices-market__title">Redmi Note 17</h3>
+          <p class="devices-market__tagline">Xiaomi Redmi Note 17 llevatelo por portabilidad en un plan black a 24 meses con una mensualidad de 596</p>
+          <p class="devices-market__price" data-device-price>
+            <span class="devices-market__price-amount">$596</span>
+            <span class="devices-market__price-meta">al mes · portabilidad</span>
+          </p>
+          <div class="devices-market__actions">
+            <a href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20cotizar%20Xiaomi%20Redmi%20Note%2017%20Bundle%20Sound%20Pocket%20con%20portabilidad" class="devices-market__cta" target="_blank" rel="noopener">Cotizar ahora</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="devices-market__slide" data-device-card data-name="Xiaomi 17T Pro Bundle Redmi Pad 2" data-plan="BLACK" data-plazo="24" data-monthly="924">
+        <div class="devices-market__visual">
+          <span class="devices-market__orb" aria-hidden="true"></span>
+          <img src="assets/images/smartphones/Xiaomi%2017T%20Pro%20Bundle%20Redmi%20Pad%202.png" alt="Xiaomi 17T Pro" width="640" height="640" loading="lazy" decoding="async">
+        </div>
+        <div class="devices-market__card">
+          <span class="devices-market__badge">AT&amp;T Market · Plan BLACK</span>
+          <h3 class="devices-market__title">Xiaomi 17T Pro</h3>
+          <p class="devices-market__tagline">Xiaomi 17T Pro llevatelo por portabilidad en un plan black a 24 meses con una mensualidad de 924</p>
+          <p class="devices-market__price" data-device-price>
+            <span class="devices-market__price-amount">$924</span>
+            <span class="devices-market__price-meta">al mes · portabilidad</span>
+          </p>
+          <div class="devices-market__actions">
+            <a href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20cotizar%20Xiaomi%2017T%20Pro%20Bundle%20Redmi%20Pad%202%20con%20portabilidad" class="devices-market__cta" target="_blank" rel="noopener">Cotizar ahora</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="devices-market__slide" data-device-card data-name="Xiaomi 17T Bundle Sound Outdoor" data-plan="BLACK" data-plazo="24" data-monthly="847">
+        <div class="devices-market__visual">
+          <span class="devices-market__orb" aria-hidden="true"></span>
+          <img src="assets/images/smartphones/Xiaomi%2017T%20Bundle%20Sound%20Outdoor.png" alt="Xiaomi 17T" width="640" height="640" loading="lazy" decoding="async">
+        </div>
+        <div class="devices-market__card">
+          <span class="devices-market__badge">AT&amp;T Market · Plan BLACK</span>
+          <h3 class="devices-market__title">Xiaomi 17T</h3>
+          <p class="devices-market__tagline">Xiaomi 17T llevatelo por portabilidad en un plan black a 24 meses con una mensualidad de 847</p>
+          <p class="devices-market__price" data-device-price>
+            <span class="devices-market__price-amount">$847</span>
+            <span class="devices-market__price-meta">al mes · portabilidad</span>
+          </p>
+          <div class="devices-market__actions">
+            <a href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20cotizar%20Xiaomi%2017T%20Bundle%20Sound%20Outdoor%20con%20portabilidad" class="devices-market__cta" target="_blank" rel="noopener">Cotizar ahora</a>
+          </div>
         </div>
       </article>
     </div>
 
     <div class="devices-market__dots" data-devices-dots role="tablist" aria-label="Seleccionar celular"></div>
+
+    <div class="devices-market__footer">
+      <a class="devices-market__cta devices-market__cta--xl" href="equipos.html">Explorar catálogo de equipos <span aria-hidden="true">→</span></a>
+    </div>
   </div>
 </section>
 
@@ -556,6 +730,6 @@
   <script src="js/premium-devices.js?v=20260828d" defer></script>
   <script src="js/tiendas-att-stores.js?v=20260828d" defer></script>
   <script src="js/pospago-stores.js?v=20260828d" defer></script>
-  <script src="js/header.js?v=20260907f" defer></script>
+  <script src="js/header.js?v=20260907i" defer></script>
 </body>
 </html>

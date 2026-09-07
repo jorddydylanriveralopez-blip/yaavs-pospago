@@ -1,198 +1,170 @@
 [
   {
-    "raw": {
-      "PRECIO PROMOCIONAL": 24039.72,
-      "MODELO DEL EQUIPO": "Apple iPhone 17 Pro Max 256GB",
-      "PLAN": "BLACK",
-      "COSTO DEL PLAN (CONTROL INCLUIDO)": 875,
-      "ENGANCHE 50%*": 12019.86,
-      "PLAZO": 24,
-      "MENSUALIDAD": 1375.8275,
-      "MENSUALIDAD 20% PORTABILIDAD*": 1200.8275
-    },
     "name": "Apple iPhone 17 Pro Max 256GB",
-    "price": 24039.72
+    "title": "iPhone 17 Pro Max",
+    "phraseName": "iPhone 17 Pro Max",
+    "price": 24039.72,
+    "plan": "BLACK",
+    "plazo": 24,
+    "monthly": 1375.8275,
+    "monthlyPortability": 1200.8275,
+    "monthlyPortabilityDisplay": 1200,
+    "tagline": "iPhone 17 Pro Max llevatelo por portabilidad en un plan black a 24 meses con una mensualidad de 1200",
+    "image": "assets/images/smartphones/Apple%20iPhone%2017%20Pro%20Max%20256GB.png",
+    "alt": "iPhone 17 Pro Max"
   },
   {
-    "raw": {
-      "PRECIO PROMOCIONAL": 14989.25,
-      "MODELO DEL EQUIPO": "Apple iPhone 17 256GB",
-      "PLAN": "BLACK",
-      "COSTO DEL PLAN (CONTROL INCLUIDO)": 875,
-      "ENGANCHE 50%*": 7494.625,
-      "PLAZO": 24,
-      "MENSUALIDAD": 1187.2760416666667,
-      "MENSUALIDAD 20% PORTABILIDAD*": 1012.2760416666667
-    },
     "name": "Apple iPhone 17 256GB",
-    "price": 14989.25
+    "title": "iPhone 17",
+    "phraseName": "iPhone 17",
+    "price": 14989.25,
+    "plan": "BLACK",
+    "plazo": 24,
+    "monthly": 1187.2760416666667,
+    "monthlyPortability": 1012.2760416666667,
+    "monthlyPortabilityDisplay": 1012,
+    "tagline": "iPhone 17 llevatelo por portabilidad en un plan black a 24 meses con una mensualidad de 1012",
+    "image": "assets/images/smartphones/Apple%20iPhone%2017%20256GB.png",
+    "alt": "iPhone 17"
   },
   {
-    "raw": {
-      "PRECIO PROMOCIONAL": 3398.66,
-      "MODELO DEL EQUIPO": "Honor Magic 8 Lite 512GB 5G Bundle Headphones",
-      "PLAN": "BLACK",
-      "COSTO DEL PLAN (CONTROL INCLUIDO)": 875,
-      "ENGANCHE 50%*": 1699.33,
-      "PLAZO": 24,
-      "MENSUALIDAD": 945.8054166666667,
-      "MENSUALIDAD 20% PORTABILIDAD*": 770.8054166666667
-    },
     "name": "Honor Magic 8 Lite 512GB 5G Bundle Headphones",
-    "price": 3398.66
+    "title": "Honor Magic 8 Lite",
+    "phraseName": "Honor Magic",
+    "price": 3398.66,
+    "plan": "BLACK",
+    "plazo": 24,
+    "monthly": 945.8054166666667,
+    "monthlyPortability": 770.8054166666667,
+    "monthlyPortabilityDisplay": 770,
+    "tagline": "Honor Magic llevatelo por portabilidad en un plan black a 24 meses con una mensualidad de 770",
+    "image": "assets/images/smartphones/Honor%20Magic%208%20Lite%20512GB%205G%20Bundle%20Headphones.png",
+    "alt": "Honor Magic 8 Lite"
   },
   {
-    "raw": {
-      "PRECIO PROMOCIONAL": 2288.67,
-      "MODELO DEL EQUIPO": "Honor X8D",
-      "PLAN": "PLATA",
-      "COSTO DEL PLAN (CONTROL INCLUIDO)": 700,
-      "ENGANCHE 50%*": 1144.335,
-      "PLAZO": 24,
-      "MENSUALIDAD": 747.680625,
-      "MENSUALIDAD 20% PORTABILIDAD*": 607.680625
-    },
     "name": "Honor X8D",
-    "price": 2288.67
+    "title": "Honor X8D",
+    "phraseName": "Honor X8D",
+    "price": 2288.67,
+    "plan": "PLATA",
+    "plazo": 24,
+    "monthly": 747.680625,
+    "monthlyPortability": 607.680625,
+    "monthlyPortabilityDisplay": 607,
+    "tagline": "Honor X8D llevatelo por portabilidad en un plan plata a 24 meses con una mensualidad de 607",
+    "image": "assets/images/smartphones/Honor%20X8D.png",
+    "alt": "Honor X8D"
   },
   {
-    "raw": {
-      "PRECIO PROMOCIONAL": 10899.46,
-      "MODELO DEL EQUIPO": "Motorola Moto Edge 70 Pro + Watch + Chamarra",
-      "PLAN": "BLACK",
-      "COSTO DEL PLAN (CONTROL INCLUIDO)": 875,
-      "ENGANCHE 50%*": 5449.73,
-      "PLAZO": 24,
-      "MENSUALIDAD": 1102.0720833333332,
-      "MENSUALIDAD 20% PORTABILIDAD*": 927.0720833333334
-    },
     "name": "Motorola Moto Edge 70 Pro + Watch + Chamarra",
-    "price": 10899.46
+    "title": "Motorola Edge 70 Pro",
+    "phraseName": "Motorola Edge 70 Pro",
+    "price": 10899.46,
+    "plan": "BLACK",
+    "plazo": 24,
+    "monthly": 1102.0720833333332,
+    "monthlyPortability": 927.0720833333334,
+    "monthlyPortabilityDisplay": 927,
+    "tagline": "Motorola Edge 70 Pro llevatelo por portabilidad en un plan black a 24 meses con una mensualidad de 927",
+    "image": "assets/images/smartphones/Motorola%20Moto%20Edge%2070%20Pro%20%2B%20Watch%20%2B%20Chamarra.png",
+    "alt": "Motorola Edge 70 Pro"
   },
   {
-    "raw": {
-      "PRECIO PROMOCIONAL": 1978.95,
-      "MODELO DEL EQUIPO": "Motorola Moto G77",
-      "PLAN": "BLACK",
-      "COSTO DEL PLAN (CONTROL INCLUIDO)": 875,
-      "ENGANCHE 50%*": 989.475,
-      "PLAZO": 24,
-      "MENSUALIDAD": 916.228125,
-      "MENSUALIDAD 20% PORTABILIDAD*": 741.228125
-    },
     "name": "Motorola Moto G77",
-    "price": 1978.95
+    "title": "Moto G77",
+    "phraseName": "Motorola Moto G77",
+    "price": 1978.95,
+    "plan": "BLACK",
+    "plazo": 24,
+    "monthly": 916.228125,
+    "monthlyPortability": 741.228125,
+    "monthlyPortabilityDisplay": 741,
+    "tagline": "Motorola Moto G77 llevatelo por portabilidad en un plan black a 24 meses con una mensualidad de 741",
+    "image": "assets/images/smartphones/Motorola%20Moto%20G77.png",
+    "alt": "Moto G77"
   },
   {
-    "raw": {
-      "PRECIO PROMOCIONAL": 0,
-      "MODELO DEL EQUIPO": "Oppo A6x",
-      "PLAN": "AZUL 3",
-      "COSTO DEL PLAN (CONTROL INCLUIDO)": 600,
-      "ENGANCHE 50%*": 0,
-      "PLAZO": 36,
-      "MENSUALIDAD": 600,
-      "MENSUALIDAD 20% PORTABILIDAD*": 480
-    },
     "name": "Oppo A6x",
-    "price": 0
+    "title": "Oppo A6x",
+    "phraseName": "Oppo A6x",
+    "price": 0,
+    "plan": "AZUL 3",
+    "plazo": 36,
+    "monthly": 600.0,
+    "monthlyPortability": 480.0,
+    "monthlyPortabilityDisplay": 480,
+    "tagline": "Oppo A6x llevatelo por portabilidad en un plan azul 3 a 36 meses con una mensualidad de 480",
+    "image": "assets/images/smartphones/Oppo%20A6x.png",
+    "alt": "Oppo A6x"
   },
   {
-    "raw": {
-      "PRECIO PROMOCIONAL": 4398.83,
-      "MODELO DEL EQUIPO": "Samsung Galaxy A57 256GB",
-      "PLAN": "BLACK",
-      "COSTO DEL PLAN (CONTROL INCLUIDO)": 875,
-      "ENGANCHE 50%*": 2199.415,
-      "PLAZO": 24,
-      "MENSUALIDAD": 966.6422916666667,
-      "MENSUALIDAD 20% PORTABILIDAD*": 791.6422916666667
-    },
     "name": "Samsung Galaxy A57 256GB",
-    "price": 4398.83
+    "title": "Galaxy A57",
+    "phraseName": "Samsung Galaxy A57",
+    "price": 4398.83,
+    "plan": "BLACK",
+    "plazo": 24,
+    "monthly": 966.6422916666667,
+    "monthlyPortability": 791.6422916666667,
+    "monthlyPortabilityDisplay": 791,
+    "tagline": "Samsung Galaxy A57 llevatelo por portabilidad en un plan black a 24 meses con una mensualidad de 791",
+    "image": "assets/images/smartphones/Samsung%20Galaxy%20A57%20256GB.png",
+    "alt": "Galaxy A57"
   },
   {
-    "raw": {
-      "PRECIO PROMOCIONAL": 15598.59,
-      "MODELO DEL EQUIPO": "Samsung Galaxy S26 Ultra 512GB",
-      "PLAN": "BLACK",
-      "COSTO DEL PLAN (CONTROL INCLUIDO)": 875,
-      "ENGANCHE 50%*": 7799.295,
-      "PLAZO": 24,
-      "MENSUALIDAD": 1199.970625,
-      "MENSUALIDAD 20% PORTABILIDAD*": 1024.970625
-    },
     "name": "Samsung Galaxy S26 Ultra 512GB",
-    "price": 15598.59
+    "title": "Galaxy S26 Ultra",
+    "phraseName": "Samsung Galaxy S26 Ultra",
+    "price": 15598.59,
+    "plan": "BLACK",
+    "plazo": 24,
+    "monthly": 1199.970625,
+    "monthlyPortability": 1024.970625,
+    "monthlyPortabilityDisplay": 1024,
+    "tagline": "Samsung Galaxy S26 Ultra llevatelo por portabilidad en un plan black a 24 meses con una mensualidad de 1024",
+    "image": "assets/images/smartphones/Samsung%20Galaxy%20S26%20Ultra%20512GB.png",
+    "alt": "Galaxy S26 Ultra"
   },
   {
-    "raw": {
-      "PRECIO PROMOCIONAL": 1769.03,
-      "MODELO DEL EQUIPO": "Xiaomi Redmi Note 17 Bundle Sound Pocket",
-      "PLAN": "BLACK",
-      "COSTO DEL PLAN (CONTROL INCLUIDO)": 700,
-      "ENGANCHE 50%*": 884.515,
-      "PLAZO": 24,
-      "MENSUALIDAD": 736.8547916666666,
-      "MENSUALIDAD 20% PORTABILIDAD*": 596.8547916666666
-    },
     "name": "Xiaomi Redmi Note 17 Bundle Sound Pocket",
-    "price": 1769.03
+    "title": "Redmi Note 17",
+    "phraseName": "Xiaomi Redmi Note 17",
+    "price": 1769.03,
+    "plan": "BLACK",
+    "plazo": 24,
+    "monthly": 736.8547916666666,
+    "monthlyPortability": 596.8547916666666,
+    "monthlyPortabilityDisplay": 596,
+    "tagline": "Xiaomi Redmi Note 17 llevatelo por portabilidad en un plan black a 24 meses con una mensualidad de 596",
+    "image": "assets/images/smartphones/Xiaomi%20Redmi%20Note%2017%20Bundle%20Sound%20Pocket.png",
+    "alt": "Redmi Note 17"
   },
   {
-    "raw": {
-      "PRECIO PROMOCIONAL": 10799.79,
-      "MODELO DEL EQUIPO": "Xiaomi 17T Pro Bundle Redmi Pad 2",
-      "PLAN": "BLACK",
-      "COSTO DEL PLAN (CONTROL INCLUIDO)": 875,
-      "ENGANCHE 50%*": 5399.895,
-      "PLAZO": 24,
-      "MENSUALIDAD": 1099.995625,
-      "MENSUALIDAD 20% PORTABILIDAD*": 924.995625
-    },
     "name": "Xiaomi 17T Pro Bundle Redmi Pad 2",
-    "price": 10799.79
+    "title": "Xiaomi 17T Pro",
+    "phraseName": "Xiaomi 17T Pro",
+    "price": 10799.79,
+    "plan": "BLACK",
+    "plazo": 24,
+    "monthly": 1099.995625,
+    "monthlyPortability": 924.995625,
+    "monthlyPortabilityDisplay": 924,
+    "tagline": "Xiaomi 17T Pro llevatelo por portabilidad en un plan black a 24 meses con una mensualidad de 924",
+    "image": "assets/images/smartphones/Xiaomi%2017T%20Pro%20Bundle%20Redmi%20Pad%202.png",
+    "alt": "Xiaomi 17T Pro"
   },
   {
-    "raw": {
-      "PRECIO PROMOCIONAL": 7098.76,
-      "MODELO DEL EQUIPO": "Xiaomi 17T Bundle Sound Outdoor",
-      "PLAN": "BLACK",
-      "COSTO DEL PLAN (CONTROL INCLUIDO)": 875,
-      "ENGANCHE 50%*": 3549.38,
-      "PLAZO": 24,
-      "MENSUALIDAD": 1022.8908333333334,
-      "MENSUALIDAD 20% PORTABILIDAD*": 847.8908333333334
-    },
     "name": "Xiaomi 17T Bundle Sound Outdoor",
-    "price": 7098.76
-  },
-  {
-    "raw": {
-      "PRECIO PROMOCIONAL": "* EL PAGO INICIAL VAREA POR CAPACIDAD DE PAGO CADA CLIENTE",
-      "MODELO DEL EQUIPO": null,
-      "PLAN": null,
-      "COSTO DEL PLAN (CONTROL INCLUIDO)": null,
-      "ENGANCHE 50%*": null,
-      "PLAZO": null,
-      "MENSUALIDAD": null,
-      "MENSUALIDAD 20% PORTABILIDAD*": null
-    },
-    "name": "* EL PAGO INICIAL VAREA POR CAPACIDAD DE PAGO CADA CLIENTE",
-    "price": "* EL PAGO INICIAL VAREA POR CAPACIDAD DE PAGO CADA CLIENTE"
-  },
-  {
-    "raw": {
-      "PRECIO PROMOCIONAL": "*20% DE DESCUENTO POR PORTABILIDAD AL ACTIVAR LINEA NUEVA O ADICIONAL CONSERVANDO SU NUMERO",
-      "MODELO DEL EQUIPO": null,
-      "PLAN": null,
-      "COSTO DEL PLAN (CONTROL INCLUIDO)": null,
-      "ENGANCHE 50%*": null,
-      "PLAZO": null,
-      "MENSUALIDAD": null,
-      "MENSUALIDAD 20% PORTABILIDAD*": null
-    },
-    "name": "*20% DE DESCUENTO POR PORTABILIDAD AL ACTIVAR LINEA NUEVA O ADICIONAL CONSERVANDO SU NUMERO",
-    "price": "*20% DE DESCUENTO POR PORTABILIDAD AL ACTIVAR LINEA NUEVA O ADICIONAL CONSERVANDO SU NUMERO"
+    "title": "Xiaomi 17T",
+    "phraseName": "Xiaomi 17T",
+    "price": 7098.76,
+    "plan": "BLACK",
+    "plazo": 24,
+    "monthly": 1022.8908333333334,
+    "monthlyPortability": 847.8908333333334,
+    "monthlyPortabilityDisplay": 847,
+    "tagline": "Xiaomi 17T llevatelo por portabilidad en un plan black a 24 meses con una mensualidad de 847",
+    "image": "assets/images/smartphones/Xiaomi%2017T%20Bundle%20Sound%20Outdoor.png",
+    "alt": "Xiaomi 17T"
   }
 ]

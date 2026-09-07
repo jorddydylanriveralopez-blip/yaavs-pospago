@@ -1314,8 +1314,87 @@ a {
   position: relative;
   width: min(1120px, 100%);
   margin: 0 auto;
-  padding: 1.75rem 1.25rem 2.25rem;
-  min-height: 520px;
+  padding: 1.75rem 1.25rem 2.5rem;
+  min-height: 560px;
+}
+
+.devices-market__head {
+  text-align: center;
+  max-width: 40rem;
+  margin: 0 auto 1.35rem;
+  animation: devicesHeadIn 0.8s var(--dm-ease) both;
+}
+
+.devices-market__eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--att-blue);
+}
+
+.devices-market__heading {
+  margin: 0 0 0.45rem;
+  font-size: clamp(1.55rem, 3.2vw, 2.15rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--att-ink);
+  line-height: 1.15;
+}
+
+.devices-market__lead {
+  margin: 0 auto 1rem;
+  max-width: 34rem;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: rgba(11, 28, 40, 0.68);
+}
+
+.devices-market__all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.72rem 1.25rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #00a3e0, #00c1d4 55%, #7aefff);
+  color: #041018;
+  font-weight: 800;
+  font-size: 0.9rem;
+  text-decoration: none;
+  box-shadow:
+    0 10px 28px rgba(0, 159, 219, 0.28),
+    0 0 0 1px rgba(255, 255, 255, 0.35) inset;
+  transition: transform 0.25s var(--dm-ease), box-shadow 0.25s ease;
+  animation: devicesCtaPulse 2.8s ease-in-out infinite;
+}
+
+.devices-market__all:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 34px rgba(0, 159, 219, 0.38);
+}
+
+.devices-market__footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.35rem;
+}
+
+.devices-market__cta--xl {
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  font-size: 0.98rem;
+  letter-spacing: 0.01em;
+}
+
+@keyframes devicesHeadIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes devicesCtaPulse {
+  0%, 100% { box-shadow: 0 10px 28px rgba(0, 159, 219, 0.28), 0 0 0 0 rgba(0, 193, 212, 0.35); }
+  50% { box-shadow: 0 14px 34px rgba(0, 159, 219, 0.4), 0 0 0 10px rgba(0, 193, 212, 0); }
 }
 
 .devices-market__nav {
@@ -1364,7 +1443,7 @@ a {
 
 .devices-market__stage {
   position: relative;
-  min-height: 420px;
+  min-height: 460px;
   overflow: hidden;
 }
 
@@ -1404,6 +1483,7 @@ a {
 }
 
 .devices-market__visual {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1412,13 +1492,48 @@ a {
   will-change: transform, opacity, filter;
 }
 
+.devices-market__orb {
+  position: absolute;
+  width: min(320px, 70%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(122, 239, 255, 0.55), transparent 55%),
+    radial-gradient(circle at 70% 70%, rgba(0, 159, 219, 0.32), transparent 60%);
+  filter: blur(10px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.devices-market__slide.is-active .devices-market__orb {
+  opacity: 0.9;
+  animation: devicesOrbPulse 4.5s ease-in-out infinite;
+}
+
+@keyframes devicesOrbPulse {
+  0%, 100% { transform: scale(0.92); opacity: 0.55; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+
 .devices-market__visual img {
+  position: relative;
+  z-index: 1;
   width: min(420px, 78%);
   height: auto;
   max-height: 400px;
   object-fit: contain;
   filter: drop-shadow(0 22px 36px rgba(11, 28, 40, 0.18));
   transform-origin: 50% 90%;
+}
+
+.devices-market__slide.is-active .devices-market__visual img {
+  animation: devicesPhoneFloat 5.5s ease-in-out infinite;
+}
+
+@keyframes devicesPhoneFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 /* Clock motion on the phone visual */
@@ -1474,12 +1589,16 @@ a {
 
 .devices-market__card {
   justify-self: start;
-  max-width: 320px;
-  padding: 1.15rem 1.25rem 1.25rem;
-  border-radius: 16px;
-  background: linear-gradient(165deg, #132536 0%, #0b1c28 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 18px 40px rgba(11, 28, 40, 0.2);
+  max-width: 360px;
+  padding: 1.25rem 1.3rem 1.35rem;
+  border-radius: 18px;
+  background:
+    linear-gradient(165deg, rgba(255,255,255,0.08), transparent 40%),
+    linear-gradient(165deg, #163247 0%, #0b1c28 100%);
+  border: 1px solid rgba(122, 239, 255, 0.18);
+  box-shadow:
+    0 18px 40px rgba(11, 28, 40, 0.28),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
   transform: translateY(18px);
   opacity: 0;
   transition: transform 0.55s var(--dm-ease) 0.1s, opacity 0.45s ease 0.1s;
@@ -1488,22 +1607,28 @@ a {
 .devices-market__slide.is-active .devices-market__card {
   transform: translateY(0);
   opacity: 1;
+  animation: devicesCardGlow 3.6s ease-in-out infinite;
+}
+
+@keyframes devicesCardGlow {
+  0%, 100% { box-shadow: 0 18px 40px rgba(11, 28, 40, 0.28), 0 0 0 1px rgba(122, 239, 255, 0.12) inset; }
+  50% { box-shadow: 0 22px 48px rgba(0, 159, 219, 0.28), 0 0 28px rgba(0, 193, 212, 0.18), 0 0 0 1px rgba(122, 239, 255, 0.28) inset; }
 }
 
 .devices-market__badge {
   display: inline-block;
   margin-bottom: 0.55rem;
   padding: 0.22rem 0.7rem;
-  border-radius: 4px;
-  font-size: 0.72rem;
-  font-weight: 700;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 750;
   letter-spacing: 0.04em;
   background: #fff;
   color: #0b1c28;
 }
 
 .devices-market__title {
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.45rem;
   font-size: clamp(1.35rem, 2.4vw, 1.75rem);
   font-weight: 800;
   line-height: 1.15;
@@ -1512,18 +1637,44 @@ a {
 }
 
 .devices-market__tagline {
-  margin: 0 0 0.75rem;
-  font-size: 0.95rem;
-  line-height: 1.35;
-  color: rgba(255, 255, 255, 0.78);
+  margin: 0 0 0.9rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: rgba(210, 224, 232, 0.82);
 }
 
 .devices-market__price {
-  margin: 0 0 0.95rem;
-  font-size: clamp(1.45rem, 2.6vw, 1.85rem);
+  margin: 0 0 1rem;
+  display: grid;
+  gap: 0.15rem;
+}
+
+.devices-market__price-amount {
+  font-size: clamp(1.65rem, 3vw, 2.05rem);
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   color: #7aefff;
+  text-shadow: 0 0 24px rgba(122, 239, 255, 0.35);
+  animation: devicesPriceShine 2.8s ease-in-out infinite;
+}
+
+.devices-market__price-meta {
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(122, 239, 255, 0.72);
+}
+
+@keyframes devicesPriceShine {
+  0%, 100% { filter: brightness(1); transform: translateY(0); }
+  50% { filter: brightness(1.12); transform: translateY(-1px); }
+}
+
+.devices-market__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
 }
 
 .devices-market__cta {
@@ -1572,6 +1723,16 @@ a {
   box-shadow: 0 0 0 5px rgba(0, 193, 212, 0.16);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .devices-market__all,
+  .devices-market__slide.is-active .devices-market__card,
+  .devices-market__price-amount,
+  .devices-market__slide.is-active .devices-market__orb,
+  .devices-market__slide.is-active .devices-market__visual img {
+    animation: none !important;
+  }
+}
+
 .hero__mobile-arrow,
 .hero__mobile-bar,
 .hero__mobile-dots,
@@ -1586,7 +1747,7 @@ a {
   }
 
   .devices-market__stage {
-    min-height: 480px;
+    min-height: 560px;
   }
 
   .devices-market__slide {
@@ -1617,7 +1778,7 @@ a {
 
 @media (max-width: 480px) {
   .devices-market__stage {
-    min-height: 460px;
+    min-height: 580px;
   }
 
   .devices-market__arrow {

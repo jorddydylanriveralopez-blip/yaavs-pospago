@@ -408,7 +408,7 @@ function initDevicesCarousel() {
 
   async function applyPrices() {
     try {
-      const res = await fetch("assets/data/devices.json", { cache: "no-store" });
+      const res = await fetch("assets/data/devices.json?v=20260907i", { cache: "no-store" });
       if (!res.ok) return;
       const items = await res.json();
       const normalize = (s) =>
@@ -420,17 +420,31 @@ function initDevicesCarousel() {
 
       slides.forEach((slide) => {
         const key = normalize(slide.getAttribute("data-name") || "");
-        const priceEl = slide.querySelector("[data-device-price]");
-        if (!priceEl || !key) return;
+        if (!key) return;
         const match = items.find((it) => {
           const n = normalize(it.name);
           return n && (n === key || n.includes(key) || key.includes(n));
         });
         if (!match) return;
-        if (typeof match.price === "number" && match.price > 0) {
-          priceEl.textContent = money(match.price);
-        } else {
-          priceEl.textContent = "Desde tu plan";
+
+        const taglineEl = slide.querySelector(".devices-market__tagline");
+        if (taglineEl && match.tagline) taglineEl.textContent = match.tagline;
+
+        const priceEl = slide.querySelector("[data-device-price]");
+        if (!priceEl) return;
+        const amountEl = priceEl.querySelector(".devices-market__price-amount");
+        const monthly =
+          typeof match.monthlyPortabilityDisplay === "number"
+            ? match.monthlyPortabilityDisplay
+            : Math.floor(Number(match.monthlyPortability) || 0);
+        if (monthly > 0) {
+          const label = `$${monthly.toLocaleString("es-MX")}`;
+          if (amountEl) amountEl.textContent = label;
+          else priceEl.textContent = label;
+        } else if (typeof match.price === "number" && match.price > 0) {
+          const label = money(match.price);
+          if (amountEl) amountEl.textContent = label;
+          else priceEl.textContent = label;
         }
       });
     } catch (err) {

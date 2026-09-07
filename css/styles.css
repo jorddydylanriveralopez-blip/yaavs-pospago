@@ -257,6 +257,16 @@ a {
   font-size: 1rem;
 }
 
+.site-header__inner .btn-cta--wa {
+  gap: 0.45rem;
+  animation: ctaIn 0.85s var(--ease) 0.2s both, ctaWaGradient 4.5s ease infinite;
+}
+
+.site-header__inner .btn-cta--wa .btn-cta__wa {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
 /* Center CTA horizontally in header, reserve nav space to avoid overlap */
 .site-header__inner .btn-cta {
   position: static;
@@ -276,7 +286,7 @@ a {
 /* En pantallas pequeñas reducir tamaño y evitar 'saltos' por animaciones */
 @media (max-width: 680px) {
   .site-header__inner .btn-cta { padding: 0.5rem 1rem; font-size: 0.92rem; min-height: 40px; }
-  .btn-cta { animation: ctaGradient 6s linear infinite; }
+  .btn-cta:not(.btn-cta--wa) { animation: ctaGradient 6s linear infinite; }
 }
 
 .brand {

@@ -5069,35 +5069,52 @@ body.is-modal-open {
 }
 
 .section--plans-single .plans-scroll {
-  overflow: visible;
+  --plan-card-w: 168px;
+  --plan-gap: 0.72rem;
+  overflow-x: auto;
+  overflow-y: visible;
   padding-inline: 0;
-  width: min(1100px, 100%);
+  width: min(1280px, calc(100% - 1rem));
   max-width: 100%;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 1.2%,
+    #000 98.8%,
+    transparent 100%
+  );
 }
 
 .section--plans-single .plans {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 0.85rem;
-  width: min(960px, calc(100% - 2rem));
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: var(--plan-gap, 0.72rem);
+  width: max-content;
+  max-width: none;
+  min-width: 100%;
   margin: 0 auto;
-  padding: 0.5rem 0 1rem;
-  flex-wrap: unset;
+  padding: 0.65rem 1rem 1.05rem;
   overflow: visible;
   transform: none !important;
   --pos: 0 !important;
 }
 
-.section--plans-single .plans > * {
-  min-width: 0 !important;
-  width: auto !important;
-  max-width: none !important;
-  flex: unset !important;
-  scroll-snap-align: unset;
+.section--plans-single .plans > .plan {
+  flex: 0 0 var(--plan-card-w, 168px) !important;
+  width: var(--plan-card-w, 168px) !important;
+  min-width: var(--plan-card-w, 168px) !important;
+  max-width: var(--plan-card-w, 168px) !important;
+  scroll-snap-align: start;
+}
+
+.section--plans-single .plans > .plans__ghost {
+  display: none !important;
 }
 
 .section--plans-single .plans-nav {
-  display: none !important;
+  display: flex;
 }
 
 .plan-family-cta-band {
@@ -5172,14 +5189,16 @@ body.is-modal-open {
 
 @media (max-width: 860px) {
   .plan-family-info__grid { grid-template-columns: 1fr; gap: 1.25rem; }
-  .section--plans-single .plans {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .section--plans-single .plans-scroll {
+    --plan-card-w: 158px;
+    width: calc(100% - 0.5rem);
+    mask-image: none;
   }
 }
 
 @media (max-width: 520px) {
-  .section--plans-single .plans {
-    grid-template-columns: 1fr;
+  .section--plans-single .plans-scroll {
+    --plan-card-w: 152px;
   }
   .plan-family-hero__actions { flex-direction: column; align-items: stretch; }
 }

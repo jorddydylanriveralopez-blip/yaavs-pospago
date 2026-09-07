@@ -63,21 +63,19 @@
   letter-spacing: -0.03em;
   text-transform: none;
   color: #0b1c28;
+  background: linear-gradient(115deg, #0b1c28 15%, #0077a8 55%, #00c1d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
   line-height: 1.12;
   opacity: 1 !important;
   visibility: visible !important;
 }
 
-.pospago-stores__title-brand {
-  display: block;
-  margin-top: 0.2rem;
-  background: linear-gradient(115deg, #0077a8 10%, #00a3e0 45%, #00c1d4 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  font-weight: 900;
-  letter-spacing: -0.02em;
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .pospago-stores__title {
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .pospago-stores__title::after {

@@ -4487,14 +4487,15 @@ body.is-modal-open {
 }
 
 .blogs-page-hero--media {
-  padding: 0 0 clamp(1.75rem, 3vw, 2.5rem);
-  background: #fff;
+  padding: 0;
+  background: transparent;
+  border-bottom: 0;
 }
 
 .blogs-page-hero__banner {
   line-height: 0;
-  background: #e8f7fc;
-  border-bottom: 1px solid rgba(0, 159, 219, 0.1);
+  background: #041018;
+  border-bottom: 0;
 }
 
 .blogs-page-hero__banner img {
@@ -4505,7 +4506,7 @@ body.is-modal-open {
 }
 
 .blogs-page-hero--media .blogs-page-hero__inner {
-  padding-top: 1.5rem;
+  display: none;
 }
 
 .blogs-page-hero__inner {
@@ -4551,7 +4552,7 @@ body.is-modal-open {
 }
 
 .section--blog-page {
-  padding-top: clamp(3rem, 5vw, 4.5rem);
+  padding-top: clamp(2.25rem, 4vw, 3.25rem);
 }
 
 .blog-masthead--page {

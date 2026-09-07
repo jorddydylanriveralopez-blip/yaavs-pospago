@@ -3197,6 +3197,14 @@ a {
   justify-content: center;
 }
 
+.plans.is-centered {
+  justify-content: center;
+}
+
+.plans.is-overflowing {
+  justify-content: flex-start;
+}
+
 .plans.is-dragging {
   transition: none;
   cursor: grabbing;

@@ -9,7 +9,7 @@
     att: {
       id: "att",
       name: "AT&T",
-      title: "Sucursales AT&T",
+      title: "Encuentra tu tienda",
     },
   };
 

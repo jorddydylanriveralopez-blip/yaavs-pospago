@@ -478,6 +478,11 @@ function initDevicesCarousel() {
       const active = i === index;
       dot.classList.toggle("is-active", active);
       dot.setAttribute("aria-selected", active ? "true" : "false");
+      if (active) {
+        try {
+          dot.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
+        } catch (_) {}
+      }
     });
   }
 

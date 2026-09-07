@@ -3665,10 +3665,6 @@ a {
   white-space: nowrap;
 }
 
-.plan--featured .plan__equip-badge {
-  top: 1.35rem;
-}
-
 body.is-modal-open {
   overflow: hidden;
 }

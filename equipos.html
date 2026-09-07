@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260907al">
+  <link rel="stylesheet" href="css/styles.css?v=20260907am">
   <link rel="stylesheet" href="css/stores.css?v=20260907o">
   <link rel="icon" href="assets/images/favicon.svg?v=20260907ag" type="image/svg+xml">
   <link rel="icon" href="assets/images/favicon-32.png?v=20260907ag" type="image/png" sizes="32x32">
@@ -108,11 +108,31 @@
   </header>
 
   <main id="equipos">
-    <section class="section section--deals-hero">
+    <section class="att-banner att-banner--promos" id="promociones" aria-label="Promociones de septiembre">
+      <a class="att-banner__link" href="#ofertas">
+        <img
+          class="att-banner__img"
+          src="assets/images/banner-att-promociones.jpg?v=20260907am"
+          alt="En septiembre, ¡conéctate con lo mejor! Aprovecha las mejores promociones de YAAVS Pospago AT&amp;T"
+          width="3600"
+          height="893"
+          decoding="async"
+          fetchpriority="high"
+        >
+        <span class="att-banner__cta">
+          <span class="att-banner__cta-ring" aria-hidden="true"></span>
+          <span class="att-banner__cta-ring att-banner__cta-ring--delay" aria-hidden="true"></span>
+          <span class="att-banner__cta-label">Ver equipos en promoción</span>
+          <span class="att-banner__cta-arrow" aria-hidden="true">→</span>
+        </span>
+      </a>
+    </section>
+
+    <section class="section section--deals-hero" id="ofertas">
       <div class="deals-bg" aria-hidden="true"></div>
       <div class="wrap">
         <header class="section__head section__head--deals">
-          <p class="eyebrow">Promoción vigente · 1 de septiembre</p>
+          <p class="eyebrow">Promoción vigente · Septiembre</p>
           <h1>Equipos en promoción con <strong>50% de enganche</strong></h1>
           <p>Estrena smartphone hoy y ahorra hasta 20% en tu mensualidad si portas tu número a AT&amp;T Premium.</p>
         </header>
@@ -136,7 +156,7 @@
       <nav aria-label="Pie">
         <a href="/">Inicio</a>
         <a href="/equipos.html">Equipos</a>
-        <a href="/#promociones">Promociones</a>
+        <a href="/equipos.html#promociones">Promociones</a>
         <a href="/#tiendas">Tiendas</a>
         <a href="/#cotizar">Cotizar</a>
       </nav>

@@ -7135,23 +7135,109 @@ body:has(.cookie-notice.is-visible) .wa-float {
 
 /* Insurance intro below banner */
 .section--insurance-intro {
-  padding: clamp(2.5rem, 5vw, 3.75rem) 0 1.5rem;
-  background: linear-gradient(180deg, #fff 0%, #f4fbff 100%);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(2.75rem, 5.5vw, 4.25rem) 0 clamp(2rem, 4vw, 3rem);
+  background:
+    radial-gradient(720px 320px at 12% 0%, rgba(0, 193, 212, 0.16), transparent 60%),
+    radial-gradient(640px 280px at 92% 100%, rgba(0, 159, 219, 0.14), transparent 58%),
+    linear-gradient(180deg, #f7fcff 0%, #ffffff 55%, #eef8fc 100%);
+}
+
+.insurance-intro__glow {
+  pointer-events: none;
+  position: absolute;
+  inset: 12% 18% auto;
+  height: 180px;
+  z-index: 0;
+  background: radial-gradient(ellipse at center, rgba(0, 193, 212, 0.22), transparent 70%);
+  filter: blur(28px);
+  animation: insuranceIntroGlow 5.5s ease-in-out infinite alternate;
+}
+
+@keyframes insuranceIntroGlow {
+  from { opacity: 0.55; transform: translateY(0) scale(1); }
+  to { opacity: 1; transform: translateY(10px) scale(1.08); }
+}
+
+.section--insurance-intro > .wrap {
+  position: relative;
+  z-index: 1;
 }
 
 .insurance-intro {
-  max-width: 44rem;
+  position: relative;
+  max-width: 46rem;
   margin-inline: auto;
   text-align: center;
+  padding: clamp(1.75rem, 4vw, 2.5rem) clamp(1.25rem, 3.5vw, 2.35rem);
+  border-radius: 24px;
+  background:
+    linear-gradient(165deg, rgba(255, 255, 255, 0.96), rgba(240, 250, 255, 0.92));
+  border: 1px solid rgba(0, 159, 219, 0.16);
+  box-shadow:
+    0 22px 50px rgba(11, 28, 40, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  overflow: hidden;
+  animation: insuranceIntroIn 0.75s var(--ease) both;
+}
+
+.insurance-intro::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--att-cyan), var(--att-blue), transparent);
+}
+
+.insurance-intro::after {
+  content: "";
+  position: absolute;
+  inset: auto -20% -40% 40%;
+  height: 70%;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(0, 193, 212, 0.12), transparent 68%);
+}
+
+@keyframes insuranceIntroIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.insurance-intro__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  margin: 0 auto 0.85rem;
+  border-radius: 16px;
+  color: var(--att-blue);
+  background:
+    linear-gradient(145deg, rgba(0, 193, 212, 0.18), rgba(0, 159, 219, 0.1));
+  border: 1px solid rgba(0, 159, 219, 0.2);
+  box-shadow: 0 10px 24px rgba(0, 159, 219, 0.16);
 }
 
 .insurance-intro .eyebrow {
   color: var(--att-blue);
   margin: 0 0 0.55rem;
+  letter-spacing: 0.14em;
 }
 
 .insurance-intro h2 {
-  margin: 0 0 1rem;
+  position: relative;
+  margin: 0 0 1.15rem;
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 4vw, 2.55rem);
   font-weight: 900;
@@ -7161,46 +7247,73 @@ body:has(.cookie-notice.is-visible) .wa-float {
   text-wrap: balance;
 }
 
+.insurance-intro h2::after {
+  content: "";
+  display: block;
+  width: 3.5rem;
+  height: 3px;
+  margin: 0.85rem auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--att-cyan), var(--att-blue));
+}
+
 .insurance-intro .text-cyan {
   color: var(--att-cyan);
 }
 
-.insurance-intro__sub {
-  margin: 0 0 0.85rem;
-  font-size: clamp(1rem, 2vw, 1.15rem);
-  color: var(--att-ink);
-  line-height: 1.5;
+.insurance-intro__copy {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0 0 1.55rem;
 }
 
-.insurance-intro__text {
-  margin: 0 0 1.5rem;
+.insurance-intro__copy p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
   color: var(--att-muted);
-  line-height: 1.55;
+  text-wrap: pretty;
 }
 
 .insurance-intro__cta {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.9rem 2.2rem;
+  padding: 0.95rem 2.3rem;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1rem;
   color: #fff;
   background: linear-gradient(115deg, var(--att-cyan), var(--att-blue));
+  background-size: 180% 100%;
   border-radius: 999px;
   text-decoration: none;
-  box-shadow: 0 10px 28px rgba(0, 159, 219, 0.35);
+  box-shadow:
+    0 12px 30px rgba(0, 159, 219, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.25) inset;
   transition: transform 0.2s var(--ease), box-shadow 0.2s ease;
+  animation: insuranceCtaShine 4.5s ease infinite;
+}
+
+@keyframes insuranceCtaShine {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .insurance-intro__cta:hover {
   transform: translateY(-3px);
-  box-shadow: 0 15px 36px rgba(0, 159, 219, 0.45);
+  box-shadow:
+    0 16px 36px rgba(0, 159, 219, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.35) inset;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .insurance-hero--media .plan-family-hero__media img {
+  .insurance-hero--media .plan-family-hero__media img,
+  .insurance-intro,
+  .insurance-intro__glow,
+  .insurance-intro__cta {
     animation: none;
   }
 }

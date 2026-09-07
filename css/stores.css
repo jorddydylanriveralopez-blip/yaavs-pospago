@@ -63,16 +63,20 @@
   letter-spacing: -0.03em;
   text-transform: none;
   color: #0b1c28;
-  background: linear-gradient(115deg, #0b1c28 15%, #0077a8 55%, #00c1d4 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
   line-height: 1.12;
   opacity: 1 !important;
   visibility: visible !important;
 }
 
+.pospago-stores__title span {
+  color: #00a8c8;
+  background: linear-gradient(115deg, #009fdb, #00c1d4);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
-  .pospago-stores__title {
+  .pospago-stores__title span {
     color: transparent;
     -webkit-text-fill-color: transparent;
   }
@@ -477,74 +481,191 @@
 }
 
 @media (max-width: 860px) {
+  .pospago-stores {
+    overflow: visible;
+  }
+
   .pospago-stores__head {
-    padding: 1.75rem 1rem 0.45rem;
+    padding: 1.45rem 0.85rem 0.35rem;
   }
 
   .pospago-stores__head-row {
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.85rem;
   }
 
   .pospago-stores__logo-badge {
     order: -1;
-    padding: 0.7rem 1rem;
-  }
-
-  .pospago-stores__head-logo {
-    width: min(160px, 48vw);
-  }
-
-  .pospago-stores__title {
-    font-size: clamp(1.45rem, 6vw, 1.85rem);
-  }
-
-  .pospago-stores__title::after {
-    width: 48px;
-    height: 3px;
-    margin-top: 0.5rem;
-  }
-
-  .pospago-stores__intro {
-    margin-top: 0.55rem;
-    font-size: 0.9rem;
-    line-height: 1.4;
-  }
-
-  .pospago-stores__stage {
-    width: calc(100% - 1.1rem);
-    padding: 0.75rem 0 2rem;
-  }
-
-  .pospago-stores__toolbar {
-    gap: 0.55rem;
-    margin-bottom: 0.75rem;
-    padding: 0.75rem 0.8rem;
+    padding: 0.55rem 0.85rem;
     border-radius: 14px;
   }
 
+  .pospago-stores__head-logo {
+    width: min(148px, 46vw);
+  }
+
+  .pospago-stores__title {
+    font-size: clamp(1.4rem, 6.4vw, 1.8rem);
+    margin-bottom: 0.2rem;
+  }
+
+  .pospago-stores__title::after {
+    width: 44px;
+    height: 3px;
+    margin-top: 0.45rem;
+  }
+
+  .pospago-stores__intro {
+    margin-top: 0.45rem;
+    font-size: 0.88rem;
+    line-height: 1.4;
+  }
+
+  .pospago-stores__cta {
+    width: min(100%, 22rem);
+    min-height: 48px;
+    margin-top: 0.95rem;
+    padding: 0.75rem 1.15rem;
+    font-size: 0.9rem;
+  }
+
+  .pospago-stores__stage {
+    width: calc(100% - 0.9rem);
+    padding: 0.55rem 0 2.25rem;
+  }
+
+  .pospago-stores__toolbar {
+    gap: 0.65rem;
+    margin-bottom: 0.85rem;
+    padding: 0.85rem 0.85rem;
+    border-radius: 16px;
+  }
+
+  .pospago-stores__toolbar-top {
+    align-items: flex-start;
+    gap: 0.45rem;
+  }
+
+  .pospago-stores__heading {
+    font-size: 0.98rem;
+  }
+
+  .pospago-stores__count {
+    font-size: 0.72rem;
+    padding: 0.3rem 0.65rem;
+  }
+
+  .pospago-stores__search {
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .pospago-stores__search input {
+    width: 100%;
+    flex: none;
+    min-height: 48px;
+    padding: 0.85rem 0.95rem;
+    font-size: 0.95rem;
+    border-radius: 12px;
+  }
+
+  .pospago-stores__search button {
+    width: 100%;
+    max-width: none;
+    min-height: 48px;
+    padding: 0.85rem 1rem;
+    border-radius: 12px;
+    font-size: 0.92rem;
+  }
+
   .pospago-stores__layout {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
     min-height: 0;
   }
 
-  .pospago-stores__list {
+  /* Mapa arriba en móvil para ubicar rápido */
+  .pospago-stores__map {
+    order: -1;
+    height: min(58vw, 280px);
     min-height: 220px;
-    max-height: 280px;
+    border-radius: 16px;
   }
 
-  .pospago-stores__map {
-    height: 360px;
-    min-height: 360px;
+  .pospago-stores__list {
+    order: 0;
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
+    padding: 0;
+    gap: 0.7rem;
+  }
+
+  .pospago-stores__card {
+    border-radius: 14px;
+    border-color: rgba(0, 159, 219, 0.16);
+  }
+
+  .pospago-stores__card:hover {
+    transform: none;
+  }
+
+  .pospago-stores__card-main {
+    padding: 0.9rem 0.9rem 0.45rem;
+    gap: 0.22rem;
+  }
+
+  .pospago-stores__card-name {
+    font-size: 0.92rem;
+    line-height: 1.25;
+  }
+
+  .pospago-stores__card-city {
+    font-size: 0.78rem;
+  }
+
+  .pospago-stores__card-address,
+  .pospago-stores__card-hours {
+    font-size: 0.78rem;
+    line-height: 1.4;
+  }
+
+  .pospago-stores__card-actions {
+    display: grid;
+    padding: 0 0.9rem 0.9rem;
+  }
+
+  .pospago-stores__go,
+  .pospago-stores__card-actions a[href*="maps/dir"] {
+    width: 100%;
+    min-height: 44px;
+    border-radius: 12px;
+    padding: 0.7rem 0.95rem;
+    font-size: 0.88rem;
   }
 
   .pospago-stores__map .leaflet-container {
     min-height: 0;
     max-height: none;
   }
+}
 
-  .pospago-stores__search button {
-    width: 100%;
+@media (max-width: 480px) {
+  .pospago-stores__head {
+    padding: 1.2rem 0.7rem 0.25rem;
+  }
+
+  .pospago-stores__stage {
+    width: calc(100% - 0.7rem);
+  }
+
+  .pospago-stores__map {
+    height: min(62vw, 250px);
+    min-height: 200px;
+  }
+
+  .pospago-stores__toolbar {
+    padding: 0.75rem;
   }
 }

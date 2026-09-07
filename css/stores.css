@@ -669,3 +669,43 @@
     padding: 0.75rem;
   }
 }
+
+.pospago-stores__more {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .pospago-stores__more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    width: 100%;
+    min-height: 48px;
+    margin-top: 0.15rem;
+    padding: 0.8rem 1rem;
+    border: 1.5px solid rgba(0, 159, 219, 0.28);
+    border-radius: 12px;
+    background: #fff;
+    color: #0077a8;
+    font-family: var(--font-body, "Outfit", sans-serif);
+    font-size: 0.92rem;
+    font-weight: 750;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 80, 120, 0.06);
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .pospago-stores__more span {
+    color: #009fdb;
+    font-weight: 800;
+  }
+
+  .pospago-stores__more:hover,
+  .pospago-stores__more:active {
+    background: #f3fafd;
+    border-color: rgba(0, 193, 212, 0.5);
+    transform: translateY(-1px);
+  }
+}

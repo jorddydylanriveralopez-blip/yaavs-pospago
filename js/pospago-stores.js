@@ -27,6 +27,18 @@
   let carrierId = "";
   let activePopup = null;
   let mapReady = false;
+  const MOBILE_LIST_MQ = window.matchMedia("(max-width: 860px)");
+  const MOBILE_INITIAL = 5;
+  const MOBILE_STEP = 3;
+  let visibleCount = MOBILE_INITIAL;
+
+  function isMobileList() {
+    return MOBILE_LIST_MQ.matches;
+  }
+
+  function resetVisibleCount() {
+    visibleCount = MOBILE_INITIAL;
+  }
 
   function storesFor() {
     return window.YAAVS_ATT_STORES || [];
@@ -106,10 +118,20 @@
       listEl.innerHTML = `<p class="pospago-stores__empty">No hay sucursales con esa búsqueda.</p>`;
       return;
     }
-    listEl.innerHTML = list
-      .map((store, i) => {
-        const on = store.id === activeId ? " is-active" : "";
-        return `<article class="pospago-stores__card${on}" data-store-id="${store.id}" style="--i:${i}">
+
+    const mobile = isMobileList();
+    if (!mobile) visibleCount = list.length;
+    else if (visibleCount < MOBILE_INITIAL) visibleCount = MOBILE_INITIAL;
+
+    const shown = mobile ? list.slice(0, Math.min(visibleCount, list.length)) : list;
+    const remaining = mobile ? Math.max(0, list.length - shown.length) : 0;
+    const nextBatch = Math.min(MOBILE_STEP, remaining);
+
+    listEl.innerHTML =
+      shown
+        .map((store, i) => {
+          const on = store.id === activeId ? " is-active" : "";
+          return `<article class="pospago-stores__card${on}" data-store-id="${store.id}" style="--i:${i}">
           <button type="button" class="pospago-stores__card-main" data-store-focus="${store.id}">
             <span class="pospago-stores__card-name">${store.name}</span>
             <span class="pospago-stores__card-city">${store.city}</span>
@@ -120,8 +142,13 @@
             <a class="pospago-stores__go" href="${mapsDirUrl(store)}" target="_blank" rel="noopener noreferrer">Cómo llegar</a>
           </div>
         </article>`;
-      })
-      .join("");
+        })
+        .join("") +
+      (remaining > 0
+        ? `<button type="button" class="pospago-stores__more" data-store-more>
+            Ver más <span aria-hidden="true">(+${nextBatch})</span>
+          </button>`
+        : "");
   }
 
   function markerIcon(active) {
@@ -145,6 +172,12 @@
   function focusStore(store, pan) {
     if (!store) return;
     activeId = store.id;
+    if (isMobileList()) {
+      const idx = filteredStores().findIndex((s) => s.id === store.id);
+      if (idx >= 0 && idx + 1 > visibleCount) {
+        visibleCount = idx + 1;
+      }
+    }
     renderList();
     markers.forEach((item) => {
       item.marker.setIcon(markerIcon(item.store.id === store.id));
@@ -302,6 +335,7 @@
   queryEl?.addEventListener("input", () => {
     const list = filteredStores();
     activeId = list[0]?.id || "";
+    resetVisibleCount();
     renderList();
     if (mapReady) drawMap();
   });
@@ -324,11 +358,27 @@
   });
 
   listEl?.addEventListener("click", (e) => {
+    const more = e.target.closest("[data-store-more]");
+    if (more) {
+      visibleCount += MOBILE_STEP;
+      renderList();
+      return;
+    }
     const btn = e.target.closest("[data-store-focus]");
     if (!btn) return;
     const store = storesFor().find((s) => s.id === btn.getAttribute("data-store-focus"));
     if (store) focusStore(store, true);
   });
+
+  const onListMqChange = () => {
+    resetVisibleCount();
+    renderList();
+  };
+  if (typeof MOBILE_LIST_MQ.addEventListener === "function") {
+    MOBILE_LIST_MQ.addEventListener("change", onListMqChange);
+  } else if (typeof MOBILE_LIST_MQ.addListener === "function") {
+    MOBILE_LIST_MQ.addListener(onListMqChange);
+  }
 
   if (typeof ResizeObserver !== "undefined" && mapHost) {
     const ro = new ResizeObserver(() => {

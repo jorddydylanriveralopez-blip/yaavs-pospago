@@ -6267,7 +6267,33 @@ body:has(.cookie-notice.is-visible) .wa-float {
 
 .about-pillars .section__head {
   text-align: center;
-  margin-bottom: 1.75rem;
+  max-width: none;
+  width: 100%;
+  margin: 0 auto 1.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-pillars .section__head .eyebrow {
+  margin: 0 0 0.55rem;
+  letter-spacing: 0.12em;
+}
+
+.about-pillars .section__head h2 {
+  margin: 0;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+
+.about-pillars .section__head h2::after {
+  content: "";
+  display: block;
+  width: 3.25rem;
+  height: 3px;
+  margin: 0.75rem auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--att-cyan), var(--att-blue));
 }
 
 .about-pillars__grid {

@@ -7149,119 +7149,212 @@ body:has(.cookie-notice.is-visible) .wa-float {
 /* Footer */
 .site-footer {
   position: relative;
-  background: linear-gradient(180deg, #0a1628 0%, #08101e 50%, #050a12 100%);
-  color: rgba(255, 255, 255, 0.85);
-  padding: 3.5rem 0 2rem;
+  isolation: isolate;
   overflow: hidden;
+  background:
+    radial-gradient(900px 420px at 12% -20%, rgba(0, 193, 212, 0.22), transparent 55%),
+    radial-gradient(760px 380px at 100% 110%, rgba(0, 159, 219, 0.18), transparent 55%),
+    linear-gradient(180deg, #0b1c28 0%, #08131f 48%, #050a12 100%);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 3.75rem 0 2.25rem;
 }
 
 .site-footer__glow {
   pointer-events: none;
   position: absolute;
-  top: -60px;
+  top: -80px;
   left: 50%;
   transform: translateX(-50%);
-  width: 80%;
-  height: 120px;
-  background: radial-gradient(ellipse at center, rgba(0,159,219,0.25) 0%, transparent 70%);
-  filter: blur(40px);
+  width: 85%;
+  height: 160px;
+  background: radial-gradient(ellipse at center, rgba(0, 193, 212, 0.32) 0%, transparent 70%);
+  filter: blur(42px);
   z-index: 0;
+  animation: footerGlowPulse 5.5s ease-in-out infinite alternate;
 }
 
-.site-footer .wrap {
+.site-footer__glow::after {
+  content: "";
+  position: absolute;
+  inset: 40% -10% auto;
+  height: 220px;
+  background: radial-gradient(ellipse at center, rgba(37, 211, 102, 0.08), transparent 70%);
+  filter: blur(30px);
+}
+
+@keyframes footerGlowPulse {
+  from { opacity: 0.55; transform: translateX(-50%) translateY(0) scale(1); }
+  to { opacity: 1; transform: translateX(-50%) translateY(12px) scale(1.06); }
+}
+
+.site-footer .wrap,
+.site-footer .site-footer__grid {
   position: relative;
   z-index: 1;
 }
 
+.site-footer__grid {
+  display: grid;
+  gap: 1.75rem;
+}
+
 .site-footer__top {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.1fr 1fr;
   gap: 2rem;
   align-items: center;
 }
 
+.site-footer__brand {
+  animation: footerRise 0.7s var(--ease) both;
+}
+
 .site-footer__brand img {
-  height: 50px;
+  height: 54px;
   width: auto;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
+  filter: drop-shadow(0 8px 18px rgba(0, 193, 212, 0.25));
+  transition: transform 0.35s var(--ease);
+}
+
+.site-footer__brand:hover img {
+  transform: translateY(-2px) scale(1.02);
 }
 
 .site-footer__brand p {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0;
 }
 
 .site-footer__nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
+  gap: 0.55rem;
   justify-content: flex-end;
+  animation: footerRise 0.7s var(--ease) 0.08s both;
 }
 
 .site-footer__nav a {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.92);
   text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: color 0.2s ease;
+  font-weight: 650;
+  font-size: 0.86rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.site-footer__nav a:hover {
-  color: var(--att-cyan);
+.site-footer__nav a:hover,
+.site-footer__nav a.is-active {
+  color: #fff;
+  background: linear-gradient(115deg, rgba(0, 193, 212, 0.28), rgba(0, 159, 219, 0.22));
+  border-color: rgba(0, 193, 212, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0, 159, 219, 0.2);
 }
 
 .site-footer__divider {
   height: 1px;
-  margin: 2rem 0;
-  background: linear-gradient(90deg, transparent, rgba(0,159,219,0.4), transparent);
+  margin: 1.75rem 0 1.35rem;
+  background: linear-gradient(90deg, transparent, rgba(0, 193, 212, 0.55), transparent);
+  background-size: 200% 100%;
+  animation: footerDividerShine 6s linear infinite;
+}
+
+@keyframes footerDividerShine {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
 }
 
 .site-footer__disclaimer {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(0, 159, 219, 0.15);
-  border-radius: 16px;
-  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(0, 159, 219, 0.18);
+  border-radius: 18px;
+  padding: 1.15rem 1.25rem;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+  animation: footerRise 0.7s var(--ease) 0.14s both;
+}
+
+.site-footer__disclaimer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--att-cyan), var(--att-blue), transparent);
 }
 
 .site-footer__disclaimer-title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--att-cyan);
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.55rem;
 }
 
-.site-footer__disclaimer p {
-  font-size: 0.8rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.6);
+.site-footer__disclaimer p,
+.site-footer__legal {
+  font-size: 0.68rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.48);
   margin: 0;
 }
 
-.site-footer__disclaimer a {
+.site-footer__disclaimer a,
+.site-footer__legal a {
   color: var(--att-cyan);
   text-decoration: none;
 }
 
-.site-footer__disclaimer a:hover {
+.site-footer__disclaimer a:hover,
+.site-footer__legal a:hover {
   text-decoration: underline;
 }
 
 .site-footer__disclaimer-note {
-  margin-top: 0.75rem !important;
-  padding-top: 0.75rem;
+  margin-top: 0.55rem !important;
+  padding-top: 0.55rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  font-size: 0.75rem !important;
-  color: rgba(255, 255, 255, 0.45) !important;
+  font-size: 0.62rem !important;
+  color: rgba(255, 255, 255, 0.38) !important;
 }
 
 .site-footer__copyright {
   text-align: center;
-  margin: 1.5rem 0 0;
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.4);
+  margin: 1.35rem 0 0;
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+@keyframes footerRise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-footer__glow,
+  .site-footer__divider,
+  .site-footer__brand,
+  .site-footer__nav,
+  .site-footer__disclaimer {
+    animation: none !important;
+  }
 }
 
 /* Insurance banner — image only */
@@ -7454,16 +7547,23 @@ body:has(.cookie-notice.is-visible) .wa-float {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s ease;
+}
+
+.insurance-intro__cta:not(.btn-cta--wa) {
   color: #fff;
   background: linear-gradient(115deg, var(--att-cyan), var(--att-blue));
   background-size: 180% 100%;
-  border-radius: 999px;
-  text-decoration: none;
   box-shadow:
     0 12px 30px rgba(0, 159, 219, 0.35),
     0 0 0 1px rgba(255, 255, 255, 0.25) inset;
-  transition: transform 0.2s var(--ease), box-shadow 0.2s ease;
   animation: insuranceCtaShine 4.5s ease infinite;
+}
+
+.insurance-intro__cta.btn-cta--wa {
+  animation: ctaIn 0.85s var(--ease) 0.2s both, ctaWaGradient 4.5s ease infinite;
 }
 
 @keyframes insuranceCtaShine {
@@ -7473,9 +7573,6 @@ body:has(.cookie-notice.is-visible) .wa-float {
 
 .insurance-intro__cta:hover {
   transform: translateY(-3px);
-  box-shadow:
-    0 16px 36px rgba(0, 159, 219, 0.45),
-    0 0 0 1px rgba(255, 255, 255, 0.35) inset;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -7588,15 +7685,24 @@ body:has(.cookie-notice.is-visible) .wa-float {
 
 .insurance__cta-box .btn-cta {
   display: inline-flex;
-  padding: 0.8rem 2rem;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.85rem 2rem;
   font-family: var(--font-display);
   font-weight: 700;
-  color: #fff;
-  background: linear-gradient(115deg, var(--att-cyan), var(--att-blue));
   border-radius: 999px;
   text-decoration: none;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s ease;
+}
+
+.insurance__cta-box .btn-cta:not(.btn-cta--wa) {
+  color: #fff;
+  background: linear-gradient(115deg, var(--att-cyan), var(--att-blue));
   box-shadow: 0 8px 22px rgba(0,159,219,0.35);
-  transition: transform 0.2s var(--ease);
+}
+
+.insurance__cta-box .btn-cta--wa {
+  animation: ctaIn 0.85s var(--ease) 0.2s both, ctaWaGradient 4.5s ease infinite;
 }
 
 .insurance__cta-box .btn-cta:hover {

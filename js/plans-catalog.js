@@ -557,8 +557,7 @@
     window.setTimeout(showAll, 600);
   }
 
-  function updatePricingUI(familyId) {
-    const root = document.querySelector("[data-plans-catalog]");
+  function updatePricingUI(familyId, root = document.querySelector("[data-plans-catalog]")) {
     const family = CATALOG[familyId];
     if (!root || !family) return;
 
@@ -599,8 +598,7 @@
     }
   }
 
-  function setTab(id) {
-    const root = document.querySelector("[data-plans-catalog]");
+  function setTab(id, root = document.querySelector("[data-plans-catalog]")) {
     if (!root || !CATALOG[id]) return;
 
     activeFamily = id;
@@ -616,22 +614,17 @@
       panel.classList.toggle("is-active", on);
       panel.hidden = !on;
       if (on) {
-        if (!panel.dataset.rendered) {
-          renderFamily(id);
-          panel.dataset.rendered = "1";
-        } else {
-          renderFamily(id);
-        }
+        renderFamily(id);
+        panel.dataset.rendered = "1";
         revealPlans(panel);
       }
     });
 
-    updatePricingUI(id);
+    updatePricingUI(id, root);
   }
 
-  function setPricingMode(mode) {
+  function setPricingMode(mode, root = document.querySelector("[data-plans-catalog]")) {
     pricingMode = mode;
-    const root = document.querySelector("[data-plans-catalog]");
     if (!root) return;
 
     root.querySelectorAll("[data-pricing-mode]").forEach((btn) => {
@@ -640,8 +633,14 @@
       btn.setAttribute("aria-pressed", on ? "true" : "false");
     });
 
-    updatePricingUI(activeFamily);
-    renderAllFamilies();
+    const single = root.getAttribute("data-single-family");
+    const familyId = single && CATALOG[single] ? single : activeFamily;
+    updatePricingUI(familyId, root);
+    if (single && CATALOG[single]) {
+      renderFamily(single);
+    } else {
+      renderAllFamilies();
+    }
     fillQuoteOptions();
   }
 
@@ -662,18 +661,45 @@
   }
 
   function init() {
-    const root = document.querySelector("[data-plans-catalog]");
-    if (!root) return;
+    const roots = [...document.querySelectorAll("[data-plans-catalog]")];
+    if (!roots.length) return;
 
     fillQuoteOptions();
 
-    const single = root.getAttribute("data-single-family");
-    if (single && CATALOG[single]) {
-      setTab(single);
-    } else {
-      setTab("premium");
-    }
-    initCarouselInteractions();
+    let hasMultiTabRoot = false;
+
+    roots.forEach((root) => {
+      const single = root.getAttribute("data-single-family");
+      if (single && CATALOG[single]) {
+        setTab(single, root);
+      } else {
+        hasMultiTabRoot = true;
+        setTab("premium", root);
+      }
+
+      root.querySelectorAll("[data-plan-tab]").forEach((tab) => {
+        tab.addEventListener("click", () => setTab(tab.getAttribute("data-plan-tab"), root));
+      });
+
+      root.querySelectorAll("[data-pricing-mode]").forEach((btn) => {
+        btn.addEventListener("click", () => setPricingMode(btn.getAttribute("data-pricing-mode"), root));
+      });
+
+      root.querySelectorAll(".plans-scroll").forEach((scroller) => {
+        scroller.addEventListener(
+          "wheel",
+          (e) => {
+            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+              e.preventDefault();
+              window.scrollBy(0, e.deltaY);
+            }
+          },
+          { passive: false }
+        );
+      });
+    });
+
+    if (hasMultiTabRoot) initCarouselInteractions();
 
     let resizeTimer = null;
     window.addEventListener("resize", () => {
@@ -684,29 +710,6 @@
           if (panel && !panel.hidden) setupCarousel(id);
         });
       }, 160);
-    });
-
-    root.querySelectorAll("[data-plan-tab]").forEach((tab) => {
-      tab.addEventListener("click", () => setTab(tab.getAttribute("data-plan-tab")));
-    });
-
-    root.querySelectorAll("[data-pricing-mode]").forEach((btn) => {
-      btn.addEventListener("click", () => setPricingMode(btn.getAttribute("data-pricing-mode")));
-    });
-
-    root.querySelectorAll(".plans-scroll").forEach((scroller) => {
-      scroller.addEventListener(
-        "wheel",
-        (e) => {
-          if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-            // Scroll vertical dominante: navega la página
-            e.preventDefault();
-            window.scrollBy(0, e.deltaY);
-          }
-          // Scroll horizontal: scroll nativo con scroll-snap (cards se alinean de 3 en 3)
-        },
-        { passive: false }
-      );
     });
   }
 

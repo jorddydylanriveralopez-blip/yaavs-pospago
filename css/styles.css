@@ -1067,8 +1067,8 @@ a {
   border-radius: 0;
   line-height: 0;
   background: #041018;
-  /* Match attblur.mp4 (2500×1080) so PLAN BLACK / QUIERO stay visible */
-  aspect-ratio: 2500 / 1080;
+  /* Match secuencia-01-2.mp4 (1920×1080) so the full creative stays visible */
+  aspect-ratio: 1920 / 1080;
   min-height: 0;
   max-height: none;
   box-shadow: none;
@@ -1109,7 +1109,7 @@ a {
 
 @media (max-width: 768px) {
   .hero__frame {
-    aspect-ratio: 2500 / 1080;
+    aspect-ratio: 1920 / 1080;
     min-height: 0;
     max-height: none;
   }

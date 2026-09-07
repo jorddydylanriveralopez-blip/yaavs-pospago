@@ -19,6 +19,30 @@
   visibility: visible !important;
 }
 
+.pospago-stores__head-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.25rem, 4vw, 3rem);
+  flex-wrap: wrap;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.pospago-stores__head-copy {
+  flex: 1 1 280px;
+  text-align: center;
+  min-width: 0;
+}
+
+.pospago-stores__head-logo {
+  display: block;
+  width: min(220px, 42vw);
+  height: auto;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 10px 24px rgba(0, 120, 160, 0.12));
+}
+
 .pospago-stores__title {
   margin: 0 0 0.5rem;
   font-family: var(--font-display, "Sora", sans-serif);

@@ -453,7 +453,7 @@ function initDevicesCarousel() {
 
   async function applyPrices() {
     try {
-      const res = await fetch("assets/data/devices.json?v=20260907i", { cache: "no-store" });
+      const res = await fetch("assets/data/devices.json?v=20260907s", { cache: "no-store" });
       if (!res.ok) return;
       const items = await res.json();
       const normalize = (s) =>
@@ -472,8 +472,19 @@ function initDevicesCarousel() {
         });
         if (!match) return;
 
+        if (match.plan) slide.setAttribute("data-plan", match.plan);
+        if (match.plazo) slide.setAttribute("data-plazo", String(match.plazo));
+
+        const badgeEl = slide.querySelector(".devices-market__badge");
+        if (badgeEl && match.plan) {
+          badgeEl.innerHTML = `AT&amp;T Market · Plan <em>${match.plan}</em>`;
+        }
+
         const taglineEl = slide.querySelector(".devices-market__tagline");
-        if (taglineEl && match.tagline) taglineEl.textContent = match.tagline;
+        if (taglineEl) {
+          if (match.taglineHtml) taglineEl.innerHTML = match.taglineHtml;
+          else if (match.tagline) taglineEl.textContent = match.tagline;
+        }
 
         const priceEl = slide.querySelector("[data-device-price]");
         if (!priceEl) return;
@@ -483,6 +494,7 @@ function initDevicesCarousel() {
             ? match.monthlyPortabilityDisplay
             : Math.floor(Number(match.monthlyPortability) || 0);
         if (monthly > 0) {
+          slide.setAttribute("data-monthly", String(monthly));
           const label = `$${monthly.toLocaleString("es-MX")}`;
           if (amountEl) amountEl.textContent = label;
           else priceEl.textContent = label;

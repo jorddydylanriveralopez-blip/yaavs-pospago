@@ -1640,6 +1640,13 @@ a {
   color: #0b1c28;
 }
 
+.devices-market__badge em {
+  font-style: normal;
+  font-weight: 900;
+  color: #0077a8;
+  letter-spacing: 0.06em;
+}
+
 .devices-market__title {
   margin: 0 0 0.45rem;
   font-size: clamp(1.35rem, 2.4vw, 1.75rem);
@@ -1654,6 +1661,33 @@ a {
   font-size: 0.88rem;
   line-height: 1.45;
   color: rgba(210, 224, 232, 0.82);
+}
+
+.devices-market__hl {
+  font-weight: 800;
+  font-style: normal;
+  color: #7aefff;
+  text-shadow: 0 0 16px rgba(122, 239, 255, 0.28);
+}
+
+.devices-market__hl--plan {
+  color: #9af0ff;
+  padding: 0.05em 0.28em;
+  border-radius: 0.35em;
+  background: rgba(0, 193, 212, 0.16);
+  box-shadow: inset 0 0 0 1px rgba(122, 239, 255, 0.28);
+}
+
+.devices-market__hl--plazo {
+  color: #fff;
+  padding: 0.05em 0.28em;
+  border-radius: 0.35em;
+  background: rgba(0, 159, 219, 0.28);
+  box-shadow: inset 0 0 0 1px rgba(0, 193, 212, 0.35);
+}
+
+.devices-market__hl--price {
+  color: #7aefff;
 }
 
 .devices-market__price {

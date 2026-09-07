@@ -5192,6 +5192,18 @@ body.is-modal-open {
   line-height: 1.55;
 }
 
+.plan-family-legal__list {
+  margin: 0.9rem 0 0;
+  padding-left: 1.15rem;
+  color: var(--att-muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.plan-family-legal__list li + li {
+  margin-top: 0.4rem;
+}
+
 @media (max-width: 860px) {
   .plan-family-info__grid { grid-template-columns: 1fr; gap: 1.25rem; }
   .section--plans-single .plans-scroll {

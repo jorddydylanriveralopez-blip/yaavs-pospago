@@ -5093,7 +5093,7 @@ body.is-modal-open {
 .section--plans-single .plans {
   display: flex !important;
   flex-wrap: nowrap !important;
-  justify-content: flex-start;
+  justify-content: center !important;
   align-items: stretch;
   gap: var(--plan-gap, 0.72rem);
   width: max-content;

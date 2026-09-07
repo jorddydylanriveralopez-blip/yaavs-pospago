@@ -164,7 +164,14 @@
   function appsSectionHTML(plan) {
     const label = rrssHTML(plan);
 
-    if (plan.unlimitedRrss || !plan.rrssCount) {
+    if (plan.unlimitedRrss) {
+      return `<div class="plan__seg plan__seg--rrss">
+        ${label}
+        <div class="plan__icons plan__icons--static" aria-hidden="true">${staticIconsHTML()}</div>
+      </div>`;
+    }
+
+    if (!plan.rrssCount) {
       return `<div class="plan__seg plan__seg--rrss">${label}</div>`;
     }
 

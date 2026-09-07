@@ -81,7 +81,7 @@
         { id: "azul3", name: "Azul 3", gb: 14, price: 550, pricePort: 440, color: "#009FDB", rrssCount: 6, addon: 50 },
         { id: "plata", name: "Plata", gb: 25, price: 650, pricePort: 520, color: "#A8ADB0", rrssCount: 6, addon: 50 },
         { id: "oro", name: "Oro", gb: 32, price: 725, pricePort: 580, color: "#C9A227", rrssCount: 6, addon: 50 },
-        { id: "black", name: "Black", gb: 42, price: 825, pricePort: 660, color: "#1A1A1A", rrssCount: 6, rrssNote: "Preseleccionadas", addon: 50, featured: true },
+        { id: "black", name: "Black", gb: 42, price: 825, pricePort: 660, color: "#1A1A1A", rrssCount: 6, addon: 50, featured: true },
         { id: "platino", name: "Platino", gb: 50, price: 1035, pricePort: 830, color: "#B4B6C8", rrssCount: 6, addon: 50 },
         { id: "diamante", name: "Diamante", gb: 55, price: 1300, pricePort: 1040, color: "#8FA4B5", rrssCount: 6, addon: 50 },
         { id: "titanio", name: "Titanio", gb: 42, price: 1599, pricePort: 1440, color: "#5C8BA6", rrssCount: 6, addon: 50, badge: "iPhone 17 incluido" },
@@ -412,8 +412,6 @@
   }
 
   function setupCarousel(id) {
-    const root = document.querySelector("[data-plans-catalog]");
-    if (root?.hasAttribute("data-single-family")) return;
     const grid = document.querySelector(`[data-plans-grid="${id}"]`);
     if (!grid) return;
     ensureGhostSlots(grid, id);
@@ -422,22 +420,21 @@
   }
 
   function changeCarouselPage(id, delta) {
-    const root = document.querySelector("[data-plans-catalog]");
-    if (root?.hasAttribute("data-single-family")) return;
     const grid = document.querySelector(`[data-plans-grid="${id}"]`);
     if (!grid) return;
     CAROUSEL_STATE[id] = clampPage((CAROUSEL_STATE[id] ?? 0) + delta, carouselPages(grid, id));
     applyCarouselPage(id, true);
   }
   function initCarouselInteractions() {
-    const root = document.querySelector("[data-plans-catalog]");
-    if (!root || root.hasAttribute("data-single-family")) return;
+    const roots = [...document.querySelectorAll("[data-plans-catalog]")];
+    if (!roots.length) return;
 
-    root.querySelectorAll(".plans-scroll").forEach((scroller) => {
+    roots.forEach((root) => {
+      root.querySelectorAll(".plans-scroll").forEach((scroller) => {
       const grid = scroller.querySelector(".plans");
       const id = grid?.getAttribute("data-plans-grid");
       if (!id) return;
-      const panel = scroller.parentElement;
+      const panel = scroller.closest("[data-plan-panel]") || scroller.parentElement;
 
       panel.querySelector("[data-carousel-prev]")?.addEventListener("click", () => changeCarouselPage(id, -1));
       panel.querySelector("[data-carousel-next]")?.addEventListener("click", () => changeCarouselPage(id, 1));
@@ -474,7 +471,7 @@
       let cancelClick = false;
       const onDragDown = (e) => {
         if (e.pointerType !== "mouse") return;
-        drag = { on: true, startX: e.clientX, basePos: (CAROUSEL_STATE[id] ?? 0) * carouselUnit(grid, id), moved: false };
+        drag = { on: true, startX: e.clientX, basePos: scroller.scrollLeft, moved: false };
         cancelClick = false;
         grid.classList.add("is-dragging");
         scroller.setPointerCapture(e.pointerId);
@@ -483,8 +480,7 @@
         if (!drag?.on) return;
         const dx = e.clientX - drag.startX;
         if (Math.abs(dx) > 6) drag.moved = true;
-        const maxScroll = carouselUnit(grid, id) * (carouselPages(grid, id) - 1);
-        grid.style.setProperty("--pos", `-${Math.min(Math.max(0, drag.basePos - dx), maxScroll)}px`);
+        scroller.scrollLeft = Math.max(0, drag.basePos - dx);
       };
       const onDragEnd = (e) => {
         if (!drag?.on) return;
@@ -492,7 +488,7 @@
         drag.on = false;
         grid.classList.remove("is-dragging");
         if (drag.moved && Math.abs(dx) > 40) {
-          const target = clampPage(Math.round((drag.basePos - dx) / carouselUnit(grid, id)), carouselPages(grid, id));
+          const target = clampPage(Math.round(scroller.scrollLeft / carouselUnit(grid, id)), carouselPages(grid, id));
           CAROUSEL_STATE[id] = target;
           cancelClick = true;
         }
@@ -520,14 +516,20 @@
       scroller.addEventListener(
         "wheel",
         (e) => {
-          // if vertical intent, let the browser handle page scroll
-          if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) return;
-          // horizontal intent -> scroll the scroller
-          e.preventDefault();
-          scroller.scrollLeft += e.deltaY || e.deltaX;
+          if (Math.abs(e.deltaX) >= Math.abs(e.deltaY) && Math.abs(e.deltaX) > 0) {
+            return;
+          }
+          if (Math.abs(e.deltaY) > Math.abs(e.deltaX) && scroller.scrollWidth > scroller.clientWidth + 8) {
+            // Shift+wheel or trackpad with intent: nudge horizontal when scroller can move
+            if (e.shiftKey) {
+              e.preventDefault();
+              scroller.scrollLeft += e.deltaY;
+            }
+          }
         },
         { passive: false }
       );
+      });
     });
   }
 
@@ -666,14 +668,11 @@
 
     fillQuoteOptions();
 
-    let hasMultiTabRoot = false;
-
     roots.forEach((root) => {
       const single = root.getAttribute("data-single-family");
       if (single && CATALOG[single]) {
         setTab(single, root);
       } else {
-        hasMultiTabRoot = true;
         setTab("premium", root);
       }
 
@@ -684,22 +683,9 @@
       root.querySelectorAll("[data-pricing-mode]").forEach((btn) => {
         btn.addEventListener("click", () => setPricingMode(btn.getAttribute("data-pricing-mode"), root));
       });
-
-      root.querySelectorAll(".plans-scroll").forEach((scroller) => {
-        scroller.addEventListener(
-          "wheel",
-          (e) => {
-            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-              e.preventDefault();
-              window.scrollBy(0, e.deltaY);
-            }
-          },
-          { passive: false }
-        );
-      });
     });
 
-    if (hasMultiTabRoot) initCarouselInteractions();
+    initCarouselInteractions();
 
     let resizeTimer = null;
     window.addEventListener("resize", () => {
@@ -707,7 +693,8 @@
       resizeTimer = window.setTimeout(() => {
         Object.keys(CAROUSEL_STATE).forEach((id) => {
           const panel = document.querySelector(`[data-plan-panel="${id}"]`);
-          if (panel && !panel.hidden) setupCarousel(id);
+          const grid = document.querySelector(`[data-plans-grid="${id}"]`);
+          if (grid && (!panel || !panel.hidden)) setupCarousel(id);
         });
       }, 160);
     });

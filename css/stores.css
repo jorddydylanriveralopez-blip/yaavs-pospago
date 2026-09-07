@@ -263,6 +263,22 @@
   min-height: min(68vh, 720px);
 }
 
+@media (max-width: 1100px) {
+  .pospago-stores__layout {
+    grid-template-columns: minmax(260px, 0.95fr) minmax(0, 1.25fr);
+    min-height: min(62vh, 640px);
+    gap: 0.85rem;
+  }
+
+  .pospago-stores__list {
+    max-height: min(62vh, 640px);
+  }
+
+  .pospago-stores__map {
+    min-height: 420px;
+  }
+}
+
 .pospago-stores__list {
   max-height: min(68vh, 720px);
   overflow: auto;

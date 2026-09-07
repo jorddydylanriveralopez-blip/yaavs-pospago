@@ -131,12 +131,36 @@
   function initNav() {
     const nav = document.querySelector(".nav");
     const toggle = document.querySelector("[data-nav-toggle]");
+    const header = document.querySelector(".site-header");
     if (!nav || !toggle) return;
 
-    toggle.addEventListener("click", () => {
-      const open = nav.classList.toggle("is-open");
+    let backdrop = document.querySelector("[data-nav-backdrop]");
+    if (!backdrop) {
+      backdrop = document.createElement("button");
+      backdrop.type = "button";
+      backdrop.className = "nav-backdrop";
+      backdrop.setAttribute("data-nav-backdrop", "");
+      backdrop.setAttribute("aria-label", "Cerrar menú");
+      backdrop.hidden = true;
+      (header || document.body).appendChild(backdrop);
+    }
+
+    const setNavOpen = (open) => {
+      nav.classList.toggle("is-open", open);
       toggle.setAttribute("aria-expanded", String(open));
+      document.body.classList.toggle("is-nav-open", open);
+      backdrop.hidden = !open;
+      backdrop.classList.toggle("is-visible", open);
+    };
+
+    const closeNav = () => setNavOpen(false);
+
+    toggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      setNavOpen(!nav.classList.contains("is-open"));
     });
+
+    backdrop.addEventListener("click", closeNav);
 
     // Dropdown Planes — hover (desktop) + click (desktop/móvil)
     const dropdown = nav.querySelector(".nav__dropdown");
@@ -170,19 +194,25 @@
         document.addEventListener("keydown", (e) => {
           if (e.key === "Escape") {
             close();
-            nav.classList.remove("is-open");
-            toggle.setAttribute("aria-expanded", "false");
+            closeNav();
           }
         });
       }
+    } else {
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeNav();
+      });
     }
+
+    document.addEventListener("click", (e) => {
+      if (!nav.classList.contains("is-open")) return;
+      if (nav.contains(e.target) || toggle.contains(e.target)) return;
+      closeNav();
+    });
 
     nav.querySelectorAll("a").forEach((a) => {
       a.addEventListener("click", () => {
-        if (!a.closest(".nav__dropdown")) {
-          nav.classList.remove("is-open");
-          toggle.setAttribute("aria-expanded", "false");
-        }
+        if (!a.closest(".nav__dropdown")) closeNav();
       });
     });
   }

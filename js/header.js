@@ -11,14 +11,15 @@
     titanio: "AT&T Titanio — 42 GB · $1,599",
   };
 
-  /* Video banner (desktop) — carga diferida para no bloquear la página */
+  /* Video banner — autoplay muted loop on all viewports */
   function initHeroVideo() {
     const video = document.querySelector(".hero__video");
     if (!video) return;
-    if (window.matchMedia("(max-width: 768px)").matches) return;
 
     video.muted = true;
     video.playsInline = true;
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
     const tryPlay = () => {
       const p = video.play();
       if (p && typeof p.catch === "function") p.catch(() => {});
@@ -343,6 +344,49 @@
     document.body.appendChild(a);
   }
 
+  function initCookieNotice() {
+    const KEY = "yaavs_cookie_ok_v1";
+    if (localStorage.getItem(KEY) === "1") return;
+    if (document.querySelector(".cookie-notice")) return;
+
+    const el = document.createElement("aside");
+    el.className = "cookie-notice";
+    el.setAttribute("role", "dialog");
+    el.setAttribute("aria-live", "polite");
+    el.setAttribute("aria-label", "Aviso de cookies y seguridad");
+    el.innerHTML = `
+      <span class="cookie-notice__glow" aria-hidden="true"></span>
+      <span class="cookie-notice__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+          <path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z" stroke="currentColor" stroke-width="1.7"/>
+          <circle cx="9" cy="10" r="1.1" fill="currentColor"/>
+          <circle cx="13.5" cy="8.5" r="1" fill="currentColor"/>
+          <circle cx="11" cy="14" r="1.15" fill="currentColor"/>
+          <circle cx="15.2" cy="13.2" r="0.9" fill="currentColor"/>
+        </svg>
+      </span>
+      <div class="cookie-notice__copy">
+        <p class="cookie-notice__title">Cookies y seguridad</p>
+        <p class="cookie-notice__text">
+          Usamos cookies propias y de terceros para medir el uso del sitio, mejorar tu experiencia y proteger la navegación.
+          Consulta el detalle en nuestro
+          <a href="https://www.att.com.mx/aviso-de-privacidad" target="_blank" rel="noopener">Aviso de Privacidad</a>.
+        </p>
+      </div>
+      <button type="button" class="cookie-notice__btn" data-cookie-accept>Entendido</button>
+    `;
+    document.body.appendChild(el);
+    requestAnimationFrame(() => el.classList.add("is-visible"));
+
+    const accept = () => {
+      localStorage.setItem(KEY, "1");
+      el.classList.remove("is-visible");
+      el.classList.add("is-leaving");
+      window.setTimeout(() => el.remove(), 420);
+    };
+    el.querySelector("[data-cookie-accept]")?.addEventListener("click", accept);
+  }
+
     initDevicesCarousel();
 
   initHeroVideo();
@@ -350,6 +394,7 @@
   initNav();
   initHeaderGlass();
   initWhatsAppFloat();
+  initCookieNotice();
   initQuote();
   initReveal();
 })();

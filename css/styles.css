@@ -5657,6 +5657,49 @@ body.is-modal-open {
   }
 }
 
+/* Seguros banner CTA — purple lock accent, sit under copy */
+.att-banner--seguros .att-banner__cta {
+  right: clamp(5%, 9vw, 13%);
+  bottom: clamp(12%, 18%, 24%);
+  background: linear-gradient(115deg, #7b2cff 0%, #a855f7 42%, #ff4d9a 100%);
+  box-shadow:
+    0 12px 28px rgba(123, 44, 255, 0.38),
+    0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+  animation-name: attBannerSegurosPulse;
+}
+
+.att-banner--seguros .att-banner__cta-ring {
+  border-color: rgba(168, 85, 247, 0.55);
+}
+
+.att-banner--seguros .att-banner__cta-ring--delay {
+  border-color: rgba(255, 77, 154, 0.45);
+}
+
+.att-banner--seguros .att-banner__link:hover .att-banner__cta {
+  box-shadow:
+    0 16px 36px rgba(123, 44, 255, 0.48),
+    0 0 0 1px rgba(255, 255, 255, 0.35) inset;
+}
+
+@keyframes attBannerSegurosPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow:
+      0 12px 28px rgba(123, 44, 255, 0.38),
+      0 0 0 0 rgba(168, 85, 247, 0.35);
+  }
+  14% { transform: scale(1.05); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.035); }
+  50% {
+    box-shadow:
+      0 14px 32px rgba(123, 44, 255, 0.45),
+      0 0 0 12px rgba(168, 85, 247, 0);
+  }
+  56% { transform: scale(1); }
+}
+
 @media (max-width: 720px) {
   .att-banner__img {
     width: 100%;
@@ -5673,6 +5716,11 @@ body.is-modal-open {
     animation-name: attBannerHeartbeatMobile;
   }
 
+  .att-banner--seguros .att-banner__cta {
+    bottom: 6%;
+    animation-name: attBannerSegurosPulseMobile;
+  }
+
   .att-banner__link:hover .att-banner__cta {
     transform: translateX(-50%) translateY(-2px) scale(1.03);
   }
@@ -5682,6 +5730,24 @@ body.is-modal-open {
     14% { transform: translateX(-50%) scale(1.05); }
     28% { transform: translateX(-50%) scale(1); }
     42% { transform: translateX(-50%) scale(1.03); }
+    56% { transform: translateX(-50%) scale(1); }
+  }
+
+  @keyframes attBannerSegurosPulseMobile {
+    0%, 100% {
+      transform: translateX(-50%) scale(1);
+      box-shadow:
+        0 12px 28px rgba(123, 44, 255, 0.38),
+        0 0 0 0 rgba(168, 85, 247, 0.35);
+    }
+    14% { transform: translateX(-50%) scale(1.05); }
+    28% { transform: translateX(-50%) scale(1); }
+    42% { transform: translateX(-50%) scale(1.035); }
+    50% {
+      box-shadow:
+        0 14px 32px rgba(123, 44, 255, 0.45),
+        0 0 0 12px rgba(168, 85, 247, 0);
+    }
     56% { transform: translateX(-50%) scale(1); }
   }
 }

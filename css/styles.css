@@ -1128,20 +1128,30 @@ a {
 @media (max-width: 768px) {
   .hero,
   .hero--attblur {
-    height: 100svh;
-    min-height: 100svh;
-    max-height: 100svh;
+    /* Banner normal en móvil: evita el salto de 100svh al mostrar/ocultar la barra del browser */
+    margin-top: 0;
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: 16 / 9;
   }
 
+  .hero__stage,
   .hero__frame {
-    aspect-ratio: auto;
-    min-height: 100%;
-    max-height: none;
+    min-height: 0;
+    height: 100%;
   }
 
   .hero__video {
+    position: absolute;
+    inset: 0;
     transform: none;
     object-fit: cover;
+    object-position: center center;
   }
 }
 
@@ -8201,7 +8211,17 @@ body:has(.cookie-notice.is-visible) .wa-float {
 
 body.is-nav-open {
   overflow: hidden;
-  touch-action: none;
+  overscroll-behavior: none;
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    overscroll-behavior-y: none;
+  }
 }
 
 @media (min-width: 1281px) {

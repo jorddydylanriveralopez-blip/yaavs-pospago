@@ -479,9 +479,8 @@ function initDevicesCarousel() {
       dot.classList.toggle("is-active", active);
       dot.setAttribute("aria-selected", active ? "true" : "false");
       if (active) {
-        try {
-          dot.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
-        } catch (_) {}
+        const left = dot.offsetLeft - dotsWrap.clientWidth / 2 + dot.clientWidth / 2;
+        dotsWrap.scrollTo({ left: Math.max(0, left), behavior: "smooth" });
       }
     });
   }
@@ -644,20 +643,24 @@ function initDevicesCarousel() {
   });
 
   let startX = 0;
-  root.addEventListener(
+  let startY = 0;
+  const stage = root.querySelector("[data-devices-stage]") || root;
+  stage.addEventListener(
     "touchstart",
     (e) => {
       startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
       stopTimer();
     },
     { passive: true }
   );
-  root.addEventListener(
+  stage.addEventListener(
     "touchend",
     (e) => {
-      const delta = e.changedTouches[0].clientX - startX;
-      if (Math.abs(delta) > 40) {
-        if (delta > 0) prevCard();
+      const dx = e.changedTouches[0].clientX - startX;
+      const dy = e.changedTouches[0].clientY - startY;
+      if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.25) {
+        if (dx > 0) prevCard();
         else nextCard();
       }
       startTimer();

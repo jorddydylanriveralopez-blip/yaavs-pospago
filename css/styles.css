@@ -4866,6 +4866,45 @@ body.is-modal-open {
   object-fit: contain;
 }
 
+/* WhatsApp CTA on plan family pages */
+.btn-cta--wa {
+  gap: 0.55rem;
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 80, 40, 0.28);
+  background: linear-gradient(115deg, #3fe07f 0%, #25d366 42%, #1ebe57 78%, #128c7e 100%);
+  background-size: 220% 100%;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.28) inset,
+    0 8px 28px rgba(37, 211, 102, 0.45),
+    0 0 36px rgba(37, 211, 102, 0.28);
+  animation: ctaIn 0.85s var(--ease) 0.2s both, ctaWaGradient 4.5s ease infinite, ctaFloat 3.2s ease-in-out infinite;
+}
+
+.btn-cta--wa:hover {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.35) inset,
+    0 12px 34px rgba(18, 140, 126, 0.5),
+    0 0 42px rgba(37, 211, 102, 0.35);
+}
+
+.btn-cta--wa .btn-cta__wa {
+  display: inline-flex;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+.btn-cta--wa .btn-cta__wa svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes ctaWaGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
 .plan-family-hero__actions-bar {
   display: flex;
   flex-wrap: wrap;

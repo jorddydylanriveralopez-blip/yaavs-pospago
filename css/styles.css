@@ -6070,7 +6070,7 @@ body.is-modal-open {
 .section--plans-single .plans {
   display: flex !important;
   flex-wrap: nowrap !important;
-  justify-content: flex-start !important;
+  justify-content: center;
   align-items: stretch;
   gap: var(--plan-gap, 0.72rem);
   width: max-content;
@@ -6081,6 +6081,10 @@ body.is-modal-open {
   overflow: visible;
   transform: none !important;
   --pos: 0 !important;
+}
+
+.section--plans-single .plans.is-overflowing {
+  justify-content: flex-start;
 }
 
 .section--plans-single .plans > .plan {

@@ -249,7 +249,7 @@
         ? `<s class="plan__price-old">${money(plan.price)}</s>`
         : "";
 
-    return `<article class="plan${featured} reveal" role="listitem" style="--plan:${plan.color};--i:${index}" data-plan="${plan.id}" data-gb="${plan.gb}" data-price="${price}">
+    return `<article class="plan${featured} reveal is-in" role="listitem" style="--plan:${plan.color};--i:${index}" data-plan="${plan.id}" data-gb="${plan.gb}" data-price="${price}">
       <header class="plan__head">
         ${badgeHTML(plan)}
         <span class="plan__brand">AT&amp;T</span>
@@ -283,6 +283,8 @@
     grid.classList.toggle("plans--few", family.plans.length <= 4);
     grid.classList.toggle("plans--many", family.plans.length >= 8);
     setupCarousel(id);
+    const panel = document.querySelector(`[data-plan-panel="${id}"]`);
+    if (panel) revealPlans(panel);
   }
 
   function renderAllFamilies() {
@@ -417,6 +419,12 @@
     ensureGhostSlots(grid, id);
     buildCarouselNav(id);
     applyCarouselPage(id, false);
+    const scroller = activeScroller(id);
+    const overflowing =
+      carouselPages(grid, id) > 1 ||
+      (scroller ? grid.scrollWidth > scroller.clientWidth + 12 : false);
+    grid.classList.toggle("is-centered", !overflowing);
+    grid.classList.toggle("is-overflowing", overflowing);
   }
 
   function changeCarouselPage(id, delta) {

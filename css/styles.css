@@ -3065,6 +3065,8 @@ a {
   width: var(--plan-card-w, 156px);
   min-width: var(--plan-card-w, 156px);
   max-width: var(--plan-card-w, 156px);
+  height: 100%;
+  box-sizing: border-box;
   scroll-snap-align: start;
   scroll-snap-stop: normal;
   opacity: 1;
@@ -3472,6 +3474,9 @@ a {
 }
 
 .plan__foot {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: auto;
   padding: 0.65rem 0.4rem 0.7rem;
   background:
     radial-gradient(120% 140% at 50% 120%, rgba(255, 255, 255, 0.28), transparent 55%),
@@ -3500,6 +3505,8 @@ a {
 }
 
 .plan .btn--plan {
+  width: 100%;
+  box-sizing: border-box;
   box-shadow:
     0 10px 24px color-mix(in srgb, var(--plan) 40%, transparent),
     0 0 0 0 color-mix(in srgb, var(--plan) 35%, transparent);
@@ -3514,27 +3521,42 @@ a {
 
 .plan--featured {
   z-index: 3;
-  animation: featuredFloat 3.4s ease-in-out infinite;
+  transform: none;
+  animation: none;
 }
 
 .plan--featured.is-in,
 .plan--featured.reveal.is-in {
-  transform: translateY(-3px);
+  transform: none;
 }
 
 .plan--featured:hover {
-  transform: translateY(-6px);
+  transform: translateY(-5px);
   filter: drop-shadow(0 16px 22px rgba(0, 193, 212, 0.28));
   animation: none;
 }
 
-@keyframes featuredFloat {
-  0%, 100% { transform: translateY(-3px); }
-  50% { transform: translateY(-5px); }
+.plan__seg--rrss {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.28rem;
+  min-height: 10.85rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.plan__icons--static {
+  width: 100%;
+  min-height: 6.5rem;
 }
 
 .plan--featured .plan__head,
 .plan--featured .plan__foot {
+  width: 100%;
+  box-sizing: border-box;
   box-shadow:
     0 16px 36px rgba(0, 0, 0, 0.35),
     0 0 28px rgba(0, 193, 212, 0.22);

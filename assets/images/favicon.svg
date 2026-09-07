@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
   <defs>
-    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
-      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#ff3194" flood-opacity="0.35"/>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#ff3194" flood-opacity="0.28"/>
     </filter>
   </defs>
-  <!-- Keep generous padding so the mark never clips at 16–32px tab sizes -->
-  <g transform="translate(400 400) scale(0.58) translate(-400 -400)">
+  <!-- Fill most of the icon canvas for clearer tab readability -->
+  <g transform="translate(400 400) scale(1.22) translate(-400 -400)">
     <path
       fill="#ff3194"
       filter="url(#glow)"

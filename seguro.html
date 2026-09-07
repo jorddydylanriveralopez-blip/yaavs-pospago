@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://unpkg.com">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260907y">
+  <link rel="stylesheet" href="css/styles.css?v=20260907aa">
   <link rel="stylesheet" href="css/stores.css?v=20260828d">
   <link rel="icon" href="assets/images/favicon.svg?v=20260828d" type="image/svg+xml">
   <link rel="icon" href="assets/images/favicon-32.png?v=20260828d" type="image/png" sizes="32x32">
@@ -55,17 +55,29 @@
   </header>
 
   <main id="contenido">
-    <!-- SEGUROS HERO -->
-    <section class="section section--insurance-hero" id="seguros" aria-labelledby="seguros-title">
-      <div class="insurance-hero__bg" aria-hidden="true"></div>
-      <div class="wrap">
-        <div class="insurance-hero__content">
-          <p class="eyebrow">SEGURO DE PROTECCIÓN AT&amp;T</p>
-          <h1 id="seguros-title">Tu smartphone protegido.<br><span class="text-cyan">Tu vida conectada.</span></h1>
-          <p class="insurance-hero__sub">Con tu SEGURO DE PROTECCIÓN AT&amp;T disfruta tu equipo con la tranquilidad de saber que estás respaldado ante los imprevistos.</p>
-          <p class="insurance-hero__text">Una caída, una pantalla rota o una batería que ya no rinde como antes no tienen por qué detenerte. Protege tu smartphone y mantente conectado con soluciones pensadas para cuidar tu inversión.</p>
-          <a class="btn-cta insurance-hero__cta" href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20informaci%C3%B3n%20del%20seguro%20de%20equipo" target="_blank" rel="noopener">Incluir seguro en mi cotización</a>
-        </div>
+    <!-- SEGUROS BANNER (solo imagen) -->
+    <section class="plan-family-hero plan-family-hero--media insurance-hero--media" aria-label="Seguro de protección AT&amp;T">
+      <h1 class="sr-only" id="seguros-title">Seguro de Protección AT&amp;T — Tu smartphone protegido. Tu vida conectada.</h1>
+      <div class="plan-family-hero__media">
+        <img
+          src="assets/images/banner-att-seguros.jpg?v=20260907aa"
+          alt="Seguro de protección AT&amp;T — Tu smartphone protegido. Tu vida conectada."
+          width="3600"
+          height="893"
+          decoding="async"
+          fetchpriority="high"
+        >
+      </div>
+    </section>
+
+    <!-- INTRO (texto debajo del banner) -->
+    <section class="section section--insurance-intro" id="seguros" aria-labelledby="seguros-intro-title">
+      <div class="wrap insurance-intro">
+        <p class="eyebrow">SEGURO DE PROTECCIÓN AT&amp;T</p>
+        <h2 id="seguros-intro-title">Tu smartphone protegido.<br><span class="text-cyan">Tu vida conectada.</span></h2>
+        <p class="insurance-intro__sub">Con tu SEGURO DE PROTECCIÓN AT&amp;T disfruta tu equipo con la tranquilidad de saber que estás respaldado ante los imprevistos.</p>
+        <p class="insurance-intro__text">Una caída, una pantalla rota o una batería que ya no rinde como antes no tienen por qué detenerte. Protege tu smartphone y mantente conectado con soluciones pensadas para cuidar tu inversión.</p>
+        <a class="btn-cta insurance-intro__cta" href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20informaci%C3%B3n%20del%20seguro%20de%20equipo" target="_blank" rel="noopener">Incluir seguro en mi cotización</a>
       </div>
     </section>
 

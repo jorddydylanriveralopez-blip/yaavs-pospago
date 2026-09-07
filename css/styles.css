@@ -7095,80 +7095,90 @@ body:has(.cookie-notice.is-visible) .wa-float {
   color: rgba(255, 255, 255, 0.4);
 }
 
-/* Insurance Hero */
-.section--insurance-hero {
+/* Insurance banner — image only */
+.insurance-hero--media {
   position: relative;
-  min-height: clamp(30rem, 68vw, 44rem);
-  padding: 0;
   overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  background: #0a1628;
+  background: #e8f7fc;
 }
 
-.section--insurance-hero > .wrap {
+.insurance-hero--media .plan-family-hero__media {
   position: relative;
-  z-index: 1;
-  width: 100%;
-  padding-block: 2.5rem 3.25rem;
 }
 
-.insurance-hero__bg {
-  position: absolute;
-  inset: 0;
-  background: url('../assets/images/banner-att-seguros.jpg?v=20260907y') center / cover no-repeat;
-  opacity: 1;
-  z-index: 0;
-}
-
-.insurance-hero__bg::after {
+.insurance-hero--media .plan-family-hero__media::after {
   content: "";
   position: absolute;
   inset: 0;
+  pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(8, 18, 32, 0.18) 0%, rgba(8, 18, 32, 0.28) 38%, rgba(8, 18, 32, 0.78) 72%, rgba(8, 18, 32, 0.92) 100%),
-    linear-gradient(90deg, rgba(8, 18, 32, 0.35) 0%, transparent 45%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, transparent 28%, transparent 72%, rgba(8, 18, 32, 0.08) 100%);
 }
 
-.insurance-hero__content {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  max-width: 48rem;
+.insurance-hero--media .plan-family-hero__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  animation: insuranceBannerIn 0.9s var(--ease) both;
+}
+
+@keyframes insuranceBannerIn {
+  from {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Insurance intro below banner */
+.section--insurance-intro {
+  padding: clamp(2.5rem, 5vw, 3.75rem) 0 1.5rem;
+  background: linear-gradient(180deg, #fff 0%, #f4fbff 100%);
+}
+
+.insurance-intro {
+  max-width: 44rem;
   margin-inline: auto;
-  padding-top: clamp(8rem, 22vw, 14rem);
+  text-align: center;
 }
 
-.insurance-hero__content .eyebrow {
-  color: var(--att-cyan);
+.insurance-intro .eyebrow {
+  color: var(--att-blue);
+  margin: 0 0 0.55rem;
 }
 
-.insurance-hero__content h1 {
-  color: #fff;
+.insurance-intro h2 {
+  margin: 0 0 1rem;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.75rem, 4vw, 2.55rem);
   font-weight: 900;
   letter-spacing: -0.03em;
-  margin: 0.75rem 0 1rem;
   line-height: 1.15;
+  color: var(--att-ink);
+  text-wrap: balance;
 }
 
-.insurance-hero__content .text-cyan {
+.insurance-intro .text-cyan {
   color: var(--att-cyan);
 }
 
-.insurance-hero__sub {
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  color: rgba(255,255,255,0.9);
-  margin-bottom: 1rem;
+.insurance-intro__sub {
+  margin: 0 0 0.85rem;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--att-ink);
+  line-height: 1.5;
 }
 
-.insurance-hero__text {
-  color: rgba(255,255,255,0.7);
-  margin-bottom: 2rem;
+.insurance-intro__text {
+  margin: 0 0 1.5rem;
+  color: var(--att-muted);
+  line-height: 1.55;
 }
 
-.insurance-hero__cta {
+.insurance-intro__cta {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -7180,13 +7190,19 @@ body:has(.cookie-notice.is-visible) .wa-float {
   background: linear-gradient(115deg, var(--att-cyan), var(--att-blue));
   border-radius: 999px;
   text-decoration: none;
-  box-shadow: 0 10px 28px rgba(0,159,219,0.45);
+  box-shadow: 0 10px 28px rgba(0, 159, 219, 0.35);
   transition: transform 0.2s var(--ease), box-shadow 0.2s ease;
 }
 
-.insurance-hero__cta:hover {
+.insurance-intro__cta:hover {
   transform: translateY(-3px);
-  box-shadow: 0 15px 36px rgba(0,159,219,0.55);
+  box-shadow: 0 15px 36px rgba(0, 159, 219, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .insurance-hero--media .plan-family-hero__media img {
+    animation: none;
+  }
 }
 
 /* Insurance Coverage */

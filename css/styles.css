@@ -276,7 +276,10 @@ a {
 
 /* On small screens keep CTA in flow (no absolute positioning) */
 @media (max-width: 900px) {
-  .site-header__inner .btn-cta { position: static; transform: none; margin-left: 0.5rem; justify-self: end; }
+  .site-header__inner .btn-cta {
+    position: static;
+    transform: none;
+  }
 }
 
 /* Ajustes de accesibilidad y alineación de contenido del CTA */
@@ -8229,13 +8232,19 @@ body.is-nav-open {
 
   .brand {
     order: 1;
+    flex: 1 1 auto;
     flex-shrink: 1;
     min-width: 0;
+    margin-right: 0.35rem;
   }
 
+  .site-header__inner .btn-cta,
   .btn-cta {
     order: 2;
-    margin-left: auto;
+    flex: 0 0 auto;
+    margin-left: 0;
+    margin-right: 0;
+    justify-self: auto;
     min-height: 40px;
     padding: 0.65rem 0.95rem;
     font-size: 0.78rem;
@@ -8248,7 +8257,9 @@ body.is-nav-open {
 
   .nav {
     order: 3;
-    margin-left: 0;
+    flex: 0 0 auto;
+    margin-left: 0.25rem;
+    margin-right: 0;
     justify-self: auto;
     flex-shrink: 0;
     position: static;

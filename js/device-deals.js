@@ -201,8 +201,10 @@
     return `
       <article class="deal-card${deal.flagship ? " deal-card--flagship" : ""}" role="listitem" style="--plan: ${deal.color}; --plan-text: ${deal.textColor}" data-deal-card>
         <button type="button" class="deal-card__pick" aria-expanded="false" aria-controls="${panelId}" data-deal-toggle>
-          <span class="deal-card__ribbon">${deal.flagship ? "Top ventas" : "Promo"}</span>
-          <span class="deal-card__plan">Plan ${deal.plan}</span>
+          <span class="deal-card__badges">
+            <span class="deal-card__plan">Plan ${deal.plan}</span>
+            <span class="deal-card__ribbon">${deal.flagship ? "Top ventas" : "Promo"}</span>
+          </span>
           <span class="deal-card__media">
             <img src="${deal.image}" alt="${deal.name}" width="640" height="640" loading="lazy" decoding="async">
           </span>

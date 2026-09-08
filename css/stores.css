@@ -530,12 +530,7 @@
   }
 
   .pospago-stores__cta {
-    width: min(100%, 22rem);
-    min-height: 48px;
-    margin-top: 0.7rem;
-    margin-bottom: 0;
-    padding: 0.75rem 1.15rem;
-    font-size: 0.9rem;
+    display: none;
   }
 
   .pospago-stores__stage {

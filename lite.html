@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260907az">
+  <link rel="stylesheet" href="css/styles.css?v=20260908i">
   <link rel="icon" href="assets/images/favicon.svg?v=20260907ay" type="image/svg+xml">
   <link rel="icon" href="assets/images/favicon-32.png?v=20260907ay" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/images/favicon-180.png?v=20260907ay" sizes="180x180">
@@ -113,14 +113,17 @@
     <section class="plan-family-hero plan-family-hero--media plan-family-hero--lite" aria-labelledby="lite-hero-title">
       <h1 class="sr-only" id="lite-hero-title">AT&amp;T Lite</h1>
       <div class="plan-family-hero__media">
-        <img
-          src="assets/images/banner-att-lite.jpg?v=20260907aq"
-          alt="AT&amp;T Lite — Desde $299 al mes. La libertad de elegir el plan a tu medida con equipo propio"
-          width="3600"
-          height="893"
-          decoding="async"
-          fetchpriority="high"
-        >
+        <picture>
+          <source media="(max-width: 720px)" srcset="assets/images/banner-att-lite-mobile.jpg?v=20260908a">
+          <img
+            src="assets/images/banner-att-lite.jpg?v=20260907aq"
+            alt="AT&amp;T Lite — Desde $299 al mes. La libertad de elegir el plan a tu medida con equipo propio"
+            width="3600"
+            height="893"
+            decoding="async"
+            fetchpriority="high"
+          >
+        </picture>
       </div>
       <div class="wrap plan-family-hero__actions-bar">
         <a class="btn-cta btn-cta--wa" href="https://wa.me/525522331210?text=Hola%20YAAVS%20Pospago%2C%20quiero%20cotizar%20un%20plan%20AT%26T%20Lite" target="_blank" rel="noopener">

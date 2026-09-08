@@ -84,7 +84,7 @@
         { id: "black", name: "Black", gb: 42, price: 825, pricePort: 660, color: "#1A1A1A", rrssCount: 6, addon: 50, featured: true },
         { id: "platino", name: "Platino", gb: 50, price: 1035, pricePort: 830, color: "#B4B6C8", rrssCount: 6, addon: 50 },
         { id: "diamante", name: "Diamante", gb: 55, price: 1300, pricePort: 1040, color: "#8FA4B5", rrssCount: 6, addon: 50 },
-        { id: "titanio", name: "Titanio", gb: 42, price: 1599, pricePort: 1440, color: "#5C8BA6", rrssCount: 6, addon: 50, badge: "iPhone 17 incluido" },
+        { id: "titanio", name: "Titanio", gb: 42, price: 1599, pricePort: 1440, color: "#5C8BA6", rrssCount: 6, addon: 50, badge: "iPhone 17 256 GB incluido" },
       ],
     },
     simple: {
@@ -239,7 +239,6 @@
   function badgeHTML(plan) {
     const labels = [];
     if (plan.featured) labels.push("Popular");
-    if (plan.badge) labels.push(plan.badge);
     if (!labels.length) return "";
     return `<div class="plan__tags">${labels.map((t) => `<p class="plan__tag">${t}</p>`).join("")}</div>`;
   }
@@ -259,12 +258,23 @@
     }
     if (showPort && plan.pricePort && plan.pricePort < plan.price) {
       const save = Math.round((1 - plan.pricePort / plan.price) * 100);
+      const extra = plan.badge ? ` · ${plan.badge}` : "";
       return `<div class="plan__promo-bar" aria-label="Promoción portabilidad">
         <span class="plan__promo-bar-label">Portabilidad</span>
-        <strong>${save}% menos en renta</strong>
+        <strong>${save}% menos en renta${extra}</strong>
       </div>`;
     }
-    return `<button type="button" class="btn btn--plan" data-quote-plan="${plan.id}">Cotizar</button>`;
+    if (plan.badge) {
+      return `<div class="plan__promo-bar" aria-label="Promoción ${escapeAttr(plan.badge)}">
+        <span class="plan__promo-bar-label">Promoción</span>
+        <strong>${plan.badge}</strong>
+      </div>`;
+    }
+    return "";
+  }
+
+  function escapeAttr(value) {
+    return String(value).replace(/"/g, "&quot;");
   }
 
   function cardHTML(plan, index) {

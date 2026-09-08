@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://unpkg.com">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260908t">
+  <link rel="stylesheet" href="css/styles.css?v=20260908u">
   <link rel="stylesheet" href="css/stores.css?v=20260908q">
   <link rel="icon" href="assets/images/favicon.svg?v=20260907ay" type="image/svg+xml">
   <link rel="icon" href="assets/images/favicon-32.png?v=20260907ay" type="image/png" sizes="32x32">
@@ -146,21 +146,30 @@
   </header>
 
   <main id="contenido">
-    <!-- HERO — Secuencia 01_4 video -->
+    <!-- HERO — desktop landscape + mobile vertical Plan Black -->
     <section class="hero hero--attblur" id="inicio" aria-label="Promoción destacada">
       <div class="hero__stage">
         <div class="hero__aura" aria-hidden="true"></div>
         <div class="hero__frame">
           <video
-            class="hero__video"
+            class="hero__video hero__video--desktop"
             src="assets/banners/secuencia-01-4.mp4?v=20260907u"
             poster="assets/banners/secuencia-01-4-poster.jpg?v=20260907u"
             muted
             loop
             playsinline
             preload="metadata"
-            autoplay
             aria-label="Video promoción YAAVS Pospago AT&amp;T"
+          ></video>
+          <video
+            class="hero__video hero__video--mobile"
+            src="assets/banners/plan-black-vertical-head.mp4?v=20260908u"
+            poster="assets/banners/plan-black-vertical-head-poster.jpg?v=20260908u"
+            muted
+            loop
+            playsinline
+            preload="none"
+            aria-label="Plan Black — estrena el smartphone que tanto quieres"
           ></video>
           <div class="hero__shine" aria-hidden="true"></div>
           <div class="hero__edge" aria-hidden="true"></div>
@@ -783,6 +792,6 @@
   <script src="js/premium-devices.js?v=20260828d" defer></script>
   <script src="js/tiendas-att-stores.js?v=20260907bc" defer></script>
   <script src="js/pospago-stores.js?v=20260907av" defer></script>
-  <script src="js/header.js?v=20260908m" defer></script>
+  <script src="js/header.js?v=20260908u" defer></script>
 </body>
 </html>

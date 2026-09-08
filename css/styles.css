@@ -1105,6 +1105,10 @@ a {
   image-rendering: auto;
 }
 
+.hero__video--mobile {
+  display: none;
+}
+
 .hero__shine {
   pointer-events: none;
   position: absolute;
@@ -1128,7 +1132,7 @@ a {
 @media (max-width: 768px) {
   .hero,
   .hero--attblur {
-    /* Banner normal en móvil: evita el salto de 100svh al mostrar/ocultar la barra del browser */
+    /* Vertical Plan Black banner on phones */
     margin-top: 0;
     width: 100%;
     max-width: 100%;
@@ -1136,14 +1140,22 @@ a {
     margin-right: 0;
     height: auto;
     min-height: 0;
-    max-height: none;
-    aspect-ratio: 16 / 9;
+    max-height: min(86vh, 720px);
+    aspect-ratio: 9 / 16;
   }
 
   .hero__stage,
   .hero__frame {
     min-height: 0;
     height: 100%;
+  }
+
+  .hero__video--desktop {
+    display: none;
+  }
+
+  .hero__video--mobile {
+    display: block;
   }
 
   .hero__video {

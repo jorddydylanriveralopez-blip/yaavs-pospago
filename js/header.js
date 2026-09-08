@@ -11,21 +11,52 @@
     titanio: "AT&T Titanio — 42 GB · $1,599",
   };
 
-  /* Video banner — autoplay muted loop on all viewports */
+  /* Video banner — desktop landscape + mobile vertical; play only the visible one */
   function initHeroVideo() {
-    const video = document.querySelector(".hero__video");
-    if (!video) return;
+    const desktop = document.querySelector(".hero__video--desktop");
+    const mobile = document.querySelector(".hero__video--mobile");
+    const fallback = document.querySelector(".hero__video");
+    const mq = window.matchMedia("(max-width: 768px)");
+    const armed = new WeakSet();
 
-    video.muted = true;
-    video.playsInline = true;
-    video.setAttribute("playsinline", "");
-    video.setAttribute("webkit-playsinline", "");
-    const tryPlay = () => {
-      const p = video.play();
-      if (p && typeof p.catch === "function") p.catch(() => {});
+    const arm = (video) => {
+      if (!video) return;
+      video.muted = true;
+      video.playsInline = true;
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+      video.preload = "auto";
+      const tryPlay = () => {
+        const p = video.play();
+        if (p && typeof p.catch === "function") p.catch(() => {});
+      };
+      if (!armed.has(video)) {
+        armed.add(video);
+        video.addEventListener("canplay", tryPlay);
+      }
+      tryPlay();
     };
-    video.addEventListener("canplay", tryPlay, { once: true });
-    tryPlay();
+
+    const sync = () => {
+      const useMobile = mq.matches && mobile;
+      if (desktop && mobile) {
+        if (useMobile) {
+          desktop.pause();
+          desktop.preload = "none";
+          arm(mobile);
+        } else {
+          mobile.pause();
+          mobile.preload = "none";
+          arm(desktop);
+        }
+        return;
+      }
+      arm(fallback);
+    };
+
+    sync();
+    if (typeof mq.addEventListener === "function") mq.addEventListener("change", sync);
+    else if (typeof mq.addListener === "function") mq.addListener(sync);
   }
 
   /* Carrusel móvil de promos */

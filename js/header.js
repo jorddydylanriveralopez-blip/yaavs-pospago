@@ -142,7 +142,7 @@
       backdrop.setAttribute("data-nav-backdrop", "");
       backdrop.setAttribute("aria-label", "Cerrar menú");
       backdrop.hidden = true;
-      (header || document.body).appendChild(backdrop);
+      (document.body).appendChild(backdrop);
     }
 
     const setNavOpen = (open) => {

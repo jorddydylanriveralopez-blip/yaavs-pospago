@@ -8353,6 +8353,23 @@ body.is-nav-open {
   overscroll-behavior: none;
 }
 
+/* Glass/blur on scrolled header clips absolute/fixed children — disable while menu is open */
+body.is-nav-open .site-header,
+body.is-nav-open .site-header.is-scrolled {
+  overflow: visible;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background: linear-gradient(180deg, rgba(8, 12, 18, 0.98), rgba(12, 18, 28, 0.96));
+}
+
+body.is-nav-open .nav-backdrop {
+  z-index: 190;
+}
+
+body.is-nav-open .site-header {
+  z-index: 200;
+}
+
 @media (max-width: 768px) {
   html {
     scroll-behavior: auto;
@@ -8533,7 +8550,15 @@ body.is-nav-open {
 
   .nav.is-open .nav__list {
     display: flex;
-    z-index: 80;
+    position: fixed;
+    top: calc(var(--header-h) + 8px);
+    left: 0.65rem;
+    right: 0.65rem;
+    z-index: 210;
+    max-height: min(78dvh, calc(100dvh - var(--header-h) - 28px));
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .nav__list > li {

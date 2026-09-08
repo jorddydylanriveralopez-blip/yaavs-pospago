@@ -6806,6 +6806,19 @@ body:has(.cookie-notice.is-visible) .wa-float {
   gap: 0.85rem 1.1rem;
 }
 
+.about-hero--media .plan-family-hero__media picture {
+  display: block;
+  line-height: 0;
+}
+
+@media (max-width: 720px) {
+  .about-hero--media .plan-family-hero__media img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
 .about-hero__crumb--bar {
   margin: 0;
   width: 100%;

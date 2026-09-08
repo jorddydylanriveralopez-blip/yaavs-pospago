@@ -244,10 +244,15 @@
 
   function breakdownHTML(plan) {
     if (!plan.packGb || !plan.promoGb) return "";
-    return `<p class="plan__breakdown" aria-label="${plan.packGb} GB paquete más ${plan.promoGb} GB de promoción">
-      <span class="plan__breakdown-pack"><strong>${plan.packGb} GB</strong> paquete</span>
-      <span class="plan__breakdown-plus" aria-hidden="true">+</span>
-      <span class="plan__breakdown-promo"><strong>${plan.promoGb} GB</strong> promo</span>
+    const total = plan.gb || plan.packGb + plan.promoGb;
+    return `<p class="plan__breakdown" aria-label="Promoción doble de GB: ${plan.packGb} del plan más ${plan.promoGb} de regalo, total ${total} GB">
+      <span class="plan__breakdown-title">Doble de GB</span>
+      <span class="plan__breakdown-row">
+        <span class="plan__breakdown-pack">${plan.packGb} GB del plan</span>
+        <span class="plan__breakdown-plus" aria-hidden="true">+</span>
+        <span class="plan__breakdown-promo">${plan.promoGb} GB de regalo</span>
+      </span>
+      <span class="plan__breakdown-total">Total <strong>${total} GB</strong></span>
     </p>`;
   }
 

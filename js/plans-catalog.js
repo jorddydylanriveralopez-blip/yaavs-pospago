@@ -90,15 +90,14 @@
     simple: {
       label: "Simple Plus",
       hintStandard:
-        "Línea nueva · Doble de GB por promoción · Min/SMS ilimitados MX, EUA y Canadá",
-      hintPortabilidad:
-        "Portabilidad · al traer tu número de otra compañía · Min/SMS ilimitados MX, EUA y Canadá",
-      pricingLabels: { standard: "Línea nueva", portabilidad: "Portabilidad" },
+        "Disponibles al activar en Salesforce · Doble de GB por promoción · Min/SMS ilimitados MX, EUA y Canadá",
+      hintPortabilidad: null,
+      pricingLabels: null,
       plans: [
-        { id: "simple299", name: "Simple 299", gb: 3, packGb: 1.5, promoGb: 1.5, price: 299, pricePort: 259, color: "#00A9A6", rrssCount: null, unlimitedRrss: true },
-        { id: "simple399", name: "Simple 399", gb: 5, packGb: 2.5, promoGb: 2.5, price: 399, pricePort: 339, color: "#00B8A9", rrssCount: null, unlimitedRrss: true },
-        { id: "simple599", name: "Simple 599", gb: 8, packGb: 4, promoGb: 4, price: 599, pricePort: 499, color: "#00C1D4", rrssCount: null, unlimitedRrss: true, featured: true },
-        { id: "simple649", name: "Simple 649", gb: 12, packGb: 6, promoGb: 6, price: 649, pricePort: 549, color: "#009FDB", rrssCount: null, unlimitedRrss: true },
+        { id: "simple299", name: "Simple 299", gb: 3, packGb: 1.5, promoGb: 1.5, price: 299, pricePort: null, color: "#00A9A6", rrssCount: null, unlimitedRrss: true },
+        { id: "simple399", name: "Simple 399", gb: 5, packGb: 2.5, promoGb: 2.5, price: 399, pricePort: null, color: "#00B8A9", rrssCount: null, unlimitedRrss: true },
+        { id: "simple599", name: "Simple 599", gb: 8, packGb: 4, promoGb: 4, price: 599, pricePort: null, color: "#00C1D4", rrssCount: null, unlimitedRrss: true, featured: true },
+        { id: "simple649", name: "Simple 649", gb: 12, packGb: 6, promoGb: 6, price: 649, pricePort: null, color: "#009FDB", rrssCount: null, unlimitedRrss: true },
       ],
     },
     lite: {

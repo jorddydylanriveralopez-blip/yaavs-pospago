@@ -4578,17 +4578,22 @@ body.is-modal-open {
 
 .renew__copy .btn--primary,
 .renew__cta {
-  background: #fff;
-  color: var(--att-blue-deep);
-  box-shadow: 0 12px 28px rgba(0, 60, 100, 0.22);
   margin-top: 0.65rem;
   border: 0;
   font-weight: 800;
 }
 
+.renew__cta.btn-cta--wa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+}
+
 .renew__cta:hover {
   transform: translateY(-2px);
-  filter: brightness(1.03);
 }
 
 .renew__steps {
@@ -4921,41 +4926,21 @@ body.is-modal-open {
 .brands-hero__cta {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.6rem;
   padding: 0.8rem 2rem;
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 1.05rem;
-  color: #fff;
-  background: linear-gradient(120deg, #00c1d4 0%, #009fdb 55%, #0077a8 100%);
   border-radius: 999px;
   text-decoration: none;
-  box-shadow: 0 12px 32px rgba(0, 159, 219, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.35) inset;
-  transition: all 0.25s ease;
   border: 0;
   position: relative;
   overflow: hidden;
 }
 
-.brands-hero__cta::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.35), transparent);
-  transition: 0.6s;
-}
-
-.brands-hero__cta:hover::before {
-  transform: rotate(20deg) scale(1.2);
-}
-
-.brands-hero__cta:hover {
+.brands-hero__cta.btn-cta--wa:hover {
   transform: translateY(-3px);
-  box-shadow: 0 16px 40px rgba(0, 159, 219, 0.45);
-  border-color: transparent;
   color: #fff;
 }
 

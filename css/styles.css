@@ -6614,6 +6614,11 @@ body:has(.cookie-notice.is-visible) .wa-float {
   object-position: center;
 }
 
+.att-banner__link picture {
+  display: block;
+  line-height: 0;
+}
+
 .att-banner__cta {
   position: absolute;
   right: clamp(4%, 8vw, 11%);
@@ -6743,6 +6748,10 @@ body:has(.cookie-notice.is-visible) .wa-float {
   .att-banner__img {
     width: 100%;
     height: auto;
+  }
+
+  .att-banner--quienes .att-banner__cta {
+    display: none;
   }
 
   .att-banner__cta {

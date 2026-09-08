@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://unpkg.com">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260907bb">
+  <link rel="stylesheet" href="css/styles.css?v=20260908b">
   <link rel="stylesheet" href="css/stores.css?v=20260907aw">
   <link rel="icon" href="assets/images/favicon.svg?v=20260907ay" type="image/svg+xml">
   <link rel="icon" href="assets/images/favicon-32.png?v=20260907ay" type="image/png" sizes="32x32">
@@ -195,17 +195,20 @@
     </section>
 
     <!-- Banner clickable → ¿Quiénes somos -->
-    <section class="att-banner" aria-label="Más que números, personas">
+    <section class="att-banner att-banner--quienes" aria-label="Más que números, personas">
       <a class="att-banner__link" href="quienes-somos.html">
-        <img
-          class="att-banner__img"
-          src="assets/images/banner-att-mas-que-numeros.jpg?v=20260907a"
-          alt="AT&amp;T Distribuidor Autorizado — Más que números, personas. Conoce quiénes somos"
-          width="3600"
-          height="893"
-          loading="lazy"
-          decoding="async"
-        >
+        <picture>
+          <source media="(max-width: 720px)" srcset="assets/images/banner-att-quienes-mobile.jpg?v=20260908a">
+          <img
+            class="att-banner__img"
+            src="assets/images/banner-att-mas-que-numeros.jpg?v=20260907a"
+            alt="AT&amp;T Distribuidor Autorizado — Más que números, personas. Conoce quiénes somos"
+            width="3600"
+            height="893"
+            loading="lazy"
+            decoding="async"
+          >
+        </picture>
         <span class="att-banner__cta">
           <span class="att-banner__cta-ring" aria-hidden="true"></span>
           <span class="att-banner__cta-ring att-banner__cta-ring--delay" aria-hidden="true"></span>

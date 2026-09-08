@@ -528,7 +528,7 @@ function initDevicesCarousel() {
   const dotsWrap = root.querySelector("[data-devices-dots]");
   if (!slides.length) return;
 
-  const INTERVAL = 10000;
+  const INTERVAL = 5000;
   const TRANSITION_MS = 820;
   let index = Math.max(0, slides.findIndex((s) => s.classList.contains("is-active")));
   let timer = null;
@@ -722,11 +722,9 @@ function initDevicesCarousel() {
     startTimer();
   });
 
-  root.addEventListener("mouseenter", stopTimer);
-  root.addEventListener("mouseleave", startTimer);
-  root.addEventListener("focusin", stopTimer);
-  root.addEventListener("focusout", (e) => {
-    if (!root.contains(e.relatedTarget)) startTimer();
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stopTimer();
+    else startTimer();
   });
 
   let startX = 0;
@@ -737,7 +735,6 @@ function initDevicesCarousel() {
     (e) => {
       startX = e.touches[0].clientX;
       startY = e.touches[0].clientY;
-      stopTimer();
     },
     { passive: true }
   );
@@ -749,8 +746,8 @@ function initDevicesCarousel() {
       if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.25) {
         if (dx > 0) prevCard();
         else nextCard();
+        startTimer();
       }
-      startTimer();
     },
     { passive: true }
   );

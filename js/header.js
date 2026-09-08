@@ -145,12 +145,30 @@
       (document.body).appendChild(backdrop);
     }
 
+    let scrollLockY = 0;
+
     const setNavOpen = (open) => {
       nav.classList.toggle("is-open", open);
       toggle.setAttribute("aria-expanded", String(open));
       document.body.classList.toggle("is-nav-open", open);
       backdrop.hidden = !open;
       backdrop.classList.toggle("is-visible", open);
+
+      if (open) {
+        scrollLockY = window.scrollY || window.pageYOffset || 0;
+        document.body.style.position = "fixed";
+        document.body.style.top = `-${scrollLockY}px`;
+        document.body.style.left = "0";
+        document.body.style.right = "0";
+        document.body.style.width = "100%";
+      } else {
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.left = "";
+        document.body.style.right = "";
+        document.body.style.width = "";
+        window.scrollTo(0, scrollLockY);
+      }
     };
 
     const closeNav = () => setNavOpen(false);

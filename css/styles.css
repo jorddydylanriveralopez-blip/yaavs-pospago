@@ -8351,11 +8351,17 @@ body:has(.cookie-notice.is-visible) .wa-float {
 body.is-nav-open {
   overflow: hidden;
   overscroll-behavior: none;
+  touch-action: none;
 }
 
-/* Glass/blur on scrolled header clips absolute/fixed children — disable while menu is open */
+/* Keep header + menu pinned to the viewport while open (sticky unsticks with overflow lock) */
 body.is-nav-open .site-header,
 body.is-nav-open .site-header.is-scrolled {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   overflow: visible;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;

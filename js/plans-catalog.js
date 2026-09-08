@@ -430,22 +430,13 @@
     if (nav) nav.hidden = pages <= 1;
   }
 
-  function applyCarouselPage(id, animated = true) {
+  function updateCarouselChrome(id) {
     const panel = document.querySelector(`[data-plan-panel="${id}"]`);
     const grid = document.querySelector(`[data-plans-grid="${id}"]`);
     if (!panel || !grid) return;
-    const cards = frameCards(grid);
-    if (!cards.length) return;
     const pages = carouselPages(grid, id);
     const current = clampPage(CAROUSEL_STATE[id] ?? 0, pages);
     CAROUSEL_STATE[id] = current;
-
-    const scroller = panel.querySelector("[data-plans-scroller]");
-    const target = cards[current * perPage(id)];
-    if (scroller && target) {
-      const left = target.offsetLeft - 20;
-      scroller.scrollTo({ left: Math.max(0, left), behavior: animated ? "smooth" : "auto" });
-    }
 
     const prev = panel.querySelector("[data-carousel-prev]");
     const next = panel.querySelector("[data-carousel-next]");
@@ -460,6 +451,37 @@
     if (counter) counter.textContent = `${current + 1} / ${pages}`;
     const nav = panel.querySelector(".plans-nav");
     if (nav) nav.hidden = pages <= 1;
+  }
+
+  function applyCarouselPage(id, animated = true) {
+    const panel = document.querySelector(`[data-plan-panel="${id}"]`);
+    const grid = document.querySelector(`[data-plans-grid="${id}"]`);
+    if (!panel || !grid) return;
+    const cards = frameCards(grid);
+    if (!cards.length) return;
+    const pages = carouselPages(grid, id);
+    const current = clampPage(CAROUSEL_STATE[id] ?? 0, pages);
+    CAROUSEL_STATE[id] = current;
+
+    const scroller = panel.querySelector("[data-plans-scroller]");
+    const target = cards[current * perPage(id)];
+    if (scroller && target) {
+      const gridPad = parseFloat(getComputedStyle(grid).paddingLeft) || 0;
+      const left = Math.max(0, target.offsetLeft - gridPad);
+      const preferSmooth = animated && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      scroller.scrollTo({ left, behavior: preferSmooth ? "smooth" : "auto" });
+    }
+
+    updateCarouselChrome(id);
+  }
+
+  function syncCarouselFromScroll(id, scroller, grid) {
+    const unit = carouselUnit(grid, id);
+    if (!(unit > 0)) return;
+    const page = clampPage(Math.round(scroller.scrollLeft / unit), carouselPages(grid, id));
+    if (page === (CAROUSEL_STATE[id] ?? 0)) return;
+    CAROUSEL_STATE[id] = page;
+    updateCarouselChrome(id);
   }
 
   function setupCarousel(id) {
@@ -502,27 +524,20 @@
         applyCarouselPage(id, true);
       });
 
-      let touchX = 0;
-      let touchY = 0;
-      scroller.addEventListener(
-        "touchstart",
-        (e) => {
-          const t = e.changedTouches[0];
-          touchX = t.clientX;
-          touchY = t.clientY;
-        },
-        { passive: true }
-      );
-      scroller.addEventListener(
-        "touchend",
-        (e) => {
-          const t = e.changedTouches[0];
-          const dx = t.clientX - touchX;
-          const dy = t.clientY - touchY;
-          if (Math.abs(dx) > 44 && Math.abs(dx) > Math.abs(dy)) changeCarouselPage(id, dx < 0 ? 1 : -1);
-        },
-        { passive: true }
-      );
+      // Native swipe/scroll on touch; only sync dots/counter (no competing scrollTo).
+      let scrollRaf = 0;
+      let scrollIdle = 0;
+      const onScroll = () => {
+        if (scrollRaf) return;
+        scrollRaf = requestAnimationFrame(() => {
+          scrollRaf = 0;
+          syncCarouselFromScroll(id, scroller, grid);
+        });
+        window.clearTimeout(scrollIdle);
+        scrollIdle = window.setTimeout(() => syncCarouselFromScroll(id, scroller, grid), 90);
+      };
+      scroller.addEventListener("scroll", onScroll, { passive: true });
+      scroller.addEventListener("scrollend", () => syncCarouselFromScroll(id, scroller, grid), { passive: true });
 
       let drag = null;
       let cancelClick = false;
@@ -548,8 +563,10 @@
           const target = clampPage(Math.round(scroller.scrollLeft / carouselUnit(grid, id)), carouselPages(grid, id));
           CAROUSEL_STATE[id] = target;
           cancelClick = true;
+          applyCarouselPage(id, true);
+        } else {
+          syncCarouselFromScroll(id, scroller, grid);
         }
-        applyCarouselPage(id, true);
         window.setTimeout(() => {
           cancelClick = false;
         }, 0);
@@ -569,7 +586,6 @@
         true
       );
 
-      // Allow vertical wheel scroll to propagate to the page; convert primarily-horizontal wheel to horizontal scroll
       scroller.addEventListener(
         "wheel",
         (e) => {
@@ -577,7 +593,6 @@
             return;
           }
           if (Math.abs(e.deltaY) > Math.abs(e.deltaX) && scroller.scrollWidth > scroller.clientWidth + 8) {
-            // Shift+wheel or trackpad with intent: nudge horizontal when scroller can move
             if (e.shiftKey) {
               e.preventDefault();
               scroller.scrollLeft += e.deltaY;

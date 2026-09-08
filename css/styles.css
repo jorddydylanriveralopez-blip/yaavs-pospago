@@ -3354,6 +3354,8 @@ a {
   scrollbar-width: none;
   scroll-snap-type: x proximity;
   scroll-padding-inline: 1.25rem;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x;
   mask-image: linear-gradient(
     90deg,
     transparent 0,
@@ -8879,8 +8881,11 @@ main {
 
 @media (max-width: 640px) {
   .plans-scroll {
-    --plan-card-w: min(78vw, 220px);
-    width: calc(100% - 0.5rem);
+    --plan-card-w: min(82vw, 240px);
+    width: 100%;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0.75rem;
+    touch-action: pan-x;
     mask-image: none;
   }
 
@@ -8889,13 +8894,15 @@ main {
     width: var(--plan-card-w);
     min-width: var(--plan-card-w);
     max-width: var(--plan-card-w);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
 
   .plans,
   .plans--few,
   .plans--many {
     gap: var(--plan-gap);
-    padding-inline: 0.85rem;
+    padding-inline: 0.75rem;
   }
 }
 
@@ -9721,6 +9728,10 @@ body.is-nav-open .site-header {
     max-width: 100%;
     padding: 0.85rem 0 0.65rem;
     overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0.85rem;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x;
     mask-image: none;
   }
 
@@ -9743,7 +9754,14 @@ body.is-nav-open .site-header {
     max-width: var(--plan-card-w);
     gap: 0.28rem;
     scroll-snap-align: start;
-    scroll-snap-stop: normal;
+    scroll-snap-stop: always;
+    content-visibility: auto;
+    contain: layout paint style;
+  }
+
+  .plan__app-btn,
+  .plan__icons--pick {
+    touch-action: manipulation;
   }
 
   .plans__ghost {

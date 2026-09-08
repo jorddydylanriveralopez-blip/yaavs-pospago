@@ -316,9 +316,16 @@
 
 .pospago-stores__card.is-active {
   border-color: #00c1d4;
+  background: linear-gradient(165deg, rgba(0, 193, 212, 0.1), #fff 55%);
   box-shadow:
-    0 0 0 2px rgba(0, 193, 212, 0.2),
-    0 14px 28px rgba(0, 159, 219, 0.12);
+    0 0 0 2px rgba(0, 193, 212, 0.28),
+    0 16px 36px rgba(0, 159, 219, 0.16);
+  transform: translateY(-2px);
+}
+
+.pospago-stores__card.is-active .pospago-stores__go {
+  box-shadow: 0 10px 22px rgba(0, 159, 219, 0.35);
+  transform: scale(1.02);
 }
 
 .pospago-stores__card-main {
@@ -400,6 +407,96 @@
   background:
     linear-gradient(180deg, #d7eef8 0%, #e8f4fa 100%);
   z-index: 0;
+}
+
+.pospago-stores__map-col {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 0.75rem;
+  min-width: 0;
+  align-content: stretch;
+}
+
+.pospago-stores__map-col .pospago-stores__map {
+  height: auto;
+  min-height: 420px;
+}
+
+.pospago-stores__contact {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem 1.1rem 1.1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(37, 211, 102, 0.28);
+  background:
+    radial-gradient(ellipse 80% 120% at 100% 0%, rgba(37, 211, 102, 0.14), transparent 55%),
+    linear-gradient(165deg, #061510 0%, #0a1f18 55%, #07140f 100%);
+  color: #e8fff2;
+  box-shadow: 0 14px 32px rgba(0, 40, 20, 0.18);
+}
+
+.pospago-stores__contact[hidden] {
+  display: none !important;
+}
+
+.pospago-stores__contact-kicker {
+  margin: 0;
+  font-family: var(--font-display, "Sora", sans-serif);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7dffb0;
+}
+
+.pospago-stores__contact-name {
+  margin: 0;
+  font-family: var(--font-display, "Sora", sans-serif);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.pospago-stores__contact-manager {
+  margin: 0 0 0.35rem;
+  font-size: 0.82rem;
+  color: rgba(220, 255, 235, 0.72);
+}
+
+.pospago-stores__wa {
+  margin-top: 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.72rem 1.15rem;
+  border-radius: 999px;
+  background: linear-gradient(115deg, #25d366, #1ebe57);
+  color: #fff !important;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.88rem;
+  letter-spacing: 0.01em;
+  box-shadow: 0 10px 24px rgba(37, 211, 102, 0.35);
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.pospago-stores__wa:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+  color: #fff !important;
+}
+
+.pospago-stores__wa-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.pospago-stores__wa-icon svg {
+  display: block;
 }
 
 .pospago-stores__map .leaflet-container {
@@ -602,6 +699,27 @@
     min-height: 220px;
     max-height: 300px;
     border-radius: 16px;
+  }
+
+  .pospago-stores__map-col {
+    order: 1;
+    gap: 0.65rem;
+  }
+
+  .pospago-stores__map-col .pospago-stores__map {
+    order: unset;
+    height: min(58vw, 280px);
+    min-height: 220px;
+    max-height: 300px;
+  }
+
+  .pospago-stores__contact {
+    padding: 0.9rem 1rem 1rem;
+    border-radius: 14px;
+  }
+
+  .pospago-stores__wa {
+    width: 100%;
   }
 
   .pospago-stores__list {

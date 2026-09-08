@@ -21,6 +21,10 @@
   const statusEl = root.querySelector("[data-store-status]");
   const titleEl = root.querySelector("[data-store-title]");
   const countEl = root.querySelector("[data-store-count]");
+  const contactEl = root.querySelector("[data-store-contact]");
+  const contactNameEl = root.querySelector("[data-store-contact-name]");
+  const contactManagerEl = root.querySelector("[data-store-contact-manager]");
+  const contactWaEl = root.querySelector("[data-store-wa]");
   let map = null;
   let markers = [];
   let activeId = "";
@@ -31,6 +35,7 @@
   const MOBILE_INITIAL = 5;
   const MOBILE_STEP = 3;
   let visibleCount = MOBILE_INITIAL;
+  const FALLBACK_WA = "525522331210";
 
   function isMobileList() {
     return MOBILE_LIST_MQ.matches;
@@ -69,6 +74,48 @@
 
   function mapsDirUrl(store) {
     return `https://www.google.com/maps/dir/?api=1&destination=${store.lat},${store.lng}&travelmode=driving`;
+  }
+
+  function waUrl(store) {
+    const phone = String(store.managerPhone || FALLBACK_WA).replace(/\D/g, "");
+    const msg = encodeURIComponent(
+      `Hola, vi la sucursal ${store.name} en YAAVS Pospago y quiero información de planes AT&T.`
+    );
+    return `https://wa.me/${phone}?text=${msg}`;
+  }
+
+  function updateContactPanel(store) {
+    if (!contactEl) return;
+    if (!store) {
+      contactEl.hidden = true;
+      return;
+    }
+    contactEl.hidden = false;
+    if (contactNameEl) contactNameEl.textContent = store.name || "";
+    if (contactManagerEl) {
+      const manager = (store.manager || "").trim();
+      if (manager && !/vacante/i.test(manager)) {
+        contactManagerEl.hidden = false;
+        contactManagerEl.textContent = `Gerente: ${manager}`;
+      } else {
+        contactManagerEl.hidden = true;
+        contactManagerEl.textContent = "";
+      }
+    }
+    if (contactWaEl) {
+      contactWaEl.href = waUrl(store);
+      contactWaEl.setAttribute(
+        "aria-label",
+        `WhatsApp con la sucursal ${store.name}`
+      );
+    }
+  }
+
+  function scrollActiveCardIntoView() {
+    if (!listEl || !activeId) return;
+    const card = listEl.querySelector(`[data-store-id="${activeId}"]`);
+    if (!card) return;
+    card.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
   function storeThumbSrc(store) {
@@ -179,6 +226,8 @@
       }
     }
     renderList();
+    updateContactPanel(store);
+    window.requestAnimationFrame(scrollActiveCardIntoView);
     markers.forEach((item) => {
       item.marker.setIcon(markerIcon(item.store.id === store.id));
     });
@@ -236,6 +285,7 @@
     if (active) {
       activeId = active.id;
       renderList();
+      updateContactPanel(active);
       window.setTimeout(() => {
         refreshMapSize();
         showMapPopup(active);
@@ -315,12 +365,15 @@
     }
     setStatus(`Tu sucursal más cercana: ${store.name}`);
     const reveal = () => {
-      mapHost?.scrollIntoView({ behavior: "smooth", block: "center" });
+      focusStore(store, true);
+      updateContactPanel(store);
+      refreshMapSize();
+      setStatus(`Tu sucursal más cercana: ${store.name}`);
       window.setTimeout(() => {
-        focusStore(store, true);
-        refreshMapSize();
-        setStatus(`Tu sucursal más cercana: ${store.name}`);
-      }, 280);
+        const card = listEl?.querySelector(`[data-store-id="${store.id}"]`);
+        card?.scrollIntoView({ behavior: "smooth", block: "center" });
+        contactEl?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }, 120);
     };
     if (!mapReady) {
       whenReady(() => {

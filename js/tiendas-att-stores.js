@@ -1,4 +1,4 @@
-/** PDVs AT&T / Pospago YAAVS — generados desde Directorio POSPAGO_YAAVS_23072026.xlsb */
+/** PDVs AT&T / Pospago YAAVS — directorio + tel. gerente (Flyers LITE) */
 window.YAAVS_ATT_STORES = [
   {
     "id": "att-01-aguascalientes",
@@ -8,7 +8,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 21.846944845380715,
     "lng": -102.72019542883534,
     "mapsLink": "https://maps.app.goo.gl/T1WuZYpxTzhMYHQbA",
-    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00"
+    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00",
+    "manager": "Víctor Hugo Ávila Vargas",
+    "managerPhone": "524951043334"
   },
   {
     "id": "att-02-aguascalientes",
@@ -18,7 +20,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 21.88504169576594,
     "lng": -102.3122964037408,
     "mapsLink": "https://maps.app.goo.gl/xAvJEAzuQXEHtyfU6",
-    "hours": "L-V 10:30 - 07:30 · Sáb 10:30 - 07:30 · Dom 10:30 - 07:30"
+    "hours": "L-V 10:30 - 07:30 · Sáb 10:30 - 07:30 · Dom 10:30 - 07:30",
+    "manager": "Marcos Alberto Rivera Hernández",
+    "managerPhone": "524494927946"
   },
   {
     "id": "att-03-aguascalientes",
@@ -28,7 +32,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 21.961206132767607,
     "lng": -102.34431478650603,
     "mapsLink": "https://maps.app.goo.gl/F2gZ6M67Xmp7HGPg6",
-    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00"
+    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00",
+    "manager": "Diego Alonso López Villar",
+    "managerPhone": "523327093570"
   },
   {
     "id": "att-04-aguascalientes",
@@ -38,7 +44,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 22.148288398016604,
     "lng": -102.27876027116467,
     "mapsLink": "https://maps.app.goo.gl/eGsRJF9HEySnNWk6A",
-    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00"
+    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00",
+    "manager": "Diego Salvador López Amador",
+    "managerPhone": "524651219358"
   },
   {
     "id": "att-05-aguascalientes",
@@ -48,7 +56,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 21.887215865361277,
     "lng": -102.25007062698792,
     "mapsLink": "https://maps.app.goo.gl/77r4ghUwNT7ZwyhHA",
-    "hours": "L-V 10:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 10:00 - 08:00"
+    "hours": "L-V 10:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 10:00 - 08:00",
+    "manager": "Irma Arcelia Prado Dávalos",
+    "managerPhone": "524932762927"
   },
   {
     "id": "att-06-aguascalientes",
@@ -58,7 +68,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 21.879313899109494,
     "lng": -102.29657665767068,
     "mapsLink": "https://maps.app.goo.gl/99e86ucS9XFYfLt28",
-    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00"
+    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00",
+    "manager": "Paola Casandra López Velasco [Interino]",
+    "managerPhone": "524498928630"
   },
   {
     "id": "att-07-aguascalientes",
@@ -68,7 +80,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 21.89135724754207,
     "lng": -102.27331522883533,
     "mapsLink": "https://maps.app.goo.gl/tZzkFrn3oy9S2EsG9",
-    "hours": "L-V 11:00 - 08.00 · Sáb 11:00 - 08.00 · Dom 11:00 - 08.00"
+    "hours": "L-V 11:00 - 08.00 · Sáb 11:00 - 08.00 · Dom 11:00 - 08.00",
+    "manager": "Abraham Jacobo Garcia Andrade",
+    "managerPhone": "525581001454"
   },
   {
     "id": "att-08-aguascalientes",
@@ -78,7 +92,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 21.86174,
     "lng": -102.26899,
     "mapsLink": "https://maps.app.goo.gl/5UrcL5MUMewdSGvJ9",
-    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00"
+    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00",
+    "manager": "Leticia  Judith Ávila Martínez",
+    "managerPhone": "524494049842"
   },
   {
     "id": "att-09-centro",
@@ -88,7 +104,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 20.056858458796356,
     "lng": -99.3405948423293,
     "mapsLink": "https://maps.app.goo.gl/ro2q5CLEzC6RCZRFA",
-    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00"
+    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00",
+    "manager": "Oscar Rubén Flores García",
+    "managerPhone": "527733677484"
   },
   {
     "id": "att-10-centro",
@@ -98,7 +116,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 19.262084157087003,
     "lng": -98.84486112883535,
     "mapsLink": "https://maps.app.goo.gl/SgD9oxdxF2EiUdxx5",
-    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00"
+    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00",
+    "manager": "Alejandro Fermín Macías Bucio",
+    "managerPhone": "525587860343"
   },
   {
     "id": "att-11-centro",
@@ -108,7 +128,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 19.84813147717956,
     "lng": -98.97683764513926,
     "mapsLink": "https://maps.app.goo.gl/2VEGa2rCDEomxvdx9",
-    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom CERRADO"
+    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom CERRADO",
+    "manager": "Adriana Austria Caballero",
+    "managerPhone": "527711930032"
   },
   {
     "id": "att-12-centro",
@@ -118,7 +140,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 20.113830550876717,
     "lng": -98.74487068650603,
     "mapsLink": "https://maps.app.goo.gl/baCHenmpryaBETYq8",
-    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00"
+    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00",
+    "manager": "Pedro Eduardo Manilla Guzmán",
+    "managerPhone": "527712243995"
   },
   {
     "id": "att-13-prepago",
@@ -128,7 +152,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 21.037277831667172,
     "lng": -89.66243027644198,
     "mapsLink": "https://maps.app.goo.gl/zhsx71N3mcqFs3R1A",
-    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00"
+    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00",
+    "manager": "José Gerardo Peraza González",
+    "managerPhone": "529997925402"
   },
   {
     "id": "att-14-centro",
@@ -138,7 +164,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 19.582137020310686,
     "lng": -99.04111154232932,
     "mapsLink": "https://maps.app.goo.gl/B8NRddvdfaE1ABC79",
-    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00"
+    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00",
+    "manager": "Erik Daniel Martínez Ruiz",
+    "managerPhone": "525519830639"
   },
   {
     "id": "att-15-centro",
@@ -148,7 +176,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 20.11650536723003,
     "lng": -98.74333000184741,
     "mapsLink": "https://maps.app.goo.gl/ehy28bAKr93MqYZdA",
-    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00"
+    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00",
+    "manager": "Sergio Alberto Zapata Barrios",
+    "managerPhone": "527717631361"
   },
   {
     "id": "att-16-centro",
@@ -158,7 +188,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 20.638567565045875,
     "lng": -100.44744014631613,
     "mapsLink": "https://maps.app.goo.gl/7TjV5uidqhfRsrwo6",
-    "hours": "L-V 11:00 - 08.00 · Sáb 11:00 - 08.00 · Dom 11:00 - 08.00"
+    "hours": "L-V 11:00 - 08.00 · Sáb 11:00 - 08.00 · Dom 11:00 - 08.00",
+    "manager": "Emmanuel Salvador Gómez Filippini",
+    "managerPhone": "523321077526"
   },
   {
     "id": "att-18-durango",
@@ -168,7 +200,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 23.995607465079857,
     "lng": -104.66230211524628,
     "mapsLink": "https://maps.app.goo.gl/9MupQrzY8pkLS1nRA",
-    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 06:00"
+    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 06:00",
+    "manager": "Ramón Martínez Huizar",
+    "managerPhone": "526184936732"
   },
   {
     "id": "att-19-durango",
@@ -178,7 +212,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 24.02595487198759,
     "lng": -104.66439834292832,
     "mapsLink": "https://maps.app.goo.gl/yTJnkz6AmMUrbUnR9",
-    "hours": "L-V 10:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 10:00 - 06:00"
+    "hours": "L-V 10:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 10:00 - 06:00",
+    "manager": "Fátima Yolanda Rodríguez Rosales",
+    "managerPhone": "526561282215"
   },
   {
     "id": "att-20-durango",
@@ -188,7 +224,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 25.519647762399636,
     "lng": -103.40622492913485,
     "mapsLink": "https://maps.app.goo.gl/Uc769MVXUMZnkbGX9",
-    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 08:00 · Dom 10:00 - 06:00"
+    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 08:00 · Dom 10:00 - 06:00",
+    "manager": "Juan Isaac Ávila Mercado",
+    "managerPhone": "528713545005"
   },
   {
     "id": "att-21-guanajuato",
@@ -198,7 +236,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 21.090113480916497,
     "lng": -101.62152935265415,
     "mapsLink": "https://maps.app.goo.gl/DpRriRaHyS833KDV6",
-    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00"
+    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00",
+    "manager": "Miguel Ángel Ang Domínguez",
+    "managerPhone": "524778915308"
   },
   {
     "id": "att-22-guanajuato",
@@ -208,7 +248,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 21.36364616290957,
     "lng": -101.93665093410289,
     "mapsLink": "https://maps.app.goo.gl/ZGW96jCHDQbSK4FE6",
-    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00"
+    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00",
+    "manager": "Jorge Arturo Pedroza Romero",
+    "managerPhone": "524742580624"
   },
   {
     "id": "att-23-guanajuato",
@@ -218,7 +260,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 21.125990832412754,
     "lng": -101.64949592512716,
     "mapsLink": "https://maps.app.goo.gl/P1iBDSKoK9X7TMsR6",
-    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00"
+    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00",
+    "manager": "Jesús Alberto Vivanco Pérez",
+    "managerPhone": "524776786851"
   },
   {
     "id": "att-24-guanajuato",
@@ -228,7 +272,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 21.16568749224769,
     "lng": -102.46702569177951,
     "mapsLink": "https://maps.app.goo.gl/PxunrLWgUDbaYAn37",
-    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00"
+    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00",
+    "manager": "Luis Avan Mendoza García",
+    "managerPhone": "524311932707"
   },
   {
     "id": "att-25-guanajuato",
@@ -238,7 +284,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 20.953688751451434,
     "lng": -101.42429799917555,
     "mapsLink": "https://maps.app.goo.gl/Fqavmg9TFUTwRVEg7",
-    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00"
+    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00",
+    "manager": "Cynthia Guadalupe Castro Cerritos",
+    "managerPhone": "524321038250"
   },
   {
     "id": "att-26-guanajuato",
@@ -248,7 +296,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 21.150521184022917,
     "lng": -101.70302650047499,
     "mapsLink": "https://maps.app.goo.gl/hVvzyFSPCuGFsEh58",
-    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00"
+    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00",
+    "manager": "Mauricio Tenorio De La Peña",
+    "managerPhone": "524778365561"
   },
   {
     "id": "att-28-san-luis-potosi",
@@ -258,7 +308,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 22.15540516670753,
     "lng": -101.00363561142316,
     "mapsLink": "https://maps.app.goo.gl/B1Z1vMmZgbbh64uT6",
-    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00"
+    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00",
+    "manager": "José Ignacio Grimaldo Pesina",
+    "managerPhone": "524445234490"
   },
   {
     "id": "att-29-san-luis-potosi",
@@ -268,7 +320,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 22.131896530638503,
     "lng": -100.92411017539382,
     "mapsLink": "https://maps.app.goo.gl/4BTNFTzQnLbGDbLg9",
-    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00"
+    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00",
+    "manager": "Yanet Liliana Vázquez Escobedo",
+    "managerPhone": "524447307527"
   },
   {
     "id": "att-30-san-luis-potosi",
@@ -278,7 +332,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 23.644722468629833,
     "lng": -100.64276120418418,
     "mapsLink": "https://maps.app.goo.gl/6MEFAaAp6otpAKEx6",
-    "hours": "L-V 10:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 11:00 - 06:00"
+    "hours": "L-V 10:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 11:00 - 06:00",
+    "manager": "Carmen Lizett Ortega Puente",
+    "managerPhone": "524882708940"
   },
   {
     "id": "att-31-san-luis-potosi",
@@ -288,7 +344,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 22.1547692564218,
     "lng": -100.97473047807273,
     "mapsLink": "https://maps.app.goo.gl/X6QRXSKwDAqPFzuj7",
-    "hours": "L-V 10:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 11:00 - 06:00"
+    "hours": "L-V 10:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 11:00 - 06:00",
+    "manager": "José Eduardo Olea Sánchez [Interino]",
+    "managerPhone": "524447264395"
   },
   {
     "id": "att-32-san-luis-potosi",
@@ -298,7 +356,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 22.17023313136883,
     "lng": -100.96325993306341,
     "mapsLink": "https://maps.app.goo.gl/reksfTkZR3oKYB3GA",
-    "hours": "L-V 09:00 - 07:00 · Sáb 10:00 - 06:00 · Dom 11:00 - 05:00"
+    "hours": "L-V 09:00 - 07:00 · Sáb 10:00 - 06:00 · Dom 11:00 - 05:00",
+    "manager": "Heber Floylán Ortega RamÍrez",
+    "managerPhone": "524401328026"
   },
   {
     "id": "att-33-san-luis-potosi",
@@ -308,7 +368,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 21.923064369430662,
     "lng": -99.99532443307055,
     "mapsLink": "https://maps.app.goo.gl/yB8rrwkeYGUnS37q7",
-    "hours": "L-V 09:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 11:00 - 05:00"
+    "hours": "L-V 09:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 11:00 - 05:00",
+    "manager": "Víctor Manuel Salazar Morales",
+    "managerPhone": "524871405704"
   },
   {
     "id": "att-34-san-luis-potosi",
@@ -318,7 +380,9 @@ window.YAAVS_ATT_STORES = [
     "lat": 23.657224572841162,
     "lng": -100.63835393301916,
     "mapsLink": "https://maps.app.goo.gl/e8ZVcKZDAtN7FaBP7",
-    "hours": "L-V 10:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 11:00 - 07:00"
+    "hours": "L-V 10:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 11:00 - 07:00",
+    "manager": "Juan Carlos Cerda Soria",
+    "managerPhone": "524882709034"
   },
   {
     "id": "att-35-san-luis-potosi",
@@ -328,6 +392,8 @@ window.YAAVS_ATT_STORES = [
     "lat": 22.16579164236516,
     "lng": -100.99949432058405,
     "mapsLink": "https://maps.app.goo.gl/CPYuG582KXsDTyKk9",
-    "hours": "L-V 10:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 11:00 - 06:00"
+    "hours": "L-V 10:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 11:00 - 06:00",
+    "manager": "Luis Enrique Martínez López [Interino]",
+    "managerPhone": "524444001438"
   }
 ];

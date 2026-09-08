@@ -490,7 +490,7 @@ function initDevicesCarousel() {
   const dotsWrap = root.querySelector("[data-devices-dots]");
   if (!slides.length) return;
 
-  const INTERVAL = 5500;
+  const INTERVAL = 10000;
   const TRANSITION_MS = 820;
   let index = Math.max(0, slides.findIndex((s) => s.classList.contains("is-active")));
   let timer = null;

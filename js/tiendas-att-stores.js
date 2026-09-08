@@ -161,16 +161,6 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 11:00 - 08.00 · Sáb 11:00 - 08.00 · Dom 11:00 - 08.00"
   },
   {
-    "id": "att-17-centro",
-    "name": "POS OJO DE AGUA",
-    "city": "TECÁMAC",
-    "address": "PASEO DE PLATEROS MZ 13 LT 19, OJO DE AGUA, C.P. 55770, CD.TECÁMAC, ESTADO DE MÉXICO",
-    "lat": 19.6805,
-    "lng": -99.0078,
-    "mapsLink": "",
-    "hours": "L-V 00:00 - 00:00 · Sáb 00:00 - 00:00 · Dom 00:00 - 00:00"
-  },
-  {
     "id": "att-18-durango",
     "name": "DOMINGO ARRIETA",
     "city": "VICTORIA DE DURANGO",
@@ -261,16 +251,6 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00"
   },
   {
-    "id": "att-27-guanajuato",
-    "name": "POS VIRTUAL LEÓN",
-    "city": "LEÓN",
-    "address": "BLVD. FRANCISCO VILLA 901 LOC. 10, FRACC. VILLA DE LAS FLORES, C.P. 37278; CD. LEÓN, GUANAJUATO",
-    "lat": 21.125990832412754,
-    "lng": -101.64949592512716,
-    "mapsLink": "https://maps.app.goo.gl/P1iBDSKoK9X7TMsR6",
-    "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00"
-  },
-  {
     "id": "att-28-san-luis-potosi",
     "name": "CENTRO COMERCIAL EL DORADO",
     "city": "SAN LUIS POTOSÍ",
@@ -349,15 +329,5 @@ window.YAAVS_ATT_STORES = [
     "lng": -100.99949432058405,
     "mapsLink": "https://maps.app.goo.gl/CPYuG582KXsDTyKk9",
     "hours": "L-V 10:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 11:00 - 06:00"
-  },
-  {
-    "id": "att-36-san-luis-potosi",
-    "name": "POS SAN LUIS",
-    "city": "SAN LUIS POTOSÍ",
-    "address": "AV. NEREO RODRÍGUEZ BARRAGÁN N°450 LOCAL 40, COL. DEL VALLE; C.P.78200, CD.SAN LUIS POTOSÍ, SAN LUIS POTOSÍ",
-    "lat": 22.15540516670753,
-    "lng": -101.00363561142316,
-    "mapsLink": "https://maps.app.goo.gl/B1Z1vMmZgbbh64uT6",
-    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00"
   }
 ];

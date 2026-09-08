@@ -247,23 +247,21 @@
   function promoBarHTML(plan, showPort) {
     if (plan.promoGb && plan.packGb) {
       return `<div class="plan__promo-bar" aria-label="Promoción Doble de GB">
-        <span class="plan__promo-bar-badge">Más GB</span>
-        <strong>+${plan.promoGb} GB</strong>
-        <span>por promoción Doble de GB</span>
+        <span class="plan__promo-bar-label">Promoción</span>
+        <strong>+${plan.promoGb} GB extras</strong>
       </div>`;
     }
     if (plan.promo && !showPort) {
       return `<div class="plan__promo-bar" aria-label="Promoción">
-        <span class="plan__promo-bar-badge">Promo</span>
+        <span class="plan__promo-bar-label">Promoción</span>
         <strong>${plan.promo}</strong>
       </div>`;
     }
     if (showPort && plan.pricePort && plan.pricePort < plan.price) {
       const save = Math.round((1 - plan.pricePort / plan.price) * 100);
       return `<div class="plan__promo-bar" aria-label="Promoción portabilidad">
-        <span class="plan__promo-bar-badge">Portabilidad</span>
-        <strong>${save}% menos</strong>
-        <span>en tu renta mensual</span>
+        <span class="plan__promo-bar-label">Portabilidad</span>
+        <strong>${save}% menos en renta</strong>
       </div>`;
     }
     return `<button type="button" class="btn btn--plan" data-quote-plan="${plan.id}">Cotizar</button>`;

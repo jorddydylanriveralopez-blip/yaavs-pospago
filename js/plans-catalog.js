@@ -240,9 +240,33 @@
     const labels = [];
     if (plan.featured) labels.push("Popular");
     if (plan.badge) labels.push(plan.badge);
-    if (plan.promo && pricingMode === "standard") labels.push(plan.promo);
     if (!labels.length) return "";
     return `<div class="plan__tags">${labels.map((t) => `<p class="plan__tag">${t}</p>`).join("")}</div>`;
+  }
+
+  function promoBarHTML(plan, showPort) {
+    if (plan.promoGb && plan.packGb) {
+      return `<div class="plan__promo-bar" aria-label="Promoción Doble de GB">
+        <span class="plan__promo-bar-badge">Más GB</span>
+        <strong>+${plan.promoGb} GB</strong>
+        <span>por promoción Doble de GB</span>
+      </div>`;
+    }
+    if (plan.promo && !showPort) {
+      return `<div class="plan__promo-bar" aria-label="Promoción">
+        <span class="plan__promo-bar-badge">Promo</span>
+        <strong>${plan.promo}</strong>
+      </div>`;
+    }
+    if (showPort && plan.pricePort && plan.pricePort < plan.price) {
+      const save = Math.round((1 - plan.pricePort / plan.price) * 100);
+      return `<div class="plan__promo-bar" aria-label="Promoción portabilidad">
+        <span class="plan__promo-bar-badge">Portabilidad</span>
+        <strong>${save}% menos</strong>
+        <span>en tu renta mensual</span>
+      </div>`;
+    }
+    return `<button type="button" class="btn btn--plan" data-quote-plan="${plan.id}">Cotizar</button>`;
   }
 
   function cardHTML(plan, index) {
@@ -275,7 +299,7 @@
         ${oldPrice}
         <strong>${money(price)}</strong>
       </div>
-      <button type="button" class="btn btn--plan" data-quote-plan="${plan.id}">Cotizar</button>
+      ${promoBarHTML(plan, showPort)}
     </article>`;
   }
 

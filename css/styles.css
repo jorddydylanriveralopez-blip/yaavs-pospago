@@ -6751,7 +6751,7 @@ body:has(.cookie-notice.is-visible) .wa-float {
   }
 
   .att-banner--quienes .att-banner__cta {
-    display: none;
+    bottom: 4%;
   }
 
   .att-banner__cta {
@@ -6765,7 +6765,7 @@ body:has(.cookie-notice.is-visible) .wa-float {
   }
 
   .att-banner--seguros .att-banner__cta {
-    bottom: 4.5%;
+    bottom: 4%;
     font-size: 0.74rem;
     padding: 0.62rem 0.95rem;
     animation-name: attBannerSegurosPulseMobile;

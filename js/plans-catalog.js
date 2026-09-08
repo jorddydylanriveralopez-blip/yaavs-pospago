@@ -259,12 +259,6 @@
   }
 
   function promoBarHTML(plan, showPort) {
-    if (plan.promo && !showPort) {
-      return `<div class="plan__promo-bar" aria-label="Promoción">
-        <span class="plan__promo-bar-label">Promoción</span>
-        <strong>${plan.promo}</strong>
-      </div>`;
-    }
     if (showPort && plan.pricePort && plan.pricePort < plan.price) {
       const save = Math.round((1 - plan.pricePort / plan.price) * 100);
       const extra = plan.badge ? ` · ${plan.badge}` : "";

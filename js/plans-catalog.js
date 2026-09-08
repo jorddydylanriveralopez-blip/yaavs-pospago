@@ -85,15 +85,15 @@
       pricingLabels: { standard: "Línea nueva", portabilidad: "Portabilidad" },
       plans: [
         { id: "azul", name: "Azul*", gb: 4, price: 279, pricePort: null, color: "#00A0E3", rrssCount: 3, addon: "incluido" },
-        { id: "azul1", name: "Azul 1", gb: 5, price: 330, pricePort: 270, color: "#1AA8E8", rrssCount: 6, addon: 50 },
-        { id: "azul2", name: "Azul 2", gb: 8, price: 435, pricePort: 350, color: "#3BB0EB", rrssCount: 6, addon: 50 },
-        { id: "azul3", name: "Azul 3", gb: 14, price: 550, pricePort: 440, color: "#009FDB", rrssCount: 6, addon: 50 },
-        { id: "plata", name: "Plata", gb: 25, price: 650, pricePort: 520, color: "#A8ADB0", rrssCount: 6, addon: 50 },
-        { id: "oro", name: "Oro", gb: 32, price: 725, pricePort: 580, color: "#C9A227", rrssCount: 6, addon: 50 },
-        { id: "black", name: "Black", gb: 42, price: 825, pricePort: 660, color: "#1A1A1A", rrssCount: 6, addon: 50, featured: true },
-        { id: "platino", name: "Platino", gb: 50, price: 1035, pricePort: 830, color: "#B4B6C8", rrssCount: 6, addon: 50 },
-        { id: "diamante", name: "Diamante", gb: 55, price: 1300, pricePort: 1040, color: "#8FA4B5", rrssCount: 6, addon: 50 },
-        { id: "titanio", name: "Titanio", gb: 42, price: 1599, pricePort: 1440, color: "#5C8BA6", rrssCount: 6, addon: 50, badge: "iPhone 17 256 GB incluido" },
+        { id: "azul1", name: "Azul 1", gb: 5, price: 330, pricePort: 270, portPct: 20, color: "#1AA8E8", rrssCount: 6, addon: 50 },
+        { id: "azul2", name: "Azul 2", gb: 8, price: 435, pricePort: 350, portPct: 20, color: "#3BB0EB", rrssCount: 6, addon: 50 },
+        { id: "azul3", name: "Azul 3", gb: 14, price: 550, pricePort: 440, portPct: 20, color: "#009FDB", rrssCount: 6, addon: 50 },
+        { id: "plata", name: "Plata", gb: 25, price: 650, pricePort: 520, portPct: 20, color: "#A8ADB0", rrssCount: 6, addon: 50 },
+        { id: "oro", name: "Oro", gb: 32, price: 725, pricePort: 580, portPct: 20, color: "#C9A227", rrssCount: 6, addon: 50 },
+        { id: "black", name: "Black", gb: 42, price: 825, pricePort: 660, portPct: 20, color: "#1A1A1A", rrssCount: 6, addon: 50, featured: true },
+        { id: "platino", name: "Platino", gb: 50, price: 1035, pricePort: 830, portPct: 20, color: "#B4B6C8", rrssCount: 6, addon: 50 },
+        { id: "diamante", name: "Diamante", gb: 55, price: 1300, pricePort: 1040, portPct: 20, color: "#8FA4B5", rrssCount: 6, addon: 50 },
+        { id: "titanio", name: "Titanio", gb: 42, price: 1599, pricePort: 1440, portPct: 10, color: "#5C8BA6", rrssCount: 6, addon: 50, badge: "iPhone 17 256 GB incluido" },
       ],
     },
     simple: {
@@ -260,7 +260,10 @@
 
   function promoBarHTML(plan, showPort) {
     if (showPort && plan.pricePort && plan.pricePort < plan.price) {
-      const save = Math.round((1 - plan.pricePort / plan.price) * 100);
+      const save =
+        typeof plan.portPct === "number"
+          ? plan.portPct
+          : Math.round((1 - plan.pricePort / plan.price) * 100);
       const extra = plan.badge ? ` · ${plan.badge}` : "";
       return `<div class="plan__promo-bar" aria-label="Promoción portabilidad">
         <span class="plan__promo-bar-label">Portabilidad</span>

@@ -3355,7 +3355,6 @@ a {
   scroll-snap-type: x proximity;
   scroll-padding-inline: 1.25rem;
   overscroll-behavior-x: contain;
-  touch-action: pan-x;
   mask-image: linear-gradient(
     90deg,
     transparent 0,
@@ -3583,7 +3582,7 @@ a {
   justify-content: center;
   gap: 0.2rem;
   text-align: center;
-  padding: 0.85rem 0.55rem 0.7rem;
+  padding: 1.25rem 0.55rem 0.7rem;
   background:
     radial-gradient(120% 140% at 50% -20%, rgba(255, 255, 255, 0.35), transparent 55%),
     var(--plan);
@@ -4230,20 +4229,23 @@ a {
 
 .plan__equip-badge {
   position: absolute;
-  top: -0.55rem;
+  top: 0.4rem;
   right: 0.35rem;
-  z-index: 5;
+  z-index: 8;
   margin: 0;
-  font-size: 0.62rem;
+  font-size: 0.58rem;
   font-weight: 800;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   background: #0b1c28;
   color: #7aefff;
-  padding: 0.32rem 0.55rem;
+  padding: 0.28rem 0.48rem;
   border-radius: 999px;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
   white-space: nowrap;
+  max-width: calc(100% - 0.7rem);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 body.is-modal-open {
@@ -8885,7 +8887,6 @@ main {
     width: 100%;
     scroll-snap-type: x mandatory;
     scroll-padding-inline: 0.75rem;
-    touch-action: pan-x;
     mask-image: none;
   }
 
@@ -9728,10 +9729,10 @@ body.is-nav-open .site-header {
     max-width: 100%;
     padding: 0.85rem 0 0.65rem;
     overflow-x: auto;
+    overflow-y: visible;
     scroll-snap-type: x mandatory;
     scroll-padding-inline: 0.85rem;
     overscroll-behavior-x: contain;
-    touch-action: pan-x;
     mask-image: none;
   }
 
@@ -9755,13 +9756,22 @@ body.is-nav-open .site-header {
     gap: 0.28rem;
     scroll-snap-align: start;
     scroll-snap-stop: always;
-    content-visibility: auto;
-    contain: layout paint style;
   }
 
   .plan__app-btn,
   .plan__icons--pick {
     touch-action: manipulation;
+  }
+
+  .plan__head {
+    overflow: visible;
+    padding-top: 1.35rem;
+  }
+
+  .plan__head h3 {
+    padding-inline: 0.15rem;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   .plans__ghost {

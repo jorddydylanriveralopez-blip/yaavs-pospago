@@ -6741,21 +6741,115 @@ body:has(.cookie-notice.is-visible) .wa-float {
 
 @media (max-width: 720px) {
   .site-footer {
-    padding: 2.75rem 0 1.75rem;
+    padding: 2.5rem 0 5.5rem;
+    text-align: center;
+  }
+
+  .site-footer .wrap {
+    width: calc(100% - 1.35rem);
+  }
+
+  .site-footer__top {
+    grid-template-columns: 1fr;
+    gap: 1.15rem;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .site-footer__brand {
+    display: grid;
+    justify-items: center;
+    gap: 0.35rem;
   }
 
   .site-footer__brand img {
-    height: 48px;
-    margin-bottom: 0.65rem;
+    height: 52px;
+    margin-bottom: 0.35rem;
+  }
+
+  .site-footer__brand p {
+    max-width: 22ch;
+    margin-inline: auto;
+    font-size: 0.86rem;
+    line-height: 1.35;
+    color: rgba(255, 255, 255, 0.72);
   }
 
   .site-footer__nav {
-    gap: 0.45rem;
+    justify-content: center;
+    gap: 0.4rem;
+    max-width: 22rem;
+  }
+
+  .site-footer__nav a {
+    font-size: 0.78rem;
+    padding: 0.5rem 0.78rem;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .site-footer__divider {
+    margin: 1.35rem auto 1.15rem;
+    width: min(100%, 16rem);
   }
 
   .site-footer__disclaimer {
-    padding: 1rem;
+    padding: 1rem 0.95rem;
     border-radius: 16px;
+    text-align: left;
+  }
+
+  .site-footer__disclaimer-title {
+    text-align: center;
+  }
+
+  .site-footer__copyright {
+    margin-top: 1rem;
+    font-size: 0.72rem;
+    text-align: center;
+  }
+
+  .site-footer__grid {
+    justify-items: center;
+    text-align: center;
+    gap: 1.15rem;
+  }
+
+  .site-footer__grid > div,
+  .site-footer__grid > nav,
+  .site-footer__grid > p {
+    width: 100%;
+  }
+
+  .site-footer__grid > div img {
+    height: 52px;
+    width: auto;
+  }
+
+  .site-footer__grid > nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
+  .site-footer__grid > nav a {
+    color: rgba(255, 255, 255, 0.92);
+    text-decoration: none;
+    font-weight: 650;
+    font-size: 0.78rem;
+    padding: 0.5rem 0.78rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .site-footer__legal {
+    text-align: left;
+    font-size: 0.72rem;
+    line-height: 1.45;
   }
 
   .att-banner__img {
@@ -9805,10 +9899,11 @@ body.is-nav-open .site-header {
   }
 
   .site-footer {
-    padding: 1.75rem 0 1.5rem;
+    padding: 2.25rem 0 5.25rem;
   }
 
+  .site-footer__brand img,
   .site-footer img {
-    height: 36px;
+    height: 48px;
   }
 }

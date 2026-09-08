@@ -26,11 +26,20 @@
   const ICON_VER = "20260901b";
   const iconSrc = (id) => `assets/icons/rrss/${id}.svg?v=${ICON_VER}`;
 
-  function staticIconsHTML() {
-    return RRSS.map(
+  function staticIconsHTML(list = RRSS) {
+    return list.map(
       (r) =>
         `<img class="plan__app-icon" src="${iconSrc(r.id)}" alt="" width="26" height="26" loading="lazy" decoding="async" title="${r.name}">`
     ).join("");
+  }
+
+  function iconsForPlan(plan) {
+    if (Array.isArray(plan.rrssIds) && plan.rrssIds.length) {
+      return plan.rrssIds
+        .map((id) => RRSS.find((r) => r.id === id))
+        .filter(Boolean);
+    }
+    return RRSS;
   }
 
   function pickerButtonsHTML() {
@@ -94,10 +103,10 @@
       hintPortabilidad: null,
       pricingLabels: null,
       plans: [
-        { id: "simple299", name: "Simple 299", gb: 3, packGb: 1.5, promoGb: 1.5, price: 299, pricePort: null, color: "#00A9A6", rrssCount: null, unlimitedRrss: true },
-        { id: "simple399", name: "Simple 399", gb: 5, packGb: 2.5, promoGb: 2.5, price: 399, pricePort: null, color: "#00B8A9", rrssCount: null, unlimitedRrss: true },
-        { id: "simple599", name: "Simple 599", gb: 8, packGb: 4, promoGb: 4, price: 599, pricePort: null, color: "#00C1D4", rrssCount: null, unlimitedRrss: true, featured: true },
-        { id: "simple649", name: "Simple 649", gb: 12, packGb: 6, promoGb: 6, price: 649, pricePort: null, color: "#009FDB", rrssCount: null, unlimitedRrss: true },
+        { id: "simple299", name: "Simple 299", gb: 3, packGb: 1.5, promoGb: 1.5, price: 299, pricePort: null, color: "#00A9A6", rrssCount: null, unlimitedRrss: true, rrssIds: ["facebook", "x", "whatsapp", "messenger", "instagram", "uber", "snapchat"] },
+        { id: "simple399", name: "Simple 399", gb: 5, packGb: 2.5, promoGb: 2.5, price: 399, pricePort: null, color: "#00B8A9", rrssCount: null, unlimitedRrss: true, rrssIds: ["facebook", "x", "whatsapp", "messenger", "instagram", "uber", "snapchat"] },
+        { id: "simple599", name: "Simple 599", gb: 8, packGb: 4, promoGb: 4, price: 599, pricePort: null, color: "#00C1D4", rrssCount: null, unlimitedRrss: true, featured: true, rrssIds: ["facebook", "x", "whatsapp", "messenger", "instagram", "uber", "snapchat"] },
+        { id: "simple649", name: "Simple 649", gb: 12, packGb: 6, promoGb: 6, price: 649, pricePort: null, color: "#009FDB", rrssCount: null, unlimitedRrss: true, rrssIds: ["facebook", "x", "whatsapp", "messenger", "instagram", "uber", "snapchat"] },
       ],
     },
     lite: {
@@ -162,11 +171,13 @@
 
   function appsSectionHTML(plan) {
     const label = rrssHTML(plan);
+    const icons = iconsForPlan(plan);
+    const iconsClass = icons.length <= 8 ? " plan__icons--compact" : "";
 
     if (plan.unlimitedRrss) {
-      return `<div class="plan__seg plan__seg--rrss">
+      return `<div class="plan__seg plan__seg--rrss${icons.length <= 8 ? " plan__seg--rrss-compact" : ""}">
         ${label}
-        <div class="plan__icons plan__icons--static" aria-hidden="true">${staticIconsHTML()}</div>
+        <div class="plan__icons plan__icons--static${iconsClass}" aria-hidden="true">${staticIconsHTML(icons)}</div>
       </div>`;
     }
 
@@ -177,7 +188,7 @@
     if (plan.rrssNote === "Preseleccionadas") {
       return `<div class="plan__seg plan__seg--rrss">
         ${label}
-        <div class="plan__icons plan__icons--static" aria-hidden="true">${staticIconsHTML()}</div>
+        <div class="plan__icons plan__icons--static" aria-hidden="true">${staticIconsHTML(icons)}</div>
       </div>`;
     }
 
@@ -233,7 +244,11 @@
 
   function breakdownHTML(plan) {
     if (!plan.packGb || !plan.promoGb) return "";
-    return `<p class="plan__breakdown">${plan.packGb} GB paquete + ${plan.promoGb} GB promo</p>`;
+    return `<p class="plan__breakdown" aria-label="${plan.packGb} GB paquete más ${plan.promoGb} GB de promoción">
+      <span class="plan__breakdown-pack"><strong>${plan.packGb} GB</strong> paquete</span>
+      <span class="plan__breakdown-plus" aria-hidden="true">+</span>
+      <span class="plan__breakdown-promo"><strong>${plan.promoGb} GB</strong> promo</span>
+    </p>`;
   }
 
   function badgeHTML(plan) {
@@ -244,12 +259,6 @@
   }
 
   function promoBarHTML(plan, showPort) {
-    if (plan.promoGb && plan.packGb) {
-      return `<div class="plan__promo-bar" aria-label="Promoción Doble de GB">
-        <span class="plan__promo-bar-label">Promoción</span>
-        <strong>+${plan.promoGb} GB extras</strong>
-      </div>`;
-    }
     if (plan.promo && !showPort) {
       return `<div class="plan__promo-bar" aria-label="Promoción">
         <span class="plan__promo-bar-label">Promoción</span>

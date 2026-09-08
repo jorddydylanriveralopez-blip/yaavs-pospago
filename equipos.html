@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260908f">
+  <link rel="stylesheet" href="css/styles.css?v=20260908g">
   <link rel="stylesheet" href="css/stores.css?v=20260907o">
   <link rel="icon" href="assets/images/favicon.svg?v=20260907ay" type="image/svg+xml">
   <link rel="icon" href="assets/images/favicon-32.png?v=20260907ay" type="image/png" sizes="32x32">
@@ -111,15 +111,18 @@
   <main id="equipos">
     <section class="att-banner att-banner--promos" id="promociones" aria-label="Promociones de septiembre">
       <a class="att-banner__link" href="#ofertas">
-        <img
-          class="att-banner__img"
-          src="assets/images/banner-att-promociones.jpg?v=20260907am"
-          alt="En septiembre, ¡conéctate con lo mejor! Aprovecha las mejores promociones de YAAVS Pospago AT&amp;T"
-          width="3600"
-          height="893"
-          decoding="async"
-          fetchpriority="high"
-        >
+        <picture>
+          <source media="(max-width: 720px)" srcset="assets/images/banner-att-promociones-mobile.jpg?v=20260908a">
+          <img
+            class="att-banner__img"
+            src="assets/images/banner-att-promociones.jpg?v=20260907am"
+            alt="En septiembre, ¡conéctate con lo mejor! Aprovecha las mejores promociones de YAAVS Pospago AT&amp;T"
+            width="3600"
+            height="893"
+            decoding="async"
+            fetchpriority="high"
+          >
+        </picture>
       </a>
     </section>
 

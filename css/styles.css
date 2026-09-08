@@ -4878,7 +4878,7 @@ body.is-modal-open {
   padding: 5rem 0 4rem;
   position: relative;
   overflow: hidden;
-  margin: 0 0 2rem;
+  margin: 0;
   background: #e8f9fc;
 }
 
@@ -5601,11 +5601,12 @@ body.is-modal-open {
 
 @media (max-width: 640px) {
   .section--blog {
-    padding: 1.75rem 0 2.25rem;
+    padding: 1.75rem 0 1.35rem;
   }
 
   .section--blog-page {
     padding-top: 1.2rem;
+    padding-bottom: 1.15rem;
   }
 
   .blogs-page-hero--media .blogs-page-hero__banner {
@@ -5750,7 +5751,8 @@ body.is-modal-open {
   }
 
   .blogs-page-cta {
-    margin-top: 1.5rem;
+    margin-top: 1.15rem;
+    margin-bottom: 0;
     padding: 1.05rem 0.95rem;
     border-radius: 14px;
   }
@@ -7874,6 +7876,7 @@ body:has(.cookie-notice.is-visible) .wa-float {
   position: relative;
   isolation: isolate;
   overflow: hidden;
+  margin: 0;
   background:
     radial-gradient(900px 420px at 12% -20%, rgba(0, 193, 212, 0.22), transparent 55%),
     radial-gradient(760px 380px at 100% 110%, rgba(0, 159, 219, 0.18), transparent 55%),

@@ -210,7 +210,10 @@
           </span>
           <h3 class="deal-card__name">${deal.name}</h3>
           <span class="deal-card__hint">
-            <span class="deal-card__hint-label">Ver precios y cotizar</span>
+            <span class="deal-card__hint-label" data-label-closed="Ver precios y cotizar" data-label-closed-short="Ver precios" data-label-open="Ocultar detalle">
+              <span class="deal-card__hint-full">Ver precios y cotizar</span>
+              <span class="deal-card__hint-short">Ver precios</span>
+            </span>
             <span class="deal-card__hint-icon" aria-hidden="true">▾</span>
           </span>
         </button>
@@ -260,7 +263,15 @@
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
     panel.hidden = !open;
     const label = toggle.querySelector(".deal-card__hint-label");
-    if (label) label.textContent = open ? "Ocultar detalle" : "Ver precios y cotizar";
+    if (label) {
+      const full = label.querySelector(".deal-card__hint-full");
+      const short = label.querySelector(".deal-card__hint-short");
+      const openText = label.getAttribute("data-label-open") || "Ocultar detalle";
+      const closedFull = label.getAttribute("data-label-closed") || "Ver precios y cotizar";
+      const closedShort = label.getAttribute("data-label-closed-short") || "Ver precios";
+      if (full) full.textContent = open ? openText : closedFull;
+      if (short) short.textContent = open ? openText : closedShort;
+    }
   }
 
   function init() {

@@ -423,6 +423,43 @@
     document.body.appendChild(a);
   }
 
+  function initPageMotion() {
+    const prefetched = new Set();
+    const sameOriginNav = (a) => {
+      if (!a || a.target === "_blank" || a.hasAttribute("download")) return null;
+      const raw = a.getAttribute("href");
+      if (!raw || raw.startsWith("#") || raw.startsWith("mailto:") || raw.startsWith("tel:") || raw.startsWith("javascript:")) {
+        return null;
+      }
+      let url;
+      try {
+        url = new URL(a.href, location.href);
+      } catch {
+        return null;
+      }
+      if (url.origin !== location.origin) return null;
+      if (url.pathname === location.pathname && url.search === location.search) return null;
+      if (/\.(pdf|zip|png|jpe?g|webp|gif|svg|mp4|css|js)(\?|$)/i.test(url.pathname)) return null;
+      return url.href;
+    };
+
+    document.addEventListener(
+      "pointerover",
+      (e) => {
+        const a = e.target.closest?.("a[href]");
+        const href = sameOriginNav(a);
+        if (!href || prefetched.has(href) || prefetched.size > 14) return;
+        prefetched.add(href);
+        const link = document.createElement("link");
+        link.rel = "prefetch";
+        link.href = href;
+        link.as = "document";
+        document.head.appendChild(link);
+      },
+      { passive: true }
+    );
+  }
+
   function initCookieNotice() {
     const KEY = "yaavs_cookie_ok_v1";
     if (localStorage.getItem(KEY) === "1") return;
@@ -476,6 +513,7 @@
   initCookieNotice();
   initQuote();
   initReveal();
+  initPageMotion();
 })();
 
 /* Carrusel de smartphones destacados (estilo AT&T Market) */

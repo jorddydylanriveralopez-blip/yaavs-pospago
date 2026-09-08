@@ -8685,6 +8685,76 @@ body:has(.cookie-notice.is-visible) .wa-float {
   transform: none;
 }
 
+/* Page enter / leave + cross-document view transitions (fast, native when supported) */
+@view-transition {
+  navigation: auto;
+}
+
+.site-header {
+  view-transition-name: site-header;
+}
+
+::view-transition-old(root) {
+  animation: pageVtOut 0.38s cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+::view-transition-new(root) {
+  animation: pageVtIn 0.48s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+::view-transition-group(site-header) {
+  animation-duration: 0.35s;
+  z-index: 10;
+}
+
+@keyframes pageVtOut {
+  to {
+    opacity: 0;
+    transform: scale(0.985) translateY(-10px);
+    filter: blur(5px) saturate(0.85);
+  }
+}
+
+@keyframes pageVtIn {
+  from {
+    opacity: 0;
+    transform: scale(1.02) translateY(18px);
+    filter: blur(8px) saturate(1.15);
+  }
+}
+
+main {
+  animation: pageMainIn 0.58s var(--ease) both;
+}
+
+@keyframes pageMainIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.988);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+
+  main {
+    animation: none !important;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
+
 /* Responsive */
 @media (max-width: 1100px) {
   .plans-scroll {

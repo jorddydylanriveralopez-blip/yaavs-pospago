@@ -2169,6 +2169,15 @@ a {
   animation: introPeopleIn 1s var(--ease) 0.28s both, introTextShine 5s ease-in-out 1.2s infinite;
 }
 
+.intro__people-em {
+  font-weight: 900;
+  background: linear-gradient(115deg, #009fdb 0%, #00c1d4 55%, #7aefff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 18px rgba(0, 193, 212, 0.35));
+}
+
 @keyframes introPeopleIn {
   from { opacity: 0; transform: translateX(18px); }
   to { opacity: 1; transform: none; }
@@ -9107,9 +9116,10 @@ body.is-nav-open .site-header {
   .intro__lockup {
     flex-direction: row;
     flex-wrap: nowrap;
-    gap: 0.55rem;
+    gap: 0.65rem;
     min-height: 0;
     padding-inline: 0.15rem;
+    align-items: center;
   }
 
   .intro__att,
@@ -9118,14 +9128,19 @@ body.is-nav-open .site-header {
     gap: 0.55rem;
   }
 
+  .intro__people {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
   .intro__att-logo {
-    height: clamp(48px, 12vw, 72px);
-    max-width: min(160px, 34vw);
+    height: clamp(44px, 11vw, 64px);
+    max-width: min(140px, 30vw);
   }
 
   .intro__pipe {
     width: 2px;
-    height: clamp(44px, 12vw, 64px);
+    height: clamp(48px, 14vw, 68px);
     background: linear-gradient(
       180deg,
       transparent,
@@ -9142,11 +9157,18 @@ body.is-nav-open .site-header {
   }
 
   .intro__people-phrase {
-    font-size: clamp(0.82rem, 3.2vw, 1.1rem);
+    font-size: clamp(1.05rem, 4.6vw, 1.45rem);
     white-space: normal;
-    max-width: 14ch;
+    max-width: none;
     text-align: left;
-    line-height: 1.15;
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+  }
+
+  .intro__people-em {
+    display: inline;
+    font-size: 1.08em;
+    letter-spacing: -0.04em;
   }
 }
 
@@ -9207,17 +9229,17 @@ body.is-nav-open .site-header {
   }
 
   .intro {
-    padding: 1.35rem 0;
+    padding: 1.45rem 0;
   }
 
   .intro__lockup {
     min-height: 0;
-    gap: 0.45rem;
+    gap: 0.55rem;
   }
 
   .intro__att-logo {
-    height: 40px;
-    max-width: min(120px, 30vw);
+    height: 42px;
+    max-width: min(118px, 28vw);
   }
 
   .intro__amperson {
@@ -9226,13 +9248,13 @@ body.is-nav-open .site-header {
   }
 
   .intro__people-phrase {
-    font-size: clamp(0.72rem, 2.8vw, 0.92rem);
+    font-size: clamp(1rem, 4.8vw, 1.28rem);
     white-space: normal;
-    max-width: 12ch;
+    max-width: none;
   }
 
   .intro__pipe {
-    height: 36px;
+    height: 42px;
     width: 2px;
   }
 

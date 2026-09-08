@@ -6750,10 +6750,6 @@ body:has(.cookie-notice.is-visible) .wa-float {
     height: auto;
   }
 
-  .att-banner--quienes .att-banner__cta {
-    bottom: 4%;
-  }
-
   .att-banner__cta {
     left: 50%;
     right: auto;
@@ -6764,15 +6760,62 @@ body:has(.cookie-notice.is-visible) .wa-float {
     animation-name: attBannerHeartbeatMobile;
   }
 
+  /* Square mobile banners: CTA in open white space (up + right) */
+  .att-banner--quienes .att-banner__cta,
   .att-banner--seguros .att-banner__cta {
-    bottom: 4%;
-    font-size: 0.74rem;
-    padding: 0.62rem 0.95rem;
-    animation-name: attBannerSegurosPulseMobile;
+    left: auto;
+    right: 5%;
+    bottom: auto;
+    top: 72%;
+    transform: none;
+    max-width: min(86%, 15.5rem);
+    padding: 0.58rem 0.9rem;
+    font-size: 0.72rem;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.15;
+    animation-name: attBannerCornerPulse;
+  }
+
+  .att-banner--seguros .att-banner__cta {
+    top: 74%;
+    font-size: 0.7rem;
+    animation-name: attBannerCornerPulseSeguros;
+  }
+
+  .att-banner--quienes .att-banner__link:hover .att-banner__cta,
+  .att-banner--seguros .att-banner__link:hover .att-banner__cta {
+    transform: translateY(-2px) scale(1.03);
   }
 
   .att-banner__link:hover .att-banner__cta {
     transform: translateX(-50%) translateY(-2px) scale(1.03);
+  }
+
+  @keyframes attBannerCornerPulse {
+    0%, 100% { transform: scale(1); }
+    14% { transform: scale(1.05); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.03); }
+    56% { transform: scale(1); }
+  }
+
+  @keyframes attBannerCornerPulseSeguros {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow:
+        0 12px 28px rgba(123, 44, 255, 0.38),
+        0 0 0 0 rgba(168, 85, 247, 0.35);
+    }
+    14% { transform: scale(1.05); }
+    28% { transform: scale(1); }
+    42% {
+      transform: scale(1.03);
+      box-shadow:
+        0 14px 32px rgba(123, 44, 255, 0.45),
+        0 0 0 10px rgba(168, 85, 247, 0);
+    }
+    56% { transform: scale(1); }
   }
 
   @keyframes attBannerHeartbeatMobile {

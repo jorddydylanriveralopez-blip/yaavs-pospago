@@ -602,15 +602,15 @@
   }
 
   .pospago-stores__map {
-    order: 0;
-    height: min(52vw, 240px);
-    min-height: 200px;
-    max-height: 260px;
+    order: 1;
+    height: min(58vw, 280px);
+    min-height: 220px;
+    max-height: 300px;
     border-radius: 16px;
   }
 
   .pospago-stores__list {
-    order: 0;
+    order: 2;
     min-height: 0 !important;
     max-height: none !important;
     overflow: visible;

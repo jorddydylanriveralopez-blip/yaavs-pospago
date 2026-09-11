@@ -424,7 +424,9 @@
   }
 
   function initQuoteLocationPicker() {
-    const triggers = [...document.querySelectorAll(".site-header a.btn-cta--wa")];
+    const triggers = [
+      ...document.querySelectorAll(".site-header a.btn-cta--wa, .site-header a.nav__wa"),
+    ];
     if (!triggers.length) return;
 
     const stores = () => window.YAAVS_ATT_STORES || [];

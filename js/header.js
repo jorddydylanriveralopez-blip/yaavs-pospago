@@ -424,16 +424,11 @@
   }
 
   function initQuoteLocationPicker() {
-    const triggers = [
-      ...document.querySelectorAll(
-        ".site-header a.btn-cta--wa, .site-header a.nav__wa, a.wa-float"
-      ),
-    ];
-    if (!triggers.length) return;
-
+    const CENTRAL_WA = WHATSAPP_NUMBER;
     const stores = () => window.YAAVS_ATT_STORES || [];
     let modal = null;
     let stateName = "";
+    let intentMessage = "Hola YAAVS Pospago, quiero cotizar un plan AT&T";
 
     const titleCase = (value) =>
       String(value || "")
@@ -453,7 +448,7 @@
         .sort((a, b) => a.name.localeCompare(b.name, "es", { sensitivity: "base" }));
 
     const waUrl = (text) =>
-      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+      `https://wa.me/${CENTRAL_WA}?text=${encodeURIComponent(text)}`;
 
     const openWhatsApp = (text) => {
       closeModal();
@@ -469,6 +464,32 @@
       modal.hidden = true;
       lockBody(false);
       stateName = "";
+    };
+
+    const messageFromHref = (href) => {
+      try {
+        const url = new URL(href, location.href);
+        const text = url.searchParams.get("text");
+        return text && text.trim() ? text.trim() : intentMessage;
+      } catch {
+        return intentMessage;
+      }
+    };
+
+    const isCentralWhatsAppLink = (a) => {
+      if (!a || a.tagName !== "A") return false;
+      if (a.classList.contains("wa-float")) return true;
+      if (a.classList.contains("pospago-stores__wa-btn")) return false;
+      const href = a.getAttribute("href") || "";
+      if (!/wa\.me\//i.test(href) && !/api\.whatsapp\.com/i.test(href)) return false;
+      try {
+        const url = new URL(href, location.href);
+        const phone = (url.pathname.split("/").pop() || "").replace(/\D/g, "");
+        const phoneParam = (url.searchParams.get("phone") || "").replace(/\D/g, "");
+        return phone === CENTRAL_WA || phoneParam === CENTRAL_WA;
+      } catch {
+        return href.includes(CENTRAL_WA);
+      }
     };
 
     const renderOptions = (items, onPick) => {
@@ -533,7 +554,7 @@
         (item) => {
           const store = item.store;
           openWhatsApp(
-            `Hola YAAVS Pospago, quiero cotizar.\nSucursal: ${store.name}\nCiudad: ${store.city}\nEstado: ${store.state}`
+            `${intentMessage}\nSucursal: ${store.name}\nCiudad: ${store.city}\nEstado: ${store.state}`
           );
         }
       );
@@ -574,9 +595,12 @@
       return modal;
     };
 
-    const openModal = () => {
+    const openModal = (seedMessage) => {
+      intentMessage =
+        (seedMessage && String(seedMessage).trim()) ||
+        "Hola YAAVS Pospago, quiero cotizar un plan AT&T";
       if (!stores().length) {
-        openWhatsApp("Hola YAAVS Pospago, quiero cotizar un plan AT&T");
+        openWhatsApp(intentMessage);
         return;
       }
       ensureModal();
@@ -585,12 +609,16 @@
       lockBody(true);
     };
 
-    triggers.forEach((a) => {
-      a.addEventListener("click", (e) => {
+    document.addEventListener(
+      "click",
+      (e) => {
+        const a = e.target.closest?.("a[href]");
+        if (!isCentralWhatsAppLink(a)) return;
         e.preventDefault();
-        openModal();
-      });
-    });
+        openModal(messageFromHref(a.href));
+      },
+      true
+    );
   }
 
   function initPageMotion() {

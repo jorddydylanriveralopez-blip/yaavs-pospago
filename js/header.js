@@ -479,11 +479,11 @@
         .map(
           (item, i) =>
             `<button type="button" class="quote-loc__option" data-quote-loc-pick="${i}">
-              <span class="quote-loc__num">${i + 1}</span>
               <span class="quote-loc__copy">
                 <strong>${item.title}</strong>
                 ${item.sub ? `<small>${item.sub}</small>` : ""}
               </span>
+              <span class="quote-loc__chev" aria-hidden="true"></span>
             </button>`
         )
         .join("");
@@ -492,16 +492,21 @@
       });
     };
 
-    const setStep = (eyebrow, title, showBack) => {
-      modal.querySelector("[data-quote-loc-eyebrow]").textContent = eyebrow;
+    const setStep = (step, title, showBack) => {
+      modal.dataset.step = String(step);
       modal.querySelector("[data-quote-loc-title]").textContent = title;
       modal.querySelector("[data-quote-loc-back]").hidden = !showBack;
+      modal.querySelectorAll("[data-quote-loc-dot]").forEach((dot) => {
+        const n = Number(dot.dataset.quoteLocDot);
+        dot.classList.toggle("is-active", n === step);
+        dot.classList.toggle("is-done", n < step);
+      });
     };
 
     const showStates = () => {
       stateName = "";
       cityName = "";
-      setStep("Paso 1 de 3", "¿En qué estado nos visitas?", false);
+      setStep(1, "¿En qué estado nos visitas?", false);
       renderOptions(
         states().map((st) => ({
           id: st,
@@ -522,7 +527,7 @@
 
     const showCities = () => {
       cityName = "";
-      setStep("Paso 2 de 3", `Zonas en ${titleCase(stateName)}`, true);
+      setStep(2, `Zonas en ${titleCase(stateName)}`, true);
       renderOptions(
         cities(stateName).map((city) => ({
           id: city,
@@ -538,7 +543,7 @@
     };
 
     const showBranches = () => {
-      setStep("Paso 3 de 3", `Sucursales en ${titleCase(cityName)}`, true);
+      setStep(3, `Sucursales en ${titleCase(cityName)}`, true);
       renderOptions(
         branches(stateName, cityName).map((store) => ({
           id: store.id,
@@ -559,17 +564,24 @@
       if (modal) return modal;
       modal = document.createElement("div");
       modal.className = "quote-loc";
+      modal.dataset.step = "1";
       modal.hidden = true;
       modal.innerHTML = `
         <button type="button" class="quote-loc__backdrop" data-quote-loc-close aria-label="Cerrar"></button>
         <div class="quote-loc__sheet" role="dialog" aria-modal="true" aria-labelledby="quote-loc-title">
-          <button type="button" class="quote-loc__close" data-quote-loc-close aria-label="Cerrar">×</button>
-          <p class="quote-loc__eyebrow" data-quote-loc-eyebrow>Paso 1 de 3</p>
-          <h2 class="quote-loc__title" id="quote-loc-title" data-quote-loc-title>¿En qué estado nos visitas?</h2>
-          <p class="quote-loc__lead">Elige tu ubicación y te abrimos WhatsApp con la sucursal lista para el asesor.</p>
+          <div class="quote-loc__top">
+            <div class="quote-loc__progress" aria-hidden="true">
+              <span class="quote-loc__dot is-active" data-quote-loc-dot="1"></span>
+              <span class="quote-loc__dot" data-quote-loc-dot="2"></span>
+              <span class="quote-loc__dot" data-quote-loc-dot="3"></span>
+            </div>
+            <button type="button" class="quote-loc__close" data-quote-loc-close aria-label="Cerrar">×</button>
+          </div>
           <button type="button" class="quote-loc__back" data-quote-loc-back hidden>← Regresar</button>
+          <h2 class="quote-loc__title" id="quote-loc-title" data-quote-loc-title>¿En qué estado nos visitas?</h2>
+          <p class="quote-loc__lead">Elige tu sucursal y te abrimos WhatsApp listo para cotizar.</p>
           <div class="quote-loc__list" data-quote-loc-list></div>
-          <button type="button" class="quote-loc__skip" data-quote-loc-skip>Cotizar sin elegir sucursal</button>
+          <button type="button" class="quote-loc__skip" data-quote-loc-skip>Continuar sin sucursal</button>
         </div>`;
       document.body.appendChild(modal);
 

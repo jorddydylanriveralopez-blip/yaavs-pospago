@@ -130,12 +130,33 @@
       .openOn(map);
   }
 
+  function foldText(value) {
+    return String(value || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+  }
+
+  function escapeRegExp(value) {
+    return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  function storeMatchesQuery(store, queryRaw) {
+    const q = foldText(queryRaw).trim();
+    if (!q) return true;
+    const hay = foldText(`${store.name} ${store.city} ${store.address}`);
+    const tokens = q.split(/\s+/).filter(Boolean);
+    // Match at word start so "quer" hits Querétaro, not ARQUEROS.
+    return tokens.every((token) => {
+      const re = new RegExp(`(?:^|[^a-z0-9])${escapeRegExp(token)}`);
+      return re.test(hay);
+    });
+  }
+
   function filteredStores() {
     const all = storesFor();
-    const q = (queryEl?.value || "").trim().toLowerCase();
-    let list = q
-      ? all.filter((s) => `${s.name} ${s.city} ${s.address}`.toLowerCase().includes(q))
-      : all.slice();
+    const q = (queryEl?.value || "").trim();
+    let list = q ? all.filter((s) => storeMatchesQuery(s, q)) : all.slice();
     if (pinnedId) {
       const pin = list.find((s) => s.id === pinnedId);
       if (pin) list = [pin, ...list.filter((s) => s.id !== pinnedId)];
@@ -238,6 +259,14 @@
     const list = filteredStores();
     if (!list.length) {
       setStatus("No se encontraron sucursales AT&T.");
+      if (map) {
+        if (activePopup) {
+          map.closePopup(activePopup);
+          activePopup = null;
+        }
+        markers.forEach((item) => map.removeLayer(item.marker));
+        markers = [];
+      }
       return;
     }
 
@@ -383,6 +412,16 @@
     activeId = list[0]?.id || "";
     resetVisibleCount();
     renderList();
+    if (!list.length) {
+      setStatus("No se encontraron sucursales AT&T.");
+    } else {
+      const q = (queryEl.value || "").trim();
+      setStatus(
+        q
+          ? `${list.length} sucursal${list.length === 1 ? "" : "es"} para “${q}”.`
+          : ""
+      );
+    }
     if (mapReady) drawMap();
   });
 

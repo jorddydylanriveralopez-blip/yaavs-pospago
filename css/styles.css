@@ -6709,7 +6709,7 @@ body.is-modal-open {
   max-height: min(86vh, 640px);
   overflow: auto;
   padding: 1.05rem 1.05rem calc(1.15rem + env(safe-area-inset-bottom));
-  border-radius: 20px 20px 0 0;
+  border-radius: 0;
   border: 1px solid rgba(11, 28, 40, 0.08);
   border-bottom: 0;
   background:
@@ -6762,7 +6762,7 @@ body.is-modal-open {
   width: 2.1rem;
   height: 2.1rem;
   border: 0;
-  border-radius: 999px;
+  border-radius: 0;
   background: rgba(11, 28, 40, 0.06);
   color: rgba(11, 28, 40, 0.72);
   font-size: 1.25rem;
@@ -6808,7 +6808,7 @@ body.is-modal-open {
 .quote-loc__list {
   display: grid;
   gap: 0;
-  border-radius: 14px;
+  border-radius: 0;
   overflow: hidden;
   border: 1px solid rgba(11, 28, 40, 0.08);
   background: #fff;

@@ -425,7 +425,9 @@
 
   function initQuoteLocationPicker() {
     const triggers = [
-      ...document.querySelectorAll(".site-header a.btn-cta--wa, .site-header a.nav__wa"),
+      ...document.querySelectorAll(
+        ".site-header a.btn-cta--wa, .site-header a.nav__wa, a.wa-float"
+      ),
     ];
     if (!triggers.length) return;
 
@@ -506,7 +508,7 @@
     const showStates = () => {
       stateName = "";
       cityName = "";
-      setStep(1, "¿En qué estado nos visitas?", false);
+      setStep(1, "¿Desde qué estado nos visitas?", false);
       renderOptions(
         states().map((st) => ({
           id: st,
@@ -578,8 +580,8 @@
             <button type="button" class="quote-loc__close" data-quote-loc-close aria-label="Cerrar">×</button>
           </div>
           <button type="button" class="quote-loc__back" data-quote-loc-back hidden>← Regresar</button>
-          <h2 class="quote-loc__title" id="quote-loc-title" data-quote-loc-title>¿En qué estado nos visitas?</h2>
-          <p class="quote-loc__lead">Elige tu sucursal y te abrimos WhatsApp listo para cotizar.</p>
+          <h2 class="quote-loc__title" id="quote-loc-title" data-quote-loc-title>¿Desde qué estado nos visitas?</h2>
+          <p class="quote-loc__lead">Elige tu estado y selecciona tu sucursal.</p>
           <div class="quote-loc__list" data-quote-loc-list></div>
           <button type="button" class="quote-loc__skip" data-quote-loc-skip>Continuar sin sucursal</button>
         </div>`;

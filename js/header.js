@@ -423,6 +423,195 @@
     document.body.appendChild(a);
   }
 
+  function initQuoteLocationPicker() {
+    const triggers = [...document.querySelectorAll(".site-header a.btn-cta--wa")];
+    if (!triggers.length) return;
+
+    const stores = () => window.YAAVS_ATT_STORES || [];
+    let modal = null;
+    let stateName = "";
+    let cityName = "";
+
+    const titleCase = (value) =>
+      String(value || "")
+        .toLowerCase()
+        .replace(/(^|[\s([])\S/g, (ch) => ch.toUpperCase());
+
+    const uniqueSorted = (values) =>
+      [...new Set(values.filter(Boolean))].sort((a, b) =>
+        a.localeCompare(b, "es", { sensitivity: "base" })
+      );
+
+    const states = () => uniqueSorted(stores().map((s) => s.state));
+    const cities = (state) =>
+      uniqueSorted(stores().filter((s) => s.state === state).map((s) => s.city));
+    const branches = (state, city) =>
+      stores()
+        .filter((s) => s.state === state && s.city === city)
+        .slice()
+        .sort((a, b) => a.name.localeCompare(b.name, "es", { sensitivity: "base" }));
+
+    const waUrl = (text) =>
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+
+    const openWhatsApp = (text) => {
+      closeModal();
+      window.open(waUrl(text), "_blank", "noopener");
+    };
+
+    const lockBody = (on) => {
+      document.body.classList.toggle("is-modal-open", on);
+    };
+
+    const closeModal = () => {
+      if (!modal) return;
+      modal.hidden = true;
+      lockBody(false);
+      stateName = "";
+      cityName = "";
+    };
+
+    const renderOptions = (items, onPick) => {
+      const list = modal.querySelector("[data-quote-loc-list]");
+      list.innerHTML = items
+        .map(
+          (item, i) =>
+            `<button type="button" class="quote-loc__option" data-quote-loc-pick="${i}">
+              <span class="quote-loc__num">${i + 1}</span>
+              <span class="quote-loc__copy">
+                <strong>${item.title}</strong>
+                ${item.sub ? `<small>${item.sub}</small>` : ""}
+              </span>
+            </button>`
+        )
+        .join("");
+      list.querySelectorAll("[data-quote-loc-pick]").forEach((btn) => {
+        btn.addEventListener("click", () => onPick(items[Number(btn.dataset.quoteLocPick)]));
+      });
+    };
+
+    const setStep = (eyebrow, title, showBack) => {
+      modal.querySelector("[data-quote-loc-eyebrow]").textContent = eyebrow;
+      modal.querySelector("[data-quote-loc-title]").textContent = title;
+      modal.querySelector("[data-quote-loc-back]").hidden = !showBack;
+    };
+
+    const showStates = () => {
+      stateName = "";
+      cityName = "";
+      setStep("Paso 1 de 3", "¿En qué estado nos visitas?", false);
+      renderOptions(
+        states().map((st) => ({
+          id: st,
+          title: titleCase(st),
+          sub: `${cities(st).length} zona${cities(st).length === 1 ? "" : "s"}`,
+          state: st,
+        })),
+        (item) => {
+          stateName = item.state;
+          const cityList = cities(stateName);
+          if (cityList.length === 1) {
+            cityName = cityList[0];
+            showBranches();
+          } else showCities();
+        }
+      );
+    };
+
+    const showCities = () => {
+      cityName = "";
+      setStep("Paso 2 de 3", `Zonas en ${titleCase(stateName)}`, true);
+      renderOptions(
+        cities(stateName).map((city) => ({
+          id: city,
+          title: titleCase(city),
+          sub: `${branches(stateName, city).length} sucursal${branches(stateName, city).length === 1 ? "" : "es"}`,
+          city,
+        })),
+        (item) => {
+          cityName = item.city;
+          showBranches();
+        }
+      );
+    };
+
+    const showBranches = () => {
+      setStep("Paso 3 de 3", `Sucursales en ${titleCase(cityName)}`, true);
+      renderOptions(
+        branches(stateName, cityName).map((store) => ({
+          id: store.id,
+          title: store.name,
+          sub: store.address,
+          store,
+        })),
+        (item) => {
+          const store = item.store;
+          openWhatsApp(
+            `Hola YAAVS Pospago, quiero cotizar.\nSucursal: ${store.name}\nCiudad: ${store.city}\nEstado: ${store.state}`
+          );
+        }
+      );
+    };
+
+    const ensureModal = () => {
+      if (modal) return modal;
+      modal = document.createElement("div");
+      modal.className = "quote-loc";
+      modal.hidden = true;
+      modal.innerHTML = `
+        <button type="button" class="quote-loc__backdrop" data-quote-loc-close aria-label="Cerrar"></button>
+        <div class="quote-loc__sheet" role="dialog" aria-modal="true" aria-labelledby="quote-loc-title">
+          <button type="button" class="quote-loc__close" data-quote-loc-close aria-label="Cerrar">×</button>
+          <p class="quote-loc__eyebrow" data-quote-loc-eyebrow>Paso 1 de 3</p>
+          <h2 class="quote-loc__title" id="quote-loc-title" data-quote-loc-title>¿En qué estado nos visitas?</h2>
+          <p class="quote-loc__lead">Elige tu ubicación y te abrimos WhatsApp con la sucursal lista para el asesor.</p>
+          <button type="button" class="quote-loc__back" data-quote-loc-back hidden>← Regresar</button>
+          <div class="quote-loc__list" data-quote-loc-list></div>
+          <button type="button" class="quote-loc__skip" data-quote-loc-skip>Cotizar sin elegir sucursal</button>
+        </div>`;
+      document.body.appendChild(modal);
+
+      modal.querySelectorAll("[data-quote-loc-close]").forEach((el) => {
+        el.addEventListener("click", closeModal);
+      });
+      modal.querySelector("[data-quote-loc-skip]")?.addEventListener("click", () => {
+        openWhatsApp("Hola YAAVS Pospago, quiero cotizar un plan AT&T");
+      });
+      modal.querySelector("[data-quote-loc-back]")?.addEventListener("click", () => {
+        if (cityName) {
+          cityName = "";
+          const cityList = cities(stateName);
+          if (cityList.length <= 1) showStates();
+          else showCities();
+          return;
+        }
+        if (stateName) showStates();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal && !modal.hidden) closeModal();
+      });
+      return modal;
+    };
+
+    const openModal = () => {
+      if (!stores().length) {
+        openWhatsApp("Hola YAAVS Pospago, quiero cotizar un plan AT&T");
+        return;
+      }
+      ensureModal();
+      showStates();
+      modal.hidden = false;
+      lockBody(true);
+    };
+
+    triggers.forEach((a) => {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        openModal();
+      });
+    });
+  }
+
   function initPageMotion() {
     const prefetched = new Set();
     const sameOriginNav = (a) => {
@@ -510,6 +699,7 @@
   initNav();
   initHeaderGlass();
   initWhatsAppFloat();
+  initQuoteLocationPicker();
   initCookieNotice();
   initQuote();
   initReveal();

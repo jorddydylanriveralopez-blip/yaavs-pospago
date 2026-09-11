@@ -559,15 +559,11 @@
           <h2 class="quote-loc__title" id="quote-loc-title" data-quote-loc-title>¿Desde dónde nos visitas?</h2>
           <p class="quote-loc__lead">Elige tu estado y selecciona tu sucursal.</p>
           <div class="quote-loc__list" data-quote-loc-list></div>
-          <button type="button" class="quote-loc__skip" data-quote-loc-skip>Continuar sin sucursal</button>
         </div>`;
       document.body.appendChild(modal);
 
       modal.querySelectorAll("[data-quote-loc-close]").forEach((el) => {
         el.addEventListener("click", closeModal);
-      });
-      modal.querySelector("[data-quote-loc-skip]")?.addEventListener("click", () => {
-        openWhatsApp("Hola YAAVS Pospago, quiero cotizar un plan AT&T");
       });
       modal.querySelector("[data-quote-loc-back]")?.addEventListener("click", () => {
         if (stateName) showStates();

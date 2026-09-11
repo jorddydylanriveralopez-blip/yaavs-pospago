@@ -434,7 +434,6 @@
     const stores = () => window.YAAVS_ATT_STORES || [];
     let modal = null;
     let stateName = "";
-    let cityName = "";
 
     const titleCase = (value) =>
       String(value || "")
@@ -447,11 +446,9 @@
       );
 
     const states = () => uniqueSorted(stores().map((s) => s.state));
-    const cities = (state) =>
-      uniqueSorted(stores().filter((s) => s.state === state).map((s) => s.city));
-    const branches = (state, city) =>
+    const branches = (state) =>
       stores()
-        .filter((s) => s.state === state && s.city === city)
+        .filter((s) => s.state === state)
         .slice()
         .sort((a, b) => a.name.localeCompare(b.name, "es", { sensitivity: "base" }));
 
@@ -472,7 +469,6 @@
       modal.hidden = true;
       lockBody(false);
       stateName = "";
-      cityName = "";
     };
 
     const renderOptions = (items, onPick) => {
@@ -507,50 +503,31 @@
 
     const showStates = () => {
       stateName = "";
-      cityName = "";
       setStep(1, "¿Desde qué estado nos visitas?", false);
       renderOptions(
-        states().map((st) => ({
-          id: st,
-          title: titleCase(st),
-          sub: `${cities(st).length} zona${cities(st).length === 1 ? "" : "s"}`,
-          state: st,
-        })),
+        states().map((st) => {
+          const count = branches(st).length;
+          return {
+            id: st,
+            title: titleCase(st),
+            sub: `${count} sucursal${count === 1 ? "" : "es"}`,
+            state: st,
+          };
+        }),
         (item) => {
           stateName = item.state;
-          const cityList = cities(stateName);
-          if (cityList.length === 1) {
-            cityName = cityList[0];
-            showBranches();
-          } else showCities();
-        }
-      );
-    };
-
-    const showCities = () => {
-      cityName = "";
-      setStep(2, `Zonas en ${titleCase(stateName)}`, true);
-      renderOptions(
-        cities(stateName).map((city) => ({
-          id: city,
-          title: titleCase(city),
-          sub: `${branches(stateName, city).length} sucursal${branches(stateName, city).length === 1 ? "" : "es"}`,
-          city,
-        })),
-        (item) => {
-          cityName = item.city;
           showBranches();
         }
       );
     };
 
     const showBranches = () => {
-      setStep(3, `Sucursales en ${titleCase(cityName)}`, true);
+      setStep(2, `Sucursales en ${titleCase(stateName)}`, true);
       renderOptions(
-        branches(stateName, cityName).map((store) => ({
+        branches(stateName).map((store) => ({
           id: store.id,
           title: store.name,
-          sub: store.address,
+          sub: [titleCase(store.city), store.address].filter(Boolean).join(" · "),
           store,
         })),
         (item) => {
@@ -575,7 +552,6 @@
             <div class="quote-loc__progress" aria-hidden="true">
               <span class="quote-loc__dot is-active" data-quote-loc-dot="1"></span>
               <span class="quote-loc__dot" data-quote-loc-dot="2"></span>
-              <span class="quote-loc__dot" data-quote-loc-dot="3"></span>
             </div>
             <button type="button" class="quote-loc__close" data-quote-loc-close aria-label="Cerrar">×</button>
           </div>
@@ -594,13 +570,6 @@
         openWhatsApp("Hola YAAVS Pospago, quiero cotizar un plan AT&T");
       });
       modal.querySelector("[data-quote-loc-back]")?.addEventListener("click", () => {
-        if (cityName) {
-          cityName = "";
-          const cityList = cities(stateName);
-          if (cityList.length <= 1) showStates();
-          else showCities();
-          return;
-        }
         if (stateName) showStates();
       });
       document.addEventListener("keydown", (e) => {

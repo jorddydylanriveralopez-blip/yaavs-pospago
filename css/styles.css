@@ -6697,9 +6697,9 @@ body.is-modal-open {
   padding: 0;
   margin: 0;
   cursor: pointer;
-  background: rgba(4, 8, 14, 0.72);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(8, 18, 28, 0.42);
+  backdrop-filter: blur(14px) saturate(1.05);
+  -webkit-backdrop-filter: blur(14px) saturate(1.05);
 }
 
 .quote-loc__sheet {
@@ -6710,16 +6710,16 @@ body.is-modal-open {
   overflow: auto;
   padding: 1.05rem 1.05rem calc(1.15rem + env(safe-area-inset-bottom));
   border-radius: 20px 20px 0 0;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(11, 28, 40, 0.08);
   border-bottom: 0;
   background:
-    radial-gradient(420px 160px at 80% -10%, rgba(0, 193, 212, 0.16), transparent 58%),
-    linear-gradient(180deg, #141b24 0%, #0d1218 100%);
-  box-shadow: 0 -24px 60px rgba(0, 0, 0, 0.45);
-  color: #e8eef3;
+    radial-gradient(420px 160px at 80% -10%, rgba(0, 193, 212, 0.1), transparent 58%),
+    linear-gradient(180deg, #ffffff 0%, #f5fafc 100%);
+  box-shadow: 0 -20px 50px rgba(8, 18, 28, 0.22);
+  color: var(--att-ink);
   animation: quoteLocIn 0.28s var(--ease) both;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  scrollbar-color: rgba(11, 28, 40, 0.2) transparent;
 }
 
 @keyframes quoteLocIn {
@@ -6745,12 +6745,12 @@ body.is-modal-open {
   width: 1.35rem;
   height: 0.28rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(11, 28, 40, 0.12);
   transition: background 0.2s ease, width 0.2s ease;
 }
 
 .quote-loc__dot.is-done {
-  background: rgba(0, 193, 212, 0.45);
+  background: rgba(0, 159, 219, 0.35);
 }
 
 .quote-loc__dot.is-active {
@@ -6763,8 +6763,8 @@ body.is-modal-open {
   height: 2.1rem;
   border: 0;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.82);
+  background: rgba(11, 28, 40, 0.06);
+  color: rgba(11, 28, 40, 0.72);
   font-size: 1.25rem;
   line-height: 1;
   cursor: pointer;
@@ -6772,15 +6772,15 @@ body.is-modal-open {
 }
 
 .quote-loc__close:hover {
-  background: rgba(255, 255, 255, 0.14);
-  color: #fff;
+  background: rgba(11, 28, 40, 0.1);
+  color: var(--att-ink);
 }
 
 .quote-loc__back {
   appearance: none;
   border: 0;
   background: transparent;
-  color: rgba(0, 193, 212, 0.95);
+  color: var(--att-blue-deep);
   font-weight: 600;
   font-size: 0.82rem;
   padding: 0;
@@ -6795,14 +6795,14 @@ body.is-modal-open {
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.2;
-  color: #fff;
+  color: var(--att-ink);
 }
 
 .quote-loc__lead {
   margin: 0 0 0.95rem;
   font-size: 0.84rem;
   line-height: 1.4;
-  color: rgba(232, 238, 243, 0.58);
+  color: rgba(11, 28, 40, 0.58);
 }
 
 .quote-loc__list {
@@ -6810,8 +6810,8 @@ body.is-modal-open {
   gap: 0;
   border-radius: 14px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(11, 28, 40, 0.08);
+  background: #fff;
 }
 
 .quote-loc__option {
@@ -6824,7 +6824,7 @@ body.is-modal-open {
   text-align: left;
   padding: 0.78rem 0.9rem;
   border: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(11, 28, 40, 0.06);
   border-radius: 0;
   background: transparent;
   color: inherit;
@@ -6838,7 +6838,7 @@ body.is-modal-open {
 
 .quote-loc__option:hover,
 .quote-loc__option:focus-visible {
-  background: rgba(0, 193, 212, 0.1);
+  background: rgba(0, 159, 219, 0.07);
   outline: none;
 }
 
@@ -6851,14 +6851,14 @@ body.is-modal-open {
 .quote-loc__copy strong {
   font-size: 0.92rem;
   font-weight: 700;
-  color: #f4f8fb;
+  color: var(--att-ink);
   letter-spacing: -0.01em;
 }
 
 .quote-loc__copy small {
   font-size: 0.72rem;
   line-height: 1.35;
-  color: rgba(232, 238, 243, 0.48);
+  color: rgba(11, 28, 40, 0.48);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -6868,15 +6868,15 @@ body.is-modal-open {
 .quote-loc__chev {
   width: 0.42rem;
   height: 0.42rem;
-  border-right: 1.5px solid rgba(255, 255, 255, 0.35);
-  border-top: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-right: 1.5px solid rgba(11, 28, 40, 0.28);
+  border-top: 1.5px solid rgba(11, 28, 40, 0.28);
   transform: rotate(45deg);
   flex-shrink: 0;
   opacity: 0.7;
 }
 
 .quote-loc__option:hover .quote-loc__chev {
-  border-color: var(--att-cyan);
+  border-color: var(--att-blue);
   opacity: 1;
 }
 
@@ -6888,17 +6888,17 @@ body.is-modal-open {
   border-radius: 12px;
   border: 0;
   background: transparent;
-  color: rgba(232, 238, 243, 0.55);
+  color: rgba(11, 28, 40, 0.5);
   font-weight: 600;
   font-size: 0.82rem;
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 0.18em;
-  text-decoration-color: rgba(255, 255, 255, 0.2);
+  text-decoration-color: rgba(11, 28, 40, 0.18);
 }
 
 .quote-loc__skip:hover {
-  color: rgba(232, 238, 243, 0.88);
+  color: rgba(11, 28, 40, 0.78);
 }
 
 @media (min-width: 720px) {
@@ -6909,7 +6909,7 @@ body.is-modal-open {
 
   .quote-loc__sheet {
     border-radius: 18px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(11, 28, 40, 0.08);
     max-height: min(78vh, 580px);
   }
 }

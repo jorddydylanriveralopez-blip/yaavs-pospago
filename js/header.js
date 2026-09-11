@@ -503,7 +503,7 @@
 
     const showStates = () => {
       stateName = "";
-      setStep(1, "¿Desde qué estado nos visitas?", false);
+      setStep(1, "¿Desde dónde nos visitas?", false);
       renderOptions(
         states().map((st) => {
           const count = branches(st).length;
@@ -556,7 +556,7 @@
             <button type="button" class="quote-loc__close" data-quote-loc-close aria-label="Cerrar">×</button>
           </div>
           <button type="button" class="quote-loc__back" data-quote-loc-back hidden>← Regresar</button>
-          <h2 class="quote-loc__title" id="quote-loc-title" data-quote-loc-title>¿Desde qué estado nos visitas?</h2>
+          <h2 class="quote-loc__title" id="quote-loc-title" data-quote-loc-title>¿Desde dónde nos visitas?</h2>
           <p class="quote-loc__lead">Elige tu estado y selecciona tu sucursal.</p>
           <div class="quote-loc__list" data-quote-loc-list></div>
           <button type="button" class="quote-loc__skip" data-quote-loc-skip>Continuar sin sucursal</button>

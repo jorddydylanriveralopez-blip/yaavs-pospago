@@ -427,8 +427,7 @@
     const CENTRAL_WA = WHATSAPP_NUMBER;
     const stores = () => window.YAAVS_ATT_STORES || [];
     let modal = null;
-    let stateName = "";
-    let intentMessage = "Hola YAAVS Pospago, quiero cotizar un plan AT&T";
+    let modalIntent = "Hola YAAVS Pospago, quiero cotizar un plan AT&T";
 
     const titleCase = (value) =>
       String(value || "")
@@ -450,29 +449,18 @@
     const waUrl = (text) =>
       `https://wa.me/${CENTRAL_WA}?text=${encodeURIComponent(text)}`;
 
-    const openWhatsApp = (text) => {
-      closeModal();
+    const openWhatsApp = (text, after) => {
+      after?.();
       window.open(waUrl(text), "_blank", "noopener");
-    };
-
-    const lockBody = (on) => {
-      document.body.classList.toggle("is-modal-open", on);
-    };
-
-    const closeModal = () => {
-      if (!modal) return;
-      modal.hidden = true;
-      lockBody(false);
-      stateName = "";
     };
 
     const messageFromHref = (href) => {
       try {
         const url = new URL(href, location.href);
         const text = url.searchParams.get("text");
-        return text && text.trim() ? text.trim() : intentMessage;
+        return text && text.trim() ? text.trim() : "";
       } catch {
-        return intentMessage;
+        return "";
       }
     };
 
@@ -492,73 +480,122 @@
       }
     };
 
-    const renderOptions = (items, onPick) => {
-      const list = modal.querySelector("[data-quote-loc-list]");
-      list.innerHTML = items
-        .map(
-          (item, i) =>
-            `<button type="button" class="quote-loc__option" data-quote-loc-pick="${i}">
-              <span class="quote-loc__copy">
-                <strong>${item.title}</strong>
-                ${item.sub ? `<small>${item.sub}</small>` : ""}
-              </span>
-              <span class="quote-loc__chev" aria-hidden="true"></span>
-            </button>`
-        )
-        .join("");
-      list.querySelectorAll("[data-quote-loc-pick]").forEach((btn) => {
-        btn.addEventListener("click", () => onPick(items[Number(btn.dataset.quoteLocPick)]));
+    const bindPicker = (root, getIntent, onOpenWa) => {
+      let stateName = "";
+
+      const renderOptions = (items, onPick) => {
+        const list = root.querySelector("[data-quote-loc-list]");
+        list.innerHTML = items
+          .map(
+            (item, i) =>
+              `<button type="button" class="quote-loc__option" data-quote-loc-pick="${i}">
+                <span class="quote-loc__copy">
+                  <strong>${item.title}</strong>
+                  ${item.sub ? `<small>${item.sub}</small>` : ""}
+                </span>
+                <span class="quote-loc__chev" aria-hidden="true"></span>
+              </button>`
+          )
+          .join("");
+        list.querySelectorAll("[data-quote-loc-pick]").forEach((btn) => {
+          btn.addEventListener("click", () => onPick(items[Number(btn.dataset.quoteLocPick)]));
+        });
+      };
+
+      const setStep = (step, title, showBack) => {
+        root.dataset.step = String(step);
+        root.querySelector("[data-quote-loc-title]").textContent = title;
+        const back = root.querySelector("[data-quote-loc-back]");
+        if (back) back.hidden = !showBack;
+        root.querySelectorAll("[data-quote-loc-dot]").forEach((dot) => {
+          const n = Number(dot.dataset.quoteLocDot);
+          dot.classList.toggle("is-active", n === step);
+          dot.classList.toggle("is-done", n < step);
+        });
+      };
+
+      const showBranches = () => {
+        setStep(2, `Sucursales en ${titleCase(stateName)}`, true);
+        renderOptions(
+          branches(stateName).map((store) => ({
+            id: store.id,
+            title: store.name,
+            sub: [titleCase(store.city), store.address].filter(Boolean).join(" · "),
+            store,
+          })),
+          (item) => {
+            const store = item.store;
+            const intent =
+              getIntent() || "Hola YAAVS Pospago, quiero cotizar un plan AT&T";
+            openWhatsApp(
+              `${intent}\nSucursal: ${store.name}\nCiudad: ${store.city}\nEstado: ${store.state}`,
+              onOpenWa
+            );
+          }
+        );
+      };
+
+      const showStates = () => {
+        stateName = "";
+        setStep(1, "¿Desde dónde nos visitas?", false);
+        renderOptions(
+          states().map((st) => {
+            const count = branches(st).length;
+            return {
+              id: st,
+              title: titleCase(st),
+              sub: `${count} sucursal${count === 1 ? "" : "es"}`,
+              state: st,
+            };
+          }),
+          (item) => {
+            stateName = item.state;
+            showBranches();
+          }
+        );
+      };
+
+      root.querySelector("[data-quote-loc-back]")?.addEventListener("click", () => {
+        if (stateName) showStates();
       });
+
+      return {
+        reset: showStates,
+        getState: () => stateName,
+        setState: (value) => {
+          stateName = value || "";
+        },
+      };
     };
 
-    const setStep = (step, title, showBack) => {
-      modal.dataset.step = String(step);
-      modal.querySelector("[data-quote-loc-title]").textContent = title;
-      modal.querySelector("[data-quote-loc-back]").hidden = !showBack;
-      modal.querySelectorAll("[data-quote-loc-dot]").forEach((dot) => {
-        const n = Number(dot.dataset.quoteLocDot);
-        dot.classList.toggle("is-active", n === step);
-        dot.classList.toggle("is-done", n < step);
-      });
-    };
-
-    const showStates = () => {
-      stateName = "";
-      setStep(1, "¿Desde dónde nos visitas?", false);
-      renderOptions(
-        states().map((st) => {
-          const count = branches(st).length;
-          return {
-            id: st,
-            title: titleCase(st),
-            sub: `${count} sucursal${count === 1 ? "" : "es"}`,
-            state: st,
-          };
-        }),
-        (item) => {
-          stateName = item.state;
-          showBranches();
+    const sheetMarkup = (withClose) => `
+      <div class="quote-loc__top">
+        <div class="quote-loc__progress" aria-hidden="true">
+          <span class="quote-loc__dot is-active" data-quote-loc-dot="1"></span>
+          <span class="quote-loc__dot" data-quote-loc-dot="2"></span>
+        </div>
+        ${
+          withClose
+            ? `<button type="button" class="quote-loc__close" data-quote-loc-close aria-label="Cerrar">×</button>`
+            : ""
         }
-      );
+      </div>
+      <button type="button" class="quote-loc__back" data-quote-loc-back hidden>← Regresar</button>
+      <h2 class="quote-loc__title" data-quote-loc-title>¿Desde dónde nos visitas?</h2>
+      <p class="quote-loc__lead">Elige tu estado y selecciona tu sucursal.</p>
+      <div class="quote-loc__list" data-quote-loc-list></div>`;
+
+    const lockBody = (on) => {
+      document.body.classList.toggle("is-modal-open", on);
     };
 
-    const showBranches = () => {
-      setStep(2, `Sucursales en ${titleCase(stateName)}`, true);
-      renderOptions(
-        branches(stateName).map((store) => ({
-          id: store.id,
-          title: store.name,
-          sub: [titleCase(store.city), store.address].filter(Boolean).join(" · "),
-          store,
-        })),
-        (item) => {
-          const store = item.store;
-          openWhatsApp(
-            `${intentMessage}\nSucursal: ${store.name}\nCiudad: ${store.city}\nEstado: ${store.state}`
-          );
-        }
-      );
+    const closeModal = () => {
+      if (!modal) return;
+      modal.hidden = true;
+      lockBody(false);
     };
+
+    let modalApi = null;
 
     const ensureModal = () => {
       if (modal) return modal;
@@ -569,49 +606,71 @@
       modal.innerHTML = `
         <button type="button" class="quote-loc__backdrop" data-quote-loc-close aria-label="Cerrar"></button>
         <div class="quote-loc__sheet" role="dialog" aria-modal="true" aria-labelledby="quote-loc-title">
-          <div class="quote-loc__top">
-            <div class="quote-loc__progress" aria-hidden="true">
-              <span class="quote-loc__dot is-active" data-quote-loc-dot="1"></span>
-              <span class="quote-loc__dot" data-quote-loc-dot="2"></span>
-            </div>
-            <button type="button" class="quote-loc__close" data-quote-loc-close aria-label="Cerrar">×</button>
-          </div>
-          <button type="button" class="quote-loc__back" data-quote-loc-back hidden>← Regresar</button>
-          <h2 class="quote-loc__title" id="quote-loc-title" data-quote-loc-title>¿Desde dónde nos visitas?</h2>
-          <p class="quote-loc__lead">Elige tu estado y selecciona tu sucursal.</p>
-          <div class="quote-loc__list" data-quote-loc-list></div>
+          ${sheetMarkup(true)}
         </div>`;
       document.body.appendChild(modal);
 
       modal.querySelectorAll("[data-quote-loc-close]").forEach((el) => {
         el.addEventListener("click", closeModal);
       });
-      modal.querySelector("[data-quote-loc-back]")?.addEventListener("click", () => {
-        if (stateName) showStates();
-      });
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && modal && !modal.hidden) closeModal();
       });
+
+      const sheet = modal.querySelector(".quote-loc__sheet");
+      modalApi = bindPicker(
+        sheet,
+        () => modalIntent,
+        () => closeModal()
+      );
       return modal;
     };
 
     const openModal = (seedMessage) => {
-      intentMessage =
+      modalIntent =
         (seedMessage && String(seedMessage).trim()) ||
         "Hola YAAVS Pospago, quiero cotizar un plan AT&T";
       if (!stores().length) {
-        openWhatsApp(intentMessage);
+        openWhatsApp(modalIntent);
         return;
       }
       ensureModal();
-      showStates();
+      modalApi?.reset();
       modal.hidden = false;
       lockBody(true);
     };
 
+    window.YAAVS_openQuoteLocation = openModal;
+
+    document.querySelectorAll("[data-quote-loc-inline]").forEach((host) => {
+      const intent =
+        host.getAttribute("data-quote-intent") ||
+        "Hola YAAVS Pospago, quiero cotizar un plan AT&T";
+      host.classList.add("quote-loc-inline");
+      host.innerHTML = `
+        <p class="quote-loc-inline__eyebrow">Contáctanos</p>
+        ${sheetMarkup(false)}`;
+      const api = bindPicker(host, () => intent, null);
+      if (stores().length) api.reset();
+      else {
+        host.querySelector("[data-quote-loc-list]").innerHTML =
+          `<p class="quote-loc-inline__empty">No hay sucursales disponibles por ahora.</p>`;
+      }
+    });
+
     document.addEventListener(
       "click",
       (e) => {
+        const trigger = e.target.closest?.("[data-quote-loc-open]");
+        if (trigger) {
+          e.preventDefault();
+          openModal(
+            trigger.getAttribute("data-quote-intent") ||
+              messageFromHref(trigger.getAttribute("href") || "") ||
+              "Hola YAAVS Pospago, quiero cotizar un plan AT&T"
+          );
+          return;
+        }
         const a = e.target.closest?.("a[href]");
         if (!isCentralWhatsAppLink(a)) return;
         e.preventDefault();

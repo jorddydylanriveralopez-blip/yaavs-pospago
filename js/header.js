@@ -423,6 +423,286 @@
     document.body.appendChild(a);
   }
 
+  function initQuoteLocationPicker() {
+    const CENTRAL_WA = WHATSAPP_NUMBER;
+    const stores = () => window.YAAVS_ATT_STORES || [];
+    let modal = null;
+    let modalIntent = "Hola YAAVS Pospago, quiero cotizar un plan AT&T";
+
+    const titleCase = (value) =>
+      String(value || "")
+        .toLowerCase()
+        .replace(/(^|[\s([])\S/g, (ch) => ch.toUpperCase());
+
+    const uniqueSorted = (values) =>
+      [...new Set(values.filter(Boolean))].sort((a, b) =>
+        a.localeCompare(b, "es", { sensitivity: "base" })
+      );
+
+    const states = () => uniqueSorted(stores().map((s) => s.state));
+    const branches = (state) =>
+      stores()
+        .filter((s) => s.state === state)
+        .slice()
+        .sort((a, b) => a.name.localeCompare(b.name, "es", { sensitivity: "base" }));
+
+    const waUrl = (text) =>
+      `https://wa.me/${CENTRAL_WA}?text=${encodeURIComponent(text)}`;
+
+    const openWhatsApp = (text, after) => {
+      after?.();
+      window.open(waUrl(text), "_blank", "noopener");
+    };
+
+    const messageFromHref = (href) => {
+      try {
+        const url = new URL(href, location.href);
+        const text = url.searchParams.get("text");
+        return text && text.trim() ? text.trim() : "";
+      } catch {
+        return "";
+      }
+    };
+
+    const isCentralWhatsAppLink = (a) => {
+      if (!a || a.tagName !== "A") return false;
+      if (a.classList.contains("wa-float")) return true;
+      if (a.classList.contains("pospago-stores__wa-btn")) return false;
+      const href = a.getAttribute("href") || "";
+      if (!/wa\.me\//i.test(href) && !/api\.whatsapp\.com/i.test(href)) return false;
+      try {
+        const url = new URL(href, location.href);
+        const phone = (url.pathname.split("/").pop() || "").replace(/\D/g, "");
+        const phoneParam = (url.searchParams.get("phone") || "").replace(/\D/g, "");
+        return phone === CENTRAL_WA || phoneParam === CENTRAL_WA;
+      } catch {
+        return href.includes(CENTRAL_WA);
+      }
+    };
+
+    const bindPicker = (root, getIntent, onOpenWa) => {
+      let stateName = "";
+
+      const renderOptions = (items, onPick) => {
+        const list = root.querySelector("[data-quote-loc-list]");
+        list.innerHTML = items
+          .map(
+            (item, i) =>
+              `<button type="button" class="quote-loc__option" data-quote-loc-pick="${i}">
+                <span class="quote-loc__copy">
+                  <strong>${item.title}</strong>
+                  ${item.sub ? `<small>${item.sub}</small>` : ""}
+                </span>
+                <span class="quote-loc__chev" aria-hidden="true"></span>
+              </button>`
+          )
+          .join("");
+        list.querySelectorAll("[data-quote-loc-pick]").forEach((btn) => {
+          btn.addEventListener("click", () => onPick(items[Number(btn.dataset.quoteLocPick)]));
+        });
+      };
+
+      const setStep = (step, title, showBack) => {
+        root.dataset.step = String(step);
+        root.querySelector("[data-quote-loc-title]").textContent = title;
+        const back = root.querySelector("[data-quote-loc-back]");
+        if (back) back.hidden = !showBack;
+        root.querySelectorAll("[data-quote-loc-dot]").forEach((dot) => {
+          const n = Number(dot.dataset.quoteLocDot);
+          dot.classList.toggle("is-active", n === step);
+          dot.classList.toggle("is-done", n < step);
+        });
+      };
+
+      const showBranches = () => {
+        setStep(2, `Sucursales en ${titleCase(stateName)}`, true);
+        renderOptions(
+          branches(stateName).map((store) => ({
+            id: store.id,
+            title: store.name,
+            sub: [titleCase(store.city), store.address].filter(Boolean).join(" · "),
+            store,
+          })),
+          (item) => {
+            const store = item.store;
+            const intent =
+              getIntent() || "Hola YAAVS Pospago, quiero cotizar un plan AT&T";
+            openWhatsApp(
+              `${intent}\nSucursal: ${store.name}\nCiudad: ${store.city}\nEstado: ${store.state}`,
+              onOpenWa
+            );
+          }
+        );
+      };
+
+      const showStates = () => {
+        stateName = "";
+        setStep(1, "¿Desde dónde nos visitas?", false);
+        renderOptions(
+          states().map((st) => {
+            const count = branches(st).length;
+            return {
+              id: st,
+              title: titleCase(st),
+              sub: `${count} sucursal${count === 1 ? "" : "es"}`,
+              state: st,
+            };
+          }),
+          (item) => {
+            stateName = item.state;
+            showBranches();
+          }
+        );
+      };
+
+      root.querySelector("[data-quote-loc-back]")?.addEventListener("click", () => {
+        if (stateName) showStates();
+      });
+
+      return {
+        reset: showStates,
+        getState: () => stateName,
+        setState: (value) => {
+          stateName = value || "";
+        },
+      };
+    };
+
+    const sheetMarkup = (withClose) => `
+      <div class="quote-loc__top">
+        <div class="quote-loc__progress" aria-hidden="true">
+          <span class="quote-loc__dot is-active" data-quote-loc-dot="1"></span>
+          <span class="quote-loc__dot" data-quote-loc-dot="2"></span>
+        </div>
+        ${
+          withClose
+            ? `<button type="button" class="quote-loc__close" data-quote-loc-close aria-label="Cerrar">×</button>`
+            : ""
+        }
+      </div>
+      <button type="button" class="quote-loc__back" data-quote-loc-back hidden>← Regresar</button>
+      <h2 class="quote-loc__title" data-quote-loc-title>¿Desde dónde nos visitas?</h2>
+      <p class="quote-loc__lead">Elige tu estado y selecciona tu sucursal.</p>
+      <div class="quote-loc__list" data-quote-loc-list></div>`;
+
+    const lockBody = (on) => {
+      document.body.classList.toggle("is-modal-open", on);
+    };
+
+    const closeModal = () => {
+      if (!modal) return;
+      modal.hidden = true;
+      lockBody(false);
+    };
+
+    let modalApi = null;
+
+    const ensureModal = () => {
+      if (modal) return modal;
+      modal = document.createElement("div");
+      modal.className = "quote-loc";
+      modal.dataset.step = "1";
+      modal.hidden = true;
+      modal.innerHTML = `
+        <button type="button" class="quote-loc__backdrop" data-quote-loc-close aria-label="Cerrar"></button>
+        <div class="quote-loc__sheet" role="dialog" aria-modal="true" aria-labelledby="quote-loc-title">
+          ${sheetMarkup(true)}
+        </div>`;
+      document.body.appendChild(modal);
+
+      modal.querySelectorAll("[data-quote-loc-close]").forEach((el) => {
+        el.addEventListener("click", closeModal);
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal && !modal.hidden) closeModal();
+      });
+
+      const sheet = modal.querySelector(".quote-loc__sheet");
+      modalApi = bindPicker(
+        sheet,
+        () => modalIntent,
+        () => closeModal()
+      );
+      return modal;
+    };
+
+    const openModal = (seedMessage) => {
+      modalIntent =
+        (seedMessage && String(seedMessage).trim()) ||
+        "Hola YAAVS Pospago, quiero cotizar un plan AT&T";
+      if (!stores().length) {
+        openWhatsApp(modalIntent);
+        return;
+      }
+      ensureModal();
+      modalApi?.reset();
+      modal.hidden = false;
+      lockBody(true);
+    };
+
+    window.YAAVS_openQuoteLocation = openModal;
+
+    document.querySelectorAll("[data-quote-loc-inline]").forEach((host) => {
+      const intent =
+        host.getAttribute("data-quote-intent") ||
+        "Hola YAAVS Pospago, quiero cotizar un plan AT&T";
+      host.classList.add("quote-loc-inline");
+      host.innerHTML = `
+        <p class="quote-loc-inline__eyebrow">Contáctanos</p>
+        ${sheetMarkup(false)}`;
+      const api = bindPicker(host, () => intent, null);
+      if (stores().length) api.reset();
+      else {
+        host.querySelector("[data-quote-loc-list]").innerHTML =
+          `<p class="quote-loc-inline__empty">No hay sucursales disponibles por ahora.</p>`;
+      }
+    });
+
+    const storeLandingMessage = (seed) => {
+      const body = document.body;
+      if (!body?.hasAttribute("data-store-landing")) return "";
+      const name = body.getAttribute("data-store-name") || "";
+      const city = body.getAttribute("data-store-city") || "";
+      const state = body.getAttribute("data-store-state") || "";
+      const intent =
+        (seed && String(seed).trim()) ||
+        "Hola YAAVS Pospago, quiero cotizar un plan AT&T";
+      if (!name) return intent;
+      return `${intent}\nSucursal: ${name}\nCiudad: ${city}\nEstado: ${state}`;
+    };
+
+    document.addEventListener(
+      "click",
+      (e) => {
+        const trigger = e.target.closest?.("[data-quote-loc-open]");
+        if (trigger) {
+          e.preventDefault();
+          const seed =
+            trigger.getAttribute("data-quote-intent") ||
+            messageFromHref(trigger.getAttribute("href") || "") ||
+            "Hola YAAVS Pospago, quiero cotizar un plan AT&T";
+          const landingMsg = storeLandingMessage(seed);
+          if (landingMsg) {
+            openWhatsApp(landingMsg);
+            return;
+          }
+          openModal(seed);
+          return;
+        }
+        const a = e.target.closest?.("a[href]");
+        if (!isCentralWhatsAppLink(a)) return;
+        e.preventDefault();
+        const seed = messageFromHref(a.href);
+        if (a.hasAttribute("data-quote-direct") || document.body?.hasAttribute("data-store-landing")) {
+          openWhatsApp(storeLandingMessage(seed) || seed || "Hola YAAVS Pospago, quiero cotizar un plan AT&T");
+          return;
+        }
+        openModal(seed);
+      },
+      true
+    );
+  }
+
   function initPageMotion() {
     const prefetched = new Set();
     const sameOriginNav = (a) => {
@@ -510,6 +790,7 @@
   initNav();
   initHeaderGlass();
   initWhatsAppFloat();
+  initQuoteLocationPicker();
   initCookieNotice();
   initQuote();
   initReveal();

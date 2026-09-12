@@ -442,7 +442,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Heber Floylán Ortega RamÍrez",
     "managerPhone": "524401328026",
     "state": "SAN LUIS POTOSÍ",
-    "facebook": "https://www.facebook.com/ATTSanLuisPotosiPlazaNorte"
+    "facebook": "https://www.facebook.com/ATTSanLuisPotosiPlazaNorte",
+    "image": "assets/stores/fachadas/att-32-san-luis-potosi-plaza-norte.jpg"
   },
   {
     "id": "att-33-san-luis-potosi",

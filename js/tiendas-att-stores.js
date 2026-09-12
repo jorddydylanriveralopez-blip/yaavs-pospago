@@ -11,7 +11,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Víctor Hugo Ávila Vargas",
     "managerPhone": "524951043334",
     "state": "AGUASCALIENTES",
-    "facebook": "https://www.facebook.com/ATTAguascalientesCalvilloIndependencia"
+    "facebook": "https://www.facebook.com/ATTAguascalientesCalvilloIndependencia",
+    "image": "assets/stores/fachadas/att-01-aguascalientes-calvillo-independencia.jpg"
   },
   {
     "id": "att-02-aguascalientes",
@@ -25,7 +26,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Marcos Alberto Rivera Hernández",
     "managerPhone": "524494927946",
     "state": "AGUASCALIENTES",
-    "facebook": "https://www.facebook.com/ATTAguascalientesConvencionDe1914"
+    "facebook": "https://www.facebook.com/ATTAguascalientesConvencionDe1914",
+    "image": "assets/stores/fachadas/att-02-aguascalientes-convencion-de-1914.jpg"
   },
   {
     "id": "att-03-aguascalientes",
@@ -39,7 +41,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Diego Alonso López Villar",
     "managerPhone": "523327093570",
     "state": "AGUASCALIENTES",
-    "facebook": "https://www.facebook.com/ATTAguascalientesJesusMaria"
+    "facebook": "https://www.facebook.com/ATTAguascalientesJesusMaria",
+    "image": "assets/stores/fachadas/att-03-aguascalientes-jesus-maria.jpg"
   },
   {
     "id": "att-04-aguascalientes",
@@ -67,7 +70,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Irma Arcelia Prado Dávalos",
     "managerPhone": "524932762927",
     "state": "AGUASCALIENTES",
-    "facebook": "https://www.facebook.com/ATTAguascalientesPlazaHaciendas"
+    "facebook": "https://www.facebook.com/ATTAguascalientesPlazaHaciendas",
+    "image": "assets/stores/fachadas/att-05-aguascalientes-plaza-haciendas.jpg"
   },
   {
     "id": "att-06-aguascalientes",
@@ -81,7 +85,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Paola Casandra López Velasco [Interino]",
     "managerPhone": "524498928630",
     "state": "AGUASCALIENTES",
-    "facebook": "https://www.facebook.com/ATTAguascalientesPlazaPatria"
+    "facebook": "https://www.facebook.com/ATTAguascalientesPlazaPatria",
+    "image": "assets/stores/fachadas/att-06-aguascalientes-plaza-patria.jpg"
   },
   {
     "id": "att-07-aguascalientes",
@@ -95,7 +100,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Abraham Jacobo Garcia Andrade",
     "managerPhone": "525581001454",
     "state": "AGUASCALIENTES",
-    "facebook": "https://www.facebook.com/ATTAguascalientesPlazaSantaAnita"
+    "facebook": "https://www.facebook.com/ATTAguascalientesPlazaSantaAnita",
+    "image": "assets/stores/fachadas/att-07-aguascalientes-plaza-santa-anita.jpg"
   },
   {
     "id": "att-08-aguascalientes",
@@ -123,7 +129,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Oscar Rubén Flores García",
     "managerPhone": "527733677484",
     "state": "HIDALGO",
-    "facebook": "https://www.facebook.com/ATTHidalgoLeandroValle2"
+    "facebook": "https://www.facebook.com/ATTHidalgoLeandroValle2",
+    "image": "assets/stores/fachadas/att-09-centro-leandro-valle-2.jpg"
   },
   {
     "id": "att-10-centro",
@@ -137,7 +144,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Alejandro Fermín Macías Bucio",
     "managerPhone": "525587860343",
     "state": "ESTADO DE MÉXICO",
-    "facebook": "https://www.facebook.com/ATTEdomexLosHeroesChalco"
+    "facebook": "https://www.facebook.com/ATTEdomexLosHeroesChalco",
+    "image": "assets/stores/fachadas/att-10-centro-los-heroes-chalco.jpg"
   },
   {
     "id": "att-11-centro",
@@ -151,7 +159,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Adriana Austria Caballero",
     "managerPhone": "527711930032",
     "state": "HIDALGO",
-    "facebook": "https://www.facebook.com/ATTHidalgoNacozariCruzRojaTizayuca"
+    "facebook": "https://www.facebook.com/ATTHidalgoNacozariCruzRojaTizayuca",
+    "image": "assets/stores/fachadas/att-11-centro-nacozari-cruz-roja-tizayuca.jpg"
   },
   {
     "id": "att-12-centro",
@@ -165,7 +174,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Pedro Eduardo Manilla Guzmán",
     "managerPhone": "527712243995",
     "state": "HIDALGO",
-    "facebook": "https://www.facebook.com/ATTHidalgoPlazaBella"
+    "facebook": "https://www.facebook.com/ATTHidalgoPlazaBella",
+    "image": "assets/stores/fachadas/att-12-centro-plaza-bella.jpg"
   },
   {
     "id": "att-13-prepago",
@@ -179,7 +189,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "José Gerardo Peraza González",
     "managerPhone": "529997925402",
     "state": "YUCATÁN",
-    "facebook": "https://www.facebook.com/attrealmontejo"
+    "facebook": "https://www.facebook.com/attrealmontejo",
+    "image": "assets/stores/fachadas/att-13-prepago-plaza-de-la-salud.jpg"
   },
   {
     "id": "att-14-centro",
@@ -193,7 +204,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Erik Daniel Martínez Ruiz",
     "managerPhone": "525519830639",
     "state": "ESTADO DE MÉXICO",
-    "facebook": "https://www.facebook.com/ATTEdomexPlazaEcatepecII"
+    "facebook": "https://www.facebook.com/ATTEdomexPlazaEcatepecII",
+    "image": "assets/stores/fachadas/att-14-centro-plaza-ecatepec-ii.jpg"
   },
   {
     "id": "att-15-centro",
@@ -207,7 +219,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Sergio Alberto Zapata Barrios",
     "managerPhone": "527717631361",
     "state": "HIDALGO",
-    "facebook": "https://www.facebook.com/ATTHidalgoPlazaRevo"
+    "facebook": "https://www.facebook.com/ATTHidalgoPlazaRevo",
+    "image": "assets/stores/fachadas/att-15-centro-plaza-revo.jpg"
   },
   {
     "id": "att-16-centro",
@@ -221,7 +234,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Emmanuel Salvador Gómez Filippini",
     "managerPhone": "523321077526",
     "state": "QUERÉTARO",
-    "facebook": "https://www.facebook.com/ATTQueretaroLasFuentes"
+    "facebook": "https://www.facebook.com/ATTQueretaroLasFuentes",
+    "image": "assets/stores/fachadas/att-16-centro-las-fuentes.jpg"
   },
   {
     "id": "att-18-durango",
@@ -235,7 +249,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Ramón Martínez Huizar",
     "managerPhone": "526184936732",
     "state": "DURANGO",
-    "facebook": "https://www.facebook.com/ATTDurangoDomingoArrieta"
+    "facebook": "https://www.facebook.com/ATTDurangoDomingoArrieta",
+    "image": "assets/stores/fachadas/att-18-durango-domingo-arrieta.jpg"
   },
   {
     "id": "att-19-durango",
@@ -249,7 +264,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Fátima Yolanda Rodríguez Rosales",
     "managerPhone": "526561282215",
     "state": "DURANGO",
-    "facebook": "https://www.facebook.com/ATTDurangoI"
+    "facebook": "https://www.facebook.com/ATTDurangoI",
+    "image": "assets/stores/fachadas/att-19-durango-durango-i.jpg"
   },
   {
     "id": "att-20-durango",
@@ -276,7 +292,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Miguel Ángel Ang Domínguez",
     "managerPhone": "524778915308",
     "state": "GUANAJUATO",
-    "facebook": "https://www.facebook.com/profile.php?id=61594163483310"
+    "facebook": "https://www.facebook.com/profile.php?id=61594163483310",
+    "image": "assets/stores/fachadas/att-21-guanajuato-delta.jpg"
   },
   {
     "id": "att-22-guanajuato",
@@ -290,7 +307,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Jorge Arturo Pedroza Romero",
     "managerPhone": "524742580624",
     "state": "JALISCO",
-    "facebook": "https://www.facebook.com/ATTJaliscoDivisionDelNorte"
+    "facebook": "https://www.facebook.com/ATTJaliscoDivisionDelNorte",
+    "image": "assets/stores/fachadas/att-22-guanajuato-division-del-norte.jpg"
   },
   {
     "id": "att-23-guanajuato",
@@ -304,7 +322,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Jesús Alberto Vivanco Pérez",
     "managerPhone": "524776786851",
     "state": "GUANAJUATO",
-    "facebook": "https://www.facebook.com/profile.php?id=61593660585489"
+    "facebook": "https://www.facebook.com/profile.php?id=61593660585489",
+    "image": "assets/stores/fachadas/att-23-guanajuato-francisco-villa.jpg"
   },
   {
     "id": "att-24-guanajuato",
@@ -318,7 +337,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Luis Avan Mendoza García",
     "managerPhone": "524311932707",
     "state": "JALISCO",
-    "facebook": "https://www.facebook.com/profile.php?id=61593825697889"
+    "facebook": "https://www.facebook.com/profile.php?id=61593825697889",
+    "image": "assets/stores/fachadas/att-24-guanajuato-jalostotitlan-ii.jpg"
   },
   {
     "id": "att-25-guanajuato",
@@ -332,7 +352,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Cynthia Guadalupe Castro Cerritos",
     "managerPhone": "524321038250",
     "state": "GUANAJUATO",
-    "facebook": "https://www.facebook.com/ATTGuanajuatoPlazaReal"
+    "facebook": "https://www.facebook.com/ATTGuanajuatoPlazaReal",
+    "image": "assets/stores/fachadas/att-25-guanajuato-plaza-real.jpg"
   },
   {
     "id": "att-26-guanajuato",
@@ -346,7 +367,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Mauricio Tenorio De La Peña",
     "managerPhone": "524778365561",
     "state": "GUANAJUATO",
-    "facebook": "https://www.facebook.com/ATTGuanajuatoSanabriaPanorama"
+    "facebook": "https://www.facebook.com/ATTGuanajuatoSanabriaPanorama",
+    "image": "assets/stores/fachadas/att-26-guanajuato-sanabria-panorama.jpg"
   },
   {
     "id": "att-28-san-luis-potosi",
@@ -360,7 +382,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "José Ignacio Grimaldo Pesina",
     "managerPhone": "524445234490",
     "state": "SAN LUIS POTOSÍ",
-    "facebook": "https://www.facebook.com/ATTSanLuisPotosiElDorado"
+    "facebook": "https://www.facebook.com/ATTSanLuisPotosiElDorado",
+    "image": "assets/stores/fachadas/att-28-san-luis-potosi-centro-comercial-el-dorado.jpg"
   },
   {
     "id": "att-29-san-luis-potosi",
@@ -374,7 +397,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Yanet Liliana Vázquez Escobedo",
     "managerPhone": "524447307527",
     "state": "SAN LUIS POTOSÍ",
-    "facebook": "https://www.facebook.com/ATTSanLuisPotosiPlazaSendero"
+    "facebook": "https://www.facebook.com/ATTSanLuisPotosiPlazaSendero",
+    "image": "assets/stores/fachadas/att-29-san-luis-potosi-ksk-plaza-sendero.jpg"
   },
   {
     "id": "att-30-san-luis-potosi",
@@ -388,7 +412,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Carmen Lizett Ortega Puente",
     "managerPhone": "524882708940",
     "state": "SAN LUIS POTOSÍ",
-    "facebook": "https://www.facebook.com/profile.php?id=61594193332241"
+    "facebook": "https://www.facebook.com/profile.php?id=61594193332241",
+    "image": "assets/stores/fachadas/att-30-san-luis-potosi-matehuala-centro-iii.jpg"
   },
   {
     "id": "att-31-san-luis-potosi",
@@ -402,7 +427,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "José Eduardo Olea Sánchez [Interino]",
     "managerPhone": "524447264395",
     "state": "SAN LUIS POTOSÍ",
-    "facebook": "https://www.facebook.com/profile.php?id=61593884556236"
+    "facebook": "https://www.facebook.com/profile.php?id=61593884556236",
+    "image": "assets/stores/fachadas/att-31-san-luis-potosi-plaza-electro-del-carmen.jpg"
   },
   {
     "id": "att-32-san-luis-potosi",
@@ -430,7 +456,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Víctor Manuel Salazar Morales",
     "managerPhone": "524871405704",
     "state": "SAN LUIS POTOSÍ",
-    "facebook": "https://www.facebook.com/ATTSanLuisPotosiRioVerde"
+    "facebook": "https://www.facebook.com/ATTSanLuisPotosiRioVerde",
+    "image": "assets/stores/fachadas/att-33-san-luis-potosi-rio-verde.jpg"
   },
   {
     "id": "att-34-san-luis-potosi",
@@ -444,7 +471,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Juan Carlos Cerda Soria",
     "managerPhone": "524882709034",
     "state": "SAN LUIS POTOSÍ",
-    "facebook": "https://www.facebook.com/profile.php?id=61593731270563"
+    "facebook": "https://www.facebook.com/profile.php?id=61593731270563",
+    "image": "assets/stores/fachadas/att-34-san-luis-potosi-walmart-arboledas-ii.jpg"
   },
   {
     "id": "att-35-san-luis-potosi",
@@ -458,6 +486,7 @@ window.YAAVS_ATT_STORES = [
     "manager": "Luis Enrique Martínez López [Interino]",
     "managerPhone": "524444001438",
     "state": "SAN LUIS POTOSÍ",
-    "facebook": "https://www.facebook.com/profile.php?id=61593868207282"
+    "facebook": "https://www.facebook.com/profile.php?id=61593868207282",
+    "image": "assets/stores/fachadas/att-35-san-luis-potosi-walmart-munoz.jpg"
   }
 ];

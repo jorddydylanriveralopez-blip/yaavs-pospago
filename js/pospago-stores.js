@@ -196,6 +196,9 @@
           return `<article class="pospago-stores__card${on}" data-store-id="${store.id}" style="--i:${i}">
           <button type="button" class="pospago-stores__card-main" data-store-focus="${store.id}">
             ${nearest}
+            <span class="pospago-stores__card-media">
+              <img src="${escapeHtml(storeThumbSrc(store))}" alt="Fachada ${escapeHtml(store.name)}" width="640" height="360" loading="lazy" decoding="async">
+            </span>
             <span class="pospago-stores__card-name">${store.name}</span>
             <span class="pospago-stores__card-city">${store.city}</span>
             <span class="pospago-stores__card-address">${store.address}</span>

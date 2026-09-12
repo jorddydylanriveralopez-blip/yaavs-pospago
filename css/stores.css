@@ -341,6 +341,32 @@
   font: inherit;
 }
 
+.pospago-stores__card-media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 0 0 0.35rem;
+  background:
+    linear-gradient(135deg, rgba(0, 193, 212, 0.16), rgba(0, 159, 219, 0.08)),
+    #d9eef7;
+  border: 1px solid rgba(0, 159, 219, 0.14);
+}
+
+.pospago-stores__card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.pospago-stores__card:hover .pospago-stores__card-media img,
+.pospago-stores__card.is-active .pospago-stores__card-media img {
+  transform: scale(1.03);
+}
+
 .pospago-stores__card-name {
   font-size: 0.95rem;
   font-weight: 800;

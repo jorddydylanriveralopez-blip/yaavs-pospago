@@ -10928,3 +10928,183 @@ body.is-nav-open .site-header {
     height: 48px;
   }
 }
+
+/* —— Store landing hero (PDV image | home video) —— */
+.store-landing {
+  --store-ink: #0a2540;
+  --store-cyan: #00c1d4;
+  --store-blue: #009fdb;
+}
+
+.store-hero {
+  position: relative;
+  padding: clamp(1.25rem, 3vw, 2rem) 0 clamp(1.75rem, 4vw, 2.75rem);
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 0%, rgba(0, 193, 212, 0.14), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 90% 20%, rgba(0, 159, 219, 0.1), transparent 50%),
+    linear-gradient(180deg, #f4fafc 0%, #eef6fa 45%, #fff 100%);
+  overflow: hidden;
+}
+
+.store-hero__wrap {
+  width: min(1120px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.store-hero__media {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  align-items: stretch;
+}
+
+.store-hero__shot,
+.store-hero__video-frame {
+  position: relative;
+  min-height: clamp(220px, 36vw, 420px);
+  overflow: hidden;
+  background: #0a2540;
+  box-shadow: 0 18px 40px rgba(10, 37, 64, 0.18);
+}
+
+.store-hero__shot img,
+.store-hero__video-frame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.store-hero__video-frame .hero__video--mobile {
+  display: none;
+}
+
+.store-hero__meta {
+  margin-top: clamp(1.1rem, 2.5vw, 1.75rem);
+  display: grid;
+  gap: 0.55rem;
+  max-width: 46rem;
+}
+
+.store-hero__eyebrow {
+  margin: 0;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--store-blue);
+}
+
+.store-hero__name {
+  margin: 0;
+  font-family: "Sora", sans-serif;
+  font-size: clamp(1.65rem, 4.2vw, 2.65rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--store-ink);
+  text-wrap: balance;
+}
+
+.store-hero__city {
+  margin: 0;
+  font-family: "Outfit", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #3a5a72;
+}
+
+.store-hero__address,
+.store-hero__hours {
+  margin: 0;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: #5a7388;
+}
+
+.store-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.85rem;
+}
+
+.store-hero__actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0.65rem 1.1rem;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(115deg, var(--store-cyan), var(--store-blue));
+  box-shadow: 0 10px 22px rgba(0, 159, 219, 0.25);
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.store-hero__actions a:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.store-hero__actions a.store-hero__wa {
+  background: linear-gradient(115deg, #25d366, #1ebe57);
+  box-shadow: 0 10px 22px rgba(37, 211, 102, 0.28);
+}
+
+.store-hero__actions a.store-hero__fb {
+  background: #1877f2;
+  box-shadow: 0 10px 22px rgba(24, 119, 242, 0.25);
+}
+
+@media (max-width: 860px) {
+  .store-hero__media {
+    grid-template-columns: 1fr;
+  }
+
+  .store-hero__shot,
+  .store-hero__video-frame {
+    min-height: min(58vw, 320px);
+  }
+
+  .store-hero__video-frame .hero__video--desktop {
+    display: none;
+  }
+
+  .store-hero__video-frame .hero__video--mobile {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .store-hero__shot,
+  .store-hero__video-frame {
+    animation: store-hero-rise 0.7s ease both;
+  }
+
+  .store-hero__video-frame {
+    animation-delay: 0.12s;
+  }
+
+  .store-hero__meta {
+    animation: store-hero-rise 0.75s ease 0.18s both;
+  }
+}
+
+@keyframes store-hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

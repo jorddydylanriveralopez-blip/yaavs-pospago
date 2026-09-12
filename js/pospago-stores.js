@@ -206,6 +206,11 @@
             ${store.hours ? `<span class="pospago-stores__card-hours">${store.hours}</span>` : ""}
           </button>
           <div class="pospago-stores__card-actions">
+            ${
+              store.page || store.slug
+                ? `<a class="pospago-stores__page" href="${escapeHtml(store.page || `tienda/${store.slug}.html`)}">Ver sucursal</a>`
+                : ""
+            }
             <a class="pospago-stores__go" href="${mapsDirUrl(store)}" target="_blank" rel="noopener noreferrer">Cómo llegar</a>
             <a class="pospago-stores__wa-btn" href="${waUrl(store)}" target="_blank" rel="noopener noreferrer" aria-label="Contactar sucursal ${escapeHtml(store.name)} por WhatsApp">
               ${WA_ICON}

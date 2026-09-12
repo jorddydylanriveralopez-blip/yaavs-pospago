@@ -658,23 +658,46 @@
       }
     });
 
+    const storeLandingMessage = (seed) => {
+      const body = document.body;
+      if (!body?.hasAttribute("data-store-landing")) return "";
+      const name = body.getAttribute("data-store-name") || "";
+      const city = body.getAttribute("data-store-city") || "";
+      const state = body.getAttribute("data-store-state") || "";
+      const intent =
+        (seed && String(seed).trim()) ||
+        "Hola YAAVS Pospago, quiero cotizar un plan AT&T";
+      if (!name) return intent;
+      return `${intent}\nSucursal: ${name}\nCiudad: ${city}\nEstado: ${state}`;
+    };
+
     document.addEventListener(
       "click",
       (e) => {
         const trigger = e.target.closest?.("[data-quote-loc-open]");
         if (trigger) {
           e.preventDefault();
-          openModal(
+          const seed =
             trigger.getAttribute("data-quote-intent") ||
-              messageFromHref(trigger.getAttribute("href") || "") ||
-              "Hola YAAVS Pospago, quiero cotizar un plan AT&T"
-          );
+            messageFromHref(trigger.getAttribute("href") || "") ||
+            "Hola YAAVS Pospago, quiero cotizar un plan AT&T";
+          const landingMsg = storeLandingMessage(seed);
+          if (landingMsg) {
+            openWhatsApp(landingMsg);
+            return;
+          }
+          openModal(seed);
           return;
         }
         const a = e.target.closest?.("a[href]");
         if (!isCentralWhatsAppLink(a)) return;
         e.preventDefault();
-        openModal(messageFromHref(a.href));
+        const seed = messageFromHref(a.href);
+        if (a.hasAttribute("data-quote-direct") || document.body?.hasAttribute("data-store-landing")) {
+          openWhatsApp(storeLandingMessage(seed) || seed || "Hola YAAVS Pospago, quiero cotizar un plan AT&T");
+          return;
+        }
+        openModal(seed);
       },
       true
     );

@@ -56,7 +56,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Diego Salvador López Amador",
     "managerPhone": "524651219358",
     "state": "AGUASCALIENTES",
-    "facebook": "https://www.facebook.com/ATTAguascalientesPabellonDeArteaga"
+    "facebook": "https://www.facebook.com/ATTAguascalientesPabellonDeArteaga",
+    "image": "assets/stores/fachadas/att-04-aguascalientes-pabellon-de-arteaga.jpg"
   },
   {
     "id": "att-05-aguascalientes",
@@ -115,7 +116,8 @@ window.YAAVS_ATT_STORES = [
     "manager": "Leticia  Judith Ávila Martínez",
     "managerPhone": "524494049842",
     "state": "AGUASCALIENTES",
-    "facebook": "https://www.facebook.com/ATTAguascalientesArqueros"
+    "facebook": "https://www.facebook.com/ATTAguascalientesArqueros",
+    "image": "assets/stores/fachadas/att-08-aguascalientes-arqueros.jpg"
   },
   {
     "id": "att-09-centro",
@@ -278,7 +280,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 08:00 · Dom 10:00 - 06:00",
     "manager": "Juan Isaac Ávila Mercado",
     "managerPhone": "528713545005",
-    "state": "COAHUILA"
+    "state": "COAHUILA",
+    "image": "assets/stores/fachadas/att-20-durango-saltillo-400.jpg"
   },
   {
     "id": "att-21-guanajuato",

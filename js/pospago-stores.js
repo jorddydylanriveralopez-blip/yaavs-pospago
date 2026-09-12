@@ -194,11 +194,12 @@
           const on = store.id === activeId ? " is-active" : "";
           const nearest = store.id === pinnedId ? `<span class="pospago-stores__badge">Más cercana</span>` : "";
           return `<article class="pospago-stores__card${on}" data-store-id="${store.id}" style="--i:${i}">
+          <button type="button" class="pospago-stores__card-media" data-store-photo="${store.id}" aria-label="Ver fachada completa de ${escapeHtml(store.name)}">
+            <img src="${escapeHtml(storeThumbSrc(store))}" alt="Fachada ${escapeHtml(store.name)}" width="640" height="360" loading="lazy" decoding="async">
+            <span class="pospago-stores__card-zoom" aria-hidden="true">Ampliar</span>
+          </button>
           <button type="button" class="pospago-stores__card-main" data-store-focus="${store.id}">
             ${nearest}
-            <span class="pospago-stores__card-media">
-              <img src="${escapeHtml(storeThumbSrc(store))}" alt="Fachada ${escapeHtml(store.name)}" width="640" height="360" loading="lazy" decoding="async">
-            </span>
             <span class="pospago-stores__card-name">${store.name}</span>
             <span class="pospago-stores__card-city">${store.city}</span>
             <span class="pospago-stores__card-address">${store.address}</span>
@@ -467,11 +468,57 @@
       renderList();
       return;
     }
+    const photoBtn = e.target.closest("[data-store-photo]");
+    if (photoBtn) {
+      const store = storesFor().find((s) => s.id === photoBtn.getAttribute("data-store-photo"));
+      if (store) openStorePhoto(store);
+      return;
+    }
     const btn = e.target.closest("[data-store-focus]");
     if (!btn) return;
     const store = storesFor().find((s) => s.id === btn.getAttribute("data-store-focus"));
     if (store) focusStore(store, true);
   });
+
+  let photoLightbox = null;
+
+  function closeStorePhoto() {
+    if (!photoLightbox) return;
+    photoLightbox.hidden = true;
+    document.body.classList.remove("is-modal-open");
+  }
+
+  function openStorePhoto(store) {
+    if (!store) return;
+    const src = storeThumbSrc(store);
+    if (!photoLightbox) {
+      photoLightbox = document.createElement("div");
+      photoLightbox.className = "pospago-stores__lightbox";
+      photoLightbox.hidden = true;
+      photoLightbox.innerHTML = `
+        <button type="button" class="pospago-stores__lightbox-backdrop" data-store-photo-close aria-label="Cerrar"></button>
+        <div class="pospago-stores__lightbox-sheet" role="dialog" aria-modal="true" aria-label="Fachada de sucursal">
+          <button type="button" class="pospago-stores__lightbox-close" data-store-photo-close aria-label="Cerrar">×</button>
+          <img data-store-photo-img alt="" width="1200" height="800">
+          <p class="pospago-stores__lightbox-caption" data-store-photo-caption></p>
+        </div>`;
+      document.body.appendChild(photoLightbox);
+      photoLightbox.addEventListener("click", (ev) => {
+        if (ev.target.closest("[data-store-photo-close]")) closeStorePhoto();
+      });
+      document.addEventListener("keydown", (ev) => {
+        if (ev.key === "Escape" && photoLightbox && !photoLightbox.hidden) closeStorePhoto();
+      });
+    }
+    const img = photoLightbox.querySelector("[data-store-photo-img]");
+    const caption = photoLightbox.querySelector("[data-store-photo-caption]");
+    img.src = src;
+    img.alt = `Fachada ${store.name}`;
+    caption.textContent = `${store.name} · ${store.city}`;
+    photoLightbox.hidden = false;
+    document.body.classList.add("is-modal-open");
+    focusStore(store, true);
+  }
 
   const onListMqChange = () => {
     resetVisibleCount();

@@ -1,4 +1,3 @@
-/** PDVs AT&T / Pospago YAAVS — directorio + tel. gerente (Flyers LITE) */
 window.YAAVS_ATT_STORES = [
   {
     "id": "att-01-aguascalientes",
@@ -11,7 +10,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00",
     "manager": "Víctor Hugo Ávila Vargas",
     "managerPhone": "524951043334",
-    "state": "AGUASCALIENTES"
+    "state": "AGUASCALIENTES",
+    "facebook": "https://www.facebook.com/ATTAguascalientesCalvilloIndependencia"
   },
   {
     "id": "att-02-aguascalientes",
@@ -24,7 +24,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 10:30 - 07:30 · Sáb 10:30 - 07:30 · Dom 10:30 - 07:30",
     "manager": "Marcos Alberto Rivera Hernández",
     "managerPhone": "524494927946",
-    "state": "AGUASCALIENTES"
+    "state": "AGUASCALIENTES",
+    "facebook": "https://www.facebook.com/ATTAguascalientesConvencionDe1914"
   },
   {
     "id": "att-03-aguascalientes",
@@ -37,7 +38,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00",
     "manager": "Diego Alonso López Villar",
     "managerPhone": "523327093570",
-    "state": "AGUASCALIENTES"
+    "state": "AGUASCALIENTES",
+    "facebook": "https://www.facebook.com/ATTAguascalientesJesusMaria"
   },
   {
     "id": "att-04-aguascalientes",
@@ -50,7 +52,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00",
     "manager": "Diego Salvador López Amador",
     "managerPhone": "524651219358",
-    "state": "AGUASCALIENTES"
+    "state": "AGUASCALIENTES",
+    "facebook": "https://www.facebook.com/ATTAguascalientesPabellonDeArteaga"
   },
   {
     "id": "att-05-aguascalientes",
@@ -63,7 +66,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 10:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 10:00 - 08:00",
     "manager": "Irma Arcelia Prado Dávalos",
     "managerPhone": "524932762927",
-    "state": "AGUASCALIENTES"
+    "state": "AGUASCALIENTES",
+    "facebook": "https://www.facebook.com/ATTAguascalientesPlazaHaciendas"
   },
   {
     "id": "att-06-aguascalientes",
@@ -76,7 +80,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00",
     "manager": "Paola Casandra López Velasco [Interino]",
     "managerPhone": "524498928630",
-    "state": "AGUASCALIENTES"
+    "state": "AGUASCALIENTES",
+    "facebook": "https://www.facebook.com/ATTAguascalientesPlazaPatria"
   },
   {
     "id": "att-07-aguascalientes",
@@ -89,7 +94,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 11:00 - 08.00 · Sáb 11:00 - 08.00 · Dom 11:00 - 08.00",
     "manager": "Abraham Jacobo Garcia Andrade",
     "managerPhone": "525581001454",
-    "state": "AGUASCALIENTES"
+    "state": "AGUASCALIENTES",
+    "facebook": "https://www.facebook.com/ATTAguascalientesPlazaSantaAnita"
   },
   {
     "id": "att-08-aguascalientes",
@@ -102,7 +108,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00",
     "manager": "Leticia  Judith Ávila Martínez",
     "managerPhone": "524494049842",
-    "state": "AGUASCALIENTES"
+    "state": "AGUASCALIENTES",
+    "facebook": "https://www.facebook.com/ATTAguascalientesArqueros"
   },
   {
     "id": "att-09-centro",
@@ -115,7 +122,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00",
     "manager": "Oscar Rubén Flores García",
     "managerPhone": "527733677484",
-    "state": "HIDALGO"
+    "state": "HIDALGO",
+    "facebook": "https://www.facebook.com/ATTHidalgoLeandroValle2"
   },
   {
     "id": "att-10-centro",
@@ -128,7 +136,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00",
     "manager": "Alejandro Fermín Macías Bucio",
     "managerPhone": "525587860343",
-    "state": "ESTADO DE MÉXICO"
+    "state": "ESTADO DE MÉXICO",
+    "facebook": "https://www.facebook.com/ATTEdomexLosHeroesChalco"
   },
   {
     "id": "att-11-centro",
@@ -141,7 +150,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom CERRADO",
     "manager": "Adriana Austria Caballero",
     "managerPhone": "527711930032",
-    "state": "HIDALGO"
+    "state": "HIDALGO",
+    "facebook": "https://www.facebook.com/ATTHidalgoNacozariCruzRojaTizayuca"
   },
   {
     "id": "att-12-centro",
@@ -154,7 +164,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00",
     "manager": "Pedro Eduardo Manilla Guzmán",
     "managerPhone": "527712243995",
-    "state": "HIDALGO"
+    "state": "HIDALGO",
+    "facebook": "https://www.facebook.com/ATTHidalgoPlazaBella"
   },
   {
     "id": "att-13-prepago",
@@ -167,7 +178,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00",
     "manager": "José Gerardo Peraza González",
     "managerPhone": "529997925402",
-    "state": "YUCATÁN"
+    "state": "YUCATÁN",
+    "facebook": "https://www.facebook.com/attrealmontejo"
   },
   {
     "id": "att-14-centro",
@@ -180,7 +192,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00",
     "manager": "Erik Daniel Martínez Ruiz",
     "managerPhone": "525519830639",
-    "state": "ESTADO DE MÉXICO"
+    "state": "ESTADO DE MÉXICO",
+    "facebook": "https://www.facebook.com/ATTEdomexPlazaEcatepecII"
   },
   {
     "id": "att-15-centro",
@@ -193,7 +206,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00",
     "manager": "Sergio Alberto Zapata Barrios",
     "managerPhone": "527717631361",
-    "state": "HIDALGO"
+    "state": "HIDALGO",
+    "facebook": "https://www.facebook.com/ATTHidalgoPlazaRevo"
   },
   {
     "id": "att-16-centro",
@@ -206,7 +220,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 11:00 - 08.00 · Sáb 11:00 - 08.00 · Dom 11:00 - 08.00",
     "manager": "Emmanuel Salvador Gómez Filippini",
     "managerPhone": "523321077526",
-    "state": "QUERÉTARO"
+    "state": "QUERÉTARO",
+    "facebook": "https://www.facebook.com/ATTQueretaroLasFuentes"
   },
   {
     "id": "att-18-durango",
@@ -219,7 +234,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 06:00",
     "manager": "Ramón Martínez Huizar",
     "managerPhone": "526184936732",
-    "state": "DURANGO"
+    "state": "DURANGO",
+    "facebook": "https://www.facebook.com/ATTDurangoDomingoArrieta"
   },
   {
     "id": "att-19-durango",
@@ -232,7 +248,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 10:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 10:00 - 06:00",
     "manager": "Fátima Yolanda Rodríguez Rosales",
     "managerPhone": "526561282215",
-    "state": "DURANGO"
+    "state": "DURANGO",
+    "facebook": "https://www.facebook.com/ATTDurangoI"
   },
   {
     "id": "att-20-durango",
@@ -258,7 +275,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00",
     "manager": "Miguel Ángel Ang Domínguez",
     "managerPhone": "524778915308",
-    "state": "GUANAJUATO"
+    "state": "GUANAJUATO",
+    "facebook": "https://www.facebook.com/profile.php?id=61594163483310"
   },
   {
     "id": "att-22-guanajuato",
@@ -271,7 +289,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00",
     "manager": "Jorge Arturo Pedroza Romero",
     "managerPhone": "524742580624",
-    "state": "JALISCO"
+    "state": "JALISCO",
+    "facebook": "https://www.facebook.com/ATTJaliscoDivisionDelNorte"
   },
   {
     "id": "att-23-guanajuato",
@@ -284,7 +303,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00",
     "manager": "Jesús Alberto Vivanco Pérez",
     "managerPhone": "524776786851",
-    "state": "GUANAJUATO"
+    "state": "GUANAJUATO",
+    "facebook": "https://www.facebook.com/profile.php?id=61593660585489"
   },
   {
     "id": "att-24-guanajuato",
@@ -297,7 +317,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00",
     "manager": "Luis Avan Mendoza García",
     "managerPhone": "524311932707",
-    "state": "JALISCO"
+    "state": "JALISCO",
+    "facebook": "https://www.facebook.com/profile.php?id=61593825697889"
   },
   {
     "id": "att-25-guanajuato",
@@ -310,7 +331,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00",
     "manager": "Cynthia Guadalupe Castro Cerritos",
     "managerPhone": "524321038250",
-    "state": "GUANAJUATO"
+    "state": "GUANAJUATO",
+    "facebook": "https://www.facebook.com/ATTGuanajuatoPlazaReal"
   },
   {
     "id": "att-26-guanajuato",
@@ -323,7 +345,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 07:00 · Dom 10:00 - 07:00",
     "manager": "Mauricio Tenorio De La Peña",
     "managerPhone": "524778365561",
-    "state": "GUANAJUATO"
+    "state": "GUANAJUATO",
+    "facebook": "https://www.facebook.com/ATTGuanajuatoSanabriaPanorama"
   },
   {
     "id": "att-28-san-luis-potosi",
@@ -336,7 +359,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00",
     "manager": "José Ignacio Grimaldo Pesina",
     "managerPhone": "524445234490",
-    "state": "SAN LUIS POTOSÍ"
+    "state": "SAN LUIS POTOSÍ",
+    "facebook": "https://www.facebook.com/ATTSanLuisPotosiElDorado"
   },
   {
     "id": "att-29-san-luis-potosi",
@@ -349,7 +373,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00",
     "manager": "Yanet Liliana Vázquez Escobedo",
     "managerPhone": "524447307527",
-    "state": "SAN LUIS POTOSÍ"
+    "state": "SAN LUIS POTOSÍ",
+    "facebook": "https://www.facebook.com/ATTSanLuisPotosiPlazaSendero"
   },
   {
     "id": "att-30-san-luis-potosi",
@@ -362,7 +387,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 10:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 11:00 - 06:00",
     "manager": "Carmen Lizett Ortega Puente",
     "managerPhone": "524882708940",
-    "state": "SAN LUIS POTOSÍ"
+    "state": "SAN LUIS POTOSÍ",
+    "facebook": "https://www.facebook.com/profile.php?id=61594193332241"
   },
   {
     "id": "att-31-san-luis-potosi",
@@ -375,7 +401,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 10:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 11:00 - 06:00",
     "manager": "José Eduardo Olea Sánchez [Interino]",
     "managerPhone": "524447264395",
-    "state": "SAN LUIS POTOSÍ"
+    "state": "SAN LUIS POTOSÍ",
+    "facebook": "https://www.facebook.com/profile.php?id=61593884556236"
   },
   {
     "id": "att-32-san-luis-potosi",
@@ -388,7 +415,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 09:00 - 07:00 · Sáb 10:00 - 06:00 · Dom 11:00 - 05:00",
     "manager": "Heber Floylán Ortega RamÍrez",
     "managerPhone": "524401328026",
-    "state": "SAN LUIS POTOSÍ"
+    "state": "SAN LUIS POTOSÍ",
+    "facebook": "https://www.facebook.com/ATTSanLuisPotosiPlazaNorte"
   },
   {
     "id": "att-33-san-luis-potosi",
@@ -401,7 +429,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 09:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 11:00 - 05:00",
     "manager": "Víctor Manuel Salazar Morales",
     "managerPhone": "524871405704",
-    "state": "SAN LUIS POTOSÍ"
+    "state": "SAN LUIS POTOSÍ",
+    "facebook": "https://www.facebook.com/ATTSanLuisPotosiRioVerde"
   },
   {
     "id": "att-34-san-luis-potosi",
@@ -414,7 +443,8 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 10:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 11:00 - 07:00",
     "manager": "Juan Carlos Cerda Soria",
     "managerPhone": "524882709034",
-    "state": "SAN LUIS POTOSÍ"
+    "state": "SAN LUIS POTOSÍ",
+    "facebook": "https://www.facebook.com/profile.php?id=61593731270563"
   },
   {
     "id": "att-35-san-luis-potosi",
@@ -427,6 +457,7 @@ window.YAAVS_ATT_STORES = [
     "hours": "L-V 10:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 11:00 - 06:00",
     "manager": "Luis Enrique Martínez López [Interino]",
     "managerPhone": "524444001438",
-    "state": "SAN LUIS POTOSÍ"
+    "state": "SAN LUIS POTOSÍ",
+    "facebook": "https://www.facebook.com/profile.php?id=61593868207282"
   }
 ];

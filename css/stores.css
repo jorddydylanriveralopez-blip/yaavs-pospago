@@ -437,6 +437,32 @@
   flex-shrink: 0;
 }
 
+.pospago-stores__fb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: linear-gradient(115deg, #1877f2, #0d65d9);
+  color: #fff !important;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  box-shadow: 0 8px 18px rgba(24, 119, 242, 0.28);
+}
+
+.pospago-stores__fb-btn:hover {
+  filter: brightness(1.05);
+  color: #fff !important;
+}
+
+.pospago-stores__fb-btn svg {
+  display: block;
+  flex-shrink: 0;
+}
+
 .pospago-stores__map {
   position: relative;
   height: min(68vh, 720px);
@@ -699,12 +725,17 @@
 
   .pospago-stores__go,
   .pospago-stores__card-actions a[href*="maps/dir"],
-  .pospago-stores__wa-btn {
+  .pospago-stores__wa-btn,
+  .pospago-stores__fb-btn {
     width: 100%;
     min-height: 44px;
     border-radius: 12px;
     padding: 0.7rem 0.55rem;
     font-size: 0.78rem;
+  }
+
+  .pospago-stores__fb-btn {
+    grid-column: 1 / -1;
   }
 
   .pospago-stores__wa-btn span {

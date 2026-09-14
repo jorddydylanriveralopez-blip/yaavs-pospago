@@ -11150,6 +11150,13 @@ body.is-nav-open .site-header {
   display: none !important;
 }
 
+/* Nav is display:none so CTA would sit in the middle 1fr grid track — pin it right */
 .store-landing .site-header__inner {
-  justify-content: space-between;
+  grid-template-columns: max-content 1fr auto;
+}
+
+.store-landing .site-header__inner > .btn-cta {
+  grid-column: 3;
+  justify-self: end;
+  margin-left: 0;
 }

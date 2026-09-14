@@ -9,3 +9,7 @@ server.log
 *.zip
 server.log
 test-deploy.txt
+
+# Offline store package (generated)
+paquete-sucursales/
+paquete-sucursales.zip

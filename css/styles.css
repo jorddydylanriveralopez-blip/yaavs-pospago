@@ -10985,13 +10985,19 @@ body.is-nav-open .site-header {
   object-position: center;
 }
 
+/* Override home .hero__video (absolute + cover) so the clip shows complete */
+.store-hero__video-frame .hero__video,
 .store-hero__video-frame video {
   display: block;
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+  max-width: none;
   object-fit: contain;
-  object-position: center;
+  object-position: center center;
   background: #06182c;
+  transform: none;
 }
 
 .store-hero__video-frame .hero__video--mobile {

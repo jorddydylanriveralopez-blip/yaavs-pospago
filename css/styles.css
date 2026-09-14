@@ -11144,3 +11144,12 @@ body.is-nav-open .site-header {
     transform: translateY(0);
   }
 }
+
+/* Store landings: logos + Cotiza only (hide main nav links) */
+.store-landing .nav {
+  display: none !important;
+}
+
+.store-landing .site-header__inner {
+  justify-content: space-between;
+}

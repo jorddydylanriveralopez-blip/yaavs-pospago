@@ -109,7 +109,7 @@ def rewrite_store_html(src: Path, dest: Path) -> None:
     )
     html = re.sub(
         r'\s*<link href="https://fonts\.googleapis\.com/css2\?[^"]+" rel="stylesheet">\s*',
-        '\n  <link rel="stylesheet" href="../fonts/fonts.css">\n',
+        '\n  <link rel="stylesheet" href="../fonts/fonts.css">\n  ',
         html,
     )
     # Root-relative / absolute-ish asset paths → relative from tienda/

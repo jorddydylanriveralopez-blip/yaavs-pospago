@@ -11063,8 +11063,37 @@ body.is-nav-open .site-header {
   gap: 0.75rem;
   pointer-events: none;
   margin: 0;
-  transform: none !important;
   filter: none !important;
+}
+
+/* Store landings: center the whole action stack on the right */
+.store-landing .store-float {
+  top: calc(50% - 6.5rem) !important;
+  bottom: auto !important;
+}
+
+.store-landing .wa-float {
+  top: calc(50% + 2.35rem) !important;
+  bottom: auto !important;
+  right: max(1rem, env(safe-area-inset-right)) !important;
+}
+
+@media (max-width: 640px) {
+  .store-landing .store-float {
+    top: calc(50% - 6.1rem) !important;
+  }
+
+  .store-landing .wa-float {
+    top: calc(50% + 2.1rem) !important;
+  }
+}
+
+body:has(.cookie-notice.is-visible).store-landing .store-float {
+  top: calc(50% - 8.5rem) !important;
+}
+
+body:has(.cookie-notice.is-visible).store-landing .wa-float {
+  top: calc(50% + 0.35rem) !important;
 }
 
 .store-float__btn {

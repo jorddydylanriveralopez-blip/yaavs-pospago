@@ -211,6 +211,44 @@ def build_hero(store: dict) -> str:
 """
 
 
+def rewrite_seguros_cta(html_chunk: str, store: dict) -> str:
+    """Point seguros banner CTA to WhatsApp for this store."""
+    intent = "Hola YAAVS Pospago, quiero cotizar una póliza de seguros"
+    href = wa_href(store, intent)
+    safe_href = html.escape(href, quote=True)
+
+    def repl_link(match: re.Match) -> str:
+        tag = match.group(0)
+        tag = re.sub(
+            r'href="[^"]*"',
+            f'href="{safe_href}"',
+            tag,
+            count=1,
+        )
+        if "data-quote-direct" not in tag:
+            tag = tag.replace("<a ", '<a data-quote-direct ', 1)
+        if 'target="_blank"' not in tag:
+            tag = tag.replace("<a ", '<a target="_blank" rel="noopener" ', 1)
+        return tag
+
+    html_chunk = re.sub(
+        r'<a class="att-banner__link" href="(?:/)?seguro\.html"[^>]*>',
+        repl_link,
+        html_chunk,
+        count=1,
+    )
+    html_chunk = html_chunk.replace(
+        "Ver coberturas de seguros",
+        "Cotiza póliza de seguros",
+    )
+    # Keep alt text aligned if present
+    html_chunk = html_chunk.replace(
+        "Ver coberturas de seguros",
+        "Cotiza póliza de seguros",
+    )
+    return html_chunk
+
+
 def simplify_store_footer(footer_html: str) -> str:
     """Keep Aviso Legal only — remove Planes/Quiénes/Blog/Tiendas/Cotizar nav."""
     footer_html = re.sub(
@@ -245,6 +283,7 @@ def build_page(store: dict, header: str, main_shared: str, brands_footer: str) -
 
     header_local = inject_direct_quote(header, store)
     shared = inject_direct_quote(main_shared, store)
+    shared = rewrite_seguros_cta(shared, store)
     footer = inject_direct_quote(brands_footer, store)
     footer = simplify_store_footer(footer)
 

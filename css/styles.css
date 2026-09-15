@@ -11049,17 +11049,22 @@ body.is-nav-open .site-header {
   color: #5a7388;
 }
 
-/* Floating Maps + Facebook (follow scroll + call attention) */
+/* Floating Maps + Facebook — fixed to viewport (must be outside <main>) */
 .store-float {
-  position: fixed;
-  right: max(1rem, env(safe-area-inset-right));
-  bottom: calc(max(1.1rem, env(safe-area-inset-bottom)) + 4.65rem);
-  z-index: 239;
+  position: fixed !important;
+  top: auto !important;
+  left: auto !important;
+  right: max(1rem, env(safe-area-inset-right)) !important;
+  bottom: calc(max(1.1rem, env(safe-area-inset-bottom)) + 4.65rem) !important;
+  z-index: 9998 !important;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 0.75rem;
   pointer-events: none;
+  margin: 0;
+  transform: none !important;
+  filter: none !important;
 }
 
 .store-float__btn {

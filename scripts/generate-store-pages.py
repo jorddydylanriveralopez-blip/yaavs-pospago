@@ -15,11 +15,11 @@ INDEX = ROOT / "index.html"
 STORES_JS = ROOT / "js" / "tiendas-att-stores.js"
 OUT_DIR = ROOT / "tienda"
 
-CSS_V = "20260915b"
-STORES_CSS_V = "20260915b"
+CSS_V = "20260915c"
+STORES_CSS_V = "20260915c"
 STORES_JS_V = "20260912h"
 POSPAGO_JS_V = "20260912g"  # unused on landings; keep bump for map pages separately
-HEADER_JS_V = "20260912e"
+HEADER_JS_V = "20260915c"
 PLANS_JS_V = "20260908ai"
 DEVICE_DEALS_V = "20260901a"
 PREMIUM_DEVICES_V = "20260828d"
@@ -135,19 +135,10 @@ def inject_direct_quote(html_chunk: str, store: dict) -> str:
     )
 
 
-def build_hero(store: dict) -> str:
+def build_store_floats(store: dict) -> str:
     name = html.escape(store["name"])
-    city = html.escape(title_case(store["city"]))
-    state = html.escape(title_case(store["state"]))
-    address = html.escape(store.get("address") or "")
-    hours = html.escape(store.get("hours") or "")
-    image = html.escape(store.get("image") or "assets/images/pdv-fallback.jpg")
     maps = html.escape(maps_dir_url(store), quote=True)
     fb = facebook_url(store)
-
-    hours_html = (
-        f'      <p class="store-hero__hours">{hours}</p>\n' if hours else ""
-    )
 
     fb_float = ""
     if fb:
@@ -157,13 +148,26 @@ def build_hero(store: dict) -> str:
     </a>
 """
 
-    floats = f"""  <div class="store-float" aria-label="Accesos de la sucursal">
+    return f"""  <div class="store-float" aria-label="Accesos de la sucursal">
 {fb_float}    <a class="store-float__btn store-float__btn--maps" href="{maps}" target="_blank" rel="noopener" aria-label="Cómo llegar a {name}">
       <span class="store-float__label">Cómo llegar</span>
       <svg class="store-float__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
     </a>
   </div>
 """
+
+
+def build_hero(store: dict) -> str:
+    name = html.escape(store["name"])
+    city = html.escape(title_case(store["city"]))
+    state = html.escape(title_case(store["state"]))
+    address = html.escape(store.get("address") or "")
+    hours = html.escape(store.get("hours") or "")
+    image = html.escape(store.get("image") or "assets/images/pdv-fallback.jpg")
+
+    hours_html = (
+        f'      <p class="store-hero__hours">{hours}</p>\n' if hours else ""
+    )
 
     return f"""    <section class="store-hero" id="inicio" aria-label="Sucursal {name}">
       <div class="store-hero__wrap">
@@ -204,7 +208,7 @@ def build_hero(store: dict) -> str:
 {hours_html}        </div>
       </div>
     </section>
-{floats}"""
+"""
 
 
 def build_page(store: dict, header: str, main_shared: str, brands_footer: str) -> str:
@@ -254,7 +258,7 @@ def build_page(store: dict, header: str, main_shared: str, brands_footer: str) -
 {shared}  </main>
 
 {footer}
-  <script src="js/plans-catalog.js?v={PLANS_JS_V}" defer></script>
+{build_store_floats(store)}  <script src="js/plans-catalog.js?v={PLANS_JS_V}" defer></script>
   <script src="js/device-deals.js?v={DEVICE_DEALS_V}" defer></script>
   <script src="js/premium-devices.js?v={PREMIUM_DEVICES_V}" defer></script>
   <script src="js/tiendas-att-stores.js?v={STORES_JS_V}" defer></script>

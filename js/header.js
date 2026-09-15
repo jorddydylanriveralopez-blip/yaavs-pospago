@@ -423,6 +423,15 @@
     document.body.appendChild(a);
   }
 
+  function initStoreFloats() {
+    const dock = document.querySelector(".store-float");
+    if (!dock) return;
+    // Keep fixed to the viewport (main page animation uses transform/filter)
+    if (dock.parentElement !== document.body) {
+      document.body.appendChild(dock);
+    }
+  }
+
   function initQuoteLocationPicker() {
     const CENTRAL_WA = WHATSAPP_NUMBER;
     const stores = () => window.YAAVS_ATT_STORES || [];
@@ -790,6 +799,7 @@
   initNav();
   initHeaderGlass();
   initWhatsAppFloat();
+  initStoreFloats();
   initQuoteLocationPicker();
   initCookieNotice();
   initQuote();

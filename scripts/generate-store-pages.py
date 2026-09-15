@@ -15,8 +15,8 @@ INDEX = ROOT / "index.html"
 STORES_JS = ROOT / "js" / "tiendas-att-stores.js"
 OUT_DIR = ROOT / "tienda"
 
-CSS_V = "20260912h"
-STORES_CSS_V = "20260912h"
+CSS_V = "20260915a"
+STORES_CSS_V = "20260915a"
 STORES_JS_V = "20260912h"
 POSPAGO_JS_V = "20260912g"  # unused on landings; keep bump for map pages separately
 HEADER_JS_V = "20260912e"
@@ -142,20 +142,28 @@ def build_hero(store: dict) -> str:
     address = html.escape(store.get("address") or "")
     hours = html.escape(store.get("hours") or "")
     image = html.escape(store.get("image") or "assets/images/pdv-fallback.jpg")
-    wa = html.escape(wa_href(store), quote=True)
     maps = html.escape(maps_dir_url(store), quote=True)
     fb = facebook_url(store)
-
-    fb_btn = ""
-    if fb:
-        fb_btn = (
-            f'        <a class="store-hero__fb" href="{html.escape(fb, quote=True)}" '
-            f'target="_blank" rel="noopener">Facebook</a>\n'
-        )
 
     hours_html = (
         f'      <p class="store-hero__hours">{hours}</p>\n' if hours else ""
     )
+
+    fb_float = ""
+    if fb:
+        fb_float = f"""    <a class="store-float__btn store-float__btn--fb" href="{html.escape(fb, quote=True)}" target="_blank" rel="noopener" aria-label="Facebook de {name}">
+      <span class="store-float__label">Facebook</span>
+      <svg class="store-float__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M14 8h2.5V4.5H14c-2.2 0-3.5 1.5-3.5 3.7V10H8v3.5h2.5V20H14v-6.5h2.3L17 10h-3V8.4c0-.5.2-.9.9-.9z"/></svg>
+    </a>
+"""
+
+    floats = f"""  <div class="store-float" aria-label="Accesos de la sucursal">
+{fb_float}    <a class="store-float__btn store-float__btn--maps" href="{maps}" target="_blank" rel="noopener" aria-label="Cómo llegar a {name}">
+      <span class="store-float__label">Cómo llegar</span>
+      <svg class="store-float__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+    </a>
+  </div>
+"""
 
     return f"""    <section class="store-hero" id="inicio" aria-label="Sucursal {name}">
       <div class="store-hero__wrap">
@@ -193,14 +201,10 @@ def build_hero(store: dict) -> str:
           <h1 class="store-hero__name">{name}</h1>
           <p class="store-hero__city">{city}</p>
           <p class="store-hero__address">{address}</p>
-{hours_html}          <div class="store-hero__actions">
-            <a class="store-hero__wa" data-quote-direct href="{wa}" target="_blank" rel="noopener">Cotizar esta sucursal</a>
-            <a href="{maps}" target="_blank" rel="noopener">Cómo llegar</a>
-{fb_btn}          </div>
-        </div>
+{hours_html}        </div>
       </div>
     </section>
-"""
+{floats}"""
 
 
 def build_page(store: dict, header: str, main_shared: str, brands_footer: str) -> str:

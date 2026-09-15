@@ -211,6 +211,27 @@ def build_hero(store: dict) -> str:
 """
 
 
+def simplify_store_footer(footer_html: str) -> str:
+    """Keep Aviso Legal only — remove Planes/Quiénes/Blog/Tiendas/Cotizar nav."""
+    footer_html = re.sub(
+        r'<nav class="site-footer__nav"[^>]*>.*?</nav>\s*',
+        "",
+        footer_html,
+        count=1,
+        flags=re.S,
+    )
+    # Drop the top brand+nav block and divider; leave disclaimer + copyright
+    footer_html = re.sub(
+        r'<div class="site-footer__top">.*?</div>\s*'
+        r'<div class="site-footer__divider"[^>]*>.*?</div>\s*',
+        "",
+        footer_html,
+        count=1,
+        flags=re.S,
+    )
+    return footer_html
+
+
 def build_page(store: dict, header: str, main_shared: str, brands_footer: str) -> str:
     name = store["name"]
     city = title_case(store["city"])

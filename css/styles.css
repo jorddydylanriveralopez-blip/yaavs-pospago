@@ -11212,8 +11212,11 @@ body:has(.cookie-notice.is-visible).store-landing .wa-float {
 }
 
 @media (max-width: 640px) {
-  .store-float {
+  .store-float:not(.store-landing .store-float) {
     bottom: calc(max(1rem, env(safe-area-inset-bottom)) + 4.35rem);
+  }
+
+  .store-float {
     gap: 0.6rem;
   }
 
@@ -11229,6 +11232,10 @@ body:has(.cookie-notice.is-visible).store-landing .wa-float {
 
 body:has(.cookie-notice.is-visible) .store-float {
   bottom: calc(6.75rem + env(safe-area-inset-bottom, 0px) + 4.65rem);
+}
+
+body.store-landing:has(.cookie-notice.is-visible) .store-float {
+  bottom: auto !important;
 }
 
 @media (max-width: 860px) {
@@ -11302,4 +11309,11 @@ body:has(.cookie-notice.is-visible) .store-float {
   grid-column: 3;
   justify-self: end;
   margin-left: 0;
+}
+
+/* Store landings: footer without nav pills — Aviso Legal only */
+.store-landing .site-footer__nav,
+.store-landing .site-footer__top,
+.store-landing .site-footer__divider {
+  display: none !important;
 }

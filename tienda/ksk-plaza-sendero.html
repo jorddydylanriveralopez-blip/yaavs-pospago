@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260915f">
+  <link rel="stylesheet" href="css/styles.css?v=20260915g">
   <link rel="icon" href="assets/images/favicon.svg?v=20260907ay" type="image/svg+xml">
   <link rel="icon" href="assets/images/favicon-32.png?v=20260907ay" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/images/favicon-180.png?v=20260907ay" sizes="180x180">
@@ -143,44 +143,52 @@
 
 
   <main id="contenido">
-    <section class="store-hero" id="inicio" aria-label="Sucursal KSK PLAZA SENDERO">
-      <div class="store-hero__wrap">
-        <div class="store-hero__media">
-          <div class="store-hero__shot">
-            <img src="assets/stores/fachadas/att-29-san-luis-potosi-ksk-plaza-sendero.jpg" alt="Fachada AT&amp;T KSK PLAZA SENDERO" width="960" height="720" decoding="async" fetchpriority="high">
-          </div>
-          <div class="store-hero__video-frame">
-            <video
-              class="hero__video hero__video--desktop"
-              src="assets/banners/secuencia-01-4.mp4?v=20260907u"
-              poster="assets/banners/secuencia-01-4-poster.jpg?v=20260907u"
-              muted
-              loop
-              playsinline
-              autoplay
-              preload="metadata"
-              aria-label="Video promoción YAAVS Pospago AT&amp;T"
-            ></video>
-            <video
-              class="hero__video hero__video--mobile"
-              src="assets/banners/plan-black-vertical-head.mp4?v=20260908u"
-              poster="assets/banners/plan-black-vertical-head-poster.jpg?v=20260908u"
-              muted
-              loop
-              playsinline
-              autoplay
-              preload="none"
-              aria-label="Plan Black — estrena el smartphone que tanto quieres"
-            ></video>
-          </div>
+    <section class="store-banner" id="inicio" aria-label="Sucursal KSK PLAZA SENDERO">
+      <div class="store-banner__media">
+        <img
+          class="store-banner__img"
+          src="assets/stores/fachadas/att-29-san-luis-potosi-ksk-plaza-sendero.jpg"
+          alt="Fachada AT&amp;T KSK PLAZA SENDERO"
+          width="1600"
+          height="900"
+          decoding="async"
+          fetchpriority="high"
+        >
+        <div class="store-banner__veil" aria-hidden="true"></div>
+        <div class="store-banner__copy">
+          <p class="store-banner__eyebrow">Sucursal AT&amp;T · San Luis Potosí</p>
+          <h1 class="store-banner__name">KSK PLAZA SENDERO</h1>
+          <p class="store-banner__city">San Luis Potosí</p>
+          <p class="store-banner__address">AV. BÉNITO JUÁREZ 2005, ISLA 29, FRACC. ESTRELLA DE ORIENTE, C.P. 78396; CD. SAN LUIS POTOSÍ, SAN LUIS POTOSÍ</p>
+        <p class="store-banner__hours">L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00</p>
         </div>
-        <div class="store-hero__meta">
-          <p class="store-hero__eyebrow">Sucursal AT&amp;T · San Luis Potosí</p>
-          <h1 class="store-hero__name">KSK PLAZA SENDERO</h1>
-          <p class="store-hero__city">San Luis Potosí</p>
-          <p class="store-hero__address">AV. BÉNITO JUÁREZ 2005, ISLA 29, FRACC. ESTRELLA DE ORIENTE, C.P. 78396; CD. SAN LUIS POTOSÍ, SAN LUIS POTOSÍ</p>
-      <p class="store-hero__hours">L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00</p>
-        </div>
+      </div>
+    </section>
+
+    <section class="store-video" aria-label="Promoción YAAVS Pospago">
+      <div class="store-video__frame">
+        <video
+          class="hero__video hero__video--desktop store-video__clip"
+          src="assets/banners/secuencia-01-4.mp4?v=20260907u"
+          poster="assets/banners/secuencia-01-4-poster.jpg?v=20260907u"
+          muted
+          loop
+          playsinline
+          autoplay
+          preload="metadata"
+          aria-label="Video promoción YAAVS Pospago AT&amp;T"
+        ></video>
+        <video
+          class="hero__video hero__video--mobile store-video__clip"
+          src="assets/banners/plan-black-vertical-head.mp4?v=20260908u"
+          poster="assets/banners/plan-black-vertical-head-poster.jpg?v=20260908u"
+          muted
+          loop
+          playsinline
+          autoplay
+          preload="none"
+          aria-label="Plan Black — estrena el smartphone que tanto quieres"
+        ></video>
       </div>
     </section>
 

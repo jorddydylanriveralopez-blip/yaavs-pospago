@@ -15,8 +15,8 @@ INDEX = ROOT / "index.html"
 STORES_JS = ROOT / "js" / "tiendas-att-stores.js"
 OUT_DIR = ROOT / "tienda"
 
-CSS_V = "20260915f"
-STORES_CSS_V = "20260915f"
+CSS_V = "20260915g"
+STORES_CSS_V = "20260915g"
 STORES_JS_V = "20260912h"
 POSPAGO_JS_V = "20260912g"  # unused on landings; keep bump for map pages separately
 HEADER_JS_V = "20260915c"
@@ -166,46 +166,54 @@ def build_hero(store: dict) -> str:
     image = html.escape(store.get("image") or "assets/images/pdv-fallback.jpg")
 
     hours_html = (
-        f'      <p class="store-hero__hours">{hours}</p>\n' if hours else ""
+        f'        <p class="store-banner__hours">{hours}</p>\n' if hours else ""
     )
 
-    return f"""    <section class="store-hero" id="inicio" aria-label="Sucursal {name}">
-      <div class="store-hero__wrap">
-        <div class="store-hero__media">
-          <div class="store-hero__shot">
-            <img src="{image}" alt="Fachada AT&amp;T {name}" width="960" height="720" decoding="async" fetchpriority="high">
-          </div>
-          <div class="store-hero__video-frame">
-            <video
-              class="hero__video hero__video--desktop"
-              src="assets/banners/secuencia-01-4.mp4?v={VIDEO_V}"
-              poster="assets/banners/secuencia-01-4-poster.jpg?v={VIDEO_V}"
-              muted
-              loop
-              playsinline
-              autoplay
-              preload="metadata"
-              aria-label="Video promoción YAAVS Pospago AT&amp;T"
-            ></video>
-            <video
-              class="hero__video hero__video--mobile"
-              src="assets/banners/plan-black-vertical-head.mp4?v={MOBILE_VIDEO_V}"
-              poster="assets/banners/plan-black-vertical-head-poster.jpg?v={MOBILE_VIDEO_V}"
-              muted
-              loop
-              playsinline
-              autoplay
-              preload="none"
-              aria-label="Plan Black — estrena el smartphone que tanto quieres"
-            ></video>
-          </div>
-        </div>
-        <div class="store-hero__meta">
-          <p class="store-hero__eyebrow">Sucursal AT&amp;T · {state}</p>
-          <h1 class="store-hero__name">{name}</h1>
-          <p class="store-hero__city">{city}</p>
-          <p class="store-hero__address">{address}</p>
+    return f"""    <section class="store-banner" id="inicio" aria-label="Sucursal {name}">
+      <div class="store-banner__media">
+        <img
+          class="store-banner__img"
+          src="{image}"
+          alt="Fachada AT&amp;T {name}"
+          width="1600"
+          height="900"
+          decoding="async"
+          fetchpriority="high"
+        >
+        <div class="store-banner__veil" aria-hidden="true"></div>
+        <div class="store-banner__copy">
+          <p class="store-banner__eyebrow">Sucursal AT&amp;T · {state}</p>
+          <h1 class="store-banner__name">{name}</h1>
+          <p class="store-banner__city">{city}</p>
+          <p class="store-banner__address">{address}</p>
 {hours_html}        </div>
+      </div>
+    </section>
+
+    <section class="store-video" aria-label="Promoción YAAVS Pospago">
+      <div class="store-video__frame">
+        <video
+          class="hero__video hero__video--desktop store-video__clip"
+          src="assets/banners/secuencia-01-4.mp4?v={VIDEO_V}"
+          poster="assets/banners/secuencia-01-4-poster.jpg?v={VIDEO_V}"
+          muted
+          loop
+          playsinline
+          autoplay
+          preload="metadata"
+          aria-label="Video promoción YAAVS Pospago AT&amp;T"
+        ></video>
+        <video
+          class="hero__video hero__video--mobile store-video__clip"
+          src="assets/banners/plan-black-vertical-head.mp4?v={MOBILE_VIDEO_V}"
+          poster="assets/banners/plan-black-vertical-head-poster.jpg?v={MOBILE_VIDEO_V}"
+          muted
+          loop
+          playsinline
+          autoplay
+          preload="none"
+          aria-label="Plan Black — estrena el smartphone que tanto quieres"
+        ></video>
       </div>
     </section>
 """

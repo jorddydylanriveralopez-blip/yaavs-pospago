@@ -11030,7 +11030,7 @@ body.is-nav-open .site-header {
   overflow: hidden;
 }
 
-/* Promo video below the store banner */
+/* Promo video below the store banner — full frame, no crop */
 .store-video {
   position: relative;
   width: 100%;
@@ -11043,19 +11043,17 @@ body.is-nav-open .site-header {
 
 .store-video__frame {
   position: relative;
-  width: min(1120px, calc(100% - 2rem));
+  width: min(1200px, calc(100% - 2rem));
   aspect-ratio: 16 / 9;
-  max-height: min(62vh, 640px);
+  max-height: min(70vh, 720px);
   margin: 0 auto;
   background: #e8f3f8;
   box-shadow: 0 16px 36px rgba(10, 37, 64, 0.12);
   overflow: hidden;
 }
 
-.store-video__frame .store-video__clip,
-.store-video__frame .hero__video,
-body.store-landing .store-video__frame video {
-  display: block;
+body.store-landing .store-video__frame .store-video__clip,
+body.store-landing .store-video__frame .hero__video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -11067,11 +11065,16 @@ body.store-landing .store-video__frame video {
   transform: none;
 }
 
-.store-video__frame .hero__video--mobile {
+/* Desktop: landscape only (must beat body…video display rules) */
+body.store-landing .store-video__frame .hero__video--desktop {
+  display: block;
+}
+
+body.store-landing .store-video__frame .hero__video--mobile {
   display: none;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 768px) {
   .store-banner__media,
   .store-banner__img {
     min-height: min(34vw, 168px);
@@ -11088,16 +11091,16 @@ body.store-landing .store-video__frame video {
 
   .store-video__frame {
     aspect-ratio: 9 / 16;
-    max-height: min(68vh, 520px);
-    width: min(100% - 2rem, 22rem);
+    max-height: min(72vh, 560px);
+    width: min(100% - 2rem, 24rem);
     background: #e8f3f8;
   }
 
-  .store-video__frame .hero__video--desktop {
+  body.store-landing .store-video__frame .hero__video--desktop {
     display: none;
   }
 
-  .store-video__frame .hero__video--mobile {
+  body.store-landing .store-video__frame .hero__video--mobile {
     display: block;
   }
 }

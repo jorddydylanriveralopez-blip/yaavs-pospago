@@ -13,27 +13,46 @@
 
   /* Video banner — desktop landscape + mobile vertical; play only the visible one */
   function initHeroVideo() {
-    const desktop = document.querySelector(".hero__video--desktop");
-    const mobile = document.querySelector(".hero__video--mobile");
-    const fallback = document.querySelector(".hero__video");
+    const root = document.querySelector(".store-video") || document.querySelector(".hero") || document;
+    const desktop = root.querySelector(".hero__video--desktop");
+    const mobile = root.querySelector(".hero__video--mobile");
+    const fallback = root.querySelector(".hero__video") || document.querySelector(".hero__video");
     const mq = window.matchMedia("(max-width: 768px)");
     const armed = new WeakSet();
 
     const arm = (video) => {
       if (!video) return;
       video.muted = true;
+      video.defaultMuted = true;
       video.playsInline = true;
+      video.loop = true;
+      video.autoplay = true;
       video.setAttribute("playsinline", "");
       video.setAttribute("webkit-playsinline", "");
+      video.setAttribute("muted", "");
+      video.setAttribute("autoplay", "");
       video.preload = "auto";
       const tryPlay = () => {
         const p = video.play();
-        if (p && typeof p.catch === "function") p.catch(() => {});
+        if (p && typeof p.catch === "function") {
+          p.catch(() => {
+            const retry = () => {
+              video.play().catch(() => {});
+              document.removeEventListener("pointerdown", retry);
+              document.removeEventListener("touchstart", retry);
+            };
+            document.addEventListener("pointerdown", retry, { once: true });
+            document.addEventListener("touchstart", retry, { once: true });
+          });
+        }
       };
       if (!armed.has(video)) {
         armed.add(video);
         video.addEventListener("canplay", tryPlay);
+        video.addEventListener("loadeddata", tryPlay);
       }
+      if (video.readyState >= 2) tryPlay();
+      else video.load();
       tryPlay();
     };
 
@@ -42,10 +61,12 @@
       if (desktop && mobile) {
         if (useMobile) {
           desktop.pause();
+          desktop.removeAttribute("autoplay");
           desktop.preload = "none";
           arm(mobile);
         } else {
           mobile.pause();
+          mobile.removeAttribute("autoplay");
           mobile.preload = "none";
           arm(desktop);
         }
@@ -57,6 +78,7 @@
     sync();
     if (typeof mq.addEventListener === "function") mq.addEventListener("change", sync);
     else if (typeof mq.addListener === "function") mq.addListener(sync);
+    window.addEventListener("pageshow", sync);
   }
 
   /* Carrusel móvil de promos */

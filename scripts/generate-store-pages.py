@@ -15,11 +15,11 @@ INDEX = ROOT / "index.html"
 STORES_JS = ROOT / "js" / "tiendas-att-stores.js"
 OUT_DIR = ROOT / "tienda"
 
-CSS_V = "20260915i"
-STORES_CSS_V = "20260915i"
+CSS_V = "20260915j"
+STORES_CSS_V = "20260915j"
 STORES_JS_V = "20260912h"
 POSPAGO_JS_V = "20260912g"  # unused on landings; keep bump for map pages separately
-HEADER_JS_V = "20260915c"
+HEADER_JS_V = "20260915d"
 PLANS_JS_V = "20260908ai"
 DEVICE_DEALS_V = "20260901a"
 PREMIUM_DEVICES_V = "20260828d"
@@ -200,7 +200,7 @@ def build_hero(store: dict) -> str:
           loop
           playsinline
           autoplay
-          preload="metadata"
+          preload="auto"
           aria-label="Video promoción YAAVS Pospago AT&amp;T"
         ></video>
         <video
@@ -211,7 +211,7 @@ def build_hero(store: dict) -> str:
           loop
           playsinline
           autoplay
-          preload="none"
+          preload="auto"
           aria-label="Plan Black — estrena el smartphone que tanto quieres"
         ></video>
       </div>

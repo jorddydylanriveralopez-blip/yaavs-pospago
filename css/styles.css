@@ -11258,7 +11258,7 @@ body.is-nav-open .site-header {
   to { transform: scale(1.08) translate3d(-1.2%, -0.6%, 0); }
 }
 
-/* Las Fuentes (and other) full artwork banners — never crop */
+/* Las Fuentes (and other) full artwork banners — never crop, full bleed */
 .store-banner--artwork {
   background:
     radial-gradient(ellipse 70% 80% at 18% 50%, rgba(192, 38, 211, 0.45), transparent 58%),
@@ -11271,17 +11271,16 @@ body.is-nav-open .site-header {
   min-height: 0;
   max-height: none;
   aspect-ratio: 16 / 9;
-  width: min(1280px, 100%);
-  margin: 0 auto;
-  display: grid;
-  place-items: center;
+  width: 100%;
+  margin: 0;
+  display: block;
   background: transparent;
 }
 
 .store-banner--artwork .store-banner__img {
   position: relative;
   width: 100%;
-  height: auto;
+  height: 100%;
   max-height: none;
   min-height: 0;
   object-fit: contain;
@@ -11290,9 +11289,7 @@ body.is-nav-open .site-header {
   filter: none;
   display: block;
   border-radius: 0;
-  box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(255, 255, 255, 0.06);
+  box-shadow: none;
 }
 
 @media (max-width: 768px) {
@@ -11307,7 +11304,7 @@ body.is-nav-open .site-header {
     min-height: 0;
     max-height: none;
     width: 100%;
-    height: auto;
+    height: 100%;
   }
 }
 

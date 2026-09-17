@@ -15,11 +15,11 @@ INDEX = ROOT / "index.html"
 STORES_JS = ROOT / "js" / "tiendas-att-stores.js"
 OUT_DIR = ROOT / "tienda"
 
-CSS_V = "20260915j"
-STORES_CSS_V = "20260915j"
+CSS_V = "20260917a"
+STORES_CSS_V = "20260917a"
 STORES_JS_V = "20260912h"
 POSPAGO_JS_V = "20260912g"  # unused on landings; keep bump for map pages separately
-HEADER_JS_V = "20260915d"
+HEADER_JS_V = "20260917a"
 PLANS_JS_V = "20260908ai"
 DEVICE_DEALS_V = "20260901a"
 PREMIUM_DEVICES_V = "20260828d"
@@ -135,6 +135,82 @@ def inject_direct_quote(html_chunk: str, store: dict) -> str:
     )
 
 
+def parse_hours_rows(hours: str) -> list[dict]:
+    """Split store hours string into labeled rows for the floating panel."""
+    if not hours:
+        return []
+    chunks = re.split(r"\s*[·•|]\s*", hours.strip())
+    rows = []
+    for chunk in chunks:
+        chunk = chunk.strip()
+        if not chunk:
+            continue
+        m = re.match(
+            r"^(L-V|Lun(?:es)?(?:\s*[–-]\s*Vie(?:rnes)?)?|Sáb(?:ado)?|Sab(?:ado)?|Dom(?:ingo)?)\s+(.+)$",
+            chunk,
+            re.I,
+        )
+        if not m:
+            rows.append({"label": chunk, "value": "", "days": ""})
+            continue
+        raw_label, value = m.group(1), m.group(2).strip()
+        key = raw_label.lower().replace("á", "a")
+        if key.startswith("l"):
+            label, days = "Lun – Vie", "1,2,3,4,5"
+        elif key.startswith("sab"):
+            label, days = "Sábado", "6"
+        elif key.startswith("dom"):
+            label, days = "Domingo", "0"
+        else:
+            label, days = raw_label, ""
+        rows.append({"label": label, "value": value, "days": days})
+    return rows
+
+
+def build_store_hours_float(store: dict) -> str:
+    name = html.escape(store["name"])
+    city = html.escape(title_case(store.get("city") or ""))
+    hours_raw = store.get("hours") or ""
+    hours_attr = html.escape(hours_raw, quote=True)
+    rows = parse_hours_rows(hours_raw)
+    if not rows:
+        return ""
+
+    items = []
+    for row in rows:
+        label = html.escape(row["label"])
+        value = html.escape(row["value"] or "—")
+        days = html.escape(row["days"], quote=True)
+        items.append(
+            f'      <li class="store-hours-float__row" data-days="{days}">'
+            f'<span class="store-hours-float__day">{label}</span>'
+            f'<span class="store-hours-float__time">{value}</span></li>'
+        )
+    rows_html = "\n".join(items)
+
+    return f"""  <aside class="store-hours-float is-open" data-store-hours-float data-store-hours="{hours_attr}" aria-label="Horario de {name}">
+    <button type="button" class="store-hours-float__toggle" data-hours-toggle aria-expanded="true" aria-controls="store-hours-panel">
+      <span class="store-hours-float__clock" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10.01 10.01 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8.01 8.01 0 0 1-8 8zm.75-12.5h-1.5v5.25l4.5 2.7.75-1.23-3.75-2.22z"/></svg>
+      </span>
+      <span class="store-hours-float__toggle-copy">
+        <span class="store-hours-float__toggle-label">Horario</span>
+        <span class="store-hours-float__badge" data-hours-badge>Hoy</span>
+      </span>
+    </button>
+    <div class="store-hours-float__panel" id="store-hours-panel">
+      <p class="store-hours-float__eyebrow">Horario de atención</p>
+      <p class="store-hours-float__name">{name}</p>
+      <p class="store-hours-float__city">{city}</p>
+      <p class="store-hours-float__status" data-hours-status>Consultando horario…</p>
+      <ul class="store-hours-float__list">
+{rows_html}
+      </ul>
+    </div>
+  </aside>
+"""
+
+
 def build_store_floats(store: dict) -> str:
     name = html.escape(store["name"])
     maps = html.escape(maps_dir_url(store), quote=True)
@@ -148,7 +224,7 @@ def build_store_floats(store: dict) -> str:
     </a>
 """
 
-    return f"""  <div class="store-float" aria-label="Accesos de la sucursal">
+    return f"""{build_store_hours_float(store)}  <div class="store-float" aria-label="Accesos de la sucursal">
 {fb_float}    <a class="store-float__btn store-float__btn--maps" href="{maps}" target="_blank" rel="noopener" aria-label="Cómo llegar a {name}">
       <span class="store-float__label">Cómo llegar</span>
       <svg class="store-float__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>

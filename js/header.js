@@ -447,11 +447,153 @@
 
   function initStoreFloats() {
     const dock = document.querySelector(".store-float");
-    if (!dock) return;
-    // Keep fixed to the viewport (main page animation uses transform/filter)
-    if (dock.parentElement !== document.body) {
+    if (dock && dock.parentElement !== document.body) {
       document.body.appendChild(dock);
     }
+    const hours = document.querySelector("[data-store-hours-float]");
+    if (hours && hours.parentElement !== document.body) {
+      document.body.appendChild(hours);
+    }
+  }
+
+  function initStoreHoursFloat() {
+    const root = document.querySelector("[data-store-hours-float]");
+    if (!root) return;
+
+    const toggle = root.querySelector("[data-hours-toggle]");
+    const statusEl = root.querySelector("[data-hours-status]");
+    const badgeEl = root.querySelector("[data-hours-badge]");
+    const rows = [...root.querySelectorAll(".store-hours-float__row")];
+    const raw = root.getAttribute("data-store-hours") || "";
+
+    const parseClock = (token) => {
+      const m = String(token || "").trim().match(/^(\d{1,2})[.:](\d{2})$/);
+      if (!m) return null;
+      return { h: Number(m[1]), m: Number(m[2]) };
+    };
+
+    const toMinutes = (h, m) => h * 60 + m;
+
+    const normalizeClose = (open, close) => {
+      let { h, m } = close;
+      if (h < open.h || (h === open.h && m <= open.m)) h += 12;
+      return { h, m };
+    };
+
+    const parseSegment = (segment) => {
+      const text = String(segment || "").trim();
+      if (!text) return null;
+      if (/cerrad/i.test(text)) return { closed: true };
+      const m = text.match(/(\d{1,2}[.:]\d{2})\s*[-–—]\s*(\d{1,2}[.:]\d{2})/);
+      if (!m) return null;
+      const open = parseClock(m[1]);
+      const closeRaw = parseClock(m[2]);
+      if (!open || !closeRaw) return null;
+      const close = normalizeClose(open, closeRaw);
+      return {
+        closed: false,
+        openMin: toMinutes(open.h, open.m),
+        closeMin: toMinutes(close.h, close.m),
+      };
+    };
+
+    const dayKeys = (label) => {
+      const key = String(label || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+      if (key.startsWith("l")) return [1, 2, 3, 4, 5];
+      if (key.startsWith("sab")) return [6];
+      if (key.startsWith("dom")) return [0];
+      return [];
+    };
+
+    const scheduleByDay = (() => {
+      const map = { 0: null, 1: null, 2: null, 3: null, 4: null, 5: null, 6: null };
+      raw.split(/\s*[·•|]\s*/).forEach((chunk) => {
+        const m = chunk.trim().match(/^(.+?)\s+(\d{1,2}[.:]\d{2}.+|CERRADO.*)$/i);
+        if (!m) return;
+        const seg = parseSegment(m[2]);
+        dayKeys(m[1]).forEach((d) => {
+          map[d] = seg;
+        });
+      });
+      return map;
+    })();
+
+    const mexicoNow = () => {
+      try {
+        const parts = new Intl.DateTimeFormat("en-US", {
+          timeZone: "America/Mexico_City",
+          weekday: "short",
+          hour: "numeric",
+          minute: "numeric",
+          hourCycle: "h23",
+        }).formatToParts(new Date());
+        const get = (type) => parts.find((p) => p.type === type)?.value;
+        const weekday = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[
+          get("weekday")
+        ];
+        return {
+          day: weekday ?? new Date().getDay(),
+          minutes: Number(get("hour")) * 60 + Number(get("minute")),
+        };
+      } catch {
+        const d = new Date();
+        return { day: d.getDay(), minutes: d.getHours() * 60 + d.getMinutes() };
+      }
+    };
+
+    const refresh = () => {
+      const { day, minutes } = mexicoNow();
+      rows.forEach((row) => {
+        const days = (row.getAttribute("data-days") || "")
+          .split(",")
+          .map((n) => Number(n.trim()))
+          .filter((n) => !Number.isNaN(n));
+        row.classList.toggle("is-today", days.includes(day));
+      });
+
+      const today = scheduleByDay[day];
+      root.classList.remove("is-open-now", "is-closed-now");
+      if (!today) {
+        if (statusEl) statusEl.textContent = "Horario de esta sucursal";
+        if (badgeEl) badgeEl.textContent = "Horario";
+        return;
+      }
+      if (today.closed) {
+        root.classList.add("is-closed-now");
+        if (statusEl) statusEl.textContent = "Cerrado hoy";
+        if (badgeEl) badgeEl.textContent = "Cerrado";
+        return;
+      }
+      const openNow = minutes >= today.openMin && minutes < today.closeMin;
+      if (openNow) {
+        root.classList.add("is-open-now");
+        if (statusEl) statusEl.textContent = "Abierto ahora";
+        if (badgeEl) badgeEl.textContent = "Abierto";
+      } else {
+        root.classList.add("is-closed-now");
+        if (statusEl) statusEl.textContent = "Cerrado ahora";
+        if (badgeEl) badgeEl.textContent = "Cerrado";
+      }
+    };
+
+    const setOpen = (open) => {
+      root.classList.toggle("is-open", open);
+      toggle?.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+
+    if (window.matchMedia("(max-width: 720px)").matches) {
+      setOpen(false);
+    }
+
+    toggle?.addEventListener("click", () => {
+      setOpen(!root.classList.contains("is-open"));
+    });
+
+    refresh();
+    window.setInterval(refresh, 60000);
   }
 
   function initQuoteLocationPicker() {
@@ -822,6 +964,7 @@
   initHeaderGlass();
   initWhatsAppFloat();
   initStoreFloats();
+  initStoreHoursFloat();
   initQuoteLocationPicker();
   initCookieNotice();
   initQuote();

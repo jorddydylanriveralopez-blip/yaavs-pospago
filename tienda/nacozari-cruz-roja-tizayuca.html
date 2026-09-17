@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260915j">
+  <link rel="stylesheet" href="css/styles.css?v=20260917a">
   <link rel="icon" href="assets/images/favicon.svg?v=20260907ay" type="image/svg+xml">
   <link rel="icon" href="assets/images/favicon-32.png?v=20260907ay" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/images/favicon-180.png?v=20260907ay" sizes="180x180">
@@ -674,6 +674,28 @@
     </div>
   </footer>
 
+  <aside class="store-hours-float is-open" data-store-hours-float data-store-hours="L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom CERRADO" aria-label="Horario de NACOZARI CRUZ ROJA TIZAYUCA">
+    <button type="button" class="store-hours-float__toggle" data-hours-toggle aria-expanded="true" aria-controls="store-hours-panel">
+      <span class="store-hours-float__clock" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10.01 10.01 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8.01 8.01 0 0 1-8 8zm.75-12.5h-1.5v5.25l4.5 2.7.75-1.23-3.75-2.22z"/></svg>
+      </span>
+      <span class="store-hours-float__toggle-copy">
+        <span class="store-hours-float__toggle-label">Horario</span>
+        <span class="store-hours-float__badge" data-hours-badge>Hoy</span>
+      </span>
+    </button>
+    <div class="store-hours-float__panel" id="store-hours-panel">
+      <p class="store-hours-float__eyebrow">Horario de atención</p>
+      <p class="store-hours-float__name">NACOZARI CRUZ ROJA TIZAYUCA</p>
+      <p class="store-hours-float__city">Tizayuca</p>
+      <p class="store-hours-float__status" data-hours-status>Consultando horario…</p>
+      <ul class="store-hours-float__list">
+      <li class="store-hours-float__row" data-days="1,2,3,4,5"><span class="store-hours-float__day">Lun – Vie</span><span class="store-hours-float__time">11:00 - 08:00</span></li>
+      <li class="store-hours-float__row" data-days="6"><span class="store-hours-float__day">Sábado</span><span class="store-hours-float__time">11:00 - 08:00</span></li>
+      <li class="store-hours-float__row" data-days="0"><span class="store-hours-float__day">Domingo</span><span class="store-hours-float__time">CERRADO</span></li>
+      </ul>
+    </div>
+  </aside>
   <div class="store-float" aria-label="Accesos de la sucursal">
     <a class="store-float__btn store-float__btn--fb" href="https://www.facebook.com/ATTHidalgoNacozariCruzRojaTizayuca" target="_blank" rel="noopener" aria-label="Facebook de NACOZARI CRUZ ROJA TIZAYUCA">
       <span class="store-float__label">Facebook</span>
@@ -688,6 +710,6 @@
   <script src="js/device-deals.js?v=20260901a" defer></script>
   <script src="js/premium-devices.js?v=20260828d" defer></script>
   <script src="js/tiendas-att-stores.js?v=20260912h" defer></script>
-  <script src="js/header.js?v=20260915d" defer></script>
+  <script src="js/header.js?v=20260917a" defer></script>
 </body>
 </html>

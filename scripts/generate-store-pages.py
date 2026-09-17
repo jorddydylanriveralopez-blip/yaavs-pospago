@@ -15,8 +15,8 @@ INDEX = ROOT / "index.html"
 STORES_JS = ROOT / "js" / "tiendas-att-stores.js"
 OUT_DIR = ROOT / "tienda"
 
-CSS_V = "20260917h"
-STORES_CSS_V = "20260917h"
+CSS_V = "20260917i"
+STORES_CSS_V = "20260917i"
 STORES_JS_V = "20260912h"
 POSPAGO_JS_V = "20260912g"  # unused on landings; keep bump for map pages separately
 HEADER_JS_V = "20260917b"
@@ -328,9 +328,9 @@ def build_store_floats(store: dict) -> str:
 # Full artwork banners (shown contain / uncropped; text baked into art)
 STORE_ARTWORK_BANNERS = {
     "las-fuentes": {
-        "image": "assets/stores/banners/las-fuentes.png",
+        "image": "assets/stores/banners/las-fuentes.png?v=20260917i",
         "width": 1920,
-        "height": 1080,
+        "height": 600,
         "alt": "AT&T Las Fuentes · Santiago de Querétaro — Más que números, personas",
     },
 }

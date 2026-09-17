@@ -11258,25 +11258,21 @@ body.is-nav-open .site-header {
   to { transform: scale(1.08) translate3d(-1.2%, -0.6%, 0); }
 }
 
-/* Las Fuentes (and other) full artwork banners — full width, banner height, no crop */
+/* Las Fuentes artwork — full-bleed 1920×600 panoramic banner */
 .store-banner--artwork {
-  background:
-    radial-gradient(ellipse 70% 80% at 18% 50%, rgba(192, 38, 211, 0.45), transparent 58%),
-    radial-gradient(ellipse 55% 70% at 82% 45%, rgba(0, 159, 219, 0.28), transparent 60%),
-    linear-gradient(115deg, #2a0a3d 0%, #4a1468 28%, #0b1f3a 68%, #06182c 100%);
+  background: #2a0a3d;
   box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .store-banner--artwork .store-banner__media {
   width: 100%;
   margin: 0;
-  display: grid;
-  place-items: center;
-  min-height: clamp(180px, 32vh, 340px);
-  max-height: min(38vh, 360px);
-  aspect-ratio: auto;
-  height: min(38vh, 360px);
-  background: transparent;
+  display: block;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  aspect-ratio: 1920 / 600;
+  background: #2a0a3d;
   overflow: hidden;
 }
 
@@ -11284,9 +11280,9 @@ body.is-nav-open .site-header {
   position: relative;
   width: 100%;
   height: 100%;
-  max-height: min(38vh, 360px);
+  max-height: none;
   min-height: 0;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center center;
   transform: none;
   filter: none;
@@ -11298,17 +11294,18 @@ body.is-nav-open .site-header {
 @media (max-width: 768px) {
   .store-banner--artwork .store-banner__media {
     width: 100%;
-    height: min(30vh, 240px);
-    min-height: 160px;
-    max-height: min(30vh, 240px);
-    aspect-ratio: auto;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: 1920 / 600;
   }
 
   .store-banner--artwork .store-banner__img {
     min-height: 0;
-    max-height: min(30vh, 240px);
+    max-height: none;
     width: 100%;
     height: 100%;
+    object-fit: cover;
   }
 }
 

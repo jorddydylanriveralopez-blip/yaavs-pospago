@@ -15,8 +15,8 @@ INDEX = ROOT / "index.html"
 STORES_JS = ROOT / "js" / "tiendas-att-stores.js"
 OUT_DIR = ROOT / "tienda"
 
-CSS_V = "20260917b"
-STORES_CSS_V = "20260917b"
+CSS_V = "20260917c"
+STORES_CSS_V = "20260917c"
 STORES_JS_V = "20260912h"
 POSPAGO_JS_V = "20260912g"  # unused on landings; keep bump for map pages separately
 HEADER_JS_V = "20260917a"
@@ -167,9 +167,66 @@ def parse_hours_rows(hours: str) -> list[dict]:
     return rows
 
 
+# Distinct on-brand accent pairs (cyan/teal/sky/navy/gold — no purple defaults)
+STORE_ACCENTS = [
+    ("#00c1d4", "#009fdb"),
+    ("#22d3ee", "#0284c7"),
+    ("#38bdf8", "#0369a1"),
+    ("#67e8f9", "#0e7490"),
+    ("#2dd4bf", "#0f766e"),
+    ("#5eead4", "#115e59"),
+    ("#7dd3fc", "#1d4ed8"),
+    ("#93c5fd", "#1e40af"),
+    ("#fbbf24", "#b45309"),
+    ("#f59e0b", "#c2410c"),
+    ("#34d399", "#047857"),
+    ("#4ade80", "#15803d"),
+    ("#fdba74", "#c2410c"),
+    ("#f97316", "#9a3412"),
+    ("#a5f3fc", "#155e75"),
+    ("#86efac", "#166534"),
+    ("#fcd34d", "#a16207"),
+    ("#7fdbff", "#0077a8"),
+    ("#00e5c0", "#008f7a"),
+    ("#ffb454", "#d97706"),
+    ("#6ee7b7", "#0d9488"),
+    ("#60a5fa", "#1e3a8a"),
+    ("#fca5a5", "#b91c1c"),
+    ("#5eead4", "#0369a1"),
+    ("#38bdf8", "#0f766e"),
+    ("#fde047", "#ca8a04"),
+    ("#2dd4bf", "#1d4ed8"),
+    ("#fb923c", "#9a3412"),
+    ("#67e8f9", "#164e63"),
+    ("#86efac", "#075985"),
+    ("#fde68a", "#b45309"),
+    ("#7dd3fc", "#0e7490"),
+    ("#99f6e4", "#0f766e"),
+    ("#fcd34d", "#0369a1"),
+]
+
+
+def store_theme(store: dict, index: int) -> dict:
+    accent, accent2 = STORE_ACCENTS[index % len(STORE_ACCENTS)]
+    variant = index % 8
+    state_slug = re.sub(
+        r"[^a-z0-9]+",
+        "-",
+        (store.get("state") or "mx").lower().replace("é", "e").replace("á", "a").replace("í", "i").replace("ó", "o").replace("ú", "u"),
+    ).strip("-")
+    return {
+        "accent": accent,
+        "accent2": accent2,
+        "variant": variant,
+        "state_slug": state_slug,
+        "index": index + 1,
+    }
+
+
 def build_store_hours_float(store: dict) -> str:
     name = html.escape(store["name"])
     city = html.escape(title_case(store.get("city") or ""))
+    address = html.escape(store.get("address") or "")
     hours_raw = store.get("hours") or ""
     hours_attr = html.escape(hours_raw, quote=True)
     rows = parse_hours_rows(hours_raw)
@@ -187,6 +244,9 @@ def build_store_hours_float(store: dict) -> str:
             f'<span class="store-hours-float__time">{value}</span></li>'
         )
     rows_html = "\n".join(items)
+    address_html = (
+        f'      <p class="store-hours-float__address">{address}</p>\n' if address else ""
+    )
 
     return f"""  <aside class="store-hours-float is-open" data-store-hours-float data-store-hours="{hours_attr}" aria-label="Horario de {name}">
     <button type="button" class="store-hours-float__toggle" data-hours-toggle aria-expanded="true" aria-controls="store-hours-panel">
@@ -202,7 +262,7 @@ def build_store_hours_float(store: dict) -> str:
       <p class="store-hours-float__eyebrow">Horario de atención</p>
       <p class="store-hours-float__name">{name}</p>
       <p class="store-hours-float__city">{city}</p>
-      <p class="store-hours-float__status" data-hours-status>Consultando horario…</p>
+{address_html}      <p class="store-hours-float__status" data-hours-status>Consultando horario…</p>
       <ul class="store-hours-float__list">
 {rows_html}
       </ul>
@@ -233,14 +293,18 @@ def build_store_floats(store: dict) -> str:
 """
 
 
-def build_hero(store: dict) -> str:
+def build_hero(store: dict, index: int = 0) -> str:
     name = html.escape(store["name"])
-    city = html.escape(title_case(store["city"]))
     state = html.escape(title_case(store["state"]))
-    address = html.escape(store.get("address") or "")
     image = html.escape(store.get("image") or "assets/images/pdv-fallback.jpg")
+    theme = store_theme(store, index)
+    style = (
+        f"--store-accent:{theme['accent']};"
+        f"--store-accent-2:{theme['accent2']};"
+        f"--store-theme-i:{theme['index']};"
+    )
 
-    return f"""    <section class="store-banner" id="inicio" aria-label="Sucursal {name}">
+    return f"""    <section class="store-banner store-banner--v{theme['variant']} store-banner--s-{theme['state_slug']}" id="inicio" style="{style}" aria-label="Sucursal {name}">
       <div class="store-banner__media">
         <img
           class="store-banner__img"
@@ -252,11 +316,11 @@ def build_hero(store: dict) -> str:
           fetchpriority="high"
         >
         <div class="store-banner__veil" aria-hidden="true"></div>
+        <div class="store-banner__motif" aria-hidden="true"></div>
         <div class="store-banner__copy">
-          <p class="store-banner__eyebrow">Sucursal AT&amp;T · {state}</p>
+          <p class="store-banner__eyebrow"><span>Sucursal AT&amp;T</span><span class="store-banner__dot" aria-hidden="true"></span><span>{state}</span></p>
           <h1 class="store-banner__name">{name}</h1>
-          <p class="store-banner__city">{city}</p>
-          <p class="store-banner__address">{address}</p>
+          <span class="store-banner__underline" aria-hidden="true"></span>
         </div>
       </div>
     </section>
@@ -349,7 +413,7 @@ def simplify_store_footer(footer_html: str) -> str:
     return footer_html
 
 
-def build_page(store: dict, header: str, main_shared: str, brands_footer: str) -> str:
+def build_page(store: dict, header: str, main_shared: str, brands_footer: str, index: int = 0) -> str:
     name = store["name"]
     city = title_case(store["city"])
     state = title_case(store["state"])
@@ -359,6 +423,7 @@ def build_page(store: dict, header: str, main_shared: str, brands_footer: str) -
         f"Cotiza planes pospago, equipos y promociones con YAAVS. "
         f"{store.get('address') or ''}"
     )
+    theme = store_theme(store, index)
 
     header_local = inject_direct_quote(header, store)
     shared = inject_direct_quote(main_shared, store)
@@ -371,7 +436,7 @@ def build_page(store: dict, header: str, main_shared: str, brands_footer: str) -
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5">
-  <meta name="theme-color" content="#009FDB">
+  <meta name="theme-color" content="{theme['accent2']}">
   <meta name="description" content="{html.escape(desc)}">
   <meta property="og:title" content="{html.escape(title)}">
   <meta property="og:description" content="{html.escape(desc)}">
@@ -387,12 +452,12 @@ def build_page(store: dict, header: str, main_shared: str, brands_footer: str) -
   <link rel="icon" href="assets/images/favicon-32.png?v=20260907ay" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/images/favicon-180.png?v=20260907ay" sizes="180x180">
 </head>
-<body class="store-landing" data-store-landing data-store-id="{html.escape(store['id'])}" data-store-name="{html.escape(store['name'])}" data-store-city="{html.escape(store['city'])}" data-store-state="{html.escape(store['state'])}">
+<body class="store-landing store-landing--v{theme['variant']}" data-store-landing data-store-id="{html.escape(store['id'])}" data-store-name="{html.escape(store['name'])}" data-store-city="{html.escape(store['city'])}" data-store-state="{html.escape(store['state'])}" style="--store-accent:{theme['accent']};--store-accent-2:{theme['accent2']};">
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
 {header_local}
   <main id="contenido">
-{build_hero(store)}
+{build_hero(store, index)}
 {shared}  </main>
 
 {footer}
@@ -414,11 +479,11 @@ def main() -> int:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
     written = []
-    for store in stores:
+    for i, store in enumerate(stores):
         slug = store.get("slug")
         if not slug:
             raise SystemExit(f"Store missing slug: {store.get('id')}")
-        page = build_page(store, header, main_shared, brands_footer)
+        page = build_page(store, header, main_shared, brands_footer, i)
         out = OUT_DIR / f"{slug}.html"
         out.write_text(page, encoding="utf-8")
         written.append(out.relative_to(ROOT).as_posix())

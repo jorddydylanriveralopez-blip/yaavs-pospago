@@ -15,11 +15,11 @@ INDEX = ROOT / "index.html"
 STORES_JS = ROOT / "js" / "tiendas-att-stores.js"
 OUT_DIR = ROOT / "tienda"
 
-CSS_V = "20260917c"
-STORES_CSS_V = "20260917c"
+CSS_V = "20260917d"
+STORES_CSS_V = "20260917d"
 STORES_JS_V = "20260912h"
 POSPAGO_JS_V = "20260912g"  # unused on landings; keep bump for map pages separately
-HEADER_JS_V = "20260917a"
+HEADER_JS_V = "20260917b"
 PLANS_JS_V = "20260908ai"
 DEVICE_DEALS_V = "20260901a"
 PREMIUM_DEVICES_V = "20260828d"
@@ -89,6 +89,14 @@ def maps_dir_url(store: dict) -> str:
         "https://www.google.com/maps/dir/?api=1"
         f"&destination={store['lat']},{store['lng']}"
     )
+
+
+def waze_dir_url(store: dict) -> str:
+    lat = store.get("lat")
+    lng = store.get("lng")
+    if lat is None or lng is None:
+        return maps_dir_url(store)
+    return f"https://waze.com/ul?ll={lat}%2C{lng}&navigate=yes"
 
 
 def facebook_url(store: dict) -> str | None:
@@ -274,6 +282,7 @@ def build_store_hours_float(store: dict) -> str:
 def build_store_floats(store: dict) -> str:
     name = html.escape(store["name"])
     maps = html.escape(maps_dir_url(store), quote=True)
+    waze = html.escape(waze_dir_url(store), quote=True)
     fb = facebook_url(store)
 
     fb_float = ""
@@ -285,10 +294,33 @@ def build_store_floats(store: dict) -> str:
 """
 
     return f"""{build_store_hours_float(store)}  <div class="store-float" aria-label="Accesos de la sucursal">
-{fb_float}    <a class="store-float__btn store-float__btn--maps" href="{maps}" target="_blank" rel="noopener" aria-label="Cómo llegar a {name}">
-      <span class="store-float__label">Cómo llegar</span>
-      <svg class="store-float__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
-    </a>
+{fb_float}    <div class="store-float__nav" data-store-nav>
+      <button type="button" class="store-float__btn store-float__btn--maps" data-store-nav-toggle aria-expanded="false" aria-haspopup="true" aria-controls="store-nav-menu" aria-label="Cómo llegar a {name}">
+        <span class="store-float__label">Cómo llegar</span>
+        <svg class="store-float__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+      </button>
+      <div class="store-float__nav-menu" id="store-nav-menu" data-store-nav-menu hidden>
+        <p class="store-float__nav-title">¿Cómo quieres ir?</p>
+        <a class="store-float__nav-opt store-float__nav-opt--gmaps" href="{maps}" target="_blank" rel="noopener">
+          <span class="store-float__nav-opt-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" focusable="false"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+          </span>
+          <span class="store-float__nav-opt-copy">
+            <strong>Google Maps</strong>
+            <small>Abrir ruta</small>
+          </span>
+        </a>
+        <a class="store-float__nav-opt store-float__nav-opt--waze" href="{waze}" target="_blank" rel="noopener">
+          <span class="store-float__nav-opt-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" focusable="false"><path fill="currentColor" d="M12.5 3C7.8 3 4 6.6 4 11.1c0 2.6 1.3 4.9 3.3 6.4l-.8 2.7 3.1-1.6c.9.3 1.9.4 2.9.4 4.7 0 8.5-3.6 8.5-8.1S17.2 3 12.5 3zm-2.7 10.3c-.6 0-1.1-.5-1.1-1.1s.5-1.1 1.1-1.1 1.1.5 1.1 1.1-.5 1.1-1.1 1.1zm2.7 0c-.6 0-1.1-.5-1.1-1.1s.5-1.1 1.1-1.1 1.1.5 1.1 1.1-.5 1.1-1.1 1.1zm2.7 0c-.6 0-1.1-.5-1.1-1.1s.5-1.1 1.1-1.1 1.1.5 1.1 1.1-.5 1.1-1.1 1.1z"/></svg>
+          </span>
+          <span class="store-float__nav-opt-copy">
+            <strong>Waze</strong>
+            <small>Abrir navegación</small>
+          </span>
+        </a>
+      </div>
+    </div>
   </div>
 """
 

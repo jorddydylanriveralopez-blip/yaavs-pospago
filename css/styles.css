@@ -11688,6 +11688,128 @@ body:has(.cookie-notice.is-visible).store-landing .wa-float {
     storeFloatBob 2.6s ease-in-out infinite,
     storeFloatRingMaps 2.2s ease-out infinite;
   animation-delay: 0s, 0.35s;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}
+
+.store-float__nav {
+  position: relative;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.store-float__nav-menu {
+  position: absolute;
+  right: calc(100% + 0.7rem);
+  top: 50%;
+  transform: translateY(-50%) translateX(8px);
+  width: min(15.5rem, calc(100vw - 5.5rem));
+  padding: 0.7rem;
+  border-radius: 1rem;
+  background:
+    linear-gradient(165deg, rgba(255, 255, 255, 0.98) 0%, rgba(240, 249, 252, 0.96) 100%);
+  border: 1px solid rgba(0, 159, 219, 0.16);
+  box-shadow: 0 16px 36px rgba(10, 37, 64, 0.2);
+  display: grid;
+  gap: 0.4rem;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+  z-index: 2;
+}
+
+.store-float__nav.is-open .store-float__nav-menu {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+.store-float__nav-title {
+  margin: 0 0 0.15rem;
+  padding: 0 0.2rem;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(10, 37, 64, 0.58);
+}
+
+.store-float__nav-opt {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 0.6rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  color: #0a2540;
+  background: rgba(10, 37, 64, 0.04);
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.store-float__nav-opt:hover,
+.store-float__nav-opt:focus-visible {
+  background: rgba(0, 159, 219, 0.12);
+  transform: translateX(-2px);
+  outline: none;
+}
+
+.store-float__nav-opt-icon {
+  display: grid;
+  place-items: center;
+  width: 2.15rem;
+  height: 2.15rem;
+  border-radius: 50%;
+  color: #fff;
+  flex: 0 0 auto;
+}
+
+.store-float__nav-opt--gmaps .store-float__nav-opt-icon {
+  background: linear-gradient(145deg, #34a853 0%, #4285f4 100%);
+}
+
+.store-float__nav-opt--waze .store-float__nav-opt-icon {
+  background: linear-gradient(145deg, #33ccff 0%, #1c7cff 100%);
+}
+
+.store-float__nav-opt-copy {
+  display: grid;
+  gap: 0.05rem;
+  min-width: 0;
+}
+
+.store-float__nav-opt-copy strong {
+  font-family: "Sora", sans-serif;
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.store-float__nav-opt-copy small {
+  font-family: "Outfit", sans-serif;
+  font-size: 0.72rem;
+  color: rgba(10, 37, 64, 0.58);
+}
+
+@media (max-width: 640px) {
+  .store-float__nav-menu {
+    right: auto;
+    left: auto;
+    top: auto;
+    bottom: calc(100% + 0.55rem);
+    transform: translateY(6px);
+    width: min(14.5rem, calc(100vw - 4.5rem));
+  }
+
+  .store-float__nav.is-open .store-float__nav-menu {
+    transform: translateY(0);
+  }
 }
 
 .store-float__btn--fb {

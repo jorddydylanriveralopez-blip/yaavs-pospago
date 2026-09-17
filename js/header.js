@@ -456,6 +456,34 @@
     }
   }
 
+  function initStoreNavChooser() {
+    const root = document.querySelector("[data-store-nav]");
+    if (!root) return;
+    const toggle = root.querySelector("[data-store-nav-toggle]");
+    const menu = root.querySelector("[data-store-nav-menu]");
+    if (!toggle || !menu) return;
+
+    const setOpen = (open) => {
+      root.classList.toggle("is-open", open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      if (open) menu.removeAttribute("hidden");
+      else menu.setAttribute("hidden", "");
+    };
+
+    toggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setOpen(!root.classList.contains("is-open"));
+    });
+
+    menu.addEventListener("click", (e) => e.stopPropagation());
+
+    document.addEventListener("click", () => setOpen(false));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setOpen(false);
+    });
+  }
+
   function initStoreHoursFloat() {
     const root = document.querySelector("[data-store-hours-float]");
     if (!root) return;
@@ -964,6 +992,7 @@
   initHeaderGlass();
   initWhatsAppFloat();
   initStoreFloats();
+  initStoreNavChooser();
   initStoreHoursFloat();
   initQuoteLocationPicker();
   initCookieNotice();

@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260917c">
+  <link rel="stylesheet" href="css/styles.css?v=20260917d">
   <link rel="icon" href="assets/images/favicon.svg?v=20260907ay" type="image/svg+xml">
   <link rel="icon" href="assets/images/favicon-32.png?v=20260907ay" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/images/favicon-180.png?v=20260907ay" sizes="180x180">
@@ -701,15 +701,38 @@
       <span class="store-float__label">Facebook</span>
       <svg class="store-float__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M14 8h2.5V4.5H14c-2.2 0-3.5 1.5-3.5 3.7V10H8v3.5h2.5V20H14v-6.5h2.3L17 10h-3V8.4c0-.5.2-.9.9-.9z"/></svg>
     </a>
-    <a class="store-float__btn store-float__btn--maps" href="https://maps.app.goo.gl/B8NRddvdfaE1ABC79" target="_blank" rel="noopener" aria-label="Cómo llegar a PLAZA ECATEPEC II">
-      <span class="store-float__label">Cómo llegar</span>
-      <svg class="store-float__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
-    </a>
+    <div class="store-float__nav" data-store-nav>
+      <button type="button" class="store-float__btn store-float__btn--maps" data-store-nav-toggle aria-expanded="false" aria-haspopup="true" aria-controls="store-nav-menu" aria-label="Cómo llegar a PLAZA ECATEPEC II">
+        <span class="store-float__label">Cómo llegar</span>
+        <svg class="store-float__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+      </button>
+      <div class="store-float__nav-menu" id="store-nav-menu" data-store-nav-menu hidden>
+        <p class="store-float__nav-title">¿Cómo quieres ir?</p>
+        <a class="store-float__nav-opt store-float__nav-opt--gmaps" href="https://maps.app.goo.gl/B8NRddvdfaE1ABC79" target="_blank" rel="noopener">
+          <span class="store-float__nav-opt-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" focusable="false"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+          </span>
+          <span class="store-float__nav-opt-copy">
+            <strong>Google Maps</strong>
+            <small>Abrir ruta</small>
+          </span>
+        </a>
+        <a class="store-float__nav-opt store-float__nav-opt--waze" href="https://waze.com/ul?ll=19.582137020310686%2C-99.04111154232932&amp;navigate=yes" target="_blank" rel="noopener">
+          <span class="store-float__nav-opt-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" focusable="false"><path fill="currentColor" d="M12.5 3C7.8 3 4 6.6 4 11.1c0 2.6 1.3 4.9 3.3 6.4l-.8 2.7 3.1-1.6c.9.3 1.9.4 2.9.4 4.7 0 8.5-3.6 8.5-8.1S17.2 3 12.5 3zm-2.7 10.3c-.6 0-1.1-.5-1.1-1.1s.5-1.1 1.1-1.1 1.1.5 1.1 1.1-.5 1.1-1.1 1.1zm2.7 0c-.6 0-1.1-.5-1.1-1.1s.5-1.1 1.1-1.1 1.1.5 1.1 1.1-.5 1.1-1.1 1.1zm2.7 0c-.6 0-1.1-.5-1.1-1.1s.5-1.1 1.1-1.1 1.1.5 1.1 1.1-.5 1.1-1.1 1.1z"/></svg>
+          </span>
+          <span class="store-float__nav-opt-copy">
+            <strong>Waze</strong>
+            <small>Abrir navegación</small>
+          </span>
+        </a>
+      </div>
+    </div>
   </div>
   <script src="js/plans-catalog.js?v=20260908ai" defer></script>
   <script src="js/device-deals.js?v=20260901a" defer></script>
   <script src="js/premium-devices.js?v=20260828d" defer></script>
   <script src="js/tiendas-att-stores.js?v=20260912h" defer></script>
-  <script src="js/header.js?v=20260917a" defer></script>
+  <script src="js/header.js?v=20260917b" defer></script>
 </body>
 </html>

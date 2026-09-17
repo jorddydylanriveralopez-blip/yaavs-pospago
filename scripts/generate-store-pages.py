@@ -15,8 +15,8 @@ INDEX = ROOT / "index.html"
 STORES_JS = ROOT / "js" / "tiendas-att-stores.js"
 OUT_DIR = ROOT / "tienda"
 
-CSS_V = "20260917d"
-STORES_CSS_V = "20260917d"
+CSS_V = "20260917e"
+STORES_CSS_V = "20260917e"
 STORES_JS_V = "20260912h"
 POSPAGO_JS_V = "20260912g"  # unused on landings; keep bump for map pages separately
 HEADER_JS_V = "20260917b"
@@ -325,16 +325,78 @@ def build_store_floats(store: dict) -> str:
 """
 
 
+# Full artwork banners (shown contain / uncropped; text baked into art)
+STORE_ARTWORK_BANNERS = {
+    "las-fuentes": {
+        "image": "assets/stores/banners/las-fuentes.png",
+        "width": 1920,
+        "height": 1080,
+        "alt": "AT&T Las Fuentes · Santiago de Querétaro — Más que números, personas",
+    },
+}
+
+
 def build_hero(store: dict, index: int = 0) -> str:
     name = html.escape(store["name"])
     state = html.escape(title_case(store["state"]))
-    image = html.escape(store.get("image") or "assets/images/pdv-fallback.jpg")
+    slug = store.get("slug") or ""
+    artwork = STORE_ARTWORK_BANNERS.get(slug)
     theme = store_theme(store, index)
     style = (
         f"--store-accent:{theme['accent']};"
         f"--store-accent-2:{theme['accent2']};"
         f"--store-theme-i:{theme['index']};"
     )
+
+    if artwork:
+        image = html.escape(artwork["image"])
+        alt = html.escape(artwork.get("alt") or f"AT&T {store['name']}")
+        w = artwork.get("width", 1920)
+        h = artwork.get("height", 1080)
+        return f"""    <section class="store-banner store-banner--artwork store-banner--s-{theme['state_slug']}" id="inicio" style="{style}" aria-label="Sucursal {name}">
+      <div class="store-banner__media">
+        <img
+          class="store-banner__img"
+          src="{image}"
+          alt="{alt}"
+          width="{w}"
+          height="{h}"
+          decoding="async"
+          fetchpriority="high"
+        >
+        <h1 class="sr-only">{name}</h1>
+      </div>
+    </section>
+
+    <section class="store-video" aria-label="Promoción YAAVS Pospago">
+      <div class="store-video__frame">
+        <video
+          class="hero__video hero__video--desktop store-video__clip"
+          src="assets/banners/secuencia-01-4.mp4?v={VIDEO_V}"
+          poster="assets/banners/secuencia-01-4-poster.jpg?v={VIDEO_V}"
+          muted
+          loop
+          playsinline
+          autoplay
+          preload="auto"
+          aria-label="Video promoción YAAVS Pospago AT&amp;T"
+        ></video>
+        <video
+          class="hero__video hero__video--mobile store-video__clip"
+          src="assets/banners/plan-black-vertical-head.mp4?v={MOBILE_VIDEO_V}"
+          poster="assets/banners/plan-black-vertical-head-poster.jpg?v={MOBILE_VIDEO_V}"
+          muted
+          loop
+          playsinline
+          autoplay
+          preload="auto"
+          aria-label="Plan Black — estrena el smartphone que tanto quieres"
+        ></video>
+      </div>
+    </section>
+"""
+
+    image = html.escape(store.get("image") or "assets/images/pdv-fallback.jpg")
 
     return f"""    <section class="store-banner store-banner--v{theme['variant']} store-banner--s-{theme['state_slug']}" id="inicio" style="{style}" aria-label="Sucursal {name}">
       <div class="store-banner__media">

@@ -15,8 +15,8 @@ INDEX = ROOT / "index.html"
 STORES_JS = ROOT / "js" / "tiendas-att-stores.js"
 OUT_DIR = ROOT / "tienda"
 
-CSS_V = "20260917a"
-STORES_CSS_V = "20260917a"
+CSS_V = "20260917b"
+STORES_CSS_V = "20260917b"
 STORES_JS_V = "20260912h"
 POSPAGO_JS_V = "20260912g"  # unused on landings; keep bump for map pages separately
 HEADER_JS_V = "20260917a"
@@ -238,12 +238,7 @@ def build_hero(store: dict) -> str:
     city = html.escape(title_case(store["city"]))
     state = html.escape(title_case(store["state"]))
     address = html.escape(store.get("address") or "")
-    hours = html.escape(store.get("hours") or "")
     image = html.escape(store.get("image") or "assets/images/pdv-fallback.jpg")
-
-    hours_html = (
-        f'        <p class="store-banner__hours">{hours}</p>\n' if hours else ""
-    )
 
     return f"""    <section class="store-banner" id="inicio" aria-label="Sucursal {name}">
       <div class="store-banner__media">
@@ -262,7 +257,7 @@ def build_hero(store: dict) -> str:
           <h1 class="store-banner__name">{name}</h1>
           <p class="store-banner__city">{city}</p>
           <p class="store-banner__address">{address}</p>
-{hours_html}        </div>
+        </div>
       </div>
     </section>
 

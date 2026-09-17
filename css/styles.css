@@ -11013,17 +11013,13 @@ body.is-nav-open .site-header {
   color: rgba(255, 255, 255, 0.92);
 }
 
-.store-banner__address,
-.store-banner__hours {
+.store-banner__address {
   margin: 0;
   font-family: "Outfit", sans-serif;
   font-size: 0.86rem;
   line-height: 1.4;
   color: rgba(255, 255, 255, 0.78);
   max-width: 42rem;
-}
-
-.store-banner__address {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -11083,10 +11079,6 @@ body.store-landing .store-video__frame .hero__video--mobile {
 
   .store-banner__copy {
     padding: 0.7rem 0 0.85rem;
-  }
-
-  .store-banner__hours {
-    display: none;
   }
 
   .store-video__frame {

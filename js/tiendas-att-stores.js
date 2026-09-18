@@ -190,7 +190,10 @@ window.YAAVS_ATT_STORES = [
     "mapsLink": "https://maps.app.goo.gl/7TjV5uidqhfRsrwo6",
     "hours": "L-V 11:00 - 08.00 · Sáb 11:00 - 08.00 · Dom 11:00 - 08.00",
     "manager": "Emmanuel Salvador Gómez Filippini",
-    "managerPhone": "523321077526"
+    "managerPhone": "523321077526",
+    "image": "assets/stores/banners/las-fuentes.png",
+    "slug": "las-fuentes",
+    "page": "tienda/las-fuentes.html"
   },
   {
     "id": "att-18-durango",
@@ -358,7 +361,10 @@ window.YAAVS_ATT_STORES = [
     "mapsLink": "https://maps.app.goo.gl/reksfTkZR3oKYB3GA",
     "hours": "L-V 09:00 - 07:00 · Sáb 10:00 - 06:00 · Dom 11:00 - 05:00",
     "manager": "Heber Floylán Ortega RamÍrez",
-    "managerPhone": "524401328026"
+    "managerPhone": "524401328026",
+    "image": "assets/stores/banners/plaza-norte.png",
+    "slug": "plaza-norte",
+    "page": "tienda/plaza-norte.html"
   },
   {
     "id": "att-33-san-luis-potosi",
@@ -394,6 +400,9 @@ window.YAAVS_ATT_STORES = [
     "mapsLink": "https://maps.app.goo.gl/CPYuG582KXsDTyKk9",
     "hours": "L-V 10:00 - 08:00 · Sáb 10:00 - 08:00 · Dom 11:00 - 06:00",
     "manager": "Luis Enrique Martínez López [Interino]",
-    "managerPhone": "524444001438"
+    "managerPhone": "524444001438",
+    "image": "assets/stores/banners/walmart-munoz.png",
+    "slug": "walmart-munoz",
+    "page": "tienda/walmart-munoz.html"
   }
 ];

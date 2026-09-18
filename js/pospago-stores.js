@@ -13,7 +13,7 @@
     },
   };
 
-  const DEFAULT_PDV_IMAGE = "assets/rotulaciones/dili-01.jpg";
+  const DEFAULT_PDV_IMAGE = "";
   const stage = root.querySelector("[data-store-stage]");
   const listEl = root.querySelector("[data-store-list]");
   const mapHost = root.querySelector("[data-store-map]");
@@ -102,10 +102,21 @@
     return store.image || store.photo || DEFAULT_PDV_IMAGE;
   }
 
+  function isBannerThumb(src) {
+    return /\/banners\//.test(src || "");
+  }
+
   function storeThumbHtml(store) {
     const name = escapeHtml(store.name);
-    const src = escapeHtml(storeThumbSrc(store));
-    return `<div class="pospago-stores__map-pop"><img src="${src}" alt="Punto de venta ${name}" width="132" height="84" loading="lazy" decoding="async"><span>${name}</span></div>`;
+    const src = storeThumbSrc(store);
+    if (!src) {
+      return `<div class="pospago-stores__map-pop"><span>${name}</span></div>`;
+    }
+    const banner = isBannerThumb(src);
+    const cls = banner ? " pospago-stores__map-pop--banner" : "";
+    const w = banner ? 220 : 132;
+    const h = banner ? 69 : 84;
+    return `<div class="pospago-stores__map-pop${cls}"><img src="${escapeHtml(src)}" alt="Fachada ${name}" width="${w}" height="${h}" loading="lazy" decoding="async"><span>${name}</span></div>`;
   }
 
   function showMapPopup(store) {
@@ -116,12 +127,13 @@
       activePopup = null;
     }
 
+    const banner = isBannerThumb(storeThumbSrc(store));
     activePopup = window.L.popup({
       className: "pospago-stores__leaflet-pop",
       offset: [22, -12],
       closeButton: true,
-      maxWidth: 152,
-      minWidth: 132,
+      maxWidth: banner ? 240 : 152,
+      minWidth: banner ? 220 : 132,
       autoPan: true,
       autoPanPadding: [28, 28],
     })
@@ -186,7 +198,22 @@
         .map((store, i) => {
           const on = store.id === activeId ? " is-active" : "";
           const nearest = store.id === pinnedId ? `<span class="pospago-stores__badge">Más cercana</span>` : "";
+          const thumb = storeThumbSrc(store);
+          const pageHref = store.page || (store.slug ? `tienda/${store.slug}.html` : "");
+          const media = thumb
+            ? pageHref
+              ? `<a class="pospago-stores__card-media" href="${escapeHtml(pageHref)}" aria-label="Ver sucursal ${escapeHtml(store.name)}">
+            <img src="${escapeHtml(thumb)}" alt="Fachada ${escapeHtml(store.name)}" width="1920" height="600" loading="lazy" decoding="async">
+          </a>`
+              : `<div class="pospago-stores__card-media">
+            <img src="${escapeHtml(thumb)}" alt="Fachada ${escapeHtml(store.name)}" width="1920" height="600" loading="lazy" decoding="async">
+          </div>`
+            : "";
+          const pageLink = pageHref
+            ? `<a class="pospago-stores__page" href="${escapeHtml(pageHref)}">Ver sucursal</a>`
+            : "";
           return `<article class="pospago-stores__card${on}" data-store-id="${store.id}" style="--i:${i}">
+          ${media}
           <button type="button" class="pospago-stores__card-main" data-store-focus="${store.id}">
             ${nearest}
             <span class="pospago-stores__card-name">${store.name}</span>
@@ -195,6 +222,7 @@
             ${store.hours ? `<span class="pospago-stores__card-hours">${store.hours}</span>` : ""}
           </button>
           <div class="pospago-stores__card-actions">
+            ${pageLink}
             <a class="pospago-stores__go" href="${mapsDirUrl(store)}" target="_blank" rel="noopener noreferrer">Cómo llegar</a>
             <a class="pospago-stores__wa-btn" href="${waUrl(store)}" target="_blank" rel="noopener noreferrer" aria-label="Contactar sucursal ${escapeHtml(store.name)} por WhatsApp">
               ${WA_ICON}
@@ -312,12 +340,30 @@
     }
   }
 
+  function requestedStore() {
+    const params = new URLSearchParams(window.location.search);
+    const hash = String(window.location.hash || "").replace(/^#/, "");
+    const hashStore = hash.match(/^(?:tienda|store)[/=-](.+)$/i);
+    const raw = (params.get("store") || params.get("sucursal") || (hashStore ? hashStore[1] : "") || "").trim();
+    const key = foldText(raw);
+    if (!key) return null;
+    return (
+      storesFor().find(
+        (s) =>
+          foldText(s.id) === key ||
+          foldText(s.slug || "") === key ||
+          foldText(s.name) === key
+      ) || null
+    );
+  }
+
   function openCarrier(id, { scroll } = { scroll: false }) {
     const carrier = carriers[id];
     if (!carrier) return;
     carrierId = id;
     const list = storesFor();
-    activeId = list[0]?.id || "";
+    const requested = requestedStore();
+    activeId = requested?.id || list[0]?.id || "";
     root.dataset.carrier = id;
     root.classList.add("is-open");
     if (stage) {
@@ -334,12 +380,15 @@
 
     whenReady(() => {
       drawMap();
+      if (requested) {
+        window.setTimeout(() => focusStore(requested, true), 220);
+      }
       window.setTimeout(refreshMapSize, 120);
       window.setTimeout(refreshMapSize, 480);
       window.setTimeout(refreshMapSize, 1200);
     });
 
-    if (scroll) root.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (scroll || requested) root.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   function whenReady(cb) {

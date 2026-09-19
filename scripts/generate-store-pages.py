@@ -15,10 +15,10 @@ INDEX = ROOT / "index.html"
 STORES_JS = ROOT / "js" / "tiendas-att-stores.js"
 OUT_DIR = ROOT / "tienda"
 
-CSS_V = "20260919c"
+CSS_V = "20260919d"
 BANNER_V = "20260919c"
 STORES_CSS_V = "20260917i"
-STORES_JS_V = "20260919c"
+STORES_JS_V = "20260919d"
 POSPAGO_JS_V = "20260912g"  # unused on landings; keep bump for map pages separately
 HEADER_JS_V = "20260917b"
 PLANS_JS_V = "20260908ai"
@@ -762,7 +762,7 @@ def build_page(store: dict, header: str, main_shared: str, brands_footer: str, i
   <meta property="og:title" content="{html.escape(title)}">
   <meta property="og:description" content="{html.escape(desc)}">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="{html.escape(store.get('image') or '')}">
+  <meta property="og:image" content="{html.escape(store.get('banner') or store.get('image') or '')}">
   <title>{html.escape(title)}</title>
   <base href="/">
   <link rel="preconnect" href="https://fonts.googleapis.com">

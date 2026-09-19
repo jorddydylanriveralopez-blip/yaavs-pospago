@@ -203,10 +203,10 @@
           const media = thumb
             ? pageHref
               ? `<a class="pospago-stores__card-media" href="${escapeHtml(pageHref)}" aria-label="Ver sucursal ${escapeHtml(store.name)}">
-            <img src="${escapeHtml(thumb)}" alt="Fachada ${escapeHtml(store.name)}" width="1920" height="600" loading="lazy" decoding="async">
+            <img src="${escapeHtml(thumb)}" alt="Fachada ${escapeHtml(store.name)}" width="800" height="500" loading="lazy" decoding="async">
           </a>`
               : `<div class="pospago-stores__card-media">
-            <img src="${escapeHtml(thumb)}" alt="Fachada ${escapeHtml(store.name)}" width="1920" height="600" loading="lazy" decoding="async">
+            <img src="${escapeHtml(thumb)}" alt="Fachada ${escapeHtml(store.name)}" width="800" height="500" loading="lazy" decoding="async">
           </div>`
             : "";
           const pageLink = pageHref

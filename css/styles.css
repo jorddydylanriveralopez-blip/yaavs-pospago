@@ -10929,6 +10929,15 @@ body.is-nav-open .site-header {
   }
 }
 
+/* Portadas cards on store landings */
+.store-landing .store-portadas {
+  padding-top: 2.5rem;
+  padding-bottom: 1.25rem;
+  background:
+    radial-gradient(ellipse 70% 55% at 0% 0%, rgba(0, 193, 212, 0.08), transparent 55%),
+    #fff;
+}
+
 /* —— Store landing hero (PDV image | home video) —— */
 .store-landing {
   --store-ink: #0a2540;

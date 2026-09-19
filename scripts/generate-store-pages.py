@@ -15,7 +15,8 @@ INDEX = ROOT / "index.html"
 STORES_JS = ROOT / "js" / "tiendas-att-stores.js"
 OUT_DIR = ROOT / "tienda"
 
-CSS_V = "20260919a"
+CSS_V = "20260919b"
+PORTADAS_V = "20260907w"
 STORES_CSS_V = "20260917i"
 STORES_JS_V = "20260912h"
 POSPAGO_JS_V = "20260912g"  # unused on landings; keep bump for map pages separately
@@ -348,6 +349,59 @@ def build_store_floats(store: dict) -> str:
 """
 
 
+def build_portadas_section(store: dict) -> str:
+    """Three PORTADA cards (planes / equipos / esta sucursal) on every PDV landing."""
+    name = html.escape(store["name"])
+    city = html.escape(title_case(store.get("city") or ""))
+    maps = html.escape(maps_dir_url(store), quote=True)
+    v = PORTADAS_V
+    return f"""    <section class="section about-pillars store-portadas" aria-labelledby="store-portadas-title">
+      <div class="wrap">
+        <header class="section__head">
+          <p class="eyebrow">Todo para conectar contigo</p>
+          <h2 id="store-portadas-title">Lo que ofrecemos en {name}</h2>
+        </header>
+        <div class="about-pillars__grid">
+          <article class="about-card about-card--media">
+            <a class="about-card__media" href="premium.html" aria-label="Ver planes AT&amp;T Pospago">
+              <img src="assets/images/about/PORTADA2.png?v={v}" alt="YAAVS Pospago — Más que números, personas" width="1080" height="1080" loading="lazy" decoding="async">
+              <span class="about-card__shine" aria-hidden="true"></span>
+            </a>
+            <div class="about-card__body">
+              <h3>Planes AT&amp;T Pospago</h3>
+              <p>Más datos, redes sociales, llamadas y beneficios para que disfrutes tu línea como tú quieras.</p>
+              <a href="premium.html">Ver planes →</a>
+            </div>
+          </article>
+          <article class="about-card about-card--media">
+            <a class="about-card__media" href="equipos.html" aria-label="Ver promociones de equipos">
+              <img src="assets/images/about/PORTADA1.png?v={v}" alt="YAAVS Pospago — Estrena tu smartphone aquí" width="1080" height="1080" loading="lazy" decoding="async">
+              <span class="about-card__shine" aria-hidden="true"></span>
+            </a>
+            <div class="about-card__body">
+              <h3>Estrena tu smartphone aquí</h3>
+              <p>Encuentra equipos de las marcas más reconocidas y llévatelos con opciones de pago accesibles.</p>
+              <a href="equipos.html">Ver equipos →</a>
+            </div>
+          </article>
+          <article class="about-card about-card--media">
+            <a class="about-card__media" href="{maps}" target="_blank" rel="noopener" aria-label="Cómo llegar a {name}">
+              <img src="assets/images/about/PORTADA3.png?v={v}" alt="YAAVS Pospago — Sucursal AT&amp;T {name}" width="1080" height="1080" loading="lazy" decoding="async">
+              <span class="about-card__shine" aria-hidden="true"></span>
+            </a>
+            <div class="about-card__body">
+              <h3>Visítanos en {name}</h3>
+              <p>Sucursal AT&amp;T en {city}. Te asesoramos en planes, equipos, renovaciones y más.</p>
+              <a href="{maps}" target="_blank" rel="noopener">Cómo llegar →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+"""
+
+
 # Full artwork banners (shown contain / uncropped; text baked into art)
 STORE_ARTWORK_BANNERS = {
     "las-fuentes": {
@@ -557,6 +611,12 @@ def build_page(store: dict, header: str, main_shared: str, brands_footer: str, i
     header_local = inject_direct_quote(header, store)
     shared = inject_direct_quote(main_shared, store)
     shared = rewrite_seguros_cta(shared, store)
+    portadas = build_portadas_section(store)
+    marker = "<!-- SHOWCASE CELULARES"
+    if marker in shared:
+        shared = shared.replace(marker, portadas + marker, 1)
+    else:
+        shared = portadas + shared
     footer = inject_direct_quote(brands_footer, store)
     footer = simplify_store_footer(footer)
 

@@ -328,6 +328,36 @@
   transform: scale(1.02);
 }
 
+.pospago-stores__card-media {
+  display: block;
+  width: calc(100% - 1.6rem);
+  margin: 0.85rem 0.8rem 0;
+  padding: 0;
+  aspect-ratio: 16 / 5;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(0, 193, 212, 0.16), rgba(0, 159, 219, 0.08)),
+    #2a0a3d;
+  border: 1px solid rgba(0, 159, 219, 0.14);
+  text-decoration: none;
+}
+
+.pospago-stores__card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.pospago-stores__card:hover .pospago-stores__card-media img,
+.pospago-stores__card.is-active .pospago-stores__card-media img {
+  transform: scale(1.03);
+}
+
 .pospago-stores__card-main {
   display: grid;
   gap: 0.28rem;
@@ -384,6 +414,26 @@
   text-transform: uppercase;
   color: #062033;
   background: linear-gradient(115deg, #7aefff, #00c1d4);
+}
+
+.pospago-stores__page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  background: #0a2540;
+  color: #fff !important;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 8px 18px rgba(10, 37, 64, 0.22);
+}
+
+.pospago-stores__page:hover {
+  filter: brightness(1.08);
+  color: #fff !important;
 }
 
 .pospago-stores__go,
@@ -517,6 +567,17 @@
   height: 84px;
   object-fit: cover;
   display: block;
+}
+
+.pospago-stores__map-pop--banner {
+  width: 220px;
+}
+
+.pospago-stores__map-pop--banner img {
+  width: 220px;
+  height: 69px;
+  object-fit: cover;
+  object-position: center center;
 }
 
 .pospago-stores__map-pop span {
@@ -699,12 +760,17 @@
 
   .pospago-stores__go,
   .pospago-stores__card-actions a[href*="maps/dir"],
+  .pospago-stores__page,
   .pospago-stores__wa-btn {
     width: 100%;
     min-height: 44px;
     border-radius: 12px;
     padding: 0.7rem 0.55rem;
     font-size: 0.78rem;
+  }
+
+  .pospago-stores__page {
+    grid-column: 1 / -1;
   }
 
   .pospago-stores__wa-btn span {
@@ -774,4 +840,119 @@
     border-color: rgba(0, 193, 212, 0.5);
     transform: translateY(-1px);
   }
+}
+
+/* Landings livianas de sucursal (banners de fachada) */
+.store-landing .store-banner {
+  margin: 0;
+  background: #2a0a3d;
+}
+
+.store-landing .store-banner__media {
+  width: 100%;
+  aspect-ratio: 1920 / 600;
+  background: #2a0a3d;
+  overflow: hidden;
+}
+
+.store-landing .store-banner__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.store-landing .store-sheet {
+  padding: clamp(1.5rem, 4vw, 2.75rem) max(16px, 1.25rem) 3rem;
+  background:
+    radial-gradient(900px 420px at 50% 0%, rgba(0, 193, 212, 0.12), transparent 55%),
+    linear-gradient(180deg, #f3fafd 0%, #ffffff 55%);
+}
+
+.store-landing .store-sheet__card {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(1.15rem, 3vw, 1.75rem);
+  border-radius: 20px;
+  background: #fff;
+  border: 1px solid rgba(0, 159, 219, 0.14);
+  box-shadow: 0 16px 36px rgba(0, 80, 120, 0.08);
+}
+
+.store-landing .store-sheet__eyebrow {
+  margin: 0 0 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #009fdb;
+}
+
+.store-landing .store-sheet__name {
+  margin: 0 0 0.25rem;
+  font-family: var(--font-display, "Sora", sans-serif);
+  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #0b1c28;
+}
+
+.store-landing .store-sheet__city {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #009fdb;
+}
+
+.store-landing .store-sheet__meta {
+  margin: 0 0 0.55rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: #4a6270;
+}
+
+.store-landing .store-sheet__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.15rem;
+}
+
+.store-landing .store-sheet__actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.65rem 1.05rem;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.store-landing .store-sheet__map {
+  background: #00a8c8;
+  color: #fff !important;
+}
+
+.store-landing .store-sheet__go {
+  background: #009fdb;
+  color: #fff !important;
+}
+
+.store-landing .store-sheet__wa {
+  background: #25d366;
+  color: #fff !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .store-landing .store-banner__img {
+    animation: storeArtworkIn 0.85s ease both;
+  }
+}
+
+@keyframes storeArtworkIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.985); }
+  to { opacity: 1; transform: none; }
 }

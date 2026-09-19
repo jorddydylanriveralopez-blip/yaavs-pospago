@@ -15,10 +15,10 @@ INDEX = ROOT / "index.html"
 STORES_JS = ROOT / "js" / "tiendas-att-stores.js"
 OUT_DIR = ROOT / "tienda"
 
-CSS_V = "20260919b"
-PORTADAS_V = "20260907w"
+CSS_V = "20260919c"
+BANNER_V = "20260919c"
 STORES_CSS_V = "20260917i"
-STORES_JS_V = "20260912h"
+STORES_JS_V = "20260919c"
 POSPAGO_JS_V = "20260912g"  # unused on landings; keep bump for map pages separately
 HEADER_JS_V = "20260917b"
 PLANS_JS_V = "20260908ai"
@@ -349,75 +349,203 @@ def build_store_floats(store: dict) -> str:
 """
 
 
-def build_portadas_section(store: dict) -> str:
-    """Three PORTADA cards (planes / equipos / esta sucursal) on every PDV landing."""
-    name = html.escape(store["name"])
-    city = html.escape(title_case(store.get("city") or ""))
-    maps = html.escape(maps_dir_url(store), quote=True)
-    v = PORTADAS_V
-    return f"""    <section class="section about-pillars store-portadas" aria-labelledby="store-portadas-title">
-      <div class="wrap">
-        <header class="section__head">
-          <p class="eyebrow">Todo para conectar contigo</p>
-          <h2 id="store-portadas-title">Lo que ofrecemos en {name}</h2>
-        </header>
-        <div class="about-pillars__grid">
-          <article class="about-card about-card--media">
-            <a class="about-card__media" href="premium.html" aria-label="Ver planes AT&amp;T Pospago">
-              <img src="assets/images/about/PORTADA2.png?v={v}" alt="YAAVS Pospago — Más que números, personas" width="1080" height="1080" loading="lazy" decoding="async">
-              <span class="about-card__shine" aria-hidden="true"></span>
-            </a>
-            <div class="about-card__body">
-              <h3>Planes AT&amp;T Pospago</h3>
-              <p>Más datos, redes sociales, llamadas y beneficios para que disfrutes tu línea como tú quieras.</p>
-              <a href="premium.html">Ver planes →</a>
-            </div>
-          </article>
-          <article class="about-card about-card--media">
-            <a class="about-card__media" href="equipos.html" aria-label="Ver promociones de equipos">
-              <img src="assets/images/about/PORTADA1.png?v={v}" alt="YAAVS Pospago — Estrena tu smartphone aquí" width="1080" height="1080" loading="lazy" decoding="async">
-              <span class="about-card__shine" aria-hidden="true"></span>
-            </a>
-            <div class="about-card__body">
-              <h3>Estrena tu smartphone aquí</h3>
-              <p>Encuentra equipos de las marcas más reconocidas y llévatelos con opciones de pago accesibles.</p>
-              <a href="equipos.html">Ver equipos →</a>
-            </div>
-          </article>
-          <article class="about-card about-card--media">
-            <a class="about-card__media" href="{maps}" target="_blank" rel="noopener" aria-label="Cómo llegar a {name}">
-              <img src="assets/images/about/PORTADA3.png?v={v}" alt="YAAVS Pospago — Sucursal AT&amp;T {name}" width="1080" height="1080" loading="lazy" decoding="async">
-              <span class="about-card__shine" aria-hidden="true"></span>
-            </a>
-            <div class="about-card__body">
-              <h3>Visítanos en {name}</h3>
-              <p>Sucursal AT&amp;T en {city}. Te asesoramos en planes, equipos, renovaciones y más.</p>
-              <a href="{maps}" target="_blank" rel="noopener">Cómo llegar →</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-"""
-
 
 # Full artwork banners (shown contain / uncropped; text baked into art)
 STORE_ARTWORK_BANNERS = {
-    "las-fuentes": {
-        "image": "assets/stores/banners/las-fuentes.png?v=20260918a",
+    "calvillo-independencia": {
+        "image": "assets/stores/banners/calvillo-independencia.png?v=20260919c",
         "width": 1920,
         "height": 600,
-        "alt": "AT&T Las Fuentes · Santiago de Querétaro — Más que números, personas",
+        "alt": "AT&T Calvillo Independencia · Calvillo — Más que números, personas",
+    },
+    "convencion-de-1914": {
+        "image": "assets/stores/banners/convencion-de-1914.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Convencion De 1914 · Aguascalientes — Más que números, personas",
+    },
+    "jesus-maria": {
+        "image": "assets/stores/banners/jesus-maria.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Jesús María · Jesús María — Más que números, personas",
+    },
+    "pabellon-de-arteaga": {
+        "image": "assets/stores/banners/pabellon-de-arteaga.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Pabellón De Arteaga · Pabellón De Arteaga — Más que números, personas",
+    },
+    "plaza-haciendas": {
+        "image": "assets/stores/banners/plaza-haciendas.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Plaza Haciendas · Aguascalientes — Más que números, personas",
+    },
+    "plaza-patria": {
+        "image": "assets/stores/banners/plaza-patria.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Plaza Patria · Aguascalientes — Más que números, personas",
+    },
+    "plaza-santa-anita": {
+        "image": "assets/stores/banners/plaza-santa-anita.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Plaza Santa Anita · Aguascalientes — Más que números, personas",
+    },
+    "arqueros": {
+        "image": "assets/stores/banners/arqueros.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Arqueros · Aguascalientes — Más que números, personas",
+    },
+    "leandro-valle-2": {
+        "image": "assets/stores/banners/leandro-valle-2.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Leandro Valle 2 · Tula De Allende — Más que números, personas",
+    },
+    "los-heroes-chalco": {
+        "image": "assets/stores/banners/los-heroes-chalco.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Los Héroes Chalco · Chalco — Más que números, personas",
+    },
+    "nacozari-cruz-roja-tizayuca": {
+        "image": "assets/stores/banners/nacozari-cruz-roja-tizayuca.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Nacozari Cruz Roja Tizayuca · Tizayuca — Más que números, personas",
+    },
+    "plaza-bella": {
+        "image": "assets/stores/banners/plaza-bella.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Plaza Bella · Pachuca De Soto — Más que números, personas",
+    },
+    "plaza-de-la-salud": {
+        "image": "assets/stores/banners/plaza-de-la-salud.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Plaza De La Salud · Mérida — Más que números, personas",
+    },
+    "plaza-ecatepec-ii": {
+        "image": "assets/stores/banners/plaza-ecatepec-ii.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Plaza Ecatepec Ii · Ecatepec De Morelos — Más que números, personas",
+    },
+    "plaza-revo": {
+        "image": "assets/stores/banners/plaza-revo.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Plaza Revo · Pachuca De Soto — Más que números, personas",
+    },
+    "las-fuentes": {
+        "image": "assets/stores/banners/las-fuentes.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Las Fuentes · Santiago De Querétaro — Más que números, personas",
+    },
+    "domingo-arrieta": {
+        "image": "assets/stores/banners/domingo-arrieta.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Domingo Arrieta · Victoria De Durango — Más que números, personas",
+    },
+    "durango-i": {
+        "image": "assets/stores/banners/durango-i.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Durango I · Victoria De Durango — Más que números, personas",
+    },
+    "saltillo-400": {
+        "image": "assets/stores/banners/saltillo-400.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Saltillo 400 · Torreón — Más que números, personas",
+    },
+    "delta": {
+        "image": "assets/stores/banners/delta.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Delta · León — Más que números, personas",
+    },
+    "division-del-norte": {
+        "image": "assets/stores/banners/division-del-norte.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T División Del Norte · Lagos De Moreno — Más que números, personas",
+    },
+    "francisco-villa": {
+        "image": "assets/stores/banners/francisco-villa.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Francisco Villa · León — Más que números, personas",
+    },
+    "jalostotitlan-ii": {
+        "image": "assets/stores/banners/jalostotitlan-ii.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Jalostotitlán Ii · Jalostotitlán — Más que números, personas",
+    },
+    "plaza-real": {
+        "image": "assets/stores/banners/plaza-real.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Plaza Real · Silao — Más que números, personas",
+    },
+    "sanabria-panorama": {
+        "image": "assets/stores/banners/sanabria-panorama.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Sanabria Panorama · León — Más que números, personas",
+    },
+    "centro-comercial-el-dorado": {
+        "image": "assets/stores/banners/centro-comercial-el-dorado.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Centro Comercial El Dorado · San Luis Potosí — Más que números, personas",
+    },
+    "ksk-plaza-sendero": {
+        "image": "assets/stores/banners/ksk-plaza-sendero.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Ksk Plaza Sendero · San Luis Potosí — Más que números, personas",
+    },
+    "matehuala-centro-iii": {
+        "image": "assets/stores/banners/matehuala-centro-iii.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Matehuala Centro Iii · Matehuala — Más que números, personas",
+    },
+    "plaza-electro-del-carmen": {
+        "image": "assets/stores/banners/plaza-electro-del-carmen.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Plaza Electro Del Carmen · San Luis Potosí — Más que números, personas",
     },
     "plaza-norte": {
-        "image": "assets/stores/banners/plaza-norte.png?v=20260918a",
+        "image": "assets/stores/banners/plaza-norte.png?v=20260919c",
         "width": 1920,
         "height": 600,
-        "alt": "AT&T Plaza Norte · Soledad de Graciano — Más que números, personas",
+        "alt": "AT&T Plaza Norte · Soledad De Graciano Sánchez — Más que números, personas",
+    },
+    "rio-verde": {
+        "image": "assets/stores/banners/rio-verde.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Río Verde · Río Verde — Más que números, personas",
+    },
+    "walmart-arboledas-ii": {
+        "image": "assets/stores/banners/walmart-arboledas-ii.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Walmart Arboledas Ii · Matehuala — Más que números, personas",
     },
     "walmart-munoz": {
-        "image": "assets/stores/banners/walmart-munoz.png?v=20260918a",
+        "image": "assets/stores/banners/walmart-munoz.png?v=20260919c",
         "width": 1920,
         "height": 600,
         "alt": "AT&T Walmart Muñoz · San Luis Potosí — Más que números, personas",
@@ -428,8 +556,18 @@ STORE_ARTWORK_BANNERS = {
 def build_hero(store: dict, index: int = 0) -> str:
     name = html.escape(store["name"])
     state = html.escape(title_case(store["state"]))
+    city = html.escape(title_case(store.get("city") or ""))
     slug = store.get("slug") or ""
     artwork = STORE_ARTWORK_BANNERS.get(slug)
+    if not artwork and slug:
+        banner_path = ROOT / "assets" / "stores" / "banners" / f"{slug}.png"
+        if banner_path.is_file():
+            artwork = {
+                "image": f"assets/stores/banners/{slug}.png?v={BANNER_V}",
+                "width": 1920,
+                "height": 600,
+                "alt": f"AT&T {store['name']} · {store.get('city') or ''} — Más que números, personas",
+            }
     theme = store_theme(store, index)
     style = (
         f"--store-accent:{theme['accent']};"
@@ -611,12 +749,6 @@ def build_page(store: dict, header: str, main_shared: str, brands_footer: str, i
     header_local = inject_direct_quote(header, store)
     shared = inject_direct_quote(main_shared, store)
     shared = rewrite_seguros_cta(shared, store)
-    portadas = build_portadas_section(store)
-    marker = "<!-- SHOWCASE CELULARES"
-    if marker in shared:
-        shared = shared.replace(marker, portadas + marker, 1)
-    else:
-        shared = portadas + shared
     footer = inject_direct_quote(brands_footer, store)
     footer = simplify_store_footer(footer)
 

@@ -15,7 +15,7 @@ INDEX = ROOT / "index.html"
 STORES_JS = ROOT / "js" / "tiendas-att-stores.js"
 OUT_DIR = ROOT / "tienda"
 
-CSS_V = "20260919d"
+CSS_V = "20260921i"
 BANNER_V = "20260919c"
 STORES_CSS_V = "20260917i"
 STORES_JS_V = "20260919d"
@@ -280,6 +280,32 @@ def build_store_hours_float(store: dict) -> str:
         f'      <p class="store-hours-float__address">{address}</p>\n' if address else ""
     )
 
+    contact_bits = []
+    manager = str(store.get("manager") or "").strip()
+    phone_raw = str(store.get("managerPhone") or "").strip()
+    email = str(store.get("managerEmail") or store.get("email") or "").strip()
+    if manager:
+        contact_bits.append(
+            f'      <p class="store-hours-float__contact"><span>Gerente</span> {html.escape(manager)}</p>\n'
+        )
+    if phone_raw:
+        digits = re.sub(r"\D", "", phone_raw)
+        display = phone_raw
+        if digits.startswith("52") and len(digits) >= 12:
+            local = digits[2:]
+            display = f"{local[0:3]} {local[3:6]} {local[6:]}" if len(local) == 10 else local
+        tel_href = html.escape(f"tel:+{digits}" if digits else f"tel:{phone_raw}", quote=True)
+        contact_bits.append(
+            f'      <p class="store-hours-float__contact"><span>Teléfono</span> '
+            f'<a href="{tel_href}">{html.escape(display)}</a></p>\n'
+        )
+    if email:
+        contact_bits.append(
+            f'      <p class="store-hours-float__contact"><span>Correo</span> '
+            f'<a href="mailto:{html.escape(email, quote=True)}">{html.escape(email)}</a></p>\n'
+        )
+    contact_html = "".join(contact_bits)
+
     return f"""  <aside class="store-hours-float is-open" data-store-hours-float data-store-hours="{hours_attr}" aria-label="Horario de {name}">
     <button type="button" class="store-hours-float__toggle" data-hours-toggle aria-expanded="true" aria-controls="store-hours-panel">
       <span class="store-hours-float__clock" aria-hidden="true">
@@ -294,7 +320,7 @@ def build_store_hours_float(store: dict) -> str:
       <p class="store-hours-float__eyebrow">Horario de atención</p>
       <p class="store-hours-float__name">{name}</p>
       <p class="store-hours-float__city">{city}</p>
-{address_html}      <p class="store-hours-float__status" data-hours-status>Consultando horario…</p>
+{address_html}{contact_html}      <p class="store-hours-float__status" data-hours-status>Consultando horario…</p>
       <ul class="store-hours-float__list">
 {rows_html}
       </ul>
@@ -309,16 +335,42 @@ def build_store_floats(store: dict) -> str:
     waze = html.escape(waze_dir_url(store), quote=True)
     fb = facebook_url(store)
 
-    fb_float = ""
+    extras = []
     if fb:
-        fb_float = f"""    <a class="store-float__btn store-float__btn--fb" href="{html.escape(fb, quote=True)}" target="_blank" rel="noopener" aria-label="Facebook de {name}">
+        extras.append(
+            f"""    <a class="store-float__btn store-float__btn--fb" href="{html.escape(fb, quote=True)}" target="_blank" rel="noopener" aria-label="Facebook de {name}">
       <span class="store-float__label">Facebook</span>
       <svg class="store-float__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M14 8h2.5V4.5H14c-2.2 0-3.5 1.5-3.5 3.7V10H8v3.5h2.5V20H14v-6.5h2.3L17 10h-3V8.4c0-.5.2-.9.9-.9z"/></svg>
     </a>
 """
+        )
+
+    phone_digits = re.sub(r"\D", "", str(store.get("managerPhone") or ""))
+    if phone_digits:
+        wa_msg = quote(f"Hola, vi la sucursal {store['name']} en YAAVS Pospago y quiero información de planes AT&T.")
+        wa_href = html.escape(f"https://wa.me/{phone_digits}?text={wa_msg}", quote=True)
+        extras.append(
+            f"""    <a class="store-float__btn store-float__btn--wa" href="{wa_href}" target="_blank" rel="noopener" aria-label="WhatsApp de {name}">
+      <span class="store-float__label">WhatsApp</span>
+      <svg class="store-float__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+"""
+        )
+
+    email = str(store.get("managerEmail") or store.get("email") or "").strip()
+    if email:
+        extras.append(
+            f"""    <a class="store-float__btn store-float__btn--mail" href="mailto:{html.escape(email, quote=True)}" aria-label="Correo de {name}">
+      <span class="store-float__label">Correo</span>
+      <svg class="store-float__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
+    </a>
+"""
+        )
+
+    extras_html = "".join(extras)
 
     return f"""{build_store_hours_float(store)}  <div class="store-float" aria-label="Accesos de la sucursal">
-{fb_float}    <div class="store-float__nav" data-store-nav>
+{extras_html}    <div class="store-float__nav" data-store-nav>
       <button type="button" class="store-float__btn store-float__btn--maps" data-store-nav-toggle aria-expanded="false" aria-haspopup="true" aria-controls="store-nav-menu" aria-label="Cómo llegar a {name}">
         <span class="store-float__label">Cómo llegar</span>
         <svg class="store-float__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
@@ -467,13 +519,13 @@ STORE_ARTWORK_BANNERS = {
         "alt": "AT&T Durango I · Victoria De Durango — Más que números, personas",
     },
     "saltillo-400": {
-        "image": "assets/stores/banners/campestre-la-rosita.png?v=20260921h",
+        "image": "assets/stores/banners/campestre-la-rosita.png?v=20260921i",
         "width": 1920,
         "height": 600,
         "alt": "AT&T Campestre La Rosita · Torreón — Más que números, personas",
     },
     "campestre-la-rosita": {
-        "image": "assets/stores/banners/campestre-la-rosita.png?v=20260921h",
+        "image": "assets/stores/banners/campestre-la-rosita.png?v=20260921i",
         "width": 1920,
         "height": 600,
         "alt": "AT&T Campestre La Rosita · Torreón — Más que números, personas",

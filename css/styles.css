@@ -11328,6 +11328,29 @@ body.is-nav-open .site-header {
   color: rgba(10, 37, 64, 0.62);
 }
 
+.store-hours-float__contact {
+  margin: 0 0 0.28rem;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.74rem;
+  line-height: 1.35;
+  color: rgba(10, 37, 64, 0.78);
+}
+
+.store-hours-float__contact span {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(0, 159, 219, 0.9);
+}
+
+.store-hours-float__contact a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 /* Promo video below the store banner — full frame, no crop */
 .store-video {
   position: relative;
@@ -11880,6 +11903,22 @@ body:has(.cookie-notice.is-visible).store-landing .wa-float {
     storeFloatBob 2.8s ease-in-out infinite,
     storeFloatRingFb 2.4s ease-out infinite;
   animation-delay: 0.45s, 0.8s;
+}
+
+.store-float__btn--wa {
+  background: linear-gradient(145deg, #2fe06d 0%, #1fad4f 100%);
+  animation:
+    storeFloatBob 2.8s ease-in-out infinite,
+    storeFloatRingFb 2.4s ease-out infinite;
+  animation-delay: 0.7s, 1s;
+}
+
+.store-float__btn--mail {
+  background: linear-gradient(145deg, #38bdf8 0%, #0284c7 100%);
+  animation:
+    storeFloatBob 2.8s ease-in-out infinite,
+    storeFloatRingFb 2.4s ease-out infinite;
+  animation-delay: 0.95s, 1.2s;
 }
 
 .store-float__btn:hover {

@@ -15,9 +15,10 @@ INDEX = ROOT / "index.html"
 STORES_JS = ROOT / "js" / "tiendas-att-stores.js"
 OUT_DIR = ROOT / "tienda"
 
-CSS_V = "20260919a"
+CSS_V = "20260921i"
+BANNER_V = "20260919c"
 STORES_CSS_V = "20260917i"
-STORES_JS_V = "20260912h"
+STORES_JS_V = "20260919d"
 POSPAGO_JS_V = "20260912g"  # unused on landings; keep bump for map pages separately
 HEADER_JS_V = "20260917b"
 PLANS_JS_V = "20260908ai"
@@ -279,6 +280,32 @@ def build_store_hours_float(store: dict) -> str:
         f'      <p class="store-hours-float__address">{address}</p>\n' if address else ""
     )
 
+    contact_bits = []
+    manager = str(store.get("manager") or "").strip()
+    phone_raw = str(store.get("managerPhone") or "").strip()
+    email = str(store.get("managerEmail") or store.get("email") or "").strip()
+    if manager:
+        contact_bits.append(
+            f'      <p class="store-hours-float__contact"><span>Gerente</span> {html.escape(manager)}</p>\n'
+        )
+    if phone_raw:
+        digits = re.sub(r"\D", "", phone_raw)
+        display = phone_raw
+        if digits.startswith("52") and len(digits) >= 12:
+            local = digits[2:]
+            display = f"{local[0:3]} {local[3:6]} {local[6:]}" if len(local) == 10 else local
+        tel_href = html.escape(f"tel:+{digits}" if digits else f"tel:{phone_raw}", quote=True)
+        contact_bits.append(
+            f'      <p class="store-hours-float__contact"><span>Teléfono</span> '
+            f'<a href="{tel_href}">{html.escape(display)}</a></p>\n'
+        )
+    if email:
+        contact_bits.append(
+            f'      <p class="store-hours-float__contact"><span>Correo</span> '
+            f'<a href="mailto:{html.escape(email, quote=True)}">{html.escape(email)}</a></p>\n'
+        )
+    contact_html = "".join(contact_bits)
+
     return f"""  <aside class="store-hours-float is-open" data-store-hours-float data-store-hours="{hours_attr}" aria-label="Horario de {name}">
     <button type="button" class="store-hours-float__toggle" data-hours-toggle aria-expanded="true" aria-controls="store-hours-panel">
       <span class="store-hours-float__clock" aria-hidden="true">
@@ -293,7 +320,7 @@ def build_store_hours_float(store: dict) -> str:
       <p class="store-hours-float__eyebrow">Horario de atención</p>
       <p class="store-hours-float__name">{name}</p>
       <p class="store-hours-float__city">{city}</p>
-{address_html}      <p class="store-hours-float__status" data-hours-status>Consultando horario…</p>
+{address_html}{contact_html}      <p class="store-hours-float__status" data-hours-status>Consultando horario…</p>
       <ul class="store-hours-float__list">
 {rows_html}
       </ul>
@@ -308,16 +335,42 @@ def build_store_floats(store: dict) -> str:
     waze = html.escape(waze_dir_url(store), quote=True)
     fb = facebook_url(store)
 
-    fb_float = ""
+    extras = []
     if fb:
-        fb_float = f"""    <a class="store-float__btn store-float__btn--fb" href="{html.escape(fb, quote=True)}" target="_blank" rel="noopener" aria-label="Facebook de {name}">
+        extras.append(
+            f"""    <a class="store-float__btn store-float__btn--fb" href="{html.escape(fb, quote=True)}" target="_blank" rel="noopener" aria-label="Facebook de {name}">
       <span class="store-float__label">Facebook</span>
       <svg class="store-float__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M14 8h2.5V4.5H14c-2.2 0-3.5 1.5-3.5 3.7V10H8v3.5h2.5V20H14v-6.5h2.3L17 10h-3V8.4c0-.5.2-.9.9-.9z"/></svg>
     </a>
 """
+        )
+
+    phone_digits = re.sub(r"\D", "", str(store.get("managerPhone") or ""))
+    if phone_digits:
+        wa_msg = quote(f"Hola, vi la sucursal {store['name']} en YAAVS Pospago y quiero información de planes AT&T.")
+        wa_href = html.escape(f"https://wa.me/{phone_digits}?text={wa_msg}", quote=True)
+        extras.append(
+            f"""    <a class="store-float__btn store-float__btn--wa" href="{wa_href}" target="_blank" rel="noopener" aria-label="WhatsApp de {name}">
+      <span class="store-float__label">WhatsApp</span>
+      <svg class="store-float__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+"""
+        )
+
+    email = str(store.get("managerEmail") or store.get("email") or "").strip()
+    if email:
+        extras.append(
+            f"""    <a class="store-float__btn store-float__btn--mail" href="mailto:{html.escape(email, quote=True)}" aria-label="Correo de {name}">
+      <span class="store-float__label">Correo</span>
+      <svg class="store-float__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
+    </a>
+"""
+        )
+
+    extras_html = "".join(extras)
 
     return f"""{build_store_hours_float(store)}  <div class="store-float" aria-label="Accesos de la sucursal">
-{fb_float}    <div class="store-float__nav" data-store-nav>
+{extras_html}    <div class="store-float__nav" data-store-nav>
       <button type="button" class="store-float__btn store-float__btn--maps" data-store-nav-toggle aria-expanded="false" aria-haspopup="true" aria-controls="store-nav-menu" aria-label="Cómo llegar a {name}">
         <span class="store-float__label">Cómo llegar</span>
         <svg class="store-float__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
@@ -348,22 +401,215 @@ def build_store_floats(store: dict) -> str:
 """
 
 
+
 # Full artwork banners (shown contain / uncropped; text baked into art)
 STORE_ARTWORK_BANNERS = {
-    "las-fuentes": {
-        "image": "assets/stores/banners/las-fuentes.png?v=20260918a",
+    "calvillo-independencia": {
+        "image": "assets/stores/banners/calvillo-independencia.png?v=20260919c",
         "width": 1920,
         "height": 600,
-        "alt": "AT&T Las Fuentes · Santiago de Querétaro — Más que números, personas",
+        "alt": "AT&T Calvillo Independencia · Calvillo — Más que números, personas",
+    },
+    "convencion-de-1914": {
+        "image": "assets/stores/banners/convencion-de-1914.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Convencion De 1914 · Aguascalientes — Más que números, personas",
+    },
+    "jesus-maria": {
+        "image": "assets/stores/banners/jesus-maria.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Jesús María · Jesús María — Más que números, personas",
+    },
+    "pabellon-de-arteaga": {
+        "image": "assets/stores/banners/pabellon-de-arteaga.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Pabellón De Arteaga · Pabellón De Arteaga — Más que números, personas",
+    },
+    "plaza-haciendas": {
+        "image": "assets/stores/banners/plaza-haciendas.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Plaza Haciendas · Aguascalientes — Más que números, personas",
+    },
+    "plaza-patria": {
+        "image": "assets/stores/banners/plaza-patria.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Plaza Patria · Aguascalientes — Más que números, personas",
+    },
+    "plaza-santa-anita": {
+        "image": "assets/stores/banners/plaza-santa-anita.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Plaza Santa Anita · Aguascalientes — Más que números, personas",
+    },
+    "arqueros": {
+        "image": "assets/stores/banners/arqueros.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Arqueros · Aguascalientes — Más que números, personas",
+    },
+    "leandro-valle-2": {
+        "image": "assets/stores/banners/leandro-valle-2.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Leandro Valle 2 · Tula De Allende — Más que números, personas",
+    },
+    "los-heroes-chalco": {
+        "image": "assets/stores/banners/los-heroes-chalco.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Los Héroes Chalco · Chalco — Más que números, personas",
+    },
+    "nacozari-cruz-roja-tizayuca": {
+        "image": "assets/stores/banners/nacozari-cruz-roja-tizayuca.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Nacozari Cruz Roja Tizayuca · Tizayuca — Más que números, personas",
+    },
+    "plaza-bella": {
+        "image": "assets/stores/banners/plaza-bella.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Plaza Bella · Pachuca De Soto — Más que números, personas",
+    },
+    "plaza-de-la-salud": {
+        "image": "assets/stores/banners/plaza-de-la-salud.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Plaza De La Salud · Mérida — Más que números, personas",
+    },
+    "plaza-ecatepec-ii": {
+        "image": "assets/stores/banners/plaza-ecatepec-ii.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Plaza Ecatepec Ii · Ecatepec De Morelos — Más que números, personas",
+    },
+    "plaza-revo": {
+        "image": "assets/stores/banners/plaza-revo.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Plaza Revo · Pachuca De Soto — Más que números, personas",
+    },
+    "las-fuentes": {
+        "image": "assets/stores/banners/las-fuentes.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Las Fuentes · Santiago De Querétaro — Más que números, personas",
+    },
+    "plaza-del-rio": {
+        "image": "assets/stores/banners/plaza-del-rio.png?v=20260921e",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Plaza Del Río · San Juan Del Río — Más que números, personas",
+    },
+    "domingo-arrieta": {
+        "image": "assets/stores/banners/domingo-arrieta.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Domingo Arrieta · Victoria De Durango — Más que números, personas",
+    },
+    "durango-i": {
+        "image": "assets/stores/banners/durango-i.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Durango I · Victoria De Durango — Más que números, personas",
+    },
+    "saltillo-400": {
+        "image": "assets/stores/banners/campestre-la-rosita.png?v=20260921i",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Campestre La Rosita · Torreón — Más que números, personas",
+    },
+    "campestre-la-rosita": {
+        "image": "assets/stores/banners/campestre-la-rosita.png?v=20260921i",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Campestre La Rosita · Torreón — Más que números, personas",
+    },
+    "delta": {
+        "image": "assets/stores/banners/delta.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Delta · León — Más que números, personas",
+    },
+    "division-del-norte": {
+        "image": "assets/stores/banners/division-del-norte.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T División Del Norte · Lagos De Moreno — Más que números, personas",
+    },
+    "francisco-villa": {
+        "image": "assets/stores/banners/francisco-villa.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Francisco Villa · León — Más que números, personas",
+    },
+    "jalostotitlan-ii": {
+        "image": "assets/stores/banners/jalostotitlan-ii.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Jalostotitlán Ii · Jalostotitlán — Más que números, personas",
+    },
+    "plaza-real": {
+        "image": "assets/stores/banners/plaza-real.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Plaza Real · Silao — Más que números, personas",
+    },
+    "sanabria-panorama": {
+        "image": "assets/stores/banners/sanabria-panorama.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Sanabria Panorama · León — Más que números, personas",
+    },
+    "centro-comercial-el-dorado": {
+        "image": "assets/stores/banners/centro-comercial-el-dorado.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Centro Comercial El Dorado · San Luis Potosí — Más que números, personas",
+    },
+    "ksk-plaza-sendero": {
+        "image": "assets/stores/banners/ksk-plaza-sendero.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Ksk Plaza Sendero · San Luis Potosí — Más que números, personas",
+    },
+    "matehuala-centro-iii": {
+        "image": "assets/stores/banners/matehuala-centro-iii.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Matehuala Centro Iii · Matehuala — Más que números, personas",
+    },
+    "plaza-electro-del-carmen": {
+        "image": "assets/stores/banners/plaza-electro-del-carmen.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Plaza Electro Del Carmen · San Luis Potosí — Más que números, personas",
     },
     "plaza-norte": {
-        "image": "assets/stores/banners/plaza-norte.png?v=20260918a",
+        "image": "assets/stores/banners/plaza-norte.png?v=20260919c",
         "width": 1920,
         "height": 600,
-        "alt": "AT&T Plaza Norte · Soledad de Graciano — Más que números, personas",
+        "alt": "AT&T Plaza Norte · Soledad De Graciano Sánchez — Más que números, personas",
+    },
+    "rio-verde": {
+        "image": "assets/stores/banners/rio-verde.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Río Verde · Río Verde — Más que números, personas",
+    },
+    "walmart-arboledas-ii": {
+        "image": "assets/stores/banners/walmart-arboledas-ii.png?v=20260919c",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Walmart Arboledas Ii · Matehuala — Más que números, personas",
     },
     "walmart-munoz": {
-        "image": "assets/stores/banners/walmart-munoz.png?v=20260918a",
+        "image": "assets/stores/banners/walmart-munoz.png?v=20260919c",
         "width": 1920,
         "height": 600,
         "alt": "AT&T Walmart Muñoz · San Luis Potosí — Más que números, personas",
@@ -374,8 +620,18 @@ STORE_ARTWORK_BANNERS = {
 def build_hero(store: dict, index: int = 0) -> str:
     name = html.escape(store["name"])
     state = html.escape(title_case(store["state"]))
+    city = html.escape(title_case(store.get("city") or ""))
     slug = store.get("slug") or ""
     artwork = STORE_ARTWORK_BANNERS.get(slug)
+    if not artwork and slug:
+        banner_path = ROOT / "assets" / "stores" / "banners" / f"{slug}.png"
+        if banner_path.is_file():
+            artwork = {
+                "image": f"assets/stores/banners/{slug}.png?v={BANNER_V}",
+                "width": 1920,
+                "height": 600,
+                "alt": f"AT&T {store['name']} · {store.get('city') or ''} — Más que números, personas",
+            }
     theme = store_theme(store, index)
     style = (
         f"--store-accent:{theme['accent']};"
@@ -570,7 +826,7 @@ def build_page(store: dict, header: str, main_shared: str, brands_footer: str, i
   <meta property="og:title" content="{html.escape(title)}">
   <meta property="og:description" content="{html.escape(desc)}">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="{html.escape(store.get('image') or '')}">
+  <meta property="og:image" content="{html.escape(store.get('banner') or store.get('image') or '')}">
   <title>{html.escape(title)}</title>
   <base href="/">
   <link rel="preconnect" href="https://fonts.googleapis.com">

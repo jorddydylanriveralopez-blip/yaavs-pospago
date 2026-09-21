@@ -12,9 +12,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "524951043334",
     "state": "AGUASCALIENTES",
     "facebook": "https://www.facebook.com/ATTAguascalientesCalvilloIndependencia",
-    "image": "assets/stores/fachadas/att-01-aguascalientes-calvillo-independencia.jpg",
+    "image": "assets/stores/fachadas/att-01-aguascalientes-calvillo-independencia.jpg?v=20260919f",
     "slug": "calvillo-independencia",
-    "page": "tienda/calvillo-independencia.html"
+    "page": "tienda/calvillo-independencia.html",
+    "banner": "assets/stores/banners/calvillo-independencia.png?v=20260919f"
   },
   {
     "id": "att-02-aguascalientes",
@@ -29,9 +30,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "524494927946",
     "state": "AGUASCALIENTES",
     "facebook": "https://www.facebook.com/ATTAguascalientesConvencionDe1914",
-    "image": "assets/stores/fachadas/att-02-aguascalientes-convencion-de-1914.jpg",
+    "image": "assets/stores/fachadas/att-02-aguascalientes-convencion-de-1914.jpg?v=20260919f",
     "slug": "convencion-de-1914",
-    "page": "tienda/convencion-de-1914.html"
+    "page": "tienda/convencion-de-1914.html",
+    "banner": "assets/stores/banners/convencion-de-1914.png?v=20260919f"
   },
   {
     "id": "att-03-aguascalientes",
@@ -46,9 +48,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "523327093570",
     "state": "AGUASCALIENTES",
     "facebook": "https://www.facebook.com/ATTAguascalientesJesusMaria",
-    "image": "assets/stores/fachadas/att-03-aguascalientes-jesus-maria.jpg",
+    "image": "assets/stores/fachadas/att-03-aguascalientes-jesus-maria.jpg?v=20260919f",
     "slug": "jesus-maria",
-    "page": "tienda/jesus-maria.html"
+    "page": "tienda/jesus-maria.html",
+    "banner": "assets/stores/banners/jesus-maria.png?v=20260919f"
   },
   {
     "id": "att-04-aguascalientes",
@@ -63,9 +66,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "524651219358",
     "state": "AGUASCALIENTES",
     "facebook": "https://www.facebook.com/ATTAguascalientesPabellonDeArteaga",
-    "image": "assets/stores/fachadas/att-04-aguascalientes-pabellon-de-arteaga.jpg",
+    "image": "assets/stores/fachadas/att-04-aguascalientes-pabellon-de-arteaga.jpg?v=20260919f",
     "slug": "pabellon-de-arteaga",
-    "page": "tienda/pabellon-de-arteaga.html"
+    "page": "tienda/pabellon-de-arteaga.html",
+    "banner": "assets/stores/banners/pabellon-de-arteaga.png?v=20260919f"
   },
   {
     "id": "att-05-aguascalientes",
@@ -80,9 +84,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "524932762927",
     "state": "AGUASCALIENTES",
     "facebook": "https://www.facebook.com/ATTAguascalientesPlazaHaciendas",
-    "image": "assets/stores/fachadas/att-05-aguascalientes-plaza-haciendas.jpg",
+    "image": "assets/stores/fachadas/att-05-aguascalientes-plaza-haciendas.jpg?v=20260919f",
     "slug": "plaza-haciendas",
-    "page": "tienda/plaza-haciendas.html"
+    "page": "tienda/plaza-haciendas.html",
+    "banner": "assets/stores/banners/plaza-haciendas.png?v=20260919f"
   },
   {
     "id": "att-06-aguascalientes",
@@ -97,9 +102,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "524498928630",
     "state": "AGUASCALIENTES",
     "facebook": "https://www.facebook.com/ATTAguascalientesPlazaPatria",
-    "image": "assets/stores/fachadas/att-06-aguascalientes-plaza-patria.jpg",
+    "image": "assets/stores/fachadas/att-06-aguascalientes-plaza-patria.jpg?v=20260919f",
     "slug": "plaza-patria",
-    "page": "tienda/plaza-patria.html"
+    "page": "tienda/plaza-patria.html",
+    "banner": "assets/stores/banners/plaza-patria.png?v=20260919f"
   },
   {
     "id": "att-07-aguascalientes",
@@ -114,9 +120,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "525581001454",
     "state": "AGUASCALIENTES",
     "facebook": "https://www.facebook.com/ATTAguascalientesPlazaSantaAnita",
-    "image": "assets/stores/fachadas/att-07-aguascalientes-plaza-santa-anita.jpg",
+    "image": "assets/stores/fachadas/att-07-aguascalientes-plaza-santa-anita.jpg?v=20260919f",
     "slug": "plaza-santa-anita",
-    "page": "tienda/plaza-santa-anita.html"
+    "page": "tienda/plaza-santa-anita.html",
+    "banner": "assets/stores/banners/plaza-santa-anita.png?v=20260919f"
   },
   {
     "id": "att-08-aguascalientes",
@@ -131,9 +138,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "524494049842",
     "state": "AGUASCALIENTES",
     "facebook": "https://www.facebook.com/ATTAguascalientesArqueros",
-    "image": "assets/stores/fachadas/att-08-aguascalientes-arqueros.jpg",
+    "image": "assets/stores/fachadas/att-08-aguascalientes-arqueros.jpg?v=20260919f",
     "slug": "arqueros",
-    "page": "tienda/arqueros.html"
+    "page": "tienda/arqueros.html",
+    "banner": "assets/stores/banners/arqueros.png?v=20260919f"
   },
   {
     "id": "att-09-centro",
@@ -148,9 +156,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "527733677484",
     "state": "HIDALGO",
     "facebook": "https://www.facebook.com/ATTHidalgoLeandroValle2",
-    "image": "assets/stores/fachadas/att-09-centro-leandro-valle-2.jpg",
+    "image": "assets/stores/fachadas/att-09-centro-leandro-valle-2.jpg?v=20260919f",
     "slug": "leandro-valle-2",
-    "page": "tienda/leandro-valle-2.html"
+    "page": "tienda/leandro-valle-2.html",
+    "banner": "assets/stores/banners/leandro-valle-2.png?v=20260919f"
   },
   {
     "id": "att-10-centro",
@@ -165,9 +174,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "525587860343",
     "state": "ESTADO DE MÉXICO",
     "facebook": "https://www.facebook.com/ATTEdomexLosHeroesChalco",
-    "image": "assets/stores/fachadas/att-10-centro-los-heroes-chalco.jpg",
+    "image": "assets/stores/fachadas/att-10-centro-los-heroes-chalco.jpg?v=20260919f",
     "slug": "los-heroes-chalco",
-    "page": "tienda/los-heroes-chalco.html"
+    "page": "tienda/los-heroes-chalco.html",
+    "banner": "assets/stores/banners/los-heroes-chalco.png?v=20260919f"
   },
   {
     "id": "att-11-centro",
@@ -182,9 +192,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "527711930032",
     "state": "HIDALGO",
     "facebook": "https://www.facebook.com/ATTHidalgoNacozariCruzRojaTizayuca",
-    "image": "assets/stores/fachadas/att-11-centro-nacozari-cruz-roja-tizayuca.jpg",
+    "image": "assets/stores/fachadas/att-11-centro-nacozari-cruz-roja-tizayuca.jpg?v=20260919f",
     "slug": "nacozari-cruz-roja-tizayuca",
-    "page": "tienda/nacozari-cruz-roja-tizayuca.html"
+    "page": "tienda/nacozari-cruz-roja-tizayuca.html",
+    "banner": "assets/stores/banners/nacozari-cruz-roja-tizayuca.png?v=20260919f"
   },
   {
     "id": "att-12-centro",
@@ -199,9 +210,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "527712243995",
     "state": "HIDALGO",
     "facebook": "https://www.facebook.com/ATTHidalgoPlazaBella",
-    "image": "assets/stores/fachadas/att-12-centro-plaza-bella.jpg",
+    "image": "assets/stores/fachadas/att-12-centro-plaza-bella.jpg?v=20260919f",
     "slug": "plaza-bella",
-    "page": "tienda/plaza-bella.html"
+    "page": "tienda/plaza-bella.html",
+    "banner": "assets/stores/banners/plaza-bella.png?v=20260919f"
   },
   {
     "id": "att-13-prepago",
@@ -216,9 +228,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "529997925402",
     "state": "YUCATÁN",
     "facebook": "https://www.facebook.com/attrealmontejo",
-    "image": "assets/stores/fachadas/att-13-prepago-plaza-de-la-salud.jpg",
+    "image": "assets/stores/fachadas/att-13-prepago-plaza-de-la-salud.jpg?v=20260919f",
     "slug": "plaza-de-la-salud",
-    "page": "tienda/plaza-de-la-salud.html"
+    "page": "tienda/plaza-de-la-salud.html",
+    "banner": "assets/stores/banners/plaza-de-la-salud.png?v=20260919f"
   },
   {
     "id": "att-14-centro",
@@ -233,9 +246,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "525519830639",
     "state": "ESTADO DE MÉXICO",
     "facebook": "https://www.facebook.com/ATTEdomexPlazaEcatepecII",
-    "image": "assets/stores/fachadas/att-14-centro-plaza-ecatepec-ii.jpg",
+    "image": "assets/stores/fachadas/att-14-centro-plaza-ecatepec-ii.jpg?v=20260919f",
     "slug": "plaza-ecatepec-ii",
-    "page": "tienda/plaza-ecatepec-ii.html"
+    "page": "tienda/plaza-ecatepec-ii.html",
+    "banner": "assets/stores/banners/plaza-ecatepec-ii.png?v=20260919f"
   },
   {
     "id": "att-15-centro",
@@ -250,9 +264,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "527717631361",
     "state": "HIDALGO",
     "facebook": "https://www.facebook.com/ATTHidalgoPlazaRevo",
-    "image": "assets/stores/fachadas/att-15-centro-plaza-revo.jpg",
+    "image": "assets/stores/fachadas/att-15-centro-plaza-revo.jpg?v=20260919f",
     "slug": "plaza-revo",
-    "page": "tienda/plaza-revo.html"
+    "page": "tienda/plaza-revo.html",
+    "banner": "assets/stores/banners/plaza-revo.png?v=20260919f"
   },
   {
     "id": "att-16-centro",
@@ -267,9 +282,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "523321077526",
     "state": "QUERÉTARO",
     "facebook": "https://www.facebook.com/ATTQueretaroLasFuentes",
-    "image": "assets/stores/banners/las-fuentes.png",
+    "image": "assets/stores/fachadas/att-16-centro-las-fuentes.jpg?v=20260919f",
     "slug": "las-fuentes",
-    "page": "tienda/las-fuentes.html"
+    "page": "tienda/las-fuentes.html",
+    "banner": "assets/stores/banners/las-fuentes.png?v=20260919f"
   },
   {
     "id": "att-18-durango",
@@ -284,9 +300,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "526184936732",
     "state": "DURANGO",
     "facebook": "https://www.facebook.com/ATTDurangoDomingoArrieta",
-    "image": "assets/stores/fachadas/att-18-durango-domingo-arrieta.jpg",
+    "image": "assets/stores/fachadas/att-18-durango-domingo-arrieta.jpg?v=20260919f",
     "slug": "domingo-arrieta",
-    "page": "tienda/domingo-arrieta.html"
+    "page": "tienda/domingo-arrieta.html",
+    "banner": "assets/stores/banners/domingo-arrieta.png?v=20260919f"
   },
   {
     "id": "att-19-durango",
@@ -301,25 +318,29 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "526561282215",
     "state": "DURANGO",
     "facebook": "https://www.facebook.com/ATTDurangoI",
-    "image": "assets/stores/fachadas/att-19-durango-durango-i.jpg",
+    "image": "assets/stores/fachadas/att-19-durango-durango-i.jpg?v=20260919f",
     "slug": "durango-i",
-    "page": "tienda/durango-i.html"
+    "page": "tienda/durango-i.html",
+    "banner": "assets/stores/banners/durango-i.png?v=20260919f"
   },
   {
-    "id": "att-20-durango",
-    "name": "SALTILLO 400",
+    "id": "att-20-coahuila",
+    "name": "CAMPESTRE LA ROSITA",
     "city": "TORREÓN",
-    "address": "CALZADA SALTILLO 400 N°809 C Y 809 D, FRACC. RESIDENCIAL CAMPESTRE LA ROSITA, C.P. 27250; CD. TORREÓN, COAHUILA",
-    "lat": 25.519647762399636,
-    "lng": -103.40622492913485,
-    "mapsLink": "https://maps.app.goo.gl/Uc769MVXUMZnkbGX9",
+    "address": "AV. CALZADA SALTILLO 400 N°515 \"B\", COL. CAMPESTRE LA NUEVA ROSITA, C.P.27250; CD. TORREÓN, COAHUILA",
+    "lat": 25.5311171,
+    "lng": -103.405971,
+    "mapsLink": "https://www.google.com/maps/search/?api=1&query=AV.+CALZADA+SALTILLO+400+515+B+CAMPESTRE+LA+NUEVA+ROSITA+27250+TORRE%C3%93N+COAHUILA",
     "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 08:00 · Dom 10:00 - 06:00",
     "manager": "Juan Isaac Ávila Mercado",
     "managerPhone": "528713545005",
     "state": "COAHUILA",
-    "image": "assets/stores/fachadas/att-20-durango-saltillo-400.jpg",
-    "slug": "saltillo-400",
-    "page": "tienda/saltillo-400.html"
+    "image": "assets/stores/fachadas/att-20-coahuila-campestre-la-rosita.jpg?v=20260921i",
+    "slug": "campestre-la-rosita",
+    "page": "tienda/campestre-la-rosita.html",
+    "banner": "assets/stores/banners/campestre-la-rosita.png?v=20260921i",
+    "facebook": "https://www.facebook.com/ATTTorreonCampestreLaRosita/",
+    "managerEmail": "juan.avila@yaavs.com.mx"
   },
   {
     "id": "att-21-guanajuato",
@@ -334,9 +355,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "524778915308",
     "state": "GUANAJUATO",
     "facebook": "https://www.facebook.com/profile.php?id=61594163483310",
-    "image": "assets/stores/fachadas/att-21-guanajuato-delta.jpg",
+    "image": "assets/stores/fachadas/att-21-guanajuato-delta.jpg?v=20260919f",
     "slug": "delta",
-    "page": "tienda/delta.html"
+    "page": "tienda/delta.html",
+    "banner": "assets/stores/banners/delta.png?v=20260919f"
   },
   {
     "id": "att-22-guanajuato",
@@ -351,9 +373,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "524742580624",
     "state": "JALISCO",
     "facebook": "https://www.facebook.com/ATTJaliscoDivisionDelNorte",
-    "image": "assets/stores/fachadas/att-22-guanajuato-division-del-norte.jpg",
+    "image": "assets/stores/fachadas/att-22-guanajuato-division-del-norte.jpg?v=20260919f",
     "slug": "division-del-norte",
-    "page": "tienda/division-del-norte.html"
+    "page": "tienda/division-del-norte.html",
+    "banner": "assets/stores/banners/division-del-norte.png?v=20260919f"
   },
   {
     "id": "att-23-guanajuato",
@@ -368,9 +391,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "524776786851",
     "state": "GUANAJUATO",
     "facebook": "https://www.facebook.com/profile.php?id=61593660585489",
-    "image": "assets/stores/fachadas/att-23-guanajuato-francisco-villa.jpg",
+    "image": "assets/stores/fachadas/att-23-guanajuato-francisco-villa.jpg?v=20260919f",
     "slug": "francisco-villa",
-    "page": "tienda/francisco-villa.html"
+    "page": "tienda/francisco-villa.html",
+    "banner": "assets/stores/banners/francisco-villa.png?v=20260919f"
   },
   {
     "id": "att-24-guanajuato",
@@ -385,9 +409,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "524311932707",
     "state": "JALISCO",
     "facebook": "https://www.facebook.com/profile.php?id=61593825697889",
-    "image": "assets/stores/fachadas/att-24-guanajuato-jalostotitlan-ii.jpg",
+    "image": "assets/stores/fachadas/att-24-guanajuato-jalostotitlan-ii.jpg?v=20260919f",
     "slug": "jalostotitlan-ii",
-    "page": "tienda/jalostotitlan-ii.html"
+    "page": "tienda/jalostotitlan-ii.html",
+    "banner": "assets/stores/banners/jalostotitlan-ii.png?v=20260919f"
   },
   {
     "id": "att-25-guanajuato",
@@ -402,9 +427,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "524321038250",
     "state": "GUANAJUATO",
     "facebook": "https://www.facebook.com/ATTGuanajuatoPlazaReal",
-    "image": "assets/stores/fachadas/att-25-guanajuato-plaza-real.jpg",
+    "image": "assets/stores/fachadas/att-25-guanajuato-plaza-real.jpg?v=20260919f",
     "slug": "plaza-real",
-    "page": "tienda/plaza-real.html"
+    "page": "tienda/plaza-real.html",
+    "banner": "assets/stores/banners/plaza-real.png?v=20260919f"
   },
   {
     "id": "att-26-guanajuato",
@@ -419,9 +445,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "524778365561",
     "state": "GUANAJUATO",
     "facebook": "https://www.facebook.com/ATTGuanajuatoSanabriaPanorama",
-    "image": "assets/stores/fachadas/att-26-guanajuato-sanabria-panorama.jpg",
+    "image": "assets/stores/fachadas/att-26-guanajuato-sanabria-panorama.jpg?v=20260919f",
     "slug": "sanabria-panorama",
-    "page": "tienda/sanabria-panorama.html"
+    "page": "tienda/sanabria-panorama.html",
+    "banner": "assets/stores/banners/sanabria-panorama.png?v=20260919f"
   },
   {
     "id": "att-28-san-luis-potosi",
@@ -436,9 +463,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "524445234490",
     "state": "SAN LUIS POTOSÍ",
     "facebook": "https://www.facebook.com/ATTSanLuisPotosiElDorado",
-    "image": "assets/stores/fachadas/att-28-san-luis-potosi-centro-comercial-el-dorado.jpg",
+    "image": "assets/stores/fachadas/att-28-san-luis-potosi-centro-comercial-el-dorado.jpg?v=20260919f",
     "slug": "centro-comercial-el-dorado",
-    "page": "tienda/centro-comercial-el-dorado.html"
+    "page": "tienda/centro-comercial-el-dorado.html",
+    "banner": "assets/stores/banners/centro-comercial-el-dorado.png?v=20260919f"
   },
   {
     "id": "att-29-san-luis-potosi",
@@ -453,9 +481,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "524447307527",
     "state": "SAN LUIS POTOSÍ",
     "facebook": "https://www.facebook.com/ATTSanLuisPotosiPlazaSendero",
-    "image": "assets/stores/fachadas/att-29-san-luis-potosi-ksk-plaza-sendero.jpg",
+    "image": "assets/stores/fachadas/att-29-san-luis-potosi-ksk-plaza-sendero.jpg?v=20260919f",
     "slug": "ksk-plaza-sendero",
-    "page": "tienda/ksk-plaza-sendero.html"
+    "page": "tienda/ksk-plaza-sendero.html",
+    "banner": "assets/stores/banners/ksk-plaza-sendero.png?v=20260919f"
   },
   {
     "id": "att-30-san-luis-potosi",
@@ -470,9 +499,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "524882708940",
     "state": "SAN LUIS POTOSÍ",
     "facebook": "https://www.facebook.com/profile.php?id=61594193332241",
-    "image": "assets/stores/fachadas/att-30-san-luis-potosi-matehuala-centro-iii.jpg",
+    "image": "assets/stores/fachadas/att-30-san-luis-potosi-matehuala-centro-iii.jpg?v=20260919f",
     "slug": "matehuala-centro-iii",
-    "page": "tienda/matehuala-centro-iii.html"
+    "page": "tienda/matehuala-centro-iii.html",
+    "banner": "assets/stores/banners/matehuala-centro-iii.png?v=20260919f"
   },
   {
     "id": "att-31-san-luis-potosi",
@@ -487,9 +517,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "524447264395",
     "state": "SAN LUIS POTOSÍ",
     "facebook": "https://www.facebook.com/profile.php?id=61593884556236",
-    "image": "assets/stores/fachadas/att-31-san-luis-potosi-plaza-electro-del-carmen.jpg",
+    "image": "assets/stores/fachadas/att-31-san-luis-potosi-plaza-electro-del-carmen.jpg?v=20260919f",
     "slug": "plaza-electro-del-carmen",
-    "page": "tienda/plaza-electro-del-carmen.html"
+    "page": "tienda/plaza-electro-del-carmen.html",
+    "banner": "assets/stores/banners/plaza-electro-del-carmen.png?v=20260919f"
   },
   {
     "id": "att-32-san-luis-potosi",
@@ -504,9 +535,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "524401328026",
     "state": "SAN LUIS POTOSÍ",
     "facebook": "https://www.facebook.com/ATTSanLuisPotosiPlazaNorte",
-    "image": "assets/stores/banners/plaza-norte.png",
+    "image": "assets/stores/fachadas/att-32-san-luis-potosi-plaza-norte.jpg?v=20260921b",
     "slug": "plaza-norte",
-    "page": "tienda/plaza-norte.html"
+    "page": "tienda/plaza-norte.html",
+    "banner": "assets/stores/banners/plaza-norte.png?v=20260921b"
   },
   {
     "id": "att-33-san-luis-potosi",
@@ -521,9 +553,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "524871405704",
     "state": "SAN LUIS POTOSÍ",
     "facebook": "https://www.facebook.com/ATTSanLuisPotosiRioVerde",
-    "image": "assets/stores/fachadas/att-33-san-luis-potosi-rio-verde.jpg",
+    "image": "assets/stores/fachadas/att-33-san-luis-potosi-rio-verde.jpg?v=20260919f",
     "slug": "rio-verde",
-    "page": "tienda/rio-verde.html"
+    "page": "tienda/rio-verde.html",
+    "banner": "assets/stores/banners/rio-verde.png?v=20260919f"
   },
   {
     "id": "att-34-san-luis-potosi",
@@ -538,9 +571,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "524882709034",
     "state": "SAN LUIS POTOSÍ",
     "facebook": "https://www.facebook.com/profile.php?id=61593731270563",
-    "image": "assets/stores/fachadas/att-34-san-luis-potosi-walmart-arboledas-ii.jpg",
+    "image": "assets/stores/fachadas/att-34-san-luis-potosi-walmart-arboledas-ii.jpg?v=20260919f",
     "slug": "walmart-arboledas-ii",
-    "page": "tienda/walmart-arboledas-ii.html"
+    "page": "tienda/walmart-arboledas-ii.html",
+    "banner": "assets/stores/banners/walmart-arboledas-ii.png?v=20260919f"
   },
   {
     "id": "att-35-san-luis-potosi",
@@ -555,8 +589,25 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "524444001438",
     "state": "SAN LUIS POTOSÍ",
     "facebook": "https://www.facebook.com/profile.php?id=61593868207282",
-    "image": "assets/stores/banners/walmart-munoz.png",
+    "image": "assets/stores/fachadas/att-35-san-luis-potosi-walmart-munoz.jpg?v=20260919f",
     "slug": "walmart-munoz",
-    "page": "tienda/walmart-munoz.html"
+    "page": "tienda/walmart-munoz.html",
+    "banner": "assets/stores/banners/walmart-munoz.png?v=20260919f"
+  },
+  {
+    "id": "att-36-queretaro",
+    "name": "PLAZA DEL RÍO",
+    "city": "SAN JUAN DEL RÍO",
+    "address": "AV. RÍO MOCTEZUMA 192 LOC.\"D\", PLAZA DEL RÍO Y/O COL. SAN CAYETANO, C.P.76806, CD. SAN JUAN DEL RÍO QUERÉTARO",
+    "lat": 20.3866713,
+    "lng": -99.9668807,
+    "mapsLink": "https://www.google.com/maps/search/?api=1&query=AV.+R%C3%8DO+MOCTEZUMA+192+LOC.+D+PLAZA+DEL+R%C3%8DO+SAN+CAYETANO+76806+SAN+JUAN+DEL+R%C3%8DO+QUER%C3%89TARO",
+    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00",
+    "state": "QUERÉTARO",
+    "image": "assets/stores/fachadas/att-36-queretaro-plaza-del-rio.jpg?v=20260921e",
+    "slug": "plaza-del-rio",
+    "page": "tienda/plaza-del-rio.html",
+    "banner": "assets/stores/banners/plaza-del-rio.png?v=20260921e",
+    "facebook": "https://www.facebook.com/ATTPlazaDelRioSanJuanDelRio"
   }
 ];

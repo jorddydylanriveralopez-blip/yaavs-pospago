@@ -449,7 +449,7 @@ STORE_ARTWORK_BANNERS = {
         "alt": "AT&T Las Fuentes · Santiago De Querétaro — Más que números, personas",
     },
     "plaza-del-rio": {
-        "image": "assets/stores/banners/plaza-del-rio.png?v=20260921c",
+        "image": "assets/stores/banners/plaza-del-rio.png?v=20260921d",
         "width": 1920,
         "height": 600,
         "alt": "AT&T Plaza Del Río · San Juan Del Río — Más que números, personas",

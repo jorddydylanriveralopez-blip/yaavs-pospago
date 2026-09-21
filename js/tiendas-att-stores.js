@@ -335,10 +335,10 @@ window.YAAVS_ATT_STORES = [
     "manager": "Juan Isaac Ávila Mercado",
     "managerPhone": "528713545005",
     "state": "COAHUILA",
-    "image": "assets/stores/fachadas/att-20-coahuila-campestre-la-rosita.jpg?v=20260921f",
+    "image": "assets/stores/fachadas/att-20-coahuila-campestre-la-rosita.jpg?v=20260921h",
     "slug": "campestre-la-rosita",
     "page": "tienda/campestre-la-rosita.html",
-    "banner": "assets/stores/banners/campestre-la-rosita.png?v=20260921f",
+    "banner": "assets/stores/banners/campestre-la-rosita.png?v=20260921h",
     "facebook": "https://www.facebook.com/ATTTorreonCampestreLaRosita/"
   },
   {

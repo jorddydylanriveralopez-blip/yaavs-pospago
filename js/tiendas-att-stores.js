@@ -324,21 +324,21 @@ window.YAAVS_ATT_STORES = [
     "banner": "assets/stores/banners/durango-i.png?v=20260919f"
   },
   {
-    "id": "att-20-durango",
-    "name": "SALTILLO 400",
+    "id": "att-20-coahuila",
+    "name": "CAMPESTRE LA ROSITA",
     "city": "TORREÓN",
-    "address": "CALZADA SALTILLO 400 N°809 C Y 809 D, FRACC. RESIDENCIAL CAMPESTRE LA ROSITA, C.P. 27250; CD. TORREÓN, COAHUILA",
-    "lat": 25.519647762399636,
-    "lng": -103.40622492913485,
-    "mapsLink": "https://maps.app.goo.gl/Uc769MVXUMZnkbGX9",
+    "address": "AV. CALZADA SALTILLO 400 N°515 \"B\", COL. CAMPESTRE LA NUEVA ROSITA, C.P.27250; CD. TORREÓN, COAHUILA",
+    "lat": 25.5311171,
+    "lng": -103.405971,
+    "mapsLink": "https://www.google.com/maps/search/?api=1&query=AV.+CALZADA+SALTILLO+400+515+B+CAMPESTRE+LA+NUEVA+ROSITA+27250+TORRE%C3%93N+COAHUILA",
     "hours": "L-V 10:00 - 07:00 · Sáb 10:00 - 08:00 · Dom 10:00 - 06:00",
     "manager": "Juan Isaac Ávila Mercado",
     "managerPhone": "528713545005",
     "state": "COAHUILA",
-    "image": "assets/stores/fachadas/att-20-durango-saltillo-400.jpg?v=20260919f",
-    "slug": "saltillo-400",
-    "page": "tienda/saltillo-400.html",
-    "banner": "assets/stores/banners/saltillo-400.png?v=20260919f"
+    "image": "assets/stores/fachadas/att-20-coahuila-campestre-la-rosita.jpg?v=20260921f",
+    "slug": "campestre-la-rosita",
+    "page": "tienda/campestre-la-rosita.html",
+    "banner": "assets/stores/banners/campestre-la-rosita.png?v=20260921f"
   },
   {
     "id": "att-21-guanajuato",

@@ -467,10 +467,16 @@ STORE_ARTWORK_BANNERS = {
         "alt": "AT&T Durango I · Victoria De Durango — Más que números, personas",
     },
     "saltillo-400": {
-        "image": "assets/stores/banners/saltillo-400.png?v=20260919c",
+        "image": "assets/stores/banners/campestre-la-rosita.png?v=20260921f",
         "width": 1920,
         "height": 600,
-        "alt": "AT&T Saltillo 400 · Torreón — Más que números, personas",
+        "alt": "AT&T Campestre La Rosita · Torreón — Más que números, personas",
+    },
+    "campestre-la-rosita": {
+        "image": "assets/stores/banners/campestre-la-rosita.png?v=20260921f",
+        "width": 1920,
+        "height": 600,
+        "alt": "AT&T Campestre La Rosita · Torreón — Más que números, personas",
     },
     "delta": {
         "image": "assets/stores/banners/delta.png?v=20260919c",

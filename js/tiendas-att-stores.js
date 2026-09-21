@@ -338,7 +338,8 @@ window.YAAVS_ATT_STORES = [
     "image": "assets/stores/fachadas/att-20-coahuila-campestre-la-rosita.jpg?v=20260921f",
     "slug": "campestre-la-rosita",
     "page": "tienda/campestre-la-rosita.html",
-    "banner": "assets/stores/banners/campestre-la-rosita.png?v=20260921f"
+    "banner": "assets/stores/banners/campestre-la-rosita.png?v=20260921f",
+    "facebook": "https://www.facebook.com/ATTTorreonCampestreLaRosita/"
   },
   {
     "id": "att-21-guanajuato",
@@ -605,6 +606,7 @@ window.YAAVS_ATT_STORES = [
     "image": "assets/stores/fachadas/att-36-queretaro-plaza-del-rio.jpg?v=20260921e",
     "slug": "plaza-del-rio",
     "page": "tienda/plaza-del-rio.html",
-    "banner": "assets/stores/banners/plaza-del-rio.png?v=20260921e"
+    "banner": "assets/stores/banners/plaza-del-rio.png?v=20260921e",
+    "facebook": "https://www.facebook.com/ATTPlazaDelRioSanJuanDelRio"
   }
 ];

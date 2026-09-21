@@ -533,10 +533,10 @@ window.YAAVS_ATT_STORES = [
     "managerPhone": "524401328026",
     "state": "SAN LUIS POTOSÍ",
     "facebook": "https://www.facebook.com/ATTSanLuisPotosiPlazaNorte",
-    "image": "assets/stores/fachadas/att-32-san-luis-potosi-plaza-norte.jpg?v=20260919f",
+    "image": "assets/stores/banners/plaza-norte.png?v=20260921a",
     "slug": "plaza-norte",
     "page": "tienda/plaza-norte.html",
-    "banner": "assets/stores/banners/plaza-norte.png?v=20260919f"
+    "banner": "assets/stores/banners/plaza-norte.png?v=20260921a"
   },
   {
     "id": "att-33-san-luis-potosi",

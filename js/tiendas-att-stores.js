@@ -591,5 +591,20 @@ window.YAAVS_ATT_STORES = [
     "slug": "walmart-munoz",
     "page": "tienda/walmart-munoz.html",
     "banner": "assets/stores/banners/walmart-munoz.png?v=20260919f"
+  },
+  {
+    "id": "att-36-queretaro",
+    "name": "PLAZA DEL RÍO",
+    "city": "SAN JUAN DEL RÍO",
+    "address": "AV. RÍO MOCTEZUMA 192 LOC.\"D\", PLAZA DEL RÍO Y/O COL. SAN CAYETANO, C.P.76806, CD. SAN JUAN DEL RÍO QUERÉTARO",
+    "lat": 20.3866713,
+    "lng": -99.9668807,
+    "mapsLink": "https://www.google.com/maps/search/?api=1&query=AV.+R%C3%8DO+MOCTEZUMA+192+LOC.+D+PLAZA+DEL+R%C3%8DO+SAN+CAYETANO+76806+SAN+JUAN+DEL+R%C3%8DO+QUER%C3%89TARO",
+    "hours": "L-V 11:00 - 08:00 · Sáb 11:00 - 08:00 · Dom 11:00 - 08:00",
+    "state": "QUERÉTARO",
+    "image": "assets/stores/fachadas/att-36-queretaro-plaza-del-rio.jpg?v=20260921c",
+    "slug": "plaza-del-rio",
+    "page": "tienda/plaza-del-rio.html",
+    "banner": "assets/stores/banners/plaza-del-rio.png?v=20260921c"
   }
 ];
